@@ -1,0 +1,91 @@
+\section{预簇}
+
+本节中, 我们假设 \( k \) 为一个代数闭域. 如果我们给定了多项式 \( f_1, \ldots,
+f_r \in k[T_1, \ldots, T_n] \), 我们想要知道零点集
+\[
+  V(f_1, \ldots, f_r) = \left\lbrace (t_1, \ldots, t_n) \in k^n: f_i(t_1,
+  \ldots, t_n) = 0, \forall i \right\rbrace \subseteq k^n
+\]
+的代数性质. 更一般地, 如果给定子集 \( M \subseteq k[T_1, \ldots, T_n] ] =
+k[\mathbf{T}] \), 那么我们记  \emph{\( M \) 的公共零点集} 为
+\[
+  V(M) = \left\lbrace (t_1, \ldots, t_n) \in k^n; f(t_1, \ldots, t_n) = 0,
+  \forall f \in M \right\rbrace
+\]
+特别地, 如果 \( M \) 由元素 \( f_i, i \in I \) 组成, 那么我们记 \( V(f_i, i \in
+I) \) 而非 \( V(\left\lbrace f_i: i \in I \right\rbrace) \).
+
+\begin{proposition}
+  将所有形如\( V(\mathbf{a}) \) 的集合作为闭集构成了 \( k^n \) 的一个拓扑, 其中
+  \( \mathbf{a} \) 跑遍 \( k[\mathbf{T}] \) 的理想. 这样的拓扑我们称为
+  \emph{Zariski 拓扑}.
+\end{proposition}
+
+我们记 \( k^n \) 赋予 Zariski 拓扑的空间为 \( \mathbb{A}^n(k) \) 以示区别.
+我们称 \( \mathbb{A}^n(k) \) 的闭集为 \emph{仿射代数集}. 我们可以完整地刻画 \(
+\mathbb{A}^1(k) \) 以及 \( \mathbb{A}^2(k) \) 的闭集.
+
+\begin{example}
+  假设 \( n = 1 \). 由于此时 \( k[\mathbf{T}] \) 是主理想整环, \(
+  \mathbb{A}^1(k) \) 的闭集要么是 \( \mathbb{A}^1(k) \) 本身, 要么是 \(
+  \mathbb{A}^1(k) \) 的有限子集.
+\end{example}
+
+\begin{example}
+  假设 \( n = 3 \). 这时 \( \mathbb{A}^2(k) \) 的闭集形如
+  \begin{itemize}
+    \item \( \mathbb{A}^2(k) \).
+    \item 单点集.
+    \item \( V(f) \), 其中 \( f \) 是不可约多项式.
+  \end{itemize}
+\end{example}
+
+取定一点 \( \mathbf{x} = (x_1, x_2, \ldots, x_n) \in \mathbb{A}^n(k) \), 容易知道理想
+\[
+  (T_1 - x_1, T_2 - x_2, \ldots, T_n - x_n) \subseteq k[\mathbf{T}]
+\]
+是极大理想, 我们将其记作 \( \mathfrak{m}_{\mathbf{x}} \).
+如果 \( Z \subseteq \mathbb{A}^n(k) \) 是一个子集, 我们记理想
+\[
+  I(Z) := \left\lbrace f \in k[\mathbf{T}]: f(x) = 0, \forall x \in Z
+  \right\rbrace
+\]
+如果 \( f \in k[\mathbf{T}] \) 且 \( \mathbf{x} \in \mathbb{A}^n(k) \),
+那么直接验证知道
+\[
+  f(x) = 0 \iff f \in \mathfrak{m}_{\mathbf{x}}.
+\]
+因此我们能给出进一步地刻画
+\[
+  I(Z) = \bigcap_{x \in Z}\mathfrak{m}_{\mathbf{x}}.
+\]
+
+\begin{proposition}
+  \begin{enumerate}
+    \item 如果 \( \mathfrak{a} \subseteq k[\mathbf{T}] \) 为一个理想, 那么
+      \[
+        I(V(\mathfrak{a})) = \operatorname{rad} \mathfrak{a}.
+      \]
+    \item 如果 \( Z \) 是 \( \mathbb{A}^n(k) \) 的子集且 \( \overline{Z} \)
+      为其闭包, 那么
+      \[
+        V(I(Z)) = \overline{Z}.
+      \]
+  \end{enumerate}
+\end{proposition}
+
+\begin{corollary}
+  映射
+  \[
+    \left\lbrace k[\mathbf{T}]\text{的根式理想}\mathfrak{a} \right\rbrace
+    \xleftrightarrow[I(Z) \mapsfrom Z]{\mathfrak{a} \mapsto V(\mathfrak{a})}
+    \left\lbrace \mathbb{A}^n(k) \text{的闭集} Z \right\rbrace
+  \]
+  互为逆映射. 特别地, 其限制定义了双射
+  \[
+    \left\lbrace k[\mathbf{T}] \text{的极大理想} \right\rbrace \leftrightarrow
+    \left\lbrace \mathbb{A}^n(k) \text{中的点} \right\rbrace.
+  \]
+\end{corollary}
+
+一个非空的拓扑空间称为 \emph{不可约}, 如果其不能

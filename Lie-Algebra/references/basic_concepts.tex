@@ -1,0 +1,38 @@
+\section{李代数}
+
+\section{模}
+
+下面假设 \( \mathfrak{g} \) 是一个域 \( \mathbb{F} \) 上李代数.
+
+\begin{definition}[对偶模]
+  假设 \( V \) 为一个 \( \mathfrak{g} \)-模. 那么 \( V \) 的对偶线性空间 \( V^*
+  \) 可以按如下方式视为 \( \mathfrak{g} \)模: 对 \( f \in V^*, v \in V, x \in
+  \mathfrak{g} \), \( x.f(v) = -f(x.v) \). 我们称按这种方式定义的 \(
+  \mathfrak{g} \)-表示 \( V^* \) 为 \( V \) 的\emph{对偶模}.
+\end{definition}
+
+\begin{proposition}
+  假设 \( e_1, e_2, \cdots, e_n \) 为 \( \mathfrak{g} \)-模 \( V \) 的一组基, \(
+  e_1^*, e_2^*, \cdots, e_n^* \) 为 \( V^* \) 对偶基, 即 \( e_i^*(e_j) =
+  \delta_{ij} \). 如果 \( x \in \mathfrak{g} \), 在基 \( e_1, e_2, \cdots, e_n
+  \) 下线性变换对应矩阵为 \( M \), 那么 \( x \) 在基 \( e_1^*, e_2^*, \cdots,
+  e_n^* \) 下矩阵为 \( -M^T \).
+\end{proposition}
+\begin{proof}
+  记 \( M = \left(m_{ij}\right) \), 那么
+  \[
+    (x.e^*_i)(e_j) = -e^*_i(x.e_j) =
+    -e_i^*(\sum_k m_{kj}e_k) = -m_{ij} = -m_{ij} e_j^*(e_j).
+  \]
+  从而 \( x.e^*_i = -\sum_{j}m_{ij}e^*_j \). 另一方面, 设 \( M' =
+  \left(m'_{ij}\right) \) 为 \( x \) 在基 \( e^*_1, e^*_2, \cdots, e^*_n \)
+  下的矩阵, 那么 \( x.e^*_i = \sum_j m'_{ji} e^*_i \). 因此 \( m'_{ji} = -m_{ij}
+  \).
+\end{proof}
+
+\begin{definition}[张量模]
+  假设 \( V, W \) 为两个 \( \mathfrak{g} \)-模. 考虑 \( V \otimes W \) 是域 \(
+  \mathbb{F} \) 上的张量积, 我们考虑 \( V \otimes W \) 上的 \( \mathfrak{g}
+  \)-模结构: 对 \( x \in \mathfrak{g}, v \in V, W \), 定义 \( x.(v \otimes w) =
+  x.v \otimes w + v \otimes x.w \).
+\end{definition}

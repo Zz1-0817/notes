@@ -1,0 +1,398 @@
+\section{\texorpdfstring{\( \mathfrak{sl}(2, \mathbb{C}) \)}{sl(2, C)} 的表示}
+
+\section{\texorpdfstring{\( \mathfrak{sl}(3, \mathbb{C}) \)}{sl(3, C)} 的表示}
+
+使用 \( \mathfrak{sl}(3, \mathbb{C}) \) 的如下的一组基
+\begin{align*}
+  &H_1 = \begin{pmatrix}
+    1 &0 &0\\0 &-1 &0\\0 &0 &0
+  \end{pmatrix},\quad H_2 = \begin{pmatrix}
+    0 &0 &0\\0 &-1 &0\\0 &0 &-1
+  \end{pmatrix},\quad X_1 = \begin{pmatrix}
+    0 &1 &0\\0 &0 &0\\0 &0 &0
+  \end{pmatrix},\quad X_2 = \begin{pmatrix}
+    0 &0 &0\\0 &0 &1\\0 &0 &0
+  \end{pmatrix}\\
+  &X_3 = \begin{pmatrix}
+    0 &0 &1\\0 &0 &0\\0 &0 &0
+  \end{pmatrix},\quad Y_1 = \begin{pmatrix}
+    0 &0 &0\\1 &0 &0\\0 &0 &0
+  \end{pmatrix},\quad Y_2 = \begin{pmatrix}
+    0 &0 &0\\0 &0 &0\\0 &1 &0
+  \end{pmatrix},\quad Y_3 = \begin{pmatrix}
+    0 &0 &0\\0 &0 &0\\1 &0 &0
+  \end{pmatrix}
+\end{align*}
+
+一个重要的观察是, 子代数 \( \left\langle H_1, X_1, Y_1 \right\rangle \) 以及 \(
+\left\langle H_2, X_2, Y_2 \right\rangle \) 均同构于 \( \mathfrak{sl}(2,
+\mathbb{C}) \)
+
+假设 \( (V, \rho) \) 是 \( \mathfrak{sl}(3, \mathbb{C}) \) 的一个表示, \(
+\mu = (m_1, m_2) \in \mathbb{C}^2 \) 为一有序对.
+如果存在 \( V \) 中元素 \( v \neq 0 \) 使得
+\[
+  H_1.v = m_1 v,\quad H_2.v = m_2 v
+\]
+那么我们称 \( \mu \) 为表示 \( \rho \) 的 \emph{权}. 其中, 我们称上式的 \( v \)
+为 \( \mu \) 对应的 \emph{权向量}.
+
+\begin{lemma}
+  \begin{enumerate}
+    \item 每一个 \( \mathfrak{sl}(3, \mathbb{C}) \) 的表示都至少有一个权.
+    \item 如果 \( (\pi, V) \) 是 \( \mathfrak{sl}(3, \mathbb{C}) \) 的一个表示,
+      \( \mu = (m_1, m_2) \) 是 \( V \) 的一个权, 那么 \( m_1 \) 和 \( m_2 \)
+      都是整数.
+  \end{enumerate}
+\end{lemma}
+\begin{proof}
+  \begin{enumerate}
+    \item 线性代数(注意, 这里要用到条件``代数闭'').
+    \item 考察其子代数 \( \left\langle H_1, X_1, Y_1 \right\rangle \) 及 \( \left\langle
+  H_2, X_2, Y_2 \right\rangle \) 的表示.
+  \end{enumerate}
+\end{proof}
+
+一个有序对 \( \alpha = (a_1, a_2) \in \mathbb{C}^2 \) 称为一个 \emph{根} 如果
+\begin{enumerate}
+  \item \( a_1 \) 和 \( a_2 \) 不同时为零;
+  \item 存在非零的 \( Z \in \mathfrak{sl}(3, \mathbb{C}) \) 使得
+    \[
+      [H_1, Z] = a_1 Z,\quad [H_2, Z] = a_2 Z,
+    \]
+    其中, 我们称这样的 \( Z \) 为 \( \alpha \) 的 \emph{根向量}.
+\end{enumerate}
+换句话说, 根是 \( \mathfrak{sl}(3, \mathbb{C}) \) 到其自身伴随表示的权. 特别地, 我们有如下 \( 6 \) 个根.
+
+\begin{table}[H]
+  \centering
+  \begin{tabular}{cccc}
+    \( \alpha \) & \( Z \) & \( \alpha \) & \( Z \)\\
+    \hline
+    \( (2, -1) \) &\( X_1 \) &\( (-2, 1) \) &\( Y_1 \)\\
+    \( (-1, 2) \) &\( X_2 \) &\( (1, -2) \) &\( Y_2 \)\\
+    \( (1, 1) \) &\( X_3 \) &\( (-1, -1) \) &\( Y_3 \)
+  \end{tabular}
+  \caption{\( \mathfrak{sl}(3, \mathbb{C}) \)的根}
+  \label{table-sl3C-basis}
+\end{table}
+
+我们选取两个根
+\[
+  \alpha_1 = (2, -1),\quad \alpha_2 = (-1, 2),
+\]
+称其为 \emph{正单根}.
+
+\begin{lemma}
+  \label{lemma-sl3C-root-vector-action-on-weight-vector}
+  假设 \( \alpha = (a_1, a_2) \) 为根, \( Z_\alpha \in \mathfrak{sl}(3,
+  \mathbb{C}) \) 为其对应根向量. 如果 \( (V, \rho) \) 是 \( \mathfrak{sl}(3,
+  \mathbb{C}) \) 的表示, \( \mu = (m_1, m_2) \) 为 \( \rho \) 的一个权, \( v
+  \neq 0 \) 为其权向量. 那么
+  \[
+    H_1.Z_\alpha v = (m_1 + a_1) \pi (Z_\alpha)v,\quad H_2.Z_\alpha.v = (m_2 +
+    a_2)Z_\alpha.v.
+  \]
+  因此, 要么 \( Z_\alpha. v = 0 \), 那么 \( Z_\alpha. v \) 为权
+  \[
+    \mu + \alpha = (m_1 + a_1, m_2 + a_2)
+  \]
+  的权向量.
+\end{lemma}
+%%FIX: 权比较大小必须要在同一个模上吗?
+于是, 我们可以比较权的 ``大小''. 假设我们给定了一个 \( \mathfrak{sl}(3,
+\mathbb{C}) \) 表示\( (V, \rho) \), \( \mu_1 \) 和 \( \mu_2 \) 为 \( \rho \)
+的两个权. 如果 \( \mu_1 - \mu_2 \) 能写成
+\[
+  \mu_1 - \mu_2 = a \alpha_1 + b \alpha_2,\quad \text{其中} a, b \geq 0,
+\]
+那么我们称 \( \mu_1 \) 比 \( \mu_2 \) \emph{更高}. 我们记此关系为 \( \mu_1
+\succeq \mu_2 \) 或 \( \mu_2 \preceq \mu_1 \). 如果 \( \rho \) 有一个权 \( \mu_0
+\)对 \( \rho \) 所有的权 \( \mu \), 都有 \( \mu \preceq \mu_0 \), 那么我们称 \(
+\mu_0 \) 为 \emph{最高权}.
+
+引入了诸多概念后, 我们终于可以论述 \( \mathfrak{sl}(3, \mathbb{C}) \)
+的不可约模分类定理.
+\begin{theorem}
+  \begin{enumerate}
+    \item 每个 \( \mathfrak{sl}(3, \mathbb{C}) \)
+      的不可约表示都是它的权空间的直和分解.
+    \item 每个 \( \mathfrak{sl}(3, \mathbb{C}) \) 的不可约表示都有唯一一个最高权
+      \( \mu \).
+    \item 如果两个 \( \mathfrak{sl}(3, \mathbb{C}) \)
+      的不可约表示有相同的最高权, 那么它们是同构的.
+    \item 不可约 \( \mathfrak{sl}(3, \mathbb{C}) \) 模的最高权必须形如
+      \[
+        \mu = (\mu_1, \mu_2),\quad \text{其中} m_1, m_2 \text{为非负整数}.
+      \]
+    \item 对每对非负整数 \( (m_1, m_2) \), 都存在 \( \mathfrak{sl}(3,
+      \mathbb{C}) \) 的不可约表示, 其最高权为
+      \[
+        (m_1, m_2).
+      \]
+  \end{enumerate}
+\end{theorem}
+
+\subsection{\texorpdfstring{\( \mathfrak{sl}(3, \mathbb{C}) \)}{sl(3, C)}
+不可约子模分类定理证明}
+
+\begin{proposition}
+  \label{proposition-sl3C-module-as-weights-direct-sum}
+  如果 \( (V, \rho) \) 为 \( \mathfrak{sl}(3, \mathbb{C}) \) 的不可约表示,
+  那么能找到一组基使得线性映射 \( \rho(H_1) \) 和 \( \rho(H_2) \) 同时对角化,
+  从而 \( V \) 是它们权空间的直和.
+\end{proposition}
+\begin{proof}
+  Lie 定理.
+\end{proof}
+\( \mathfrak{sl}(3, \mathbb{C}) \) 的表示 \( (V, \rho) \) 称为\emph{最高权 \( \mu = (m_1,
+m_2) \) 的循环表示}, 如果存在\( V \) 中向量 \( v \neq 0 \), 使得
+\begin{enumerate}
+  \item \( v \) 是权 \( \mu \) 的权向量;
+  \item \( X_j.v = 0, j = 1, 2, 3 \);
+  \item \( V \) 中包含 \( v \) 的最小 \( \mathfrak{sl}(3, \mathbb{C})
+    \)-不变空间张成整个 \( V \).
+\end{enumerate}
+
+\begin{proposition}
+  \label{proposition-sl3C-highest-weight-space}
+  如果 \( (V, \rho) \) 是 \( \mathfrak{sl}(3, \mathbb{C}) \) 的最高权 \( \mu \)
+  循环表示, 那么
+  \begin{enumerate}
+    \item 表示 \( \rho \) 有最高权 \( \mu \);
+    \item 权 \( \mu \) 的权空间是一维的.
+  \end{enumerate}
+\end{proposition}
+\begin{proof}
+  设 \( v \) 为最高权表示中的向量. 考虑元素
+  \[
+    w = Y_{j_1}.Y_{j_2}\ldots Y_{j_N}.v
+  \]
+  其中 \( j_l = 1, 2, 3 \) 且 \( N \geq 0 \).
+  表 \ref{table-sl3C-basis} 告诉我们, \(
+  Y_1, Y_2 \) 以及 \( Y_3 \) 为 \( -\alpha_1, -\alpha_2 \) 和 \( -\alpha_1 -
+  \alpha_2 \) 的根向量. 由引理
+  \ref{lemma-sl3C-root-vector-action-on-weight-vector}, 元素 \( w \) 不能比 \(
+  \mu \) 高.
+
+  考虑 \( w \) 张成的子空间 \( W \): 我们断言 \( W \) 是 \( \mathfrak{sl}(3,
+  \mathbb{C}) \)-不变子空间: 取定 \( \mathfrak{sl}(3, \mathbb{C}) \)
+  的有序基顺序 \( X_1, X_2, X_3, H_1, H_2,  Y_1, Y_2 \) 以及 \( Y_3 \), 结合引理
+  \ref{lemma-reordering} 以及最高权循环表示定义即可. 再由最高权循环表示定义, \(
+  W = V \). 结合前段所证, \( V \) 由不比 \( \mu \) 高的权向量生成, 只能 \( \mu
+  \) 最高.
+
+  最后, 由于 \( v \) 高于所有 \( N > 0 \) 时形如 \( w \) 的向量, 只能 \( V_{\mu} \)
+  一维.
+\end{proof}
+
+\begin{proposition}
+  所有 \( \mathfrak{sl}(3, \mathbb{C}) \) 的不可约表示都是一个最高权循环表示,
+  并且有唯一一个最高权 \( \mu \).
+\end{proposition}
+\begin{proof}
+  命题 \ref{proposition-sl3C-module-as-weights-direct-sum} 指出, \(
+  \mathfrak{sl}(3, \mathbb{C}) \) 表示为其权空间直和, 进而权个数有限.
+  考虑其中一个最高权及其生成的最高权循环子表示并利用表示本身的不可约性即可.
+\end{proof}
+
+\begin{proposition}
+  \label{proposition-completely-highest-cyclic-representation}
+  假设 \( (V, \rho) \) 是 \( \mathfrak{sl}(3, \mathbb{C}) \) 的一个完全可约表示.
+  如果 \( (V, \rho) \) 亦是一个最高权循环表示, 那么 \( \rho \) 是不可约的.
+\end{proposition}
+\begin{proof}
+  假设 \( (V, \rho) \) 是权为 \( \mu \) 的最高权循环表示, \( v \) 为 \( \mu \)
+  权向量, \( V \simeq \bigoplus_j V_j \) 为不可约模 \( V_j \) 的直和. 命题
+  \ref{proposition-sl3C-module-as-weights-direct-sum} 告诉我们, \( V_j \)
+  是它权空间的直和, 故 \( \mu \) 是个某个 \( V_j \) 的最高权空间的权. \( (V,
+  \rho) \) 是一个最高权循环表示, 由命题
+  \ref{proposition-sl3C-highest-weight-space},  \( V_{\mu} \) 的一维,
+  此权空间只能为 \( V_{\mu} \), 也就是 \( v \) 落于此 \( V_j \) 中, 只能 \( V =
+  V_j \).
+\end{proof}
+
+\begin{proposition}
+  如果两个 \( \mathfrak{sl}(3, \mathbb{C}) \) 的不可约表示有相同的最高权,
+  那么它们是同构的.
+\end{proposition}
+\begin{proof}
+  %TODO: 补充
+  假设 \( (V, \rho), (W, \sigma) \) 为两个有相同最高权的不可约表示, 且 \( v \)
+  和 \( w \) 分别为它们的权向量. 考虑表示 \( V \oplus W \) 及其包含 \( (v, w) \)
+  的最小不变子空间 \( U \). 模 \( U \) 作为完全可约模 \( V \oplus W \) 的子模,
+  其完全可约. 命题 \ref{proposition-completely-highest-cyclic-representation}
+  告诉我们, 它是不可约的.
+
+  考虑投影
+  \[
+    \pi_1: V \oplus W \to V, (v, w) \mapsto v,\quad \pi_2: V \oplus W
+    \to W, (v, w) \mapsto w.
+  \]
+  因为 \( \pi_i(v, w) \neq 0 \), 其限制到 \( U \) 上非零, \( U, V \) 以及 \( W
+  \) 不可约, Schur 引理告诉我们 \( V \simeq U \simeq W \).
+\end{proof}
+
+\begin{proposition}
+  如果 \( (V, \rho) \) 是 \( \mathfrak{sl}(3, \mathbb{C}) \) 的不可约表示,
+  其最高权为 \( \mu = (m_1, m_2) \), 那么 \( m_1 \) 和 \( m_2 \) 都是非负整数.
+\end{proposition}
+
+\begin{proposition}
+  如果 \( m_1 \) 和 \( m_2 \) 都是非负整数, 那么存在一个 \( \mathfrak{sl}(3,
+  \mathbb{C}) \) 的不可约表示, 其最高权恰好是 \( (m_1, m_2) \)
+\end{proposition}
+\begin{proof}
+  因为平凡表示权为 \( (0, 0) \), 我们只需要考虑至少 \( m_1 \) 或 \( m_2 \)
+  为正的情况即可.
+
+  我们首先构造最高权为 \( (1, 0) \) 以及 \( (0, 1) \) 的不可约表示, 并称它们为
+  \emph{基本表示}. 考虑 \( \mathfrak{sl}(3, \mathbb{C}) \) 的\emph{标准表示} \(
+  \mathbb{C}^3 \), 即对形如 \( 3 \times 1 \) 的复列向量做矩阵乘法, 这是不可约的.
+  其有权 \( (1, 0), (-1, 1) \) 以及 \( (0, -1) \) 以及对应的权向量 \( e_1, e_2,
+  e_3 \). 其最高权为 \( (1, 0) \).
+  考虑其对偶表示, 其作用由
+  \[
+    \epsilon(Z) = -Z^T,\quad Z \in \mathfrak{sl}(3, \mathbb{C})
+  \]
+  给出. 这自然也是不可约的, 并且有权向量 \( e_1, e_2 \) 以及 \( e_3 \) 对应权 \(
+  (-1, 0), (1, -1) \) 和 \( (0, 1) \). 其最高权为 \( (0, 1) \).
+
+  假设 \( (V_1, \rho_1) \) 和 \( (V_2, \rho_2) \) 为 \( \mathfrak{sl}(3,
+  \mathbb{C}) \) 的标准表示及其对偶表示, 并及其最高权向量分别为 \( v_1 \) 和 \(
+  v_2\). 考虑张量表示
+  \[
+    V = \underbrace{(V_1 \otimes \cdots \otimes V_1)}_{m_1 \text{个}} \otimes
+    \underbrace{(V_1 \otimes \cdots \otimes V_1)}_{m_2 \text{个}}.
+  \]
+  考虑向量
+  \[
+    v_{m_1, m_2}= \underbrace{(v_1 \otimes \cdots \otimes v_1)}_{m_1 \text{个}}
+    \otimes \underbrace{(v_1 \otimes \cdots \otimes v_1)}_{m_2 \text{个}}.
+  \]
+  \( v_{m_1, m_2} \) 被 \( X_j \) (\( j = 1, 2, 3 \)) 零化. Weyl 定理告诉我们 \(
+  V \) 完全可约, 那么包含 \( v_{m_1, m_2} \) 的最小 \( \mathfrak{sl}(3,
+  \mathbb{C}) \)-不变子空间 \( W \) 完全可约, 命题
+  \ref{proposition-completely-highest-cyclic-representation}
+  告诉我们这就是一个最高权为 \( (m_1, m_2) \) 的不可约模.
+\end{proof}
+
+\subsection{Weyl 群}
+
+令 \( \mathfrak{h} \) 为 \( \mathfrak{sl}(3, \mathbb{C}) \) 中由 \( H_1 \) 和 \(
+H_2 \) 长成的子空间. 令 \( N \) 为由 \( \operatorname{SU}(3) \) 中
+
+\section{抽象权}
+
+假设 \( \Phi \) 是欧式空间 \( E \) 的一个根系, \( \Delta = \left\lbrace
+\alpha_1, \ldots, \alpha_n \right\rbrace \) 为 \( \Phi \)
+的单根, \( \mathscr{W} \) 为 \( \Phi \) 的 Weyl 群. \( \Lambda = \left\lbrace
+\lambda \in E: \left\langle \lambda, \alpha \right\rangle \in \mathbb{Z}
+\right\rbrace \subseteq E \) 中的元素称为 \emph{权}.
+
+\begin{proposition}
+  \( \lambda \in \Lambda \) 当且仅当 \( \left\langle \lambda, \alpha
+  \right\rangle \in \mathbb{Z} \) 对所有 \( \alpha \in \Delta \) 成立.
+\end{proposition}
+\begin{proof}
+  考虑 \( \Phi \) 的对偶 \( \Phi^{\vee} \). \( \left\langle \lambda, \alpha_i
+  \right\rangle \in \mathbb{Z}, \forall \alpha_i \in \Delta \iff \left( \lambda,
+  \alpha_i^{\vee} \right),\forall \alpha_i^{\vee} \in \Delta \iff \left(
+\lambda, \phi^{\vee} \right),\forall \phi^{\vee} \in \Phi^{\vee} \iff \left(
+\lambda, \phi \right), \forall \phi \in \Phi \).
+\end{proof}
+
+\section{标准循环模}
+
+假设 \( \mathfrak{g} \) 是一个 \( \mathbb{C} \) 上的单李代数, \( \mathfrak{h} \)
+为其一个给定的极大环面子代数, \( R \) 为其根系, \( \Delta \) 为一组选定的根基 ,
+\( R^+ \) 为 \( R \) 在 \( \Delta \) 下的正根.
+
+一个 \( \mathfrak{g} \) 的表示 \( (V, \rho) \) 是称为最高权为 \( \mu \in
+\mathfrak{h} \) 的 \emph{最高权循环模}, 如果存在一个非零向量 \( v \in V \) 使得
+\begin{enumerate}
+  \item \( H.v = \left\langle \mu, H \right\rangle.v \) 对所有 \( H \in
+    \mathfrak{h} \) 成立.
+  \item \( X.v = 0 \) 对所有 \( X \in \mathfrak{g}_{\alpha} \) 成立, 其中 \(
+    \alpha \in R^+ \).
+  \item 最小包含 \( v \) 的 \( \mathfrak{g} \)-不变空间就是 \( V \).
+\end{enumerate}
+
+因为其维数未必有限, 最高权循环模未必是不可约模. 而且, 因为所选取的 \( v \) 不同
+, 对应的最高权 \( \lambda \) 相同的两个最高权循环 \( V(\lambda) \)
+是不一定同构的.
+\begin{example}
+  考察 \( \mathfrak{sl}(2, \mathbb{C}) \) (由 \( e, h, f \) 张成, 满足 \( [h,
+  e]= 2e, [h, f] = -2f, [e, f] = h \)) 的模.
+  考虑最高权向量 \( v \), 满足
+  \[
+    h.v = \lambda v, e.v = 0,
+  \]
+  的 Verma 模 \( W_1 \). 取 \( \lambda = 1 \). 那么,
+  \[
+    e.(f^2.v) = [e, f^2].v = f.[e, f].v + [e, f].f.v = f.h.v + h.f.v.
+  \]
+  利用 \( h.v = v \) 及 \( h.f.v = (\lambda - 2)f.v \). 有
+  \( e.(f^2.v) = 0 \). 因此 \( f^2.v \) 生成了真子模 \( \operatorname{span}
+  \left\lbrace f^2.v, f^3v,\ldots \right\rbrace \), \( W_1 \) 可约.
+  然而, 我们知道 \( \mathfrak{sl}(2, \mathbb{C}) \) 有不可约模 \( V(1) \),
+  它的最高权也是 \( 1 \).
+\end{example}
+
+\begin{theorem}
+  假设 \( V \) 是循环 \( \mathfrak{g} \)-模, 其极大向量为 \( v^+ \). 设正根集为
+  \( \Phi^+ = \left\lbrace \beta_1, \ldots, \beta_m \right\rbrace \). 那么
+  \begin{enumerate}
+    \item 
+  \end{enumerate}
+\end{theorem}
+\begin{proof}
+  
+\end{proof}
+
+\begin{theorem}
+假设 \( V \) 和 \( W \) 为最高权为 \( \lambda \) 的标准循环模. 如果 \( V \) 和
+\( W \) 都是不可约的, 那么它们是同构的.
+\end{theorem}
+
+\begin{theorem}
+  如果 \( \lambda \in H^* \), 那么存在一个不可约的标准循环模 \( V(\lambda) \)
+  其权为 \( \lambda \).
+\end{theorem}
+
+\section{有限维模}
+
+%%%%%% Draft
+\begin{theorem}
+  如果 \( V \) 是一个有限维 \( \mathfrak{g} \)-模, \( \mu \in H^* \) 是 \( V \)
+  的一个权, 那么 \( \left\langle \mu, \alpha_i \right\rangle = \mu(h_i) \in
+  \mathbb{Z}, 1 \leq i \leq l \).
+  更进一步地, 如果 \( V \) 是一个有限维不可约 \( \mathfrak{g} \)-最高权模, 那么
+  \( \mu(h_i) \) 是一个非负整数.
+\end{theorem}
+
+%%%%%% 搬到上面定理去
+
+因此, 模的权与抽象权概念重合. 此时,
+定理 placeholder 指出最高权 \( \lambda \) 是支配的. 为了避免歧义, 我们继续称 \( H^* \)
+的元素为权, 而使得 \( \lambda(h_i) \) 都是整数的线性函数则称为 \emph{整的}.
+所有的整线性函数 \( \Lambda \) 构成了 \( H^* \) 的格, 其包含了根格. \( \Lambda \)
+的所有支配整线性函数集记作 \( \Lambda^+ \). 最后再引入一个方便的记号: 如果 \( M \)
+是一个 \( \mathfrak{g} \)-模, 那么使用 \( \prod (V) \) 记它所有的权.
+
+\begin{theorem}
+  如果 \( \lambda \in H^* \) 是支配整的, 那么不可约 \( \mathfrak{g} \)-模 \( V =
+  V(\lambda)\) 是有限维的, 并且它的权集 \( \prod(\lambda) \) 在 \( \mathscr{W}
+  \) 下置换, 满足维数 \( \operatorname{dim} V_{\mu} = \operatorname{dim}
+  V_{\sigma \mu} \), 其中 \( \sigma \in \mathscr{W} \).
+\end{theorem}
+
+\begin{corollary}
+  映射 \( \lambda \mapsto V(\lambda) \) 诱导了 \( \Lambda^+ \) 到有限维不可约 \(
+  L \)-模的一一对应.
+\end{corollary}
+
+\section{乘法公式}
+
+对于复半单李代数 \( \mathfrak{g} \), 其不可约有限维表示一一对应到支配整权.
+

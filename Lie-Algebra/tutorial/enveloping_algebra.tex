@@ -1,0 +1,224 @@
+\section{包络代数}
+
+\begin{theorem}
+  \label{tutorial-theorem-universal-enveloping-algebra}
+  对于任意李代数 \( \mathfrak{g} \), 存在一个带单位的结合代数, 记作 \(
+  U(\mathfrak{g}) \), 以及线性映射 \( i: \mathfrak{g} \to U(\mathfrak{g}) \)
+  具有下面性质.
+  \begin{enumerate}
+    \item 对任意 \( X, Y \in \mathfrak{g} \), 我们有
+      \[
+        i([X, Y]) = i(X) i(Y) - i(Y) i(X).
+      \]
+    \item 代数 \( U(\mathfrak{g}) \) 有形如 \( i(X) \) 的元素生成, 其中 \( X \in
+      \mathfrak{g} \). 换句话说, 包含所有形如 \( i(X) \)
+      元素带单位的最小结合代数就是 \( U(\mathfrak{g}) \).
+    \item 假设 \( \mathcal{A} \) 是一个带单位的集合代数, \( j: \mathfrak{g} \to
+      \mathcal{A}\) 为线性映射, 使得 \( j([X, Y]) = j(X) j(Y) - j(Y) j(X) \)
+      对所有 \( X, Y \in \mathfrak{g} \) 成立.
+      那么存在一个唯一的代数同态 \( \phi: U(\mathfrak{g}) \to \mathcal{A} \)
+      使得 \( \phi(1) = 1 \) 且使得 \( \phi(i(X)) = X \) 对所有 \( X \in
+      \mathfrak{g} \) 成立.
+      % https://q.uiver.app/#q=WzAsMyxbMSwxLCJcXG1hdGhjYWx7QX0iXSxbMCwxLCJcXG1hdGhmcmFre2d9Il0sWzEsMCwiVShcXG1hdGhmcmFre2d9KSJdLFsxLDAsImoiLDJdLFsxLDIsImkiXSxbMiwwLCJcXHBoaSIsMCx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dXQ==
+      \[\begin{tikzcd}
+        & {U(\mathfrak{g})} \\
+        {\mathfrak{g}} & {\mathcal{A}}
+        \arrow["\phi", dashed, from=1-2, to=2-2]
+        \arrow["i", from=2-1, to=1-2]
+        \arrow["j"', from=2-1, to=2-2]
+      \end{tikzcd}\]
+  \end{enumerate}
+  我们称满足上述性质的对 \( (U(\mathfrak{g}), i) \) 称为 \( \mathfrak{g} \)
+  的 \emph{泛包络代数}.
+\end{theorem}
+\begin{proof}
+  考虑张量代数 \( T(\mathfrak{g}) = \bigoplus_{k =
+  0}^{\infty}\mathfrak{g}^{\otimes k} \). 我们定义下面运算, 并直接验证知道此时
+  \( T(\mathfrak{g}) \) 为结合代数
+  \[
+    (u_1 \otimes u_2 \otimes \cdots \otimes u_k) \cdot (v_1 \otimes v_2 \otimes
+    \cdots \otimes v_l) = u_1 \otimes u_2 \otimes \cdots \otimes u_k \otimes v_1 \otimes v_2 \otimes
+    \cdots \otimes v_l
+  \]
+  我们断言 \( T(\mathfrak{g}) \) 具有如下性质: 如果 \( \mathcal{A} \)
+  任意带单位的结合代数, \( j: \mathfrak{g} \to \mathcal{A} \) 是任意线性映射,
+  那么存在一个代数同态 \( \psi: T(\mathfrak{g}) \to \mathcal{A} \) 使得 \(
+  \psi(1) = 1 \) 且 \( \psi(X) = j(X) \). 验证只需要构造如下 \( \psi \)
+  并直接验证即可:
+  \[
+    \psi(X_1 \otimes \cdots \otimes X_k) = j(X_1) \cdots j(X_k), \text{其中}
+    X_1, \cdots, X_k \in \mathfrak{g}.
+  \]
+  我们定义 \( T(\mathfrak{g}) \) 的一个双边理想 \( J \): 我们考虑所有包含元素
+  \[
+    X \otimes Y - Y \otimes X - [X, Y],\quad X, Y \in \mathfrak{g}
+  \]
+  的最小双边理想 \( J \). 更具体地, \( J \) 由形如
+  \[
+    \sum_{j = 1}^N \alpha_j\left(X_j \otimes Y_j - Y_j \otimes X_j - [X_j, Y_j]\right)
+    \beta_j
+  \]
+  的元素构成, 其中 \( X_j, Y_j \in \mathfrak{g} \) 且 \( \alpha_j, \beta_j \in
+  T_{\mathfrak{g}} \). \( T(\mathfrak{g}) / J \) 即为所求.
+\end{proof}
+
+\begin{corollary}
+  如果 \( \rho: \mathfrak{g} \to \operatorname{End}(V) \) 是李代数 \(
+  \mathfrak{g} \) 的表示, 那么存在唯一的代数同态 \( \widetilde{\pi}:
+  U(\mathfrak{g}) \to \operatorname{End}(V) \) 使得 \( \widetilde{\pi}(1) =
+  \operatorname{Id} \) 且 \( \widetilde{\pi}(X) = \pi(X) \) 对所有 \( X \in
+  \mathfrak{g} \subseteq U(\mathfrak{g}) \).
+\end{corollary}
+
+\begin{theorem}[Poincare-Birkhoff-Witt]
+  \label{tutorial-theorem-PBW}
+  如果 \( \mathfrak{g} \) 是基为 \( X_1, \ldots, X_k \) 的有限维李代数,
+  那么形如
+  \[
+    i(X_1)^{n_1}i(X_2)^{n_2}\cdots i(X_k)^{n_k}, \text{其中} n_k
+    \text{是非负整数},
+  \]
+  张成了 \( U(\mathfrak{g}) \). 特别地, \( i(X_1), \ldots, i(X_k) \)
+  是线性独立的, 换句话说, \( i: \mathfrak{g} \to U(\mathfrak{g}) \) 是单射.
+\end{theorem}
+\begin{proof}
+  \ref{theorem-Poincare-Birkhoff-Witt}.
+\end{proof}
+\begin{corollary}
+  如果 \( \mathfrak{g} \) 是有限维李代数且 \( \mathfrak{h} \) 是 \( \mathfrak{g}
+  \) 的子代数, 那么将 \( U(\mathfrak{h}) \) 中乘积 \( X_1X_2 \cdots X_N \)
+  映射到 \( U(\mathfrak{g}) \) 中同样的乘积是一个自然的单态射.
+\end{corollary}
+
+\section{Verma模}
+
+\subsection{Verma 模的构造}
+
+对于 \( U(\mathfrak{g}) \) 的向量集 \( \left\lbrace \alpha_j \right\rbrace \),
+我们先来回顾一下由这些向量生成的左理想 \( I \): \( I \) 由所有形如
+\[
+  \sum_j \beta_j \alpha_j
+\]
+的元素组成, 其中 \( \beta_j \in U(\mathfrak{g}) \) 任意. 取定 \( \mu \in
+\mathfrak{h} \), 令 \( I_{\mu} \) 为由
+\[
+  H - \left\langle \mu, H \right\rangle 1,\quad H \in \mathfrak{h}
+\]
+以及
+\[
+  X \in \mathfrak{g}_\alpha,\quad \alpha \in R^+.
+\]
+下面元素生成的左理想. 我们令 \( W_{\mu} \) 为\textbf{商向量空间}
+\[
+  W_{\mu} = U(\mathfrak{g}) / I_{\mu},
+\]
+并且用 \( [\alpha] \) 记 \( \alpha \in U(\mathfrak{g}) \) 在此商中的像.
+我们定义一个 \( U(\mathfrak{g}) \) 在 \( W_{\mu} \) 上的表示
+\[
+  \alpha.([\beta]) = [\alpha \beta],\quad \alpha, \beta \in U(\mathfrak{g}).
+\]
+这时 \( W_{\mu} \) 称为最高权为 \( \mu \) 的\emph{Verma 模}.
+
+
+\subsection{Verma 模的性质}
+
+令 \( \mathfrak{n}^+ \) 为根向量 \( X_\alpha \in \mathfrak{g}_\alpha \)
+长成的子空间, 其中 \( \alpha \in R^+ \); 令 \( \mathfrak{n}^- \) 为根向量 \(
+X_\alpha \in \mathfrak{g}_{-\alpha} \) 长成的子空间, 其中 \( \alpha \in R^- \);
+令 \( \mathfrak{b} = \mathfrak{h} \oplus \mathfrak{n}^+ \) 为 Borel 子代数.
+
+\begin{lemma}
+  \label{tutorial-lemma-Verma-properties}
+  如果 \( J_{\mu} \) 为在 \( U(\mathfrak{b}) \) 中由元素
+  \[
+    H - \left\langle \mu, H \right\rangle 1, H \in \mathfrak{h} \text{ 以及 } X
+    \in \mathfrak{g}_\alpha, \alpha \in R^+
+  \]
+  生成的左理想, 那么 \( 1 \notin J_{\mu} \).
+\end{lemma}
+\begin{proof}
+  考虑 \( \mathfrak{b} \) 的一维表示 \( (\mathbb{C}, \rho_{\mu}) \): \( \rho(X + H) =
+  \left\langle \mu, H \right\rangle\), 其中 \( X \in \mathfrak{n}^+, H \in
+  \mathfrak{h} \). 注意到 \( \mathfrak{h} \) 交换, 容易证明这确实是一个表示.
+
+  由定理 \ref{tutorial-theorem-universal-enveloping-algebra}, \( \mathfrak{b} \)
+  的表示 \( \rho_{\mu} \) 可以扩张为 \( U(\mathfrak{b}) \) 的表示 \(
+  \widetilde{\rho}_{\mu} \) 满足 \( \widetilde{\rho}_{\mu}(1) = 1 \).
+  因此 \( \operatorname{ker} \widetilde{\rho}_{\mu} \) 可以视为 \(
+  U(\mathfrak{b}) \) 的左理想, 且 \( 1 \notin \operatorname{ker}
+  \widetilde{\rho}_{\mu} \), 但 \( \operatorname{ker} \widetilde{\rho}_{\mu} \)
+  包含所有形如
+  \[
+    H - \left\langle \mu, H \right\rangle 1, H \in \mathfrak{h} \text{ 以及 } X
+    \in \mathfrak{g}_\alpha, \alpha \in R^+
+  \]
+  的元素, 也就是 \( \operatorname{ker} \widetilde{\rho}_{\mu} \supseteq J_{\mu}
+  \).
+\end{proof}
+
+\begin{theorem}
+  \label{tutorial-theorem-Verma-properties}
+  \begin{enumerate}
+    \item 向量 \( v_0 := [1] \) 是 \( (W_{\mu}, \rho_{\mu}) \) 的一个非零向量.
+    \item \( (W_{\mu}, \rho_{\mu}) \) 是一个最高权为 \( \mu \) 的最高权循环表示, 并且 \( v_0 \)
+      为其最高权向量.
+    \item 如果 \( Y_1,\ldots,Y_k \) 形成了 \( \mathfrak{n}^- \) 的一组基, 那么元素
+      \[
+        Y_1^{n_1}.Y_2^{n_2}\cdots Y_k^{n_k}.v_0,\quad \text{其中每个} n_j
+        \text{是非负整数},
+      \]
+      形成了 \( W_{\mu} \) 的一组基.
+  \end{enumerate}
+\end{theorem}
+\begin{proof}
+  %TODO: 重写这段, 利用重排引理之类的?
+  对任意 \( H \in \mathfrak{h} \), 我们有
+  \[
+    (H - \left\langle \mu, H \right\rangle 1).v_0 = [H - \left\langle
+    \mu, H\right\rangle 1] = 0,
+  \]
+  因此 \( H.v_0 = \left\langle \mu, H \right\rangle v_0 \). 类似地, \(
+  X_\alpha.v_0 = [X_\alpha] = 0 \). 假设 \( U \) 是 \( W_{\mu} \) 包含 \( v_0 \)
+  的任意 \( \mathfrak{g} \)-不变子空间, 那么对任意 \( [\alpha] \in W_{\mu} \),
+  \( \alpha v_0 = [\alpha] \), 也就是 \( U = W_{\mu} \). 对于前两条, 只需要知道
+  \( v_0 \neq 0 \) 即可.
+
+  由 PBW 定理 \ref{tutorial-theorem-PBW}, 每个 \( \alpha \in U(\mathfrak{g}) \)
+  可以唯一写成
+  \begin{equation}
+    \alpha = \sum_{n_1,\ldots,n_k = 0}^{\infty} Y^{n_1}_1 Y^{n_2}_2 \cdots
+    Y^{n_k}_k a_{n_1,\ldots, n_k}, \label{tutorial-equation-Verma-properties}
+  \end{equation}
+  其中 \( a_{n_1,\ldots,n_k} \in U(\mathfrak{b}) \subseteq U(\mathfrak{g}) \)
+  只有有限个不为零.
+
+  假设 \( \alpha \in I_{\mu} \), 那么 \( \alpha \) 为元素形如 \( \beta(H -
+  \left\langle \mu, H \right\rangle 1) \) 以及 \( \beta X_\alpha \) 的线性组合,
+  其中 \( \beta \in U(\mathfrak{g}) \), \( H \in \mathfrak{h} \), \( X_\alpha
+  \in \mathfrak{g} \) 以及 \( \alpha \in R^+ \). 由
+  \eqref{tutorial-equation-Verma-properties}, 其形如
+  \[
+    Y^{n_1}_1 Y^{n_2}_2 \cdots Y^{n_k}_k b_{n_1,\ldots, b_k}(H - \left\langle
+    \mu, H \right\rangle 1) \text{ 以及 } Y^{n_1}_1 Y^{n_2}_2 \cdots Y^{n_k}_k
+    b_{n_1, \ldots, n_k} X_\alpha
+  \]
+  的线性组合. 而 \( b_{n_1,\ldots, n_k}(H - \left\langle \mu, H \right\rangle 1)
+  \) 以及 \( b_{n_1,\ldots, n_k}X_\alpha \) 属于引理
+  \ref{tutorial-lemma-Verma-properties} 中的左理想 \( J_{\mu} \subseteq
+  U(\mathfrak{b}) \), 因此, 由唯一性, 如果 \( \alpha \in I_{\mu} \), \( \alpha
+  \) 在 \eqref{tutorial-equation-Verma-properties} 中的每个 \(
+  a_{n_1,\ldots,n_k} \) 都属于这样的 \( J_{\mu} \). 又由唯一性 \( \alpha \in
+  J_{\mu} \) 要等于 \( 1 \), \( \alpha \)只能在上段表达式中 \( n_1,\ldots, n_k =
+  0 \) 的项 \( a_{n_1,\ldots, n_k} = 1 \), 其它项均为 \( 0 \). 但是引理
+  \ref{tutorial-lemma-Verma-properties} 告诉我们 \( 1 \notin J_{\mu} \),
+  这是不可能的.
+
+  最后, 如果对系数 \( c_{n_1,\ldots,n_k} \) 有
+  \[
+    \alpha:= \sum_{n_1,\ldots,n_k = 0}^{\infty} Y^{n_1}Y^{n_2}_2\cdots Y^{n_k}_k
+    c_{n_1,\ldots,n_k} \in I_{\mu}
+  \]
+  只能 \( c_{n_1,\ldots,n_k} \in J_{\mu} \). 再次由引理
+  \ref{tutorial-lemma-Verma-properties}, 它们都是零.
+
+\end{proof}

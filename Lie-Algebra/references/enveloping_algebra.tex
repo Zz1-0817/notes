@@ -1,0 +1,202 @@
+%%%%% 无穷维亦是正确的
+
+\section{包络代数}
+
+\subsection{PBW 定理}
+
+\begin{lemma}[重排引理]
+  \label{lemma-reordering}
+  假设 \( \mathfrak{g} \) 是任意李代数, \( (V, \rho) \) 是 \( \mathfrak{g} \)
+  的一个表示. 假设 \( X_1,\ldots, X_m \) 是 \( \mathfrak{g} \)
+  作为线性空间的一组有序基. 那么任意形如
+  \[
+    \rho(X_{j_1}) \rho(X_{j_2}) \cdots \rho(X_{j_N}),
+  \]
+  的项都可以表示为形如下面项的线性组合
+  \[
+    \rho(X_m)^{k_m} \pi(X_{m - 1})^{k_m - 1} \cdots \pi(X_1)^{k_1},
+  \]
+  其中每个 \( k_l \) 是非负整数, 而且 \( k_1 + k_2 + \cdots + k_m \leq N \).
+\end{lemma}
+\begin{proof}
+  利用归纳法. \( N = 1 \) 时, 令 \( \rho(X_{j_N}) \) 次数为 \( 1 \) 其余次数为
+  \( 0 \) 即可. 现假设结论对 \( N = n \) 正确. 如果 \( N = n + 1 \), 设项为
+  \[
+    \rho(X_j)\rho(X_{j_1}) \cdots \rho(X_{j_n}).
+  \]
+  由归纳知道, 其能分解为形如
+  \[
+    T_{n + 1} = \rho(X_j)\pi(X_m)^{k_m} \pi(X_{m - 1})^{k_{m - 1}} \cdots \pi(X_1)^{k_1}
+  \]
+  项的线性组合, 其中 \( k_1 + \cdots + k_m \leq n \).
+  我们只需要关注这样的项就足够了. 而
+  \begin{align*}
+    \rho(X_j) \rho(X_k) &= \rho(X_k) \rho(X_j) + \rho([X_j, X_k])\\
+                        &= \rho(X_k) \rho(X_j) + \sum_{l} c_{jkl} \rho(X_l),
+  \end{align*}
+  其中 \( c_{jkl} \) 为基 \( \left\lbrace X_j \right\rbrace \) 的结构常数.
+  我们可以逐步地将 \( \rho(X_j) \) 交换到对应位置, 其等于 \( T_{n + 1} \)
+  加上由关于 \( \rho(X_i) \) 次数小于等于 \( n \) 的项的线性组合,
+  而后者又由归纳法保证能进一步表示为想要的线性组合, 从而我们完成了归纳法.
+\end{proof}
+
+\begin{theorem}[Poincare-Birkhoff-Witt]
+  \label{theorem-Poincare-Birkhoff-Witt}
+  如果 \( \mathfrak{g} \) 是基为 \( X_1, \ldots, X_k \) 的有限维李代数,
+  那么形如
+  \[
+    i(X_1)^{n_1}i(X_2)^{n_2}\cdots i(X_k)^{n_k}, \text{其中} n_k
+    \text{是非负整数},
+  \]
+  张成了 \( U(\mathfrak{g}) \). 特别地, \( i(X_1), \ldots, i(X_k) \)
+  是线性独立的, 换句话说, \( i: \mathfrak{g} \to U(\mathfrak{g}) \) 是单射.
+\end{theorem}
+\begin{proof}
+  %TODO: 完成此证明
+  证明元素
+  \begin{equation}
+    i(X_{j_1})i(X_{j_2}) \cdots
+    i(X_{j_N}),\label{equation-universal-enveloping-algebra-basis}
+  \end{equation}
+  其中 \( j_1 \leq j_2 \leq \cdots \leq j_N \), 张成 \( U(\mathfrak{g}) \)
+  与引理 \ref{lemma-reordering} 证明完全一致. 故只剩证明
+  \eqref{equation-universal-enveloping-algebra-basis} 线性无关.
+  为此, 我们考虑 \( D \) 为向量空间有一组基
+  \[
+    \left\lbrace v_{(j_1, \cdots, j_N)} \right\rbrace,
+  \]
+  其中指标为所有非下降元组 \( (j_1, \ldots, j_N) \).
+  我们希望找到映射
+  \[
+    \gamma: U(\mathfrak{g}) \to D
+  \]
+  满足性质
+  \[
+    \gamma(i(X_{j_1}) i(X_{j_2}) \cdots i(X_{j_N})) = v_{(j_1,\ldots, j_N)}
+  \]
+  对每个非下降元组 \( (j_1, \ldots, j_N) \) 成立. 这样
+  \eqref{equation-universal-enveloping-algebra-basis} 就自动线性无关的.
+  考虑构造线性映射 \( \delta: T(\mathfrak{g}) \to D \) 使得
+  \begin{enumerate}
+    \item \( \delta(X_{j_1} \otimes \cdots \otimes X_{j_N}) = v_{j_1,\cdots,
+      j_N} \).
+    其中, \( (j_1, \ldots, j_N) \) 非下降.
+    \item  \( \delta \) 在由 \( x \otimes y - y \otimes x - [x, y], x, y \in \mathfrak{g} \)
+      的双边理想 \( J \) 中像均为 \( 0 \).
+  \end{enumerate}
+  这样 \( \gamma \) 就能由 \( \delta \) 自然诱导了. 为了符号简洁,
+  我们省略张量代数中乘法的张量积符号 \( \otimes \).
+  要构造此 \( \delta \), 我们希望对非下降元组 \( (j_1, \ldots, j_N) \) 构造 \(
+  \delta(X_{j_1} \cdots X_{j_N}) = v_{j_1,\ldots, j_N} \), 对所有元组 \( (j_1,
+  \ldots, j_N) \) 有
+  \[
+    \delta(X_{j_1}\cdots X_{j_k} X_{j_{k + 1}} \cdots X_{j_N} ) = \delta(X_{j_1}
+    \cdots X_{j_{k + 1}} X_{j_k} \cdots X_{j_N}) + \delta(X_{j_1}\cdots
+    [X_{j_k}, X_{j_{k + 1}}] \cdots X_{j_N}).
+  \]
+  那么 \( \delta(x) = 0, x \in J \).
+
+  定义单项式 \( X_{j_1} X_{j_2} \cdots X_{j_N} \) 的\emph{次数}为 \( N \), 其
+  \emph{指标} 为对数 \( l < k \) 使得 \( j_l > j_k \).   如果 \( N = 0 \),
+  我们令 \( \delta(1) = v_{(0,\ldots, 0)} \); 如果 \( N = 1 \), 我们令 \(
+  \delta(X_j) = v_{(0,\ldots, 1, \ldots, 0)} \); 如果 \( p = 0 \), 我们令 \(
+  \delta(X_{j_1}\cdots X_{j_N}) = v_{(j_1,\ldots, j_N)} \), 其中 \( (j_1,
+  \ldots, j_N) \) 非降.
+
+  下面, 我们归纳地定义此 \( \delta \): 对 \( N \geq 2 \) 和指标 \( p \)
+  我们假设已经定义好了所有次数小于 \( N \) 的单项式和所有次数为 \( N \)
+  但指标小于 \( p \) 的单项式.
+
+  考虑 \( N \geq 2, p \geq 1 \). 存在 \( j_k > j_{k + 1} \), 我们考虑定义
+  \[
+    \delta(X_{j_1} \cdots X_{j_k} X_{j_{k + 1}} \cdots X_{j_N}) = \delta(X_{j_1}
+    \cdots X_{j_{k + 1}}X_{j_k}).
+  \]
+  问题归结为证明上式与 \( k \) 的选取没有关系. 假设另有 \( l < k \) 使得 \( j_l
+  > j_{l + 1} \) 且 \( j_k > j_{k + 1} \).
+  \begin{itemize}
+    \item 如果 \( l \leq k - 2 \). 那么 \( l, l + 1, k, k + 1 \) 两两不同.
+      我们分别采用两者方法计算 \( \delta \). 如果使用 \( l \), 那么
+      \begin{align*}
+        \delta(\cdots X_l X_{l + 1} \cdots X_k X_{k + 1}) =& \delta(\cdots X_{l
+        + 1} X_l \cdots X_k X_{k + 1} \cdots)\\ &+ \delta(\cdots [X_l, X_{l + 1}]
+        \cdots X_{k} X_{k + 1} \cdots).
+      \end{align*}
+      右边两项都能使用归纳假设, 那么
+      \begin{align*}
+        \delta &(\cdots X_l X_{l + 1}\cdots X_k X_{k + 1} \cdots)\\
+               &=\delta(\cdots X_{l + 1} X_{l} \cdots X_{k + 1}X_k \cdots) +
+               \delta(\cdots X_{l + 1}X_{l} \cdots [X_k, X_{k + 1}] \cdots)\\
+               &+ \delta(\cdots [X_l, X_{l + 1}] \cdots X_{k + 1}X_k \cdots) +
+               \delta(\cdots [X_l, X_{l + 1}]\cdots[X_k, X_{k + 1}]\cdots).
+      \end{align*}
+      上式对 \( k \) 和 \( l \) 有对称性, 所以使用 \( k \) 定义亦是如此.
+    \item 如果 \( l  = k - 1 \) 那就是形如 \( \cdots X_{j_l}X_{j_{l + 1}}X_{j_{l
+    + 2}} \).
+      令 \( Z = X_{j_l}, Y = X_{j_{l + 1}} X = X_{j_{l + 2}} \). 我们先来关心 \(
+      N = 3, p = 3 \) 的情形.
+      两种定义 \( \delta(X_3 X_2 X_1) = \delta(X_2 X_3 X_1) + \delta([X_3,
+      X_2]X_1) \) 及 \( \delta(X_3 X_2 X_1) = \delta(X_3X_1 X_2) +
+      \delta(X_3[X_2, X_1]) \). 对于前者
+      \begin{align*}
+        &\delta(X_2 X_3X_1) + \delta([X_3, X_2] X_1)\\
+        &= \delta(X_2 X_1 X_3) + \delta(X_2[X_3, X_1]) + \delta([X_3, X_2]X_1)\\
+        & = \delta(X_1X_2X_3) + \delta([X_2, X_1]X_3) + \delta(X_2[X_3, X_1]) +
+        \delta([X_3, X_2]X_1).
+      \end{align*}
+      考虑后者
+      \begin{align*}
+        &\delta(X_3 X_1X_2) + \delta(X_3, [X_2, X_1])\\
+        &= \delta(X_1 X_3 X_2) + \delta([X_3, X_1]X_2) + \delta(X_3[X_2, X_1])\\
+        & = \delta(X_1X_2X_3) + \delta(X_1[X_3, X_2]) + \delta([X_3, X_1]X_2) +
+        \delta(X_3[X_2,X_1]).
+      \end{align*}
+      两式相减
+      \begin{align*}
+        &\delta([X_2, X_1]X_3) - \delta(X_3[X_2, X_1]) + \delta(X_2[X_3, X_1])
+      \\&-\delta([X_3, X_1]X_2) + \delta([X_3, X_2]X_1) - \delta(X_1[X_3, X_2]).
+      \end{align*}
+      利用归纳假设, 上式为
+      \[
+        \delta([[X_2, X_1], X_3] +[X_2, [X_3, X_1]] + [[X_3, X_2], X_1]) = 0,
+      \]
+      利用 Jacobi 恒等式.
+
+      回到现在要所要证的, 可以发现,计算完全和这一致, 因此两种定义一致.
+  \end{itemize}
+
+\end{proof}
+
+\begin{proposition}
+  假设 \( \mathfrak{g} \) 是一个单李代数, 那么对其泛包络代数 \( U(\mathfrak{g})
+  \) 有
+  \begin{enumerate}
+    \item \( [x_j, y_i^{k + 1}] = 0 \), 如果 \( i \neq j \);
+    \item \( [h_j, y_i^{k + 1}] = -(k + 1)\alpha_i(h_j)y^{k + 1}_i \);
+    \item \( [x_i, y_i^{k + 1}] = -(k + 1)y_i^k(k\cdot 1 - h_i) \).
+  \end{enumerate}
+\end{proposition}
+\begin{proof}
+  \begin{enumerate}
+    \item 因为 \( \alpha_i, \alpha_j \) 是单根, 而 \( \alpha_i - \alpha_j \)
+      不是根.
+    \item 归纳法. 当 \( k = 0 \) 时, \( [h_j, y_i] = -\alpha_i(h_j)y_i \).
+      利用归纳假设:
+      \begin{align*}
+        [h_j, y_i^{k + 1}] &= h_j y_i^{k + 1} - y_i^{k + 1}h_j = (h_j y_i^k -
+        y^k_i h_j)y_i + y^k_i(h_jy_i - y_i h_j)\\
+                           &= k\alpha_i(h_j) y^k_i y_i +
+        y^k_i(-\alpha_i(h_j)y_i) = -(k + 1) \alpha_i(h_j)y_i^{k + 1}.
+      \end{align*}
+    \item 归纳法. 当 \( k = 0 \) 时, \( [x_i, y_i] = h_i \).
+      利用归纳假设:
+      \begin{align*}
+        [x_i, y_i^{k + 1}] &= x_i y_i^{k + 1} - y_i^{k + 1}x_i = [x_i, y_i]
+        y_i^k + y_i[x_i, y_i^k]\\&= h_i y_i^k + y_i [x_i, y_i^k] = y_i^kh_i +
+        [h_i, y_i^{k}] -ky^{k}_i((k - 1)\cdot 1- h_i)\\& = (k + 1)y^k_i h_i -
+        k(k + 1)y_i^{k},
+      \end{align*}
+      其中, 上式利用 \( [x_i, y_i] = h_i, \alpha_i(h_i) = 2 \)
+      以及本命题的第二条.
+  \end{enumerate}
+\end{proof}
