@@ -1,0 +1,84 @@
+\usepackage[leqno]{amsmath}
+\usepackage{amssymb}
+\usepackage[centercolon]{mathtools}
+\usepackage{stmaryrd}
+\usepackage{wasysym}
+\usepackage{amsthm}
+\usepackage{mathrsfs}
+\usepackage{bm}
+
+\usepackage{hyperref}
+\hypersetup{
+  colorlinks = true,
+  linkcolor = blue,
+  citecolor = red,
+  urlcolor = teal
+}
+\usepackage{cleveref}
+
+\usepackage{graphicx}
+\usepackage{float}
+
+\usepackage{tikz}
+\usepackage{tikz-cd}
+
+\usepackage{xeCJK}
+\usepackage{fontspec}
+
+\usepackage{graphicx}
+\usepackage{float}
+
+\usepackage{tikz}
+\usepackage{tikz-cd}
+
+\usepackage{geometry}
+
+\geometry{
+  paper=a4paper,
+  top=3cm,
+  inner=2.54cm,
+  outer=2.54cm,
+  bottom=3cm,
+  headheight=6ex,
+  headsep=6ex,
+  twoside,
+  asymmetric
+}{\relax}
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\renewcommand{\sectionmark}[1]{\markright{#1}}
+\fancyhf{}
+\fancyhead[EC]{\footnotesize{\leftmark}\vspace{1mm}} %页眉部分偶数页显示章
+\fancyhead[OC]{\footnotesize{\rightmark}\vspace{1mm}} %页眉部分奇数页显示节
+\fancyhead[LE,RO]{{\footnotesize \thepage}\vspace{1mm}} %奇数页右边, 偶数页左边显示页码
+\fancyhead[RE,LO]{}
+% \fancyfoot[C]{\NTdraftstring}
+\renewcommand{\headrulewidth}{0pt} %删去页眉横线
+\renewcommand{\footrulewidth}{0pt} %删去页脚横线
+\addtolength{\headheight}{0.5pt}
+
+\numberwithin{equation}{subsection}
+
+\usepackage{enumitem}
+\setlist[enumerate]{
+  label={\normalfont(\roman*)},
+  leftmargin=*,
+  itemsep=0pt,
+  parsep=0pt
+}
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\dif}{\mathop{}\!\mathrm{d}}

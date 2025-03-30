@@ -1,0 +1,105 @@
+\chapter{链复形}
+
+\section{\texorpdfstring{\( R \)}{R}-模链复形}
+
+\begin{example}
+  令 \( f \) 和 \( g \) 为两个矩阵, 它们的乘积为零. 如果 \( g \cdot v \)
+  对某个列向量 \( v \) 成立, 不妨设后者长度为 \( n \), 我们不能总将 \( v \) 写成
+  \( v = f \cdot u \). ``不能的的程度'' 由下面数 \( d \) 测量.
+  \[
+    d = n - \operatorname{rank}(f) - \operatorname{rank}(g).
+  \]
+  这是因为, 在现代的语言中, 假设 \( f \) 和 \( g \) 代表线性映射
+  \[
+    U \xrightarrow{f} V \xrightarrow{g} W
+  \]
+  使得 \( gf = 0 \), 令 \( d \) 为\emph{同调模}的维数
+  \[
+    H = \operatorname{ker}(g) / f(U).
+  \]
+\end{example}
+
+给定一个环 \( R \). 给定一个 \( R \)-模同态 \( f: A \to B \), 我们想要考察 \( f
+\) 的核 \( \operatorname{ker}f \), 余核 \( \operatorname{coker}f \) 以及像
+\( \operatorname{im}f \). 给定一个映射 \( g: B \to C \), 我们有序列
+\[
+  A \xrightarrow{f} B \xrightarrow{g} C.
+\]
+如果 \( \operatorname{ker} g = \operatorname{im} f \), 我们称这样的序列是\emph{正合}的
+
+我们定义范畴 \( \operatorname{Ch} \) 为右 \( R \)-模组成的链复形.
+其对象为链复形, \emph{态射}为 \( u: C_{\bullet} \to D_{\bullet} \) 链复形映射,
+也就是一族 \( R \)-模同态 \( u_n: C_n \to D_n \) 与微分映射交换 \( u_{n - 1} d_n
+= d_{n - 1} u_n \), 换句话说, 下图交换
+% https://q.uiver.app/#q=WzAsMTAsWzAsMCwiXFxjZG90cyJdLFswLDEsIlxcY2RvdHMiXSxbMSwxLCJEX3tuICsgMX0iXSxbMSwwLCJDX3tuICsgMX0iXSxbMiwwLCJDX24iXSxbMiwxLCJEX24iXSxbMywwLCJDX3tuIC0gMX0iXSxbMywxLCJEX3tuIC0gMX0iXSxbNCwxLCJcXGNkb3RzIl0sWzQsMCwiXFxjZG90cyJdLFswLDMsImQiXSxbMSwyLCJkIl0sWzMsMiwidSJdLFszLDQsImQiXSxbMiw1LCJkIl0sWzQsNSwidSJdLFs1LDcsImQiXSxbNCw2LCJkIl0sWzYsNywidSJdLFs2LDksImQiXSxbNyw4LCJkIl1d
+\[\begin{tikzcd}
+	\cdots & {C_{n + 1}} & {C_n} & {C_{n - 1}} & \cdots \\
+	\cdots & {D_{n + 1}} & {D_n} & {D_{n - 1}} & \cdots
+	\arrow["d", from=1-1, to=1-2]
+	\arrow["d", from=1-2, to=1-3]
+	\arrow["u", from=1-2, to=2-2]
+	\arrow["d", from=1-3, to=1-4]
+	\arrow["u", from=1-3, to=2-3]
+	\arrow["d", from=1-4, to=1-5]
+	\arrow["u", from=1-4, to=2-4]
+	\arrow["d", from=2-1, to=2-2]
+	\arrow["d", from=2-2, to=2-3]
+	\arrow["d", from=2-3, to=2-4]
+	\arrow["d", from=2-4, to=2-5]
+\end{tikzcd}\]
+
+\begin{example}
+  取某个域上的线性空间 \( \left\lbrace B_n, H_n \right\rbrace_{n \in \mathbb{Z}}
+  \), 置 \( C_n = B_n \oplus H_n \oplus B_{n - 1} \). 那么投影映射 \( C_n \to
+  B_{n - 1} \subseteq C_{n - 1} \) 使得 \( \left\lbrace C_n \right\rbrace \)
+  成为一个链复形. 假设 \( \cdots \to V_{n + 1} \xrightarrow{d_{n + 1}} V_n
+  \xrightarrow{d_n} V_{n - 1} \xrightarrow{d_{n - 1}} \cdots
+  \) 是一个该域上的线性空间链复形, 那么作直和分解 \( \operatorname{ker} d_n =
+  \operatorname{im} d_{n + 1} \oplus H_n \) 以及 \( V_n = \operatorname{ker} d_n
+  \oplus \operatorname{im}d_n \), 可以知道线性空间链复形都是形如 \( C_n \)
+  这样的.
+\end{example}
+
+\begin{proposition}
+  链复形同态 \( u: C_{\bullet} \to D_{\bullet} \) 将边界映到边界, 将闭链映到闭链,
+  因此诱导了映射 \( H_n(C_{\bullet}) \to H_n(D_\bullet) \), \( H_n \) 是一个链复形到
+  \( R \)-模的函子.
+\end{proposition}
+
+链态射 \( C_{\bullet} \to D_{\bullet} \) 称为\emph{拟同构}, 如果其诱导的同调模映射
+\( H_n(C_{\bullet}) \to H_n(D_{\bullet}) \) 都是同构.
+
+\begin{proposition}
+  对每个链复形 \( C_{\bullet} \), 以下等价
+  \begin{enumerate}
+    \item \( C_{\bullet} \) 正合, 即每个 \( C_n \) 均正合.
+    \item \( C_{\bullet} \) 零调, 即对所有 \( n \) 有 \( H_n(C_{\bullet}) = 0
+      \).
+    \item 映射 \( \mathbf{0} \to C_{\bullet} \) 是拟同构.
+  \end{enumerate}
+\end{proposition}
+
+子复形, 商复形
+
+\section{范畴复形}
+给定一族 \( \left\lbrace A_{\alpha}
+\right\rbrace \) 为 \( R \)-模复形, 乘积 \( \prod A_{\alpha} \) 以及余积 \(
+\bigoplus A_{\alpha} \), 我们考察
+\[
+  \prod d_{\alpha}: \prod_{\alpha} A_{\alpha, n} \to \prod_{\alpha} A_{\alpha, n
+  - 1} \text{ 与 } \bigoplus d_{\alpha}: \bigoplus_{\alpha} A_{\alpha, n} \to
+  \bigoplus_{\alpha} A_{\alpha, n - 1}.
+\]
+
+\begin{lemma}
+  %TODO: 完成此证明 一边可以由链映射诱导, 另一边要直接构造, 证明良定
+  \[
+    \bigoplus H_n (A_{\alpha}) \simeq H_n \left(\bigoplus A_{\alpha}\right),\quad
+    \prod H_n \left(A_{\alpha}\right) \simeq H_n \left(\prod A_{\alpha}\right).
+  \]
+\end{lemma}
+
+假设 \( \mathcal{A} \) 是一个 abelian 范畴.
+\begin{theorem}
+  范畴 \( \operatorname{Ch} = \operatorname{Ch}(\mathcal{A}) \) 是一个 abelian 范畴.
+\end{theorem}

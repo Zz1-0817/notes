@@ -3,3 +3,6 @@
 *.fls
 *.synctex.gz
 *.out
+*.log
+*.pdf
+.venv

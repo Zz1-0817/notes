@@ -1,0 +1,620 @@
+\section{预簇}
+
+\subsection{预簇与多项式环}
+
+本节中, 我们假设 \( k \) 为一个代数闭域. 如果我们给定了多项式 \( f_1, \ldots,
+f_r \in k[T_1, \ldots, T_n] \), 我们想要知道零点集
+\[
+  V(f_1, \ldots, f_r) = \left\lbrace (t_1, \ldots, t_n) \in k^n: f_i(t_1,
+  \ldots, t_n) = 0, \forall i \right\rbrace \subseteq k^n
+\]
+的代数性质. 更一般地, 如果给定子集 \( M \subseteq k[T_1, \ldots, T_n] ] =
+k[\mathbf{T}] \), 那么我们记  \emph{\( M \) 的公共零点集} 为
+\[
+  V(M) = \left\lbrace (t_1, \ldots, t_n) \in k^n; f(t_1, \ldots, t_n) = 0,
+  \forall f \in M \right\rbrace
+\]
+特别地, 如果 \( M \) 由元素 \( f_i, i \in I \) 组成, 那么我们记 \( V(f_i, i \in
+I) \) 而非 \( V(\left\lbrace f_i: i \in I \right\rbrace) \).
+
+\begin{proposition}
+  \label{proposition-Zariski-topology-construction}
+  将所有形如\( V(\mathbf{a}) \) 的集合作为闭集构成了 \( k^n \) 的一个拓扑, 其中
+  \( \mathbf{a} \) 跑遍 \( k[\mathbf{T}] \) 的理想. 这样的拓扑我们称为
+  \emph{Zariski 拓扑}.
+\end{proposition}
+
+我们记 \( k^n \) 赋予 Zariski 拓扑的空间为 \( \mathbb{A}^n(k) \) 以示区别.
+我们称 \( \mathbb{A}^n(k) \) 的闭集为 \emph{仿射代数集}. 我们可以完整地刻画 \(
+\mathbb{A}^1(k) \) 以及 \( \mathbb{A}^2(k) \) 的闭集.
+
+\begin{example}
+  假设 \( n = 1 \). 由于此时 \( k[\mathbf{T}] \) 是主理想整环, \(
+  \mathbb{A}^1(k) \) 的闭集要么是 \( \mathbb{A}^1(k) \) 本身, 要么是 \(
+  \mathbb{A}^1(k) \) 的有限子集.
+\end{example}
+
+\begin{example}
+  假设 \( n = 3 \). 这时 \( \mathbb{A}^2(k) \) 的闭集形如
+  \begin{itemize}
+    \item \( \mathbb{A}^2(k) \).
+    \item 单点集.
+    \item \( V(f) \), 其中 \( f \) 是不可约多项式.
+  \end{itemize}
+\end{example}
+
+取定一点 \( \mathbf{x} = (x_1, x_2, \ldots, x_n) \in \mathbb{A}^n(k) \), 容易知道理想
+\[
+  (T_1 - x_1, T_2 - x_2, \ldots, T_n - x_n) \subseteq k[\mathbf{T}]
+\]
+是极大理想, 我们将其记作 \( \mathfrak{m}_{\mathbf{x}} \).
+如果 \( Z \subseteq \mathbb{A}^n(k) \) 是一个子集, 我们记理想
+\[
+  I(Z) := \left\lbrace f \in k[\mathbf{T}]: f(x) = 0, \forall x \in Z
+  \right\rbrace
+\]
+如果 \( f \in k[\mathbf{T}] \) 且 \( \mathbf{x} \in \mathbb{A}^n(k) \),
+那么直接验证知道
+\[
+  f(x) = 0 \iff f \in \mathfrak{m}_{\mathbf{x}}.
+\]
+因此我们能给出进一步地刻画
+\[
+  I(Z) = \bigcap_{x \in Z}\mathfrak{m}_{\mathbf{x}}.
+\]
+
+\begin{proposition}
+  \begin{enumerate}
+    \item 如果 \( \mathfrak{a} \subseteq k[\mathbf{T}] \) 为一个理想, 那么
+      \[
+        I(V(\mathfrak{a})) = \operatorname{rad} \mathfrak{a}.
+      \]
+    \item 如果 \( Z \) 是 \( \mathbb{A}^n(k) \) 的子集且 \( \overline{Z} \)
+      为其闭包, 那么
+      \[
+        V(I(Z)) = \overline{Z}.
+      \]
+  \end{enumerate}
+\end{proposition}
+
+\begin{corollary}
+  映射
+  \[
+    \left\lbrace k[\mathbf{T}]\text{的根式理想}\mathfrak{a} \right\rbrace
+    \xleftrightarrow[I(Z) \mapsfrom Z]{\mathfrak{a} \mapsto V(\mathfrak{a})}
+    \left\lbrace \mathbb{A}^n(k) \text{的闭集} Z \right\rbrace
+  \]
+  互为逆映射. 特别地, 其限制定义了双射
+  \[
+    \left\lbrace k[\mathbf{T}] \text{的极大理想} \right\rbrace \leftrightarrow
+    \left\lbrace \mathbb{A}^n(k) \text{中的点} \right\rbrace.
+  \]
+\end{corollary}
+
+\subsection{Zariski 拓扑性质}
+
+\paragraph{不可约性}
+
+假设 \( X \) 是一个非空的拓扑空间. 如果 \( X \) 不能表示为两个真闭子空间的并,
+那么称 \( X \) 是 \emph{不可约} 的. 对应地, \( X \) 的一个非空子集 \( Z \) 称为
+\emph{不可约}, 如果其子空间拓扑不可约.
+
+\begin{proposition}
+  \label{proposition-irreducible-topology-equivalent-definition}
+  假设 \( X \) 是一个非空拓扑空间. 那么下面断言等价
+  \begin{enumerate}
+    \item \( X \) 不可约;
+    \item \( X \) 的任意两个非空开集有非空交;
+    \item \( X \) 的任意非空开集稠密;
+    \item \( X \) 的任意非空开集连通;
+    \item \( X \) 的任意非空开集不可约.
+  \end{enumerate}
+\end{proposition}
+\begin{proof}
+  依定义可以直接验证 (i) 和 (ii), (ii) 和 (iii) 以及 (ii) 和 (iv) 是等价的.
+
+  故只需证明 (iii) \( \implies \) (v). 如果 \( U \subseteq X \) 是一个非空开集,
+  且 \( U = U_1 \cup U_2 \) 为其闭集分解. 那么存在 \( X \) 的闭集 \( V_i \) 使得
+  \( U_i = V_i \cap U \), 其中 \( i = 1, 2 \). 注意到, \( V_1 \cup V_2 \supseteq
+  U \) 为闭集, 而 \( X \) 不可约, 只能 \( V_1 \cup V_2 = X \). 因此 \( V_1 \) 或
+  \( V_2 \) 为 \( X \) 本身, 这意味着 \( U_1 \) 或 \( U_2 \) 为 \( U \) 本身.
+\end{proof}
+
+\begin{corollary}
+  假设 \( f: X \to Y \) 是一个拓扑空间的连续映射. 如果 \( Z \subseteq X \)
+  是一个不可约子空间, 那么像 \( f(Z) \) 是不可约的.
+\end{corollary}
+\begin{proof}
+  假设 \( V_1 \) 和 \( V_2 \) 是 \( f(Z) \) 的两个非空开集, 由
+  \cref{proposition-irreducible-topology-equivalent-definition} 它们原像交非空,
+  故它们交非空.
+\end{proof}
+
+\begin{lemma}
+  \label{lemma-irreducible-iff-closure}
+  令 \( X \) 是一个拓扑空间. 一个拓扑空间 \( Y \subseteq X \) 是不可约的当且仅当
+  其闭包 \( \overline{Y} \) 是不可约的.
+\end{lemma}
+\begin{proof}
+  \( \implies \) 如果 \( U_1, U_2 \) 为 \( \overline{Y} \) 的两个开集, 那么由
+  \cref{proposition-irreducible-topology-equivalent-definition} \( (U_1 \cap Y)
+  \cap (U_2 \cap Y) \neq \varnothing \). \( \impliedby \) 如果 \( V_1, V_2 \) 是
+  \( Y \) 的两个开集, 那么存在 \( \overline{Y} \) 的两个开集 \( U_1, U_2 \) 使得
+  \( U_i \cap Y = V_i \), 其中 \( i = 1, 2 \). 由
+  \cref{proposition-irreducible-topology-equivalent-definition} \( U_1 \cap U_2
+  \neq \varnothing \). 而由于 \( Y \) 在 \( \overline{Y} \) 中稠密, \( (U_1 \cap
+  U_2) \cap Y \neq \varnothing \), 从而 \( V_1 \cap V_2 \neq \varnothing \).
+\end{proof}
+
+假设 \( U \subseteq X \) 是一个开集. 由 \cref{lemma-irreducible-iff-closure}, 有
+\[
+  \left\lbrace Y \subseteq U \text{ 不可约闭 } \right\rbrace \xleftrightarrow[Z
+  \cap U \mapsfrom Z]{Y \mapsto \overline{Y}} \left\lbrace Z \subseteq X \text{
+  不可约闭且 } Z \cap U \neq \varnothing \right\rbrace.
+\]
+\( X \) 的一个极大不可约子集称为 \( X \) 的一个 \emph{不可约分支}.
+
+\begin{proposition}
+  \label{proposition-irreducible-iff-prime}
+  假设 \( Z \subseteq \mathbb{A}^n(k) \) 是一个闭集. 那么 \( Z \) 不可约当且仅当
+  \( I(Z) \) 是一个素理想. 特别地, \( \mathbb{A}^n(k) \) 不可约.
+\end{proposition}
+\begin{proof}
+  如果 \( fg \in I(Z) \), 那么 \( Z \subseteq V(fg) = V(f) \cup V(g) \). 如果
+  \( Z \) 不可约, 那么 \( Z \subseteq V(f) \) 或 \( Z \subseteq V(g) \), 从而 \(
+  f \in I(Z) \) 或 \( g \in I(Z) \).
+
+  由 Zariski 拓扑的构造 \ref{proposition-Zariski-topology-construction} ,
+  每个 \( \mathbb{A}^n(k) \) 的闭集都形如 \( V(f) \) 的交, 其中 \( f \in
+  k[\mathbf{T}] \). 因此 \( Z \) 的闭集分解可以写为 \( Z = \bigcap_i V(f_i)
+  \cup \bigcap_j V(g_j) \). 如果 \( Z \subseteq V(g_j) \) 对所有 \( j \) 成立,
+  那么 \( Z \) 当然是不可约的; 否则, 存在一个 \( j_0 \) 使得 \( Z \not\subset
+  V(g_{j_0}) \), 那么考察 \( Z \subseteq V(f_i) \cup V(g_{j_0}) = V(f_ig_{j_0})
+  \), 可以知道 \( f_i g_{j_0} \in I(Z) \). 如果 \( I(Z) \) 是一个素理想,
+  那么只能 \( f_i \in I(Z) \). 这是对所有 \( i \) 成立的.
+\end{proof}
+
+这里再给出一个引理, 方便后面使用(\cref{proposition-prevariaties-properties})
+\begin{lemma}
+  \label{lemma-irreducible-cover}
+  假设 \( X \) 是一个拓扑空间且 \( X = \bigcup_{i \in I} U_i \) 是一个 \( X \)
+  的开连通覆盖
+  \begin{enumerate}
+    \item 如果 \( X \) 不连通, 那么存在一个子集 \( \varnothing \neq J \subsetneq
+      I \) 使得, 对每个 \( j \in J, i \in I \setminus J, U_j \cap U_i =
+      \varnothing \).
+    \item 如果 \( X \) 是连通的, \( I \) 是有限的并且所有 \( U_i \)
+      都是不可约的, 那么 \( X \) 是不可约的.
+  \end{enumerate}
+\end{lemma}
+\begin{proof}
+  (i) 根据假设, 我们记 \( X = V_1 \cup V_2 \), 其中 \( V_1, V_2 \) 开. 那么每个
+  \( U_i \) 要么包含在 \( V_1 \) 中要么包含在 \( V_2 \) 中, 进而能得到此论断.
+
+  (ii) 如果 \( Z \subseteq X \) 是一个不可约分支且 \( Z \cap U_i \neq
+  \varnothing \), 那么 \( Z \cap U_i \) 在 \( Z \) 中稠密. 因此 \( Z \cap
+  \overline{U_i} = \overline{Z \cap U_i} = Z \). 由 \( Z \) 的极大性及 \(
+  \overline{U_i} \) 的不可约性(\cref{lemma-irreducible-iff-closure}), 我们知道
+  \( Z = \overline{U_i} \). 特别地, \( X \) 只有有限个不可约分支, 我们将其记作
+  \( X_1, \ldots, X_n \). 如果 \( n > 1 \). 那么, 因为 \( X_i \) 闭, \( X \) 连通,
+  \( X_1 \) 肯定交于某个 \( X_i \), 不妨设其是 \( X_2 \), 我们可以取 \( x \in
+  X_1 \cap X_2 \). 设 \( i \in I \) 使得 \( x \in U_i \), 那么 \( U_i \cap X_1
+  \) 在 \( X_1 \) 和 \( X_2 \) 中均开且稠密, 这说明 \( U_i \) 在 \( X \)
+  中的闭包包含 \( X_1 \cup X_2 \) 且不可约, 这与 \( X_1 \) 和 \( X_2 \)
+  的极大性矛盾.
+\end{proof}
+
+\paragraph{紧性}
+
+一个拓扑空间 \( X \) 称为是 \emph{noetherian} 的, 如果每个闭集下降链
+\[
+  X \supseteq Z_1 \supseteq Z_2 \supseteq \cdots
+\]
+稳定.
+
+\begin{lemma}
+  如果 \( X \) 是一个由有限 noetherian 空间覆盖的 \( X = \bigcup_{i = 1}^r X_i
+  \) 的拓扑空间, 那么 \( X \) 本身是 noetherian 的.
+\end{lemma}
+
+\begin{lemma}
+  \label{lemma-noetherian-topology-properties}
+  如果 \( X \) 是一个 noetherian 拓扑空间, 那么
+  \begin{enumerate}
+    \item 每个 \( X \) 的子空间都是 noetherian 的.
+    \item 每个 \( X \) 的子集都是紧的.
+    \item 每个 \( X \) 的子集 \( Z \) 都只有有限个不可约分支.
+  \end{enumerate}
+\end{lemma}
+\begin{proof}
+  (1) 是直接按定义的.
+
+  对于 (2), 由 (1), 我们只需要知道 \( X \) 是紧的就足够了. 假设 \( X = \bigcup_i
+  U_i \) 为开覆盖. 假设 \( \mathcal{U} \) 是\( U_i \) 有限并组成的集族. 因为 \(
+  X \) noetherian, 所以 \( \mathcal{U} \) 有一个极大元素 \( V \). 如果 \( V \neq
+  X \), 那么能找到 \( U \in \mathcal{U} \) 使得 \( V \subsetneq U \cup V \),
+  这与极大性矛盾.
+
+  对于 (3), 同样由 (1), 我们只需要知道 \( X \) 只有有限个不可约分支即可. 以 \(
+  \mathcal{M} \) 记 \( X \) 中不能写成有限非空不可约集合并的闭集族, 那么存在一个
+  \( \mathcal{M} \) 的极小元素 \( Z \). \( Z \) 并非不可约,
+  故能写成两个它的真闭子集并, 而必有一个满足 \( \mathcal{M} \)
+  定义中所描述的性质, 与 \( Z \) 的极小性矛盾.
+\end{proof}
+
+\begin{proposition}
+  如果 \( X \subseteq \mathbb{A}^n(k) \) 是任意子空间, 那么 \( X \) noetherian.
+\end{proposition}
+\begin{proof}
+  由 \cref{lemma-noetherian-topology-properties}, 只需要知道 \( X \) noetherian
+  即可. \( \mathbb{A}^n(k) \) 的闭下降链对应了 \( k[\mathbf{T}] \) 根式理想升链.
+  由 \href{https://en.wikipedia.org/wiki/Hilbert%27s_basis_theorem}{Hilbert
+  基定理}, \( k[\mathbf{T}] \) noetherian, 从而升链有限.
+\end{proof}
+
+%TODO: 准素分解
+
+\subsection{仿射代数集间的态射}
+
+假设 \( X \subseteq \mathbb{A}^m(k) \) 和 \( Y \subseteq \mathbb{A}^n(k) \)
+为仿射代数簇. 一个\emph{仿射态射簇的态射} \( f: X \to Y \) 指的是底集合为 \( X
+\) 和 \( Y \) 的映射 \( f: X \to Y \) 满足存在多项式 \( f_1, \ldots, f_n \in
+k[T_1, \ldots, T_m] \) 使得 \( f(x) = (f_1(x), \ldots, f_n(x)) \) 对每个 \( x
+\in X \) 成立.
+
+\begin{proposition}
+  仿射代数簇间的态射是连续的.
+\end{proposition}
+\begin{proof}
+  如果 \( f = (f_1, \ldots, f_n) \) 定义了映射 \( \mathbb{A}^m(k) \to
+  \mathbb{A}^n(k) \), 其由多项式 \( f_i \in k[T_1, \ldots, T_m] \) 组成,
+  那么我们得到了一个 \( k \)-代数同态 \( \Gamma(f): k[T'_1, \ldots, T'_n] \to
+  k[T_1, \ldots, T_m] \) 将 \( T'_i \) 映到 \( f_i \).
+  如果 \( V(\mathfrak{a}) \subseteq \mathbb{A}^n(k) \) 是一个闭集, 那么 \(
+  f^{-1}(V(\mathfrak{a})) = V(\Gamma(f)(\mathfrak{a})) \) 闭.
+  (\( x \in f^{-1}(V(\mathfrak{a})) \iff  g(f(x)) = (\Gamma(f) g)(x) = 0,
+  \forall g \in \mathfrak{a} \iff x \in V(\Gamma(f)(\mathfrak{a})) \))
+\end{proof}
+\begin{proposition}
+  仿射代数簇间的态射符合仍是仿射代数簇间的态射.
+\end{proposition}
+综上, 仿射代数簇构成了一个范畴.
+
+\begin{remark}
+  仿射代数簇范畴的缺点.
+  \begin{enumerate}
+    \item 仿射代数集的开集不再是仿射代数集.
+    \item 尽管仿射代数集的交仍然是, 但是我们不能分辨 \( V(X) \cap V(Y) \subseteq
+      \mathbb{A}^2(k) \) 与 \( V(Y) \cap V(X^2 - Y) \subseteq \mathbb{A}^2(k)
+      \). %TODO: 什么鬼
+    \item \( k \) 不是代数闭域时, 仿射代数集不能帮助研究多项式方程的解.
+  \end{enumerate}
+\end{remark}
+
+\subsection{仿射坐标环}
+
+假设 \( X \subseteq \mathbb{A}^n(k) \) 是一个闭空间. 集合 \( \operatorname{Hom}(X, \mathbb{A}^1(k) \) 自然具有 \( k
+\)-代数结构:
+\[
+  (f + g)(x) = f(x) + g(x),\quad (fg) (x) = f(x) g(x).
+\]
+注意到, 每个多项式 \( f \in k[T_1, \ldots, T_n] \) 诱导了一个到仿射代数集的态射
+\( X \to \mathbb{A}^1(k), x \mapsto f(x) \), 因此有 \( k \)-代数同态 \(
+k[\mathbf{T}] \to \operatorname{Hom}(X, \mathbb{A}^1) \), 这时一个满态射,
+我们记其核为 \( I(X) \). 我们称\( k \)-代数
+\begin{equation}
+  \Gamma(X) := k[T_1,\ldots, T_n] / I(X) \simeq \operatorname{Hom}(X,
+  \mathbb{A}^1(X))
+  \label{equation-affine-coordinate-ring}
+\end{equation}
+称为 \( X \) 的\emph{仿射坐标环}.
+
+如果有 \( x = (x_1, \ldots, x_n) \in X \), 我们使用记 \( \mathfrak{m}_x \)
+为理想
+\[
+  \mathfrak{m}_x = \left\lbrace f \in \Gamma(X): f(x) = 0 \right\rbrace
+  \subseteq \Gamma(X)
+\]
+这是极大理想 \( (T_1 - x_1, \ldots, T_n - x_n) \) 在投影 \( \pi: k[\mathbf{T}]
+\to \Gamma(X) \) 下的像. 或者换句话说, \( \mathfrak{m}_x \) 是赋值态射 \(
+\Gamma(X) \to k, f \mapsto f(x) \) 的核, 进而 \( \Gamma(X) / \mathfrak{m}_x = k
+\).
+
+如果 \( \mathfrak{a} \subseteq \Gamma(X) \) 是一个理想, 考虑
+\[
+  V(\mathfrak{a}) = \left\lbrace x \in X: f(x) = 0, \forall f \in \mathfrak{a}
+  \right\rbrace = V(\pi^{-1}(\mathfrak{a}))\cap X.
+\]
+因此, 将 \( X \) 赋予 \( \mathbb{A}^n(k) \) 的子空间拓扑, \( V(\mathfrak{a}) \)
+就是 \( X \) 的闭子集. 我们同样称这是 Zariski 拓扑. 对于 \( f \in \Gamma(X) \),
+我们记
+\[
+  D(f) := \left\lbrace x \in X: f(x) \neq 0 \right\rbrace = X \setminus V(f).
+\]
+形如这样的开集, 我们称为 \emph{主开集}.
+
+\begin{lemma}
+  主开集 \( D(f) \), \( f \in \Gamma(X) \), 形成了 \( X \) 的 Zariski
+  拓扑的一组基. 有限主开集的交仍然是主开集.
+\end{lemma}
+\begin{proof}
+  对于第二句话, 只需注意到 \( D(f) \cap D(g) = D(fg) \).
+  记 \( X \) 中的开集 \( U \) 为 \( U = X \setminus V(\mathfrak{a}) \).
+  \( \mathfrak{a} \) 是作为 noetherian 环的理想, 是有有限生成的, 故可以设 \(
+  \mathfrak{a} = \left\langle f_1,\ldots, f_n \right\rangle \). 因此 \(
+  V(\mathfrak{a}) = \bigcap_{i = 1}^n V(f_i) \), 也就是 \( U = \bigcup_{i = 1}^n
+  D(f_i) \).
+\end{proof}
+
+\begin{proposition}
+  \label{proposition-irreducible-iff-integral}
+  假设 \( X \) 是一个仿射代数集. 仿射坐标环 \( \Gamma(X) \)
+  是一个约化有限生成代数 \( k \)-代数. 此外, \( X \) 是不可约的当且仅当 \(
+  \Gamma(X) \) 是一个整环.
+\end{proposition}
+\begin{proof}
+  \( I(X) = \operatorname{rad}(I(X)) \) 告诉我们 \( \Gamma(X) \) 是约化的.
+  最后一句话见 \cref{proposition-irreducible-iff-prime}.
+\end{proof}
+
+\subsection{仿射代数集与有限生成约化代数的范畴等价}
+
+如果 \( f: X \to Y \) 是一个仿射代数集的态射, 那么映射
+\[
+  \Gamma(f): \operatorname{Hom}(Y, \mathbb{A}^1(k)) \to \operatorname{Hom}(X,
+  \mathbb{A}^1 (k)),\quad g \mapsto g \circ f
+\]
+是一个 \( k \)-代数同态. 于是, 我们得到了一个函子
+
+\[
+  \Gamma: (\text{仿射代数集})^{\operatorname{opp}} \to
+  (\text{约化有限生成代数}).
+\]
+
+\begin{proposition}
+  \label{proposition-category-equivalence-irreducible-affine-and-finite-generated-algebra}
+  实际上, 函子 \( \Gamma \) 是一个范畴等价. 特别地, 其限制亦是一个如下范畴等价:
+  \[
+    \Gamma: (\text{不可约仿射代数集})^{\operatorname{opp}} \to
+    (\text{整有限生成代数})
+  \]
+\end{proposition}
+\begin{proof}
+  我们通过考虑定义逆映射证明 \( \Gamma \) 是一个全忠实函子.
+  如果 \( \varphi: \Gamma(Y) \to \Gamma(X) \) 给定, 那么存在一个 \( k
+  \)-代数同态 \( \widetilde{\varphi} \) 使得下图交换
+  % https://q.uiver.app/#q=WzAsNCxbMCwwLCJrW1RfMScsIFxcbGRvdHMsIFQnX25dIl0sWzEsMCwia1tUXzEsXFxsZG90cyxUX21dIl0sWzAsMSwiXFxHYW1tYShZKSJdLFsxLDEsIlxcR2FtbWEoWCkiXSxbMCwyXSxbMCwxLCJcXHdpZGV0aWxkZXtcXHZhcnBoaX0iXSxbMiwzLCJcXHZhcnBoaSJdLFsxLDNdXQ==
+  \[\begin{tikzcd}
+    {k[T_1', \ldots, T'_n]} & {k[T_1,\ldots,T_m]} \\
+    {\Gamma(Y)} & {\Gamma(X)}
+    \arrow["{\widetilde{\varphi}}", from=1-1, to=1-2]
+    \arrow[from=1-1, to=2-1]
+    \arrow[from=1-2, to=2-2]
+    \arrow["\varphi", from=2-1, to=2-2]
+  \end{tikzcd}\]
+  只需定义 \( f: X \to Y, x \mapsto (\widetilde{\varphi}(T'_1)(x),\ldots,
+  \widetilde{\varphi}(T'_n)(x)) \).
+
+  现在只需要证明函子是本质满的. 假设给定一个约化有限生成代数 \( A \), 那么 \( A
+  \simeq k[T_1,\ldots, T_n]/ \mathfrak{a} \), 其中 \( \mathfrak{a} \subseteq
+  k[\mathbf{T}] \) 是一个理想, 并且 \( \mathfrak{a} = \operatorname{rad}
+  \mathfrak{a} \). 如果我们置 \( X = V(\mathfrak{a}) \subseteq \mathbb{A}^n(k)
+  \), 那么 \( \Gamma(X) = k[T_1,\ldots, T_n] / \mathfrak{a} \).
+
+  最后一个论断见 \cref{proposition-irreducible-iff-integral}.
+\end{proof}
+
+\begin{proposition}
+  如果 \( f: X \to Y \) 是一个仿射代数集态射, \( \Gamma(f): \Gamma(Y) \to
+  \Gamma(X) \) 是其对应的仿射坐标环同态, 那么 \( \Gamma(f)^{-1}(\mathfrak{m}_x)
+  = \mathfrak{m}_{f(x)} \) 对所有 \( x \in X \).
+\end{proposition}
+
+\subsection{函数空间的定义}
+
+假设 \( K \) 为一个域.
+\begin{enumerate}
+  \item 一个 \emph{\( K \) 上带函数的空间} 是拓扑空间 \( X \) 带上一族 \( K
+    \)-代数 \( \mathscr{O}_X \), 对每个 \( X \) 的开集 \( U \) 有 \(
+    \mathscr{O}_X(U) \subseteq \operatorname{Map}(U, K) \) 满足下面性质
+    \begin{itemize}
+      \item 如果 \( U' \subseteq U \subseteq X \) 开且 \( f \in \mathscr{O}_X(U)
+        \), 那么限制 \( \left. f \right\vert_{U'} \in \operatorname{Map}(U', K)
+          \) 是 \( \mathscr{O}_X(U') \) 中的元素.
+        \item (粘接公理) 给定开集 \( U_i \subseteq X, i \in I \), 以及 \( f_i
+          \in \mathscr{O}_X(U_i), i \in I \). 如果
+          \[
+            \left. f_i \right\vert_{U_i \cap U_j} = \left. f_j \right\vert_{U_i
+                \cap U_j},\quad \text{对所有} i, j \in I,
+          \]
+          那么唯一使得 \( \left. f \right\vert_{i} = f_i \) 对所有 \( i \in I \)
+            成立的函数 \( f: \bigcup_i U_i \to K \) 落于 \(
+            \mathscr{O}_X(\bigcup_i U_i) \) 中.
+    \end{itemize}
+  \item 带函数的空间态射 \( g: (X, \mathscr{O}_X) \to (Y, \mathscr{O}_Y) \)
+    是\emph{连续的}, 指对所有开子集 \( V \subseteq Y \) 以及函数 \( f \in
+    \mathcal{O}_Y(V) \), 函数 \( f \circ \left. g \right\vert_{g^{-1}(V)}:
+      g^{-1}(V) \to K \) 落于 \( \mathscr{O}_X(g^{-1}(V)) \) 中.
+\end{enumerate}
+
+明显地, \( K \) 上带函数的空间构成了一个范畴.
+此外, 假设 \( X \) 一个带函数的空间, \( U \subseteq X \) 为一个开空间. 我们记 \(
+(U, \mathscr{O}_{X \mid U})\) 为带函数的空间 \( U \), 其中
+\[
+  \mathscr{O}_{X \mid U} (V) = \mathscr{O}_X(V) \quad V \subseteq U \text{ 开 }.
+\]
+
+\subsection{仿射代数集的带函数空间}
+
+假设 \( X \subseteq \mathbb{A}^n(k) \) 是一个不可约仿射代数集, 并赋予其 Zariski
+拓扑. 分式域
+\[
+  K(X) := \operatorname{Frac}(\Gamma(X))
+\]
+称为 \( X \) 的\emph{函数域}.
+
+我们将 \( \Gamma(X) \) 视作态射集\eqref{equation-affine-coordinate-ring},
+那么函数域中的元素形如 \( \frac{f}{g}, f, g \in \Gamma(X), g \neq 0 \).
+因为分母可能有零点, 这通常不是一个 \( X \) 的函数, 但 \( \frac{f}{g} \)
+定义了函数 \( D(g) \to \mathbb{A}^1(k) \). 因此,
+我们能够使用这样的函数来定义带函数的空间.
+
+\begin{lemma}
+  \label{lemma-same-element-in-function-field}
+  假设 \( X \) 是一个不可约仿射代数集, \( \frac{f_1}{g_1} \) 和 \(
+  \frac{f_2}{g_2} \) 为 \( K(X) \) 的元素, 存在非空开集 \( U \subseteq
+  D(g_1 g_2) \) 使得
+  \[
+    \frac{f_1(x)}{g_1(x)} = \frac{f_2(x)}{g_2(x)},\quad \forall x \in U.
+  \]
+  那么 \( \frac{f_1}{g_1} = \frac{f_2}{g_2} \in K(X) \).
+\end{lemma}
+\begin{proof}
+  \( X \) 中闭集 \( V(f_1 g_2 - f_2 g_1) \) 包含稠密开集 \( U \), 因此它只能是
+  \( X \) 本身. 而 \( \Gamma(X) \) 约化, 这意味着 \( f_1 g_2 - f_2 g_1 = 0 \).
+\end{proof}
+
+假设 \( X \) 是一个不可约仿射代数集, \( \varnothing \neq U \subseteq X \) 开.
+我们记 \( \mathfrak{m}_x \) 为 \( \Gamma(X) \) 为对应 \( x \in X \) 的极大理想,
+以及 \( \Gamma(X)_{\mathfrak{m}_x} \) 为仿射坐标环对 \( \mathfrak{m}_x \)
+的局部化. 我们定义
+\[
+  \mathscr{O}_X(U) = \bigcap_{x \in U}\Gamma(X)_{\mathfrak{m}_x} \subseteq K(X).
+\]
+特别地, 我们令 \( \mathscr{O}_X(\varnothing) \) 为单点集.
+
+这种情况下局部化 \( \Gamma(X)_{\mathfrak{m}_x} \) 可以表示为
+\[
+  \Gamma(X)_{\mathfrak{m}_x} = \bigcup_{f \in \Gamma(X) \setminus
+  \mathfrak{m}_x} \Gamma(X)_f \subseteq K(X).
+\]
+考虑 \( (X, \mathscr{O}_X) \) 为带函数的空间, 我们首先来解释如何将 \(
+\mathscr{O}_X \) 中的元素 \( f \) 视作函数 \( U \to k \). 给定 \( x \in U \),
+那么 \( f \) 按定义于 \( \Gamma(X)_{\mathfrak{m}_x} \) 中, 因此我们可以将其写为
+\( f = \frac{g}{h} \) 其中 \( g, h \in \Gamma(X), h \notin \mathfrak{m}_x \).
+因此 \( h(x) \neq 0 \), 我们可以置 \( f(x) := \frac{g(x)}{h(x)} \in k \).
+\cref{lemma-same-element-in-function-field} 告诉我们, \( f(x) \)
+良定义且给出了单射 \( \mathscr{O}_X(U) \to \operatorname{Map}(U, k) \).
+要证明 \( (X, \mathscr{O}_X) \) 是一个带函数的空间,
+我们还需要证明其满足粘接公理. 这可以由 \( \mathscr{O}_X(U) \) 是函数域 \(
+K(X) \) 子集自然得到. 我们称 \( (X, \mathscr{O}) \) 为 \emph{与 \( X \)
+相关的带函数空间}.
+
+在主开集 \( D(f) \) 上的函数有显式的表达.
+\begin{proposition}
+  \label{proposition-principal-open-space-with-functions}
+  假设 \( (X, \mathscr{O}_X) \) 为与不可约仿射代数集 \( X \) 相关的带函数空间,
+  且令 \( f \in \Gamma(X) \). 那么
+  \[
+    \mathscr{O}_X(D(f)) = \Gamma(X)_f.
+  \]
+  特别地, \( \mathscr{O}_X(X) = \Gamma(X) \).
+\end{proposition}
+\begin{proof}
+  \( \Gamma(X)_f \subseteq \mathscr{O}_X(D(f)) \)  是明显的. 假设 \( g \in
+  \mathscr{O}_X(D(f)) \) 并置
+  \[
+    \mathfrak{a} = \left\lbrace h \in \Gamma(X): hg \in \Gamma(X) \right\rbrace.
+  \]
+  显然 \( \mathfrak{a} \) 是 \( \Gamma(X) \) 的一个理想, 如果 \( f \in
+  \operatorname{rad}(\mathfrak{a}) \), 那么 \( f^ng \in \Gamma(X) \) 对某个 \(
+  n \) 成立, 换句话说 \( g \) 形如 \( h/f^n \) 其中 \( h \in \Gamma(X) \).
+  我们现在来证明这个假设.
+
+  因为 \( \operatorname{rad}(\mathfrak{a}) = I(V(\mathfrak{a})) \), 只需证明 \( f(x) = 0 \) 对所有 \( x \in
+  V(\mathfrak{a}) \) 成立. 假设 \( x \in X \) 为一个点使得 \( f(x) \neq 0 \), 即
+  \( x \in D(f) \). 因为 \( g \in \mathscr{O}_X(D(f)) \), 我们能够找到 \( g_1,
+  g_2 \in \Gamma(X) \), \( g_2 \notin \mathfrak{m}_x \), 其中 \( g =
+  \frac{g_1}{g_2} \). 因此 \( g_2 \in \mathfrak{a} \), 加上 \( g_2(x) \neq 0 \),
+  我们有\( x \notin V(\mathfrak{a}) \).
+\end{proof}
+
+\begin{remark} %TODO: 补例子
+  如果 \( X \) 是一个不可约仿射代数集, \( U \subseteq X \) 开, 并且 \( f \in
+  \mathscr{O}_X(U) \), 那么\textbf{不一定}存在 \( g, h \in \Gamma(X) \) 使得 \(
+  f = \frac{g}{h} \in K(X) \) 其中 \( h(x) \neq 0 \) 所有 \( x \in U \) 成立.
+\end{remark}
+
+\subsection{不可约仿射代数集到带函数空间的函子}
+
+\begin{proposition}
+  假设 \( X, Y \) 为两个不可约仿射代数集且 \( f: X \to Y \) 为一个映射.
+  那么如下等价
+  \begin{enumerate}
+    \item 映射 \( f \) 是仿射代数集的态射.
+    \item 如果 \( g \in \Gamma(Y) \), 那么 \( g \circ f \in \Gamma(X) \).
+    \item 映射 \( f \) 是带函数空间的态射, 换句话说, \( f \) 是连续的而且如果 \(
+      U \subseteq Y \) 开且 \( g \in \mathscr{O}_Y(U) \), 那么 \(
+      \left. g \circ f \right\vert_{f^{-1}(U)} \in \mathscr{O}_X(f^{-1}(U)) \).
+  \end{enumerate}
+\end{proposition}
+\begin{proof}
+  (i) 和 (ii)
+  的等价性见\cref{proposition-category-equivalence-irreducible-affine-and-finite-generated-algebra}.
+  (iii) \( \implies \) (i) 只需令 \( U = Y \),
+  并使用\cref{proposition-principal-open-space-with-functions}. 
+
+  因此,我们只需证明 (ii) \( \implies \) (iii). 假设 \( \varphi: \Gamma(Y) \to
+  \Gamma(X) \) 为同态 \( h \mapsto h \circ f \). 对于 \( g \in \Gamma(Y) \),
+  我们有
+  \[
+    f^{-1}(D(g)) = \left\lbrace x \in X: g(f(x)) \neq 0 \right\rbrace =
+    D(\varphi(g)).
+  \]
+  主开集是拓扑的一组基, 从而 \( f \) 是连续的. 同态 \( \varphi \)
+  显然, \( \varphi \) 诱导了局部化的同态 \( \Gamma(Y)_g = \mathscr{O}_Y(D(g)) \to
+  \Gamma(X)_{\varphi(g)} = \mathscr{O}_X(D(\varphi(g))), h \mapsto h \circ f \).
+  从而, 我们证明了主开集的情形. 对于一般的情形, 利用粘接公理即可.
+\end{proof}
+
+\begin{theorem}
+  构造 \( X \mapsto (X, \mathscr{O}_X) \) 定义了全忠实函子
+  \[
+    \left( \text{不可约仿射代数集} \right)  \to  \left( k \text{上的带函数空间}
+    \right).
+  \]
+\end{theorem}
+
+\subsection{预簇的定义}
+
+我们称一个带函数空间 \( (X, \mathscr{O}) \) \emph{连通}, 如果其底拓扑空间 \( X
+\) 是连通的.
+
+\begin{enumerate}
+  \item 一个 \emph{仿射簇} 是一个带函数空间,
+    其同构于关于不可约仿射代数集的带函数空间.
+  \item 一个 \emph{预簇} 是一个连通的带函数空间 \( (X, \mathscr{O}_X) \)
+    其存在一个有限开覆盖 \( X = \bigcup_{i = 1}^n U_i \) 使得带函数空间 \( (U_i
+    \mathscr{O}_{X \mid U_i}), \forall i = 1, \ldots, n \) 是一个仿射簇.
+  \item 一个预簇的 \emph{态射} 是一个带函数空间的态射.
+\end{enumerate}
+特别地, 我们约定空拓扑空间不是连通的, 从而它\textbf{不是}预簇.
+
+\begin{corollary}
+  下面的范畴等价
+  \begin{enumerate}
+    \item 整有限生成 \( k \)-代数的反范畴.
+    \item 不可约仿射代数集范畴.
+    \item 仿射簇范畴.
+  \end{enumerate}
+\end{corollary}
+
+我们定义预簇 \( X \) 的\emph{仿射开覆盖}为一组\( X \) 的带函数开子空间 \( U_i, i
+\in I\) 并且 \( U_i \) 都是仿射簇使得 \( X = \bigcup_i U_i \).
+
+\begin{proposition}
+  \label{proposition-prevariaties-properties}
+  如果 \( (X, \mathscr{O}_X) \) 为一个预簇, 那么拓扑空间是 noetherian 的, 还是
+  不可约的.
+\end{proposition}
+\begin{proof}
+  \cref{lemma-noetherian-topology-properties} 以及
+  \cref{lemma-irreducible-cover}.
+\end{proof}
+
+%TODO: 对比微分几何
+
+\begin{lemma}
+  假设 \( X \) 是一个仿射簇, \( f \in \Gamma(X) = \mathscr{O}_X(X) \), \( D(f)
+  \subseteq X \) 为一个对应的主开集.
+\end{lemma}

@@ -1,0 +1,26 @@
+What is ``grammer''? For a layman: a grammer is any exact, finite-size, complete
+description ot the language, i.e., of the set sentences.
+
+
+``the set of sentences that could have been written by Chaucer(英国诗人)''
+
+生成语法是一种精确的、固定大小的规则体系，用于构建该语言中的所有句子 
+A generative grammar is an exact, ﬁxed-size recipe for constructing the sentences
+in the language
+
+一个\textbf{好}的语法, 会仔细地区分\emph{句子}和\emph{单词}的等级.
+前者称为\emph{句法(syntax)}, 后者称为\emph{词法(morphology)}. 譬如说, 法语
+``pour que'' 后面跟虚拟语气, 而 ``parce que'' 不必; 英语中的单词的复数规则.
+
+\begin{enumerate}
+  \item How can finite recipes generate enough infinite sets of sentences?
+  \item If a sentence is just a sequence and has no structure and if the meaning
+    of a sentence derives, among other things, from its structure, how can we
+    assess the meaning of a sentence?
+\end{enumerate}
+
+对于字母表 \( \Sigma = \left\lbrace a, b \right\rbrace \), 我们可以得到语言 \(
+\left\lbrace, a, b, aa, ab, ba, bb, aaa, \ldots \right\rbrace \), 我们记此语言为
+\( \Sigma^* \).
+其中, \( \Sigma \) 以 `` \{, '' 开头, 即第一个词是空词, 也就是说第一个词包含 \( 0 \)
+  个 \( a \) 和 零个 \( b \), 特别地, 我们以 \( \varepsilon \) 记此空词.

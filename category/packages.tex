@@ -4,9 +4,15 @@
 \usepackage{stmaryrd}
 \usepackage{wasysym}
 \usepackage{amsthm}
-\usepackage{mathrsfs}
-\usepackage{hyperref}
 \usepackage{bm}
+
+\usepackage{hyperref}
+\hypersetup{
+  colorlinks = true,
+  linkcolor = blue,
+  citecolor = red,
+  urlcolor = teal
+}
 \usepackage{cleveref}
 
 \usepackage{graphicx}
@@ -14,15 +20,13 @@
 
 \usepackage{tikz}
 \usepackage{tikz-cd}
+\usepackage{quiver}
 
 \usepackage{xeCJK}
 \usepackage{fontspec}
 
 \usepackage{graphicx}
 \usepackage{float}
-
-\usepackage{tikz}
-\usepackage{tikz-cd}
 
 \usepackage{geometry}
 
@@ -53,6 +57,14 @@
 
 \numberwithin{equation}{subsection}
 
+\usepackage{enumitem}
+\setlist[enumerate]{
+  label={\normalfont(\roman*)},
+  leftmargin=*,
+  itemsep=0pt,
+  parsep=0pt
+}
+
 \theoremstyle{plain}
 \newtheorem{theorem}{Theorem}[section]
 \newtheorem{lemma}[theorem]{Lemma}
@@ -67,4 +79,3 @@
 \newtheorem{remark}[theorem]{Remark}
 
 \newcommand{\dif}{\mathop{}\!\mathrm{d}}
-\renewcommand{\hom}{\operatorname{Hom}}
