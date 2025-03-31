@@ -97,7 +97,7 @@
       \) 是 \( \mathcal{C} \) 的限制.
     \item \( \mathcal{C}' \) 中态射的合成亦是 \( \mathcal{C} \) 的限制.
   \end{enumerate}
-  如果 \( \operatorname{Hom}_{\mathcal{C}'}(X, Y) =
+  更进一步地, 如果 \( \operatorname{Hom}_{\mathcal{C}'}(X, Y) =
   \operatorname{Hom}_{\mathcal{C}}(X, Y) \), 那么称 \( \mathcal{C}' \) 是 \(
   \mathcal{C} \) 的全子范畴.
 \end{definition}
@@ -154,6 +154,15 @@
   \end{align*}
 \end{definition}
 
+\begin{remark}
+  \label{remark-opposite-category-functor}
+  从 \( \mathcal{C}' \) 到 \( \mathcal{C} \) 和从 \(
+  (\mathcal{C}')^{\operatorname{op}} \) 到 \( \mathcal{C}^{\operatorname{op}} \)
+  的函子是一回事. 为了区别, 对于函子 \( F: \mathcal{C}' \to \mathcal{C} \)
+  反范畴间的函子记作 \( F^{\operatorname{op}}:
+  (\mathcal{C}')^{\operatorname{op}} \to \mathcal{C}^{\operatorname{op}} \).
+\end{remark}
+
 \begin{definition}
   对于函子 \( F: \mathcal{C}' \to \mathcal{C} \).
   \begin{enumerate}
@@ -194,73 +203,78 @@
 
 \begin{definition}
 自然变换的合成包括横合成和纵合成两种.
-\begin{itemize}
-  \item 考虑 \( \mathcal{C}' \) 到 \( \mathcal{C} \) 的三个函子间的态射 \(
-    \theta: F \to G, \psi: G \to H \). \emph{纵合成} \( \psi \circ \theta \) 的定义为
-    \( \left\lbrace \psi_X \circ \theta_X: X \in \operatorname{Ob}(\mathcal{C}')
-    \right\rbrace \)
-    % https://q.uiver.app/#q=WzAsNSxbMCwwLCJcXG1hdGhjYWx7Q30nIl0sWzIsMCwiXFxtYXRoY2Fse0N9Il0sWzMsMCwiXFxsZWFkc3RvIl0sWzQsMCwiXFxtYXRoY2Fse0N9JyJdLFs2LDAsIlxcbWF0aGNhbHtDfSJdLFswLDEsIkciLDFdLFswLDEsIkYiLDAseyJvZmZzZXQiOi0zLCJjdXJ2ZSI6LTN9XSxbMCwxLCJIIiwyLHsib2Zmc2V0IjoyLCJjdXJ2ZSI6M31dLFszLDQsIkYiLDAseyJjdXJ2ZSI6LTN9XSxbMyw0LCJIIiwyLHsiY3VydmUiOjN9XSxbNiw1LCJcXHRoZXRhIiwwLHsic2hvcnRlbiI6eyJzb3VyY2UiOjMwLCJ0YXJnZXQiOjMwfX1dLFs1LDcsIkgiLDAseyJzaG9ydGVuIjp7InNvdXJjZSI6MzAsInRhcmdldCI6MzB9fV0sWzgsOSwiXFxwc2kgXFxjaXJjIFxcdGhldGEiLDEseyJzaG9ydGVuIjp7InNvdXJjZSI6MjAsInRhcmdldCI6MjB9fV1d
-    \[\begin{tikzcd}
-      {\mathcal{C}'} && {\mathcal{C}} & \leadsto & {\mathcal{C}'} && {\mathcal{C}}
-      \arrow[""{name=0, anchor=center, inner sep=0}, "G"{description}, from=1-1, to=1-3]
-      \arrow[""{name=1, anchor=center, inner sep=0}, "F", shift left=3, curve={height=-18pt}, from=1-1, to=1-3]
-      \arrow[""{name=2, anchor=center, inner sep=0}, "H"', shift right=2, curve={height=18pt}, from=1-1, to=1-3]
-      \arrow[""{name=3, anchor=center, inner sep=0}, "F", curve={height=-18pt}, from=1-5, to=1-7]
-      \arrow[""{name=4, anchor=center, inner sep=0}, "H"', curve={height=18pt}, from=1-5, to=1-7]
-      \arrow["\theta", shorten <=5pt, shorten >=5pt, Rightarrow, from=1, to=0]
-      \arrow["H", shorten <=4pt, shorten >=4pt, Rightarrow, from=0, to=2]
-      \arrow["{\psi \circ \theta}"{description}, shorten <=5pt, shorten >=5pt, Rightarrow, from=3, to=4]
-    \end{tikzcd}\]
-  \item 考虑函子 \( 
-    % https://q.uiver.app/#q=WzAsMyxbMCwwLCJcXG1hdGhjYWx7Q30nJyJdLFsxLDAsIlxcbWF0aGNhbHtDfSciXSxbMiwwLCJcXG1hdGhjYWx7Q30iXSxbMCwxLCJGXzEiLDAseyJvZmZzZXQiOi0xfV0sWzAsMSwiRl8yIiwyLHsib2Zmc2V0IjoxfV0sWzEsMiwiR18yIiwyLHsib2Zmc2V0IjoxfV0sWzEsMiwiR18xIiwwLHsib2Zmc2V0IjotMX1dXQ==
-    \begin{tikzcd}
-      {\mathcal{C}''} & {\mathcal{C}'} & {\mathcal{C}}
-      \arrow["{F_1}", shift left, from=1-1, to=1-2]
-      \arrow["{F_2}"', shift right, from=1-1, to=1-2]
-      \arrow["{G_2}"', shift right, from=1-2, to=1-3]
-      \arrow["{G_1}", shift left, from=1-2, to=1-3]
-    \end{tikzcd}
-    \) 及态射 \( \theta: F_1 \to F_2, \psi: G_1 \to G_2 \). 将\emph{横合成}
-    定义为 \(
-    \psi \circ \theta: G_1 \circ F_1 \to G_2 \circ F_2 \). 具体地, \( \theta:
-    F_1 \to F_2 \) 以及 \( G_1 \) 给出了下面交换图表
+
+考虑 \( \mathcal{C}' \) 到 \( \mathcal{C} \) 的三个函子间的态射 \(
+\theta: F \to G, \psi: G \to H \). \emph{纵合成} \( \psi \circ \theta \) 的定义为
+\( \left\lbrace \psi_X \circ \theta_X: X \in \operatorname{Ob}(\mathcal{C}')
+\right\rbrace \)
+% https://q.uiver.app/#q=WzAsNSxbMCwwLCJcXG1hdGhjYWx7Q30nIl0sWzIsMCwiXFxtYXRoY2Fse0N9Il0sWzMsMCwiXFxsZWFkc3RvIl0sWzQsMCwiXFxtYXRoY2Fse0N9JyJdLFs2LDAsIlxcbWF0aGNhbHtDfSJdLFswLDEsIkciLDFdLFswLDEsIkYiLDAseyJvZmZzZXQiOi0zLCJjdXJ2ZSI6LTN9XSxbMCwxLCJIIiwyLHsib2Zmc2V0IjoyLCJjdXJ2ZSI6M31dLFszLDQsIkYiLDAseyJjdXJ2ZSI6LTN9XSxbMyw0LCJIIiwyLHsiY3VydmUiOjN9XSxbNiw1LCJcXHRoZXRhIiwwLHsic2hvcnRlbiI6eyJzb3VyY2UiOjMwLCJ0YXJnZXQiOjMwfX1dLFs1LDcsIkgiLDAseyJzaG9ydGVuIjp7InNvdXJjZSI6MzAsInRhcmdldCI6MzB9fV0sWzgsOSwiXFxwc2kgXFxjaXJjIFxcdGhldGEiLDEseyJzaG9ydGVuIjp7InNvdXJjZSI6MjAsInRhcmdldCI6MjB9fV1d
+\[\begin{tikzcd}
+  {\mathcal{C}'} && {\mathcal{C}} & \leadsto & {\mathcal{C}'} && {\mathcal{C}}
+  \arrow[""{name=0, anchor=center, inner sep=0}, "G"{description}, from=1-1, to=1-3]
+  \arrow[""{name=1, anchor=center, inner sep=0}, "F", shift left=3, curve={height=-18pt}, from=1-1, to=1-3]
+  \arrow[""{name=2, anchor=center, inner sep=0}, "H"', shift right=2, curve={height=18pt}, from=1-1, to=1-3]
+  \arrow[""{name=3, anchor=center, inner sep=0}, "F", curve={height=-18pt}, from=1-5, to=1-7]
+  \arrow[""{name=4, anchor=center, inner sep=0}, "H"', curve={height=18pt}, from=1-5, to=1-7]
+  \arrow["\theta", shorten <=5pt, shorten >=5pt, Rightarrow, from=1, to=0]
+  \arrow["H", shorten <=4pt, shorten >=4pt, Rightarrow, from=0, to=2]
+  \arrow["{\psi \circ \theta}"{description}, shorten <=5pt, shorten >=5pt, Rightarrow, from=3, to=4]
+\end{tikzcd}\]
+考虑函子 \( 
+  % https://q.uiver.app/#q=WzAsMyxbMCwwLCJcXG1hdGhjYWx7Q30nJyJdLFsxLDAsIlxcbWF0aGNhbHtDfSciXSxbMiwwLCJcXG1hdGhjYWx7Q30iXSxbMCwxLCJGXzEiLDAseyJvZmZzZXQiOi0xfV0sWzAsMSwiRl8yIiwyLHsib2Zmc2V0IjoxfV0sWzEsMiwiR18yIiwyLHsib2Zmc2V0IjoxfV0sWzEsMiwiR18xIiwwLHsib2Zmc2V0IjotMX1dXQ==
+  \begin{tikzcd}
+    {\mathcal{C}''} & {\mathcal{C}'} & {\mathcal{C}}
+    \arrow["{F_1}", shift left, from=1-1, to=1-2]
+    \arrow["{F_2}"', shift right, from=1-1, to=1-2]
+    \arrow["{G_2}"', shift right, from=1-2, to=1-3]
+    \arrow["{G_1}", shift left, from=1-2, to=1-3]
+  \end{tikzcd}
+  \) 及态射 \( \theta: F_1 \to F_2, \psi: G_1 \to G_2 \). 将\emph{横合成}
+  定义为 \(
+  \psi \circ \theta: G_1 \circ F_1 \to G_2 \circ F_2 \). 具体地, \( \theta:
+  F_1 \to F_2 \) 以及 \( G_1 \) 给出了下面交换图表
 % https://q.uiver.app/#q=WzAsOSxbMCwwLCJGXzFYIl0sWzAsMiwiRl8xWSJdLFsyLDAsIkZfMlgiXSxbMiwyLCJGXzJZIl0sWzQsMCwiR18xIEZfMSBYIl0sWzYsMCwiR18xRl8yWCJdLFs0LDIsIkdfMUZfMVkiXSxbNiwyLCJHXzFGXzJZIl0sWzMsMSwiXFxsZWFkc3RvIl0sWzAsMSwiRl8xIGYiLDJdLFswLDIsIlxcdGhldGFfWCJdLFsyLDMsIkZfMiBmIl0sWzEsMywiXFx0aGV0YV9ZIiwyXSxbNCw2LCJHXzFGXzFmIiwyXSxbNCw1LCJHXzFcXHRoZXRhX1giXSxbNSw3LCJHXzFGXzJmIl0sWzYsNywiR18xXFx0aGV0YV9ZIiwyXV0=
 \[\begin{tikzcd}
-	{F_1X} && {F_2X} && {G_1 F_1 X} && {G_1F_2X} \\
-	&&& \leadsto \\
-	{F_1Y} && {F_2Y} && {G_1F_1Y} && {G_1F_2Y}
-	\arrow["{\theta_X}", from=1-1, to=1-3]
-	\arrow["{F_1 f}"', from=1-1, to=3-1]
-	\arrow["{F_2 f}", from=1-3, to=3-3]
-	\arrow["{G_1\theta_X}", from=1-5, to=1-7]
-	\arrow["{G_1F_1f}"', from=1-5, to=3-5]
-	\arrow["{G_1F_2f}", from=1-7, to=3-7]
-	\arrow["{\theta_Y}"', from=3-1, to=3-3]
-	\arrow["{G_1\theta_Y}"', from=3-5, to=3-7]
+{F_1X} && {F_2X} && {G_1 F_1 X} && {G_1F_2X} \\
+&&& \leadsto \\
+{F_1Y} && {F_2Y} && {G_1F_1Y} && {G_1F_2Y}
+\arrow["{\theta_X}", from=1-1, to=1-3]
+\arrow["{F_1 f}"', from=1-1, to=3-1]
+\arrow["{F_2 f}", from=1-3, to=3-3]
+\arrow["{G_1\theta_X}", from=1-5, to=1-7]
+\arrow["{G_1F_1f}"', from=1-5, to=3-5]
+\arrow["{G_1F_2f}", from=1-7, to=3-7]
+\arrow["{\theta_Y}"', from=3-1, to=3-3]
+\arrow["{G_1\theta_Y}"', from=3-5, to=3-7]
 \end{tikzcd}\]
 上图右边交换图在自然变换 \( \psi \) 下有交换图
 % https://q.uiver.app/#q=WzAsOCxbMCwyLCJHXzEgRl8xIFgiXSxbMiwyLCJHXzEgRl8yIFgiXSxbNCwyLCJHXzEgRl8yIFkiXSxbNiwyLCJHXzIgRl8yIFkiXSxbMCw0LCJHXzEgRl8xIFkiXSxbMiw0LCJHXzEgRl8yIFkiXSxbMiwwLCJHXzJGXzIgWCJdLFswLDAsIkdfMiBGXzEgWCJdLFswLDQsIkdfMSBGXzEgZiIsMl0sWzEsNSwiR18xRl8yIGYiXSxbNCw1LCJHXzEgXFx0aGV0YV9ZIiwyXSxbMCwxLCJHXzFcXHRoZXRhX1giLDFdLFswLDcsIlxccHNpX3tGXzEgWH0iXSxbMSw2LCJcXHBzaV97Rl8yIFh9IiwyXSxbNyw2LCJHXzIgXFx0aGV0YV9YIl0sWzEsMiwiR18xIEZfMiBmIiwxXSxbNiwzLCJHXzIgRl8yIGYiXSxbMiwzLCJcXHBzaV97Rl8yIFl9IiwxXSxbNSwzLCJcXHBzaV97Rl8yWX0iLDJdXQ==
 \[\begin{tikzcd}
-	{G_2 F_1 X} && {G_2F_2 X} \\
-	\\
-	{G_1 F_1 X} && {G_1 F_2 X} && {G_1 F_2 Y} && {G_2 F_2 Y} \\
-	\\
-	{G_1 F_1 Y} && {G_1 F_2 Y}
-	\arrow["{G_2 \theta_X}", from=1-1, to=1-3]
-	\arrow["{G_2 F_2 f}", from=1-3, to=3-7]
-	\arrow["{\psi_{F_1 X}}", from=3-1, to=1-1]
-	\arrow["{G_1\theta_X}"{description}, from=3-1, to=3-3]
-	\arrow["{G_1 F_1 f}"', from=3-1, to=5-1]
-	\arrow["{\psi_{F_2 X}}"', from=3-3, to=1-3]
-	\arrow["{G_1 F_2 f}"{description}, from=3-3, to=3-5]
-	\arrow["{G_1F_2 f}", from=3-3, to=5-3]
-	\arrow["{\psi_{F_2 Y}}"{description}, from=3-5, to=3-7]
-	\arrow["{G_1 \theta_Y}"', from=5-1, to=5-3]
-	\arrow["{\psi_{F_2Y}}"', from=5-3, to=3-7]
+{G_2 F_1 X} && {G_2F_2 X} \\
+\\
+{G_1 F_1 X} && {G_1 F_2 X} && {G_1 F_2 Y} && {G_2 F_2 Y} \\
+\\
+{G_1 F_1 Y} && {G_1 F_2 Y}
+\arrow["{G_2 \theta_X}", from=1-1, to=1-3]
+\arrow["{G_2 F_2 f}", from=1-3, to=3-7]
+\arrow["{\psi_{F_1 X}}", from=3-1, to=1-1]
+\arrow["{G_1\theta_X}"{description}, from=3-1, to=3-3]
+\arrow["{G_1 F_1 f}"', from=3-1, to=5-1]
+\arrow["{\psi_{F_2 X}}"', from=3-3, to=1-3]
+\arrow["{G_1 F_2 f}"{description}, from=3-3, to=3-5]
+\arrow["{G_1F_2 f}", from=3-3, to=5-3]
+\arrow["{\psi_{F_2 Y}}"{description}, from=3-5, to=3-7]
+\arrow["{G_1 \theta_Y}"', from=5-1, to=5-3]
+\arrow["{\psi_{F_2Y}}"', from=5-3, to=3-7]
 \end{tikzcd}\]
-因此横合成为 \( (\psi \circ \theta)_{X} = G_2(\theta_X) \circ \psi_{F_1 X} =
-\psi_{F_2 X} \circ G_1(\theta_X)  \) 以及 \( (\psi \circ \theta)_Y =
-\psi_{F_2 Y} \circ G_1(\theta_Y) \). 我们可以简要地写作
+因此横合成为
+\begin{equation}
+(\psi \circ \theta)_{X} = G_2(\theta_X) \circ \psi_{F_1 X} =
+\psi_{F_2 X} \circ G_1(\theta_X)  \text{ 以及 } (\psi \circ \theta)_Y =
+\psi_{F_2 Y} \circ G_1(\theta_Y).
+\label{equation-natural-transformation-horizontal-composite}
+\end{equation}
+我们可以简要地写作
 % https://q.uiver.app/#q=WzAsNixbMCwwLCJcXG1hdGhjYWx7Q30nJyJdLFsxLDAsIlxcbWF0aGNhbHtDfSciXSxbMiwwLCJcXG1hdGhjYWx7Q30iXSxbMywwLCJcXGxlYWRzdG8iXSxbNCwwLCJcXG1hdGhjYWx7Q30nJyJdLFs2LDAsIlxcbWF0aGNhbHtDfSJdLFswLDEsIkZfMiIsMix7ImN1cnZlIjoyfV0sWzAsMSwiRl8xIiwwLHsiY3VydmUiOi0yfV0sWzEsMiwiR18yIiwyLHsiY3VydmUiOjJ9XSxbMSwyLCJHXzEiLDAseyJjdXJ2ZSI6LTJ9XSxbNCw1LCJHXzIgRl8yIiwyLHsiY3VydmUiOjN9XSxbNCw1LCJHXzFGXzEiLDAseyJjdXJ2ZSI6LTN9XSxbNyw2LCJcXHRoZXRhIiwxLHsic2hvcnRlbiI6eyJzb3VyY2UiOjIwLCJ0YXJnZXQiOjIwfX1dLFs5LDgsIlxccHNpIiwxLHsic2hvcnRlbiI6eyJzb3VyY2UiOjIwLCJ0YXJnZXQiOjIwfX1dLFsxMSwxMCwiXFxwc2kgXFxjaXJjIFxcdGhldGEiLDEseyJzaG9ydGVuIjp7InNvdXJjZSI6MjAsInRhcmdldCI6MjB9fV1d
 \[\begin{tikzcd}
 	{\mathcal{C}''} & {\mathcal{C}'} & {\mathcal{C}} & \leadsto & {\mathcal{C}''} && {\mathcal{C}}
@@ -274,7 +288,6 @@
 	\arrow["\psi"{description}, shorten <=3pt, shorten >=3pt, Rightarrow, from=3, to=2]
 	\arrow["{\psi \circ \theta}"{description}, shorten <=5pt, shorten >=5pt, Rightarrow, from=5, to=4]
 \end{tikzcd}\]
-\end{itemize}
 \end{definition}
 
 \begin{proposition}
@@ -303,6 +316,386 @@
   \mathop{\circ}\limits_{\text{纵}} \left( \theta'
   \mathop{\circ}\limits_{\text{横}} \theta \right)
   \]
+\end{proposition}
+\begin{proof}
+  对于第一个论断, 仔细考虑之, 发现是只能讨论横合成间的合成律或纵合成间的合成律,
+  因为如果 \( \phi \circ \psi \) 是横合成, \( \psi \circ \theta \) 是纵合成,
+  % https://q.uiver.app/#q=WzAsMyxbMCwwLCJcXG1hdGhjYWx7Q30nJyJdLFsyLDAsIlxcbWF0aGNhbHtDfSciXSxbNCwwLCJcXG1hdGhjYWx7Q30iXSxbMCwxLCJIIiwyLHsiY3VydmUiOjN9XSxbMCwxLCJGIiwwLHsiY3VydmUiOi0zfV0sWzEsMiwiSyIsMix7ImN1cnZlIjozfV0sWzEsMiwiSiIsMCx7ImN1cnZlIjotM31dLFswLDEsIkciLDFdLFs2LDUsIlxccGhpIiwwLHsic2hvcnRlbiI6eyJzb3VyY2UiOjMwLCJ0YXJnZXQiOjMwfX1dLFs0LDcsIlxcdGhldGEiLDAseyJzaG9ydGVuIjp7InNvdXJjZSI6MzAsInRhcmdldCI6MzB9fV0sWzcsMywiXFxwc2kiLDAseyJzaG9ydGVuIjp7InNvdXJjZSI6MzAsInRhcmdldCI6MzB9fV1d
+  \[\begin{tikzcd}
+    {\mathcal{C}''} && {\mathcal{C}'} && {\mathcal{C}}
+    \arrow[""{name=0, anchor=center, inner sep=0}, "H"', curve={height=18pt}, from=1-1, to=1-3]
+    \arrow[""{name=1, anchor=center, inner sep=0}, "F", curve={height=-18pt}, from=1-1, to=1-3]
+    \arrow[""{name=2, anchor=center, inner sep=0}, "G"{description}, from=1-1, to=1-3]
+    \arrow[""{name=3, anchor=center, inner sep=0}, "K"', curve={height=18pt}, from=1-3, to=1-5]
+    \arrow[""{name=4, anchor=center, inner sep=0}, "J", curve={height=-18pt}, from=1-3, to=1-5]
+    \arrow["\theta", shorten <=4pt, shorten >=4pt, Rightarrow, from=1, to=2]
+    \arrow["\psi", shorten <=4pt, shorten >=4pt, Rightarrow, from=2, to=0]
+    \arrow["\phi", shorten <=7pt, shorten >=7pt, Rightarrow, from=4, to=3]
+  \end{tikzcd}\]
+  那么, 由上图所示, \( \left( \phi \mathop{\circ}\limits_{\text{横}} (\psi
+  \mathop{\circ}\limits_{\text{纵}} \theta) \right) \) 有意义, 而 \( \left(
+(\phi \mathop{\circ}\limits_{\text{横}} \psi) \mathop{\circ}\limits_{\text{纵}}
+\theta \right) \) 没有定义
+  \begin{itemize}
+    \item 如果 \( \phi \circ \psi \) 和 \( \psi \circ \theta \) 都是纵合成
+    % https://q.uiver.app/#q=WzAsMTAsWzAsMSwiXFxtYXRoY2Fse0N9JyJdLFsyLDEsIlxcbWF0aGNhbHtDfSJdLFszLDAsIkZYIl0sWzMsMiwiRlkiXSxbNSwwLCJHWCJdLFs1LDIsIkdZIl0sWzcsMCwiSFgiXSxbNywyLCJIWSJdLFs5LDAsIkpYIl0sWzksMiwiSlkiXSxbMCwxLCJGIiwwLHsiY3VydmUiOi01fV0sWzAsMSwiSiIsMix7ImN1cnZlIjo1fV0sWzAsMSwiRyIsMSx7ImN1cnZlIjotMn1dLFswLDEsIkgiLDEseyJjdXJ2ZSI6Mn1dLFsyLDMsIkZmIiwyXSxbMiw0LCJcXHBoaV9YIl0sWzMsNSwiXFxwaGlfWSJdLFs0LDUsIkdmIiwyXSxbNCw2LCJcXHBzaV9YIl0sWzUsNywiXFxwc2lfWSJdLFs2LDcsIkhmIiwyXSxbNiw4LCJcXHRoZXRhX1giXSxbNyw5LCJcXHRoZXRhX1kiXSxbOCw5LCJKZiIsMl0sWzEwLDEyLCJcXHBoaSIsMCx7InNob3J0ZW4iOnsic291cmNlIjozMCwidGFyZ2V0IjozMH19XSxbMTIsMTMsIlxccHNpIiwwLHsic2hvcnRlbiI6eyJzb3VyY2UiOjMwLCJ0YXJnZXQiOjMwfX1dLFsxMywxMSwiXFx0aGV0YSIsMCx7InNob3J0ZW4iOnsic291cmNlIjozMCwidGFyZ2V0IjozMH19XV0=
+      \[\begin{tikzcd}
+        &&& FX && GX && HX && JX \\
+        {\mathcal{C}'} && {\mathcal{C}} \\
+        &&& FY && GY && HY && JY
+        \arrow["{\phi_X}", from=1-4, to=1-6]
+        \arrow["Ff"', from=1-4, to=3-4]
+        \arrow["{\psi_X}", from=1-6, to=1-8]
+        \arrow["Gf"', from=1-6, to=3-6]
+        \arrow["{\theta_X}", from=1-8, to=1-10]
+        \arrow["Hf"', from=1-8, to=3-8]
+        \arrow["Jf"', from=1-10, to=3-10]
+        \arrow[""{name=0, anchor=center, inner sep=0}, "F", curve={height=-30pt}, from=2-1, to=2-3]
+        \arrow[""{name=1, anchor=center, inner sep=0}, "J"', curve={height=30pt}, from=2-1, to=2-3]
+        \arrow[""{name=2, anchor=center, inner sep=0}, "G"{description}, curve={height=-12pt}, from=2-1, to=2-3]
+        \arrow[""{name=3, anchor=center, inner sep=0}, "H"{description}, curve={height=12pt}, from=2-1, to=2-3]
+        \arrow["{\phi_Y}", from=3-4, to=3-6]
+        \arrow["{\psi_Y}", from=3-6, to=3-8]
+        \arrow["{\theta_Y}", from=3-8, to=3-10]
+        \arrow["\phi", shorten <=4pt, shorten >=4pt, Rightarrow, from=0, to=2]
+        \arrow["\psi", shorten <=5pt, shorten >=5pt, Rightarrow, from=2, to=3]
+        \arrow["\theta", shorten <=4pt, shorten >=4pt, Rightarrow, from=3, to=1]
+      \end{tikzcd}\]
+      \( \phi_X, \psi_X, \theta_X \) 和 \( \phi_Y, \psi_Y, \theta_Y \) 都是 \(
+      \mathcal{C} \) 中的态射, 自然满足结合律.
+    \item 如果 \( \phi \circ \psi \) 和 \( \psi \circ \theta \) 都是横合成
+    % https://q.uiver.app/#q=WzAsNCxbMCwwLCJcXG1hdGhjYWx7Q31fNCJdLFsyLDAsIlxcbWF0aGNhbHtDfV8zIl0sWzQsMCwiXFxtYXRoY2Fse0N9XzIiXSxbNiwwLCJcXG1hdGhjYWx7Q31fMSJdLFswLDEsIkZfMiIsMix7ImN1cnZlIjozfV0sWzEsMiwiR18yIiwyLHsiY3VydmUiOjN9XSxbMSwyLCJHXzEiLDAseyJjdXJ2ZSI6LTN9XSxbMCwxLCJGXzEiLDAseyJjdXJ2ZSI6LTN9XSxbMiwzLCJIXzIiLDIseyJjdXJ2ZSI6M31dLFsyLDMsIkhfMSIsMCx7ImN1cnZlIjotM31dLFs3LDQsIlxcdGhldGEiLDAseyJzaG9ydGVuIjp7InNvdXJjZSI6MjAsInRhcmdldCI6MjB9fV0sWzksOCwiXFxwaGkiLDAseyJzaG9ydGVuIjp7InNvdXJjZSI6MjAsInRhcmdldCI6MjB9fV0sWzYsNSwiXFxwc2kiLDAseyJzaG9ydGVuIjp7InNvdXJjZSI6MjAsInRhcmdldCI6MjB9fV1d
+    \[\begin{tikzcd}
+      {\mathcal{C}_4} && {\mathcal{C}_3} && {\mathcal{C}_2} && {\mathcal{C}_1}
+      \arrow[""{name=0, anchor=center, inner sep=0}, "{F_2}"', curve={height=18pt}, from=1-1, to=1-3]
+      \arrow[""{name=1, anchor=center, inner sep=0}, "{F_1}", curve={height=-18pt}, from=1-1, to=1-3]
+      \arrow[""{name=2, anchor=center, inner sep=0}, "{G_2}"', curve={height=18pt}, from=1-3, to=1-5]
+      \arrow[""{name=3, anchor=center, inner sep=0}, "{G_1}", curve={height=-18pt}, from=1-3, to=1-5]
+      \arrow[""{name=4, anchor=center, inner sep=0}, "{H_2}"', curve={height=18pt}, from=1-5, to=1-7]
+      \arrow[""{name=5, anchor=center, inner sep=0}, "{H_1}", curve={height=-18pt}, from=1-5, to=1-7]
+      \arrow["\theta", shorten <=5pt, shorten >=5pt, Rightarrow, from=1, to=0]
+      \arrow["\psi", shorten <=5pt, shorten >=5pt, Rightarrow, from=3, to=2]
+      \arrow["\phi", shorten <=5pt, shorten >=5pt, Rightarrow, from=5, to=4]
+    \end{tikzcd}\]
+    由 \eqref{equation-natural-transformation-horizontal-composite}, 知道
+    \begin{align*}
+      \left(\phi \mathop{\circ}\limits_{\text{横}} (\psi
+      \mathop{\circ}\limits_{\text{横}} \theta)\right)_X &= \phi_{G_2F_2X} \circ
+      H_1(\psi \mathop{\circ}\limits_{\text{横}} \theta)\\ &= \phi_{G_2 F_2 X}
+      \circ H_1(\psi_{F_2X} \circ G_1(\theta_X)) \\ &= \phi_{G_2 F_2 X}
+      \circ H_1(\psi_{F_2X}) \circ H_1 G_1(\theta_X)
+    \end{align*}
+    以及
+    \begin{align*}
+      \left((\phi \mathop{\circ}\limits_{\text{横}} \psi)
+      \mathop{\circ}\limits_{\text{横}} \theta\right)_X &= (\phi
+      \mathop{\circ}\limits_{\text{横}} \psi)_{F_2 X} H_1 G_1(\theta_X) \\ &=
+      \phi_{G_2 F_2 X} \circ H_1(\psi_{F_2 X}) \circ H_1 G_1(\theta_X).
+    \end{align*}
+  \end{itemize}
+\end{proof}
+
+\subsection{函子间的同构, 范畴间的等价与同构}
+
+\begin{definition}
+  任何函子 \( F \) 到其自身有恒等态射 \( \operatorname{id}_F: F \to F \).
+  给定函子的态射 \( \theta: F_1 \to F_2 \), 如果态射 \( \psi: F_2 \to F_1 \)
+  满足 \( \psi \circ \theta = \operatorname{id}_{F_1}, \theta \circ \psi =
+  \operatorname{id}_{F_2} \), 则称 \( \psi \) 是 \( \theta \) 的\emph{逆}.
+  可逆的函子间的态射, 称为函子间的 \emph{同构}, 写作 \( \theta: F_1
+  \xrightarrow{\sim} F_2 \).
+\end{definition}
+
+\( \theta \) 的逆如果存在, 则是唯一的: 将其中一个记作 \( \theta^{-1} \), 因为 \(
+(\theta^{-1})_X := (\theta_X)^{-1}: F_2 X \xrightarrow{\sim} F_1 X \),
+而可以直接验证知道 \( (\theta_{X})^{-1} \) 是唯一的. 由此推理还可看出, \( \theta
+\) 可逆当且仅当每个 \( \theta_X \) 均可逆. 因此, 函子间同构 \( \theta: F_1
+\xrightarrow{\sim} F_2 \) 的等价说法是 \( \theta_X: F_1X \xrightarrow{\sim} F_2
+X \) 对变元 \( X \) 是 \emph{自然同构} 或 \emph{典范同构}. 另外, 由结合性,
+我们可以知道同构的横纵合成都是同构.
+
+\begin{definition}
+  如果一对函子 \( % https://q.uiver.app/#q=WzAsMixbMCwwLCJcXG1hdGhjYWx7Q31fMSJdLFsxLDAsIlxcbWF0aGNhbHtDfV8yIl0sWzAsMSwiRiIsMCx7ImN1cnZlIjotMn1dLFsxLDAsIkciLDAseyJjdXJ2ZSI6LTJ9XV0=
+\begin{tikzcd}
+	{\mathcal{C}_1} & {\mathcal{C}_2}
+	\arrow["F", curve={height=-12pt}, from=1-1, to=1-2]
+	\arrow["G", curve={height=-12pt}, from=1-2, to=1-1]
+\end{tikzcd} \) 满足以下性质: 存在函子之间的同构故 \( \theta: FG
+\xrightarrow{\sim} \operatorname{id}_{\mathcal{C}_2}, \psi: GF
+\xrightarrow{\sim} \operatorname{id}_{\mathcal{C}_1} \), 则称 \( G \) 是 \( F \)
+的 \emph{拟逆函子}, 并称 \( F \) 是范畴 \( \mathcal{C}_1 \) 到 \( \mathcal{C}_2
+\) 的\emph{等价}. 如果更进一步有 \( FG = \operatorname{id}_{\mathcal{C}_2}, GF =
+\operatorname{id}_{\mathcal{C}_1} \), 则称 \( F \) 是范畴间的 \emph{同构}, 而 \(
+G\) 是 \( F \) 的\emph{逆}.
+\end{definition}
+
+\begin{proposition}
+  如果 \( G, G' \) 是函子 \( F: \mathcal{C}_1 \to \mathcal{C}_2 \) 的拟逆,
+  那么存在函子的同构 \( G \simeq G' \).
+\end{proposition}
+\begin{proof}
+  函子结合性告诉我们 \(  G = \operatorname{id}_{\mathcal{C}_1}G \simeq (G'
+  F)G = G'(FG) \simeq G'\operatorname{id}_{\mathcal{C}_2} = G' \).
+\end{proof}
+
+\subsection{骨架范畴}
+
+称一个全子范畴 \( \mathcal{C}' \subseteq \mathcal{C} \) 为 \( \mathcal{C} \)
+的一副\emph{骨架}, 如果对 \( \mathcal{C} \) 的每个对象 \( X \) 都存在同构 \( X
+\xrightarrow{\sim} Y \in \operatorname{Ob}(\mathcal{C}') \), 并且此 \( Y \in
+\operatorname{Ob}(\mathcal{C}') \) 是唯一的. 自为骨架的范畴称为 \emph{骨架范畴}.
+
+\begin{proposition}
+  \label{propostion-category-skeleton}
+  \begin{enumerate}
+    \item 任意范畴 \( \mathcal{C} \) 总有一副骨架 \( \mathcal{C}' \),
+  而且包含函子 \( \iota: \mathcal{C}' \hookrightarrow \mathcal{C} \) 是等价.
+    \item 骨架范畴间的全忠实, 本质满函子都是同构.
+\end{enumerate}
+\end{proposition}
+\begin{proof}
+  (i) 利用 \href{https://en.wikipedia.org/wiki/Axiom_of_choice}{选择公理} 在 \(
+  \operatorname{Ob}(\mathcal{C})\) 的每个同构类中选取代表元,
+  由这些代表元构成的全子范畴记作 \( \mathcal{C}' \). 对每个 \( X \in
+  \operatorname{Ob}(\mathcal{C}) \) 可以选定同构 \( \theta_X: X
+  \xrightarrow{\sim} \kappa(X) \), 其中 \( \kappa(X) \in
+  \operatorname{Ob}(\mathcal{C}') \). 不妨假设对于 \( X \in
+  \operatorname{Ob}(\mathcal{C}') \) 有 \( \theta_X = \operatorname{id}_X \).
+  置
+  \[
+    \kappa(f) := \theta_Y \circ f \circ \theta ^{-1}_X \in
+    \operatorname{Hom}_{\mathcal{C}'}(\kappa(X), \kappa(Y)),\quad f \in
+    \operatorname{Hom}_{\mathcal{C}}(X, Y),
+  \]
+  这是(唯一)一种方法将 \( \kappa: \operatorname{Ob}(\mathcal{C}) \to
+  \operatorname{Ob}(\mathcal{C}') \) 延拓为函子并使得 \( \theta:
+  \operatorname{id}_{\mathcal{C}} \xrightarrow{\sim} \iota \kappa \). 因此 \(
+  \kappa \) 是 \( \iota \) 的拟逆函子. 另一方面, 我们有函子等式 \( \kappa \iota
+  = \operatorname{id}_{\mathcal{C}'} \). 因此 \( \kappa \) 是 \( \iota \)
+  的拟逆函子.
+
+  (ii) 假设 \( F: \mathcal{C}_1 \to \mathcal{C}_2 \) 是骨架范畴间的全忠实,
+  本质满函子. 对任意 \( \mathcal{C}_2 \) 中的对象, 存在 \( X \) 使得 \( Z \simeq
+  FX\), 又 \( \mathcal{C}_2 \) 是一个骨架范畴, 因此 \( Z = FX \), 从而 \( F \)
+  是对象集的一个满射. 如果 \( FX =
+  FX' \); 这时, 考察 \( \operatorname{Hom}_{\mathcal{C}'}(FX, FX') \) 与 \(
+  \operatorname{Hom}_{\mathcal{C}'}(FX', FX) \), 由函子的全假设, 存在 \( f \in
+  \operatorname{Hom}_{\mathcal{C}}(X, X') \), 以及 \( g \in
+  \operatorname{Hom}_{\mathcal{C}}(X', X) \), 使得 \( \operatorname{id}_{FX} =
+  F(f) = F(g) \). 再由函子的忠实假设, 有 \( \operatorname{id}_{FX} = F(gf)
+  \implies gf = \operatorname{id}_{X} \) 以及 \( \operatorname{id}_{FX'} = F(fg)
+  \implies fg = \operatorname{id}_{X'}\), 换句话说 \( X \simeq X' \).
+  再次利用骨架范畴的性质, \( X = X' \), 从而 \( F \) 是对象集的一个单射.
+  加上全忠实性, 我们能构造 \( F \) 的逆.
+\end{proof}
+
+\begin{theorem}
+  对于函子 \( F: \mathcal{C}_1 \to \mathcal{C}_2 \), 那么以下等价
+  \begin{enumerate}
+    \item \( F \) 是范畴等价.
+    \item \( F \) 是全忠实, 本质满函子.
+  \end{enumerate}
+\end{theorem}
+\begin{proof}
+  如果 \( F \) 是一个范畴等价, 那么存在 \( F \) 的拟逆函子 \( G: \mathcal{C}_2
+  \to \mathcal{C}_1 \) 和自然变换 \( \psi: GF \xrightarrow{\sim}
+  \operatorname{id}_{\mathcal{C}_1}, \phi: FG \xrightarrow{\sim}
+  \operatorname{id}_{\mathcal{C}_2} \).
+  \begin{itemize}
+    \item 本质满. 对 \( \mathcal{C}_2 \) 中的任何对象 \( Z \) 都有 \( \phi_Z:
+      F(GZ) \xrightarrow{\sim} Z \), 故 \( F \) 本质满. 同理 \( G \) 本质满.
+    \item 全忠实. \( \psi \) 的自然性告诉我们下图交换
+      % https://q.uiver.app/#q=WzAsNCxbMCwwLCJHRlgiXSxbMCwxLCJHRlkiXSxbMSwwLCJYIl0sWzEsMSwiWSJdLFswLDEsIkdGKGYpIiwyXSxbMCwyLCJcXHBzaV9YIl0sWzIsMywiZiJdLFsxLDMsIlxccHNpX1kiLDJdXQ==
+      \[\begin{tikzcd}
+        GF(X) & X \\
+        GF(Y) & Y
+        \arrow["{\psi_X}", from=1-1, to=1-2]
+        \arrow["{GF(f)}"', from=1-1, to=2-1]
+        \arrow["f", from=1-2, to=2-2]
+        \arrow["{\psi_Y}"', from=2-1, to=2-2]
+      \end{tikzcd}\] 函子同构告诉我们 \( \psi_X^{-1} \) 存在, 从而 \( f =
+      \psi_Y GF(f) \psi_{X}^{-1} \). 因此下图的合成是恒等映射
+      % https://q.uiver.app/#q=WzAsOCxbMCwwLCJcXG9wZXJhdG9ybmFtZXtIb219KFgsIFkpIl0sWzEsMCwiXFxvcGVyYXRvcm5hbWV7SG9tfShGWCwgRlkpIl0sWzIsMCwiXFxvcGVyYXRvcm5hbWV7SG9tfShHRihYKSwgR0YoWSkpIl0sWzMsMCwiXFxvcGVyYXRvcm5hbWV7SG9tfShYLCBZKSJdLFswLDEsImYiXSxbMSwxLCJGZiJdLFsyLDEsIkdGKGYpIl0sWzMsMSwiXFxwc2lfWSBHRihmKVxccHNpX1heey0xfSJdLFswLDEsIkYiXSxbMSwyLCJHIl0sWzIsMywiXFxzaW0iXSxbNCw1LCIiLDAseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJtYXBzIHRvIn19fV0sWzUsNiwiIiwwLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoibWFwcyB0byJ9fX1dLFs2LDcsIiIsMCx7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Im1hcHMgdG8ifX19XV0=
+      \[\begin{tikzcd}
+        {\operatorname{Hom}(X, Y)} & {\operatorname{Hom}(FX, FY)} & {\operatorname{Hom}(GF(X), GF(Y))} & {\operatorname{Hom}(X, Y)} \\
+        f & Ff & {GF(f)} & {\psi_Y GF(f)\psi_X^{-1}}
+        \arrow["F", from=1-1, to=1-2]
+        \arrow["G", from=1-2, to=1-3]
+        \arrow["\sim", from=1-3, to=1-4]
+        \arrow[maps to, from=2-1, to=2-2]
+        \arrow[maps to, from=2-2, to=2-3]
+        \arrow[maps to, from=2-3, to=2-4]
+      \end{tikzcd}\]
+      因此, \( F \) 左可逆, 从而单; 而函子同构假设告诉我们上图最右边是一个同构,
+      从而可以知道 \( G \) 是一个满同态. 同理, 交换 \( G, F \) 在上图的地位,
+      可以知道 \( G \) 单, \( F \) 是一个满同态.
+  \end{itemize}
+
+  假设 \( F \) 是全忠实, 本质满函子. 取骨架 \( \iota_i: \mathcal{C}'_i \to
+  \mathcal{C}_i \) 及其拟逆函子 \( \kappa_i \) (这里 \( i = 1, 2 \)). 因此函子
+  \( F' := \kappa_2 \circ F \circ \iota_1: \mathcal{C}'_1 \to \mathcal{C}'_2 \)
+  也是全忠实本质满函子, 因此由 \cref{propostion-category-skeleton} \( F' \)
+  是范畴同构. 设 \( G := \iota_1 \circ F'^{-1} \circ \kappa_2 \), 则
+  \begin{align*}
+    GF = \iota_1 F'^{-1} \kappa_2 F \simeq \iota_1 F'^{-1} \kappa_2 F \iota_1
+    \kappa_1 = \iota_1 \kappa_1 \simeq \operatorname{id}_{\mathcal{C}_1},\\
+    FG = F \iota_1 F'^{-1} \kappa_2 \simeq \iota_2 \kappa_2 F \iota_1 F'^{-1}
+    \kappa_2 = \iota_2 \kappa_2 \simeq \operatorname{id}_{\mathcal{C}_2}.
+  \end{align*}
+\end{proof}
+
+\section{函子范畴}
+
+\subsection{积范畴, 余积范畴以及 \texorpdfstring{\( \operatorname{Hom}
+\)}{Hom}函子}
+
+\begin{definition}
+  假设 \( \left\lbrace \mathcal{C}_i: i \in I \right\rbrace \) 是一族范畴.
+  \begin{itemize}
+    \item \emph{积范畴} \( \prod_{i \in I} \mathcal{C}_i \) 定义为
+      \begin{align*}
+        \operatorname{Ob}\left( \prod_{i \in I} \mathcal{C}_i \right) &:=
+        \prod_{i \in I} \operatorname{Ob}(\mathcal{C}_i),\\
+        \operatorname{Hom}_{\prod_{i \in I}\mathcal{C}_i} \left( (X_i)_i,
+      (Y_i)_i \right) &:= \prod_{i \in I} \operatorname{Hom}_{\mathcal{C}_i}
+      (X_i, Y_i),
+      \end{align*}
+      其中我们以 \( (X_i)_i \) 表示 \( \prod_{i \in
+      I}\operatorname{Ob}(\mathcal{C}_i) \) 的元素. 态射的合成是逐个分量定义的.
+      我们有一族\emph{投影函子} \( \operatorname{pr}_j: \prod_{i \in
+      I}\mathcal{C}_i \to \mathcal{C}_j \), 它将 \( (X_i)_i \) 映至 \( X_j \),
+      在态射层面也是类似地投影到 \( j \) 分量.
+    \item \emph{余积范畴 } \( \coprod_{i \in I}\mathcal{C}_i \) 定义为
+      \begin{align*}
+        \operatorname{Ob}\left( \coprod_{i \in I} \mathcal{C}_i \right) &:=
+        \coprod_{i \in I}\operatorname{Ob}(\mathcal{C}_i),\\
+        \operatorname{Hom}_{\prod_{i \in I} \mathcal{C}_i}(X_j, X_k) &:= \begin{cases}
+          \operatorname{Hom}_{\mathcal{C}_i}(X_j, X_k), & j = k\\
+          \varnothing, & j \neq k.
+        \end{cases}
+      \end{align*}
+      其中对每个 \( j \in I, X_j \in \operatorname{Ob}(\mathcal{C}_j) \).
+      态射的合成是在各个 \( \mathcal{C}_i \) 中个别定义的.
+      % 我们有一族投影函子 \(
+      % \iota_j: \mathcal{C}_j \to \coprod_{i \in I} \mathcal{C}_i \) 将 \(
+      % \mathcal{C}_i \) 以自明的方式嵌入为全子范畴.
+  \end{itemize}
+  特别地, 如果 \( I \) 为有限集, 我们记 \( \mathcal{C}_1 \times \cdots \times
+  \mathcal{C}_n \) 和 \( \mathcal{C}_1 \sqcup \cdots \sqcup \mathcal{C}_n \).
+\end{definition}
+
+\begin{definition}
+  形如 \( F: \mathcal{C}_1 \times \mathcal{C}_2 \to \mathcal{C} \) 的函子称为
+  \emph{二元函子}. \emph{多元函子} \( \mathcal{C}_1 \times \cdots \times
+  \mathcal{C}_n \to \mathcal{C} \) 的定义类似.
+\end{definition}
+
+给定范畴 \( \mathcal{C} \), 则 \( (X, Y) \mapsto
+\operatorname{Hom}_{\mathcal{C}}(X, Y) \) 定义了二元函子
+\[
+  \operatorname{Hom}: \mathcal{C}^{\operatorname{op}} \times
+  \mathcal{C} \to \operatorname{Set}.
+\]
+\( \mathcal{C} \) 中的任一对态射 \( f: X' \to X, g: Y \to Y' \) 诱导了
+\begin{align*}
+  \operatorname{Hom}_{\mathcal{C}}(X, Y) &\to
+  \operatorname{Hom}_{\mathcal{C}}(X', Y')\\
+  \phi &\mapsto g \phi f.
+\end{align*}
+这就是函子对态射集的映射
+\begin{align*}
+  \operatorname{Hom}: \operatorname{Hom}_{\mathcal{C}^{op} \times
+  \mathcal{C}}((X, Y), (X', Y')) &\to
+  \operatorname{Hom}_{\operatorname{Set}}(\operatorname{Hom}_{\mathcal{C}}(X,
+  Y), \operatorname{Hom}_{\mathcal{C}}(X', Y'))\\ (f, g) &\mapsto (\phi \mapsto g
+  \phi f)
+\end{align*}
+有时也说这时 \( \phi \) 对 \( f \) 的\emph{拉回}, 对 \( g \) 的\emph{推出}.
+习惯用符号 \( f^* \phi = \phi f \) 和 \( g_* \phi = g \phi \) 表示. 容易知道 \(
+(f_1 f_2)^* = f_2^* f_1^* \) 和 \( (f_1 f_2)_* = (f_1)_* (f_2)_* \).
+\subsection{函子范畴与范畴的中心}
+
+\begin{definition}
+  设 \( \mathcal{C}_1, \mathcal{C}_2 \) 为范畴, 定义 \emph{函子范畴 \(
+  \operatorname{Fct}(\mathcal{C}_1, \mathcal{C}_2) \) }: 其对象是 \(
+  \mathcal{C}_1 \) 到 \( \mathcal{C}_2 \) 的函子, 任两个对象 \( F, G \)
+  之间的态射是自然变换 \( \theta: F \to G \); 态射 \( \theta: F \to G \) 与 \(
+  \psi: G \to H \) 的合成是自然变换的纵合成 \( \psi \circ \theta: F \to H \).
+\end{definition}
+
+对函子 \( F, G: \mathcal{C}_1 \to \mathcal{C}_2 \), 于
+\cref{remark-opposite-category-functor} 中, 我们讨论过, 它们在反范畴中有 \(
+F^{\operatorname{op}}, G^{\operatorname{op}}: \mathcal{C}_1^{\operatorname{op}}
+\to \mathcal{C}_2^{\operatorname{op}} \). 见下图
+% https://q.uiver.app/#q=WzAsOSxbMCwwLCJGWCJdLFswLDIsIkZZIl0sWzIsMCwiR1giXSxbMiwyLCJHWSJdLFszLDEsIlxcbGVhZHN0byJdLFs0LDAsIkZee1xcb3BlcmF0b3JuYW1le29wfX1YIl0sWzQsMiwiRl57XFxvcGVyYXRvcm5hbWV7b3B9fVkiXSxbNiwwLCJHXntcXG9wZXJhdG9ybmFtZXtvcH19WCJdLFs2LDIsIkdee1xcb3BlcmF0b3JuYW1le29wfX1ZIl0sWzAsMiwiXFx2YXJwaGlfWCJdLFswLDEsIkZmIiwyXSxbMiwzLCJHZiJdLFsxLDMsIlxcdmFycGhpX1kiLDJdLFs2LDUsIkZee1xcb3BlcmF0b3JuYW1le29wfX1mIl0sWzgsNywiR157XFxvcGVyYXRvcm5hbWV7b3B9fWYiLDJdLFs4LDYsIlxcdmFycGhpXntcXG9wZXJhdG9ybmFtZXtvcH19X1kiXSxbNyw1LCJcXHZhcnBoaV57XFxvcGVyYXRvcm5hbWV7b3B9fV9YIiwyXV0=
+\[\begin{tikzcd}
+	FX && GX && {F^{\operatorname{op}}X} && {G^{\operatorname{op}}X} \\
+	&&& \leadsto \\
+	FY && GY && {F^{\operatorname{op}}Y} && {G^{\operatorname{op}}Y}
+	\arrow["{\varphi_X}", from=1-1, to=1-3]
+	\arrow["Ff"', from=1-1, to=3-1]
+	\arrow["Gf", from=1-3, to=3-3]
+	\arrow["{\varphi^{\operatorname{op}}_X}"', from=1-7, to=1-5]
+	\arrow["{\varphi_Y}"', from=3-1, to=3-3]
+	\arrow["{F^{\operatorname{op}}f}", from=3-5, to=1-5]
+	\arrow["{G^{\operatorname{op}}f}"', from=3-7, to=1-7]
+	\arrow["{\varphi^{\operatorname{op}}_Y}", from=3-7, to=3-5]
+\end{tikzcd}\]
+自然变换 \( \varphi: F \to G \) 在反范畴中被到转为 \(
+\varphi^{\operatorname{op}}: G^{\operatorname{op}} \to F^{\operatorname{op}} \),
+并且 \( (\varphi^{\operatorname{op}})^{\operatorname{op}} = \varphi \).
+因此我们由下面命题
+
+\begin{proposition}
+  存在自然同构 \( \operatorname{Fct}(\mathcal{C}_1,
+  \mathcal{C}_2)^{\operatorname{op}} \xrightarrow{\sim}
+  \operatorname{Fct}(\mathcal{C}_1^{\operatorname{op}},
+  \mathcal{C}_2^{\operatorname{op}}) \), 它将 \( \varphi \) 映至 \(
+  \varphi^{\operatorname{op}} \).
+\end{proposition}
+
+\begin{definition}
+  一个范畴 \( \mathcal{C} \) 的\emph{中心}为 \( Z(\mathcal{C}) :=
+  \operatorname{End}(\operatorname{id}_{\mathcal{C}}) \), 也就是 \(
+  \operatorname{Fct}(\mathcal{C}, \mathcal{C}) \) 中的 \(
+  \operatorname{Hom}_{\operatorname{Fct}(\mathcal{C},
+  \mathcal{C})}(\operatorname{id}_{\mathcal{C}},
+  \operatorname{id}_{\mathcal{C}}) \).
+\end{definition}
+
+由自然变换(函子的态射)的定义知道, \( Z(\mathcal{C}) \) 中的元素是一族自同态 \(
+\psi_X: X \to X \), 使得图表
+% https://q.uiver.app/#q=WzAsNCxbMCwwLCJYIl0sWzAsMSwiWSJdLFsxLDAsIlgiXSxbMSwxLCJZIl0sWzAsMSwiZiIsMl0sWzAsMiwiXFxwc2lfWCJdLFsxLDMsIlxccHNpX1kiLDJdLFsyLDMsImYiXV0=
+\[\begin{tikzcd}
+	X & X \\
+	Y & Y
+	\arrow["{\psi_X}", from=1-1, to=1-2]
+	\arrow["f"', from=1-1, to=2-1]
+	\arrow["f", from=1-2, to=2-2]
+	\arrow["{\psi_Y}"', from=2-1, to=2-2]
+\end{tikzcd}\]
+都每个 \( f: X \to Y \) 都交换.
+
+\begin{proposition}
+  中心 \( Z(\mathcal{C}) \) 对二元运算 \( \circ \) 总是交换的.
+\end{proposition}
+\begin{proof}
+  对 \( \theta, \psi \in \operatorname{End}(\operatorname{id}_{\mathcal{C}}) \),
+  取 \( X = Y \) 以及 \( f = \theta \) 立刻得到.
+  % https://q.uiver.app/#q=WzAsNCxbMCwwLCJYIl0sWzAsMSwiWCJdLFsxLDAsIlgiXSxbMSwxLCJYIl0sWzAsMSwiXFx0aGV0YV9YIiwyXSxbMCwyLCJcXHBzaV9YIl0sWzEsMywiXFxwc2lfWCIsMl0sWzIsMywiXFx0aGV0YV9YIl1d
+  \[\begin{tikzcd}
+    X & X \\
+    X & X
+    \arrow["{\psi_X}", from=1-1, to=1-2]
+    \arrow["{\theta_X}"', from=1-1, to=2-1]
+    \arrow["{\theta_X}", from=1-2, to=2-2]
+    \arrow["{\psi_X}"', from=2-1, to=2-2]
+  \end{tikzcd}\]
+\end{proof}
+
+\begin{proposition}
+  范畴等价 \( F: \mathcal{C}_1 \to \mathcal{C}_2 \) 诱导中心的同构 \(
+  Z(\mathcal{C}_1) \simeq Z(\mathcal{C}_2) \).
 \end{proposition}
 
 \section{泛性质}

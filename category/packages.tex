@@ -55,7 +55,7 @@
 \renewcommand{\footrulewidth}{0pt} %删去页脚横线
 \addtolength{\headheight}{0.5pt}
 
-\numberwithin{equation}{subsection}
+\numberwithin{equation}{section}
 
 \usepackage{enumitem}
 \setlist[enumerate]{
@@ -66,16 +66,25 @@
 }
 
 \theoremstyle{plain}
-\newtheorem{theorem}{Theorem}[section]
-\newtheorem{lemma}[theorem]{Lemma}
-\newtheorem{proposition}[theorem]{Proposition}
-\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{theorem}{定理}[section]
+\newtheorem{lemma}[theorem]{引理}
+\newtheorem{proposition}[theorem]{命题}
+\newtheorem{corollary}[theorem]{推论}
 
 \theoremstyle{definition}
-\newtheorem{definition}[theorem]{Definition}
-\newtheorem{example}[theorem]{Example}
+\newtheorem{definition}[theorem]{定义}
+\newtheorem{example}[theorem]{例}
 
 \theoremstyle{remark}
-\newtheorem{remark}[theorem]{Remark}
+\newtheorem{remark}[theorem]{注}
+
+\crefname{theorem}{定理}{定理}
+\crefname{proposition}{命题}{命题}
+\crefname{lemma}{引理}{引理}
+\crefname{corollary}{推论}{推论}
+\crefname{definition}{定义}{定义}
+\crefname{remark}{注}{注}
 
 \newcommand{\dif}{\mathop{}\!\mathrm{d}}
+
+\renewcommand{\proofname}{证明}
