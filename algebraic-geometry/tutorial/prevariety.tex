@@ -410,7 +410,7 @@ k[\mathbf{T}] \to \operatorname{Hom}(X, \mathbb{A}^1) \), 这时一个满态射,
   = \mathfrak{m}_{f(x)} \) 对所有 \( x \in X \).
 \end{proposition}
 
-\subsection{函数空间的定义}
+\subsection{带函数空间的定义}
 
 假设 \( K \) 为一个域.
 \begin{enumerate}
@@ -539,7 +539,7 @@ K(X) \) 子集自然得到. 我们称 \( (X, \mathscr{O}) \) 为 \emph{与 \( X 
 
 \begin{proposition}
   假设 \( X, Y \) 为两个不可约仿射代数集且 \( f: X \to Y \) 为一个映射.
-  那么如下等价
+  那么以下等价
   \begin{enumerate}
     \item 映射 \( f \) 是仿射代数集的态射.
     \item 如果 \( g \in \Gamma(Y) \), 那么 \( g \circ f \in \Gamma(X) \).
@@ -614,7 +614,353 @@ K(X) \) 子集自然得到. 我们称 \( (X, \mathscr{O}) \) 为 \emph{与 \( X 
 
 %TODO: 对比微分几何
 
+\subsection{开子预簇}
+
 \begin{lemma}
+  \label{lemma-principal-open-set-as-affine-subset}
   假设 \( X \) 是一个仿射簇, \( f \in \Gamma(X) = \mathscr{O}_X(X) \), \( D(f)
-  \subseteq X \) 为一个对应的主开集.
+  \subseteq X \) 为一个对应的主开集. 令 \( \Gamma(X)_f \) 为 \( \Gamma(X) \) 在
+  \( f \) 处的局部化, 且令 \( (Y, \mathscr{O}_Y) \) 为对应整有限生成 \( k
+  \)-代数 \( \Gamma(X)_f \) 的仿射代数簇. 那么 \( (D(f), \mathscr{O}_{X \mid
+  D(f)}) \) 和 \( (Y, \mathscr{O}_Y) \) 是同构的带函数空间. 特别地, \( (D(f),
+  \mathscr{O}_{X \mid D(f)}) \) 是一个仿射代数簇.
 \end{lemma}
+\begin{proof}
+  假设 \( X \subseteq \mathbb{A}^n(k) \) 以及 \( \mathfrak{a} = I(X) \subseteq
+  k[T_1, \ldots, T_n] \) 为对应根式理想. 考虑 \( k[T_1, \ldots, T_n] \) 作为 \(
+  k[T_1, \ldots, T_{n + 1}]\) 的子环, 以 \( \mathfrak{a}' \subseteq k[T_1,
+  \ldots, T_{n+ 1}] \) 记作由 \( \mathfrak{a} \) 和 \( fT_{n + 1} - 1 \)
+  生成的理想. 那么 \( Y \) 的仿射坐标环为 \( \Gamma(Y) = \Gamma(X)_f \simeq
+  k[T_1, \ldots, T_{n + 1}] / \mathfrak{a}' \). 因此, 我们可以将 \( Y \) 视为 \(
+  V(\mathfrak{a}') \subseteq \mathbb{A}^{n + 1}(k) \).
+
+  设投影 \( \mathbb{A}^{n + 1}(k) \to \mathbb{A}^n(k) \) 为前 \( n \)
+  个分量得到投影, 它诱导了双射
+  \[
+    j: Y = \left\lbrace (x, x_{n + 1}) \in X \times \mathbb{A}^1(k): x_{n +
+    1}f(x) = 1 \right\rbrace \to D(f) = \left\lbrace x \in X: f(x) \neq 0
+    \right\rbrace.
+  \]
+  下面, 我们证明 \( j \) 是带函数空间的同构. 作为连续映射的限制, \( j \) 连续.
+  \( j \) 还是开映射, 如果 \( g / f^N \in \Gamma(Y) \), 那么 \( j(D(g / f^N)) =
+  j(D(gf)) = D(gf) \). 因此 \( j \) 是个拓扑空间的同胚. 由粘接公理,
+  现在只需要证明对所有 \( g \in \Gamma(X) \), 映射 \( \mathscr{O}(D(fg)) \to
+  \Gamma(Y)_g, s \mapsto s \circ j \) 是一个同构, 这是显然的, 因为 \(
+  \mathscr{O}_X(D(fg)) = \Gamma(X)_{fg} = \Gamma(Y)_g \).
+\end{proof}
+
+\begin{proposition}
+  如果 \( (X, \mathscr{O}_X) \) 是一个预簇, \( U \subseteq X \) 是一个非空开集,
+  那么 \( (U, \mathscr{O}_{X \mid U}) \) 是一个预簇并且包含映射 \( U \to X \)
+  是一个预簇同态.
+\end{proposition}
+\begin{proof}
+  由 \cref{proposition-prevariaties-properties}, \( X \) 不可约, \( U \)
+  作为其非空开集, 自然亦是不可约的, 从而 \( U \) 是连通的. \( X \) noetherian,
+  进而 \( U \) 亦是 noetherian 的, 从而 \( U \) 是紧的.
+  \cref{lemma-principal-open-set-as-affine-subset} 告诉我们, \( U \) 能被 \( X
+  \) 的开仿射子集覆盖, 从而能被有限个这样的子集覆盖.
+\end{proof}
+
+\subsection{预簇的函数域}
+
+现在约定, \( X \) 是一个预簇. 如果 \( U, V\subseteq X \) 为非空仿射子簇, 那么 \(
+U \cap V \) 在 \( U \) 中开且非空. 由函数域的定义, 我们有 \( \mathscr{O}_X(U)
+\subseteq \mathscr{O}_X(U \cap V) \subseteq K(U) \). 因此, \(
+\operatorname{Frac}(\mathscr{O}_X(U \cap V)) = K(U) \). 相同的讨论告诉我们, \(
+K(V) = \operatorname{Frac}(\mathscr{O}_X(U \cap V)) = K(U) \). 因此, \( X \)
+的非空开子簇 \( U \) 的函数域并不依赖于 \( U \) 的选取, 我们记其为 \( K(X) \),
+并称 \( K(X) \) 为 \( X \) 的\emph{函数域}.
+
+\begin{remark}
+  一般来说, \( K(\cdot) \) 并不是仿射簇的函子, 因为仿射簇态射 \( f: X \to Y \)
+  对应的同态 \( \Gamma(Y) \to \Gamma(X) \) 并不一定是单射.
+\end{remark}
+
+\begin{proposition}
+  \label{proposition-prevariaty-local-and-global}
+  假设 \( X \) 是一个预簇并且 \( U \subseteq X \) 是一个非空开集. 那么 \(
+  \mathscr{O}_X(U) \) 是函数域 \( K(X) \) 一个 \( k \)-子代数. 如果 \( U'
+  \subseteq U \) 是另一个非空子集, 那么限制映射 \( \mathscr{O}_X(U) \to
+  \mathscr{O}_X(U') \) 是 \( K(X) \)-子代数的包含映射. 如果 \( U, V \subseteq X
+  \) 是任意非空开子集, 那么 \( \mathscr{O}_X(U \cup V) = \mathscr{O}_X(U) \cap
+  \mathscr{O}_X(V) \).
+\end{proposition}
+\begin{proof}
+  如果 \( f: U \to \mathbb{A}^1(k) \) 为 \( \mathscr{O}_X(U) \) 的一个元素, 那么
+  \( f \) 连续. 先假设 \( U \) 是一个仿射代数集(的主开集, 如果有必要). 由于 \(
+  \mathbb{A}^1(k) \) 的闭集为有限集, 可以设为 \( \left\lbrace x_1, \ldots, x_n
+  \right\rbrace \). \( f \in \mathscr{O}_X(U) \) 形如 \( g / h \), \( g / h =
+  x_i \iff g - hx_i = 0 \) 其解有限, 而有限集在 \( U \) 中当然是闭集,
+  从而可以知道 \( f \) 闭集逆仍是闭集. 对于一般的情形, 应用粘接引理即可.
+  因此 \( f^{-1}(0) \subseteq U \) 是一个闭集.
+
+  对于第二个论断, 结合 \( U' \) 稠密, 如果 \( f \) 限制到 \( U' \) 为零, \( f \)
+  为零. 这告诉我们, 限制映射是单射.
+
+  对于第一个论断, 取 \( U' \) 是 \( U \) 的仿射开子集即可.
+
+  最后, 粘接公理告诉我们, \( \mathscr{O}_X(U \cup V) = \mathscr{O}_X(U) \cap
+  \mathscr{O}_X(V) \).
+\end{proof}
+
+\subsection{闭子预簇}
+
+假设 \( X \) 是一个预簇并令 \( Z \subseteq X \) 是一个不可约闭子集. 我们下面来给
+\( Z \) 定义预簇结构. 首先, 给定 \( Z \) 的开集 \( U \), 我们定义:
+\[
+  \mathscr{O}_{Z}'(U) = \left\lbrace f \in \operatorname{Map}(U, k) \bigg\vert
+    \begin{aligned}
+    &\text{对所有} x \in U, \text{存在} x \in V \subseteq X \text{开}, g \in
+      \mathscr{O}_{X}(V),\\ &\text{使得} \left. f \right\vert_{U \cap V} =
+        \left. g \right\vert_{U \cap V}
+    \end{aligned}
+    \right\rbrace.
+\]
+
+\begin{lemma}
+  假设 \( X \subseteq \mathbb{A}^n(k) \) 是一个不可约仿射代数簇, \( Z \subseteq
+  X\) 是一个不可约闭子集. 那么关于仿射代数集 \( Z \) 的带函数空间 \( (Z,
+  \mathscr{O}) \) 和上面定义的带函数空间 \( (Z, \mathscr{O}'_Z) \) 是一样的.
+\end{lemma}
+\begin{proof}
+  两种情况下都赋予 \( Z \) 在 \( X \) 下的子空间拓扑. 作为包含映射 \( Z \to X \)
+  是一个仿射代数集态射, 他诱导了带函数空间态射 \( (Z, \mathscr{O}_Z) \to (X,
+  \mathscr{O}_X) \). \( \mathscr{O}_Z' \) 指出对所有开集 \( U \subseteq Z \),
+  有 \( \mathscr{O}_Z'(U) \subseteq \mathscr{O}_Z(U) \).
+
+  反过来, 如果 \( f \in \mathscr{O}_Z(U) \), 那么对每个 \( x \in U \), 都存在 \(
+  h \in \Gamma(Z) \) 使得 \( x \in D(h) \subseteq U \). 限制\( \left.
+    f \right\vert_{D(h)} \in \mathscr{O}_Z(U) = \Gamma(Z)_h \) 具有形式 \( f =
+    \frac{g}{h^n}, n \geq 0, g \in \Gamma(Z) \). 我们将 \( g \) 和 \( h \)
+    提升为 \( \widetilde{g}, \widetilde{h} \in \Gamma(X) \). 置 \( V :=
+    D(\widetilde{h}) \subseteq X \), 那么 \( x \in V \), \(
+    \frac{\widetilde{g}}{\widetilde{h}^n} \in \mathscr{O}_X(D(\widetilde{h})) \)
+    以及 \( \left. f \right\vert_{U \cap V} =
+      \left. \frac{\widetilde{g}}{\widetilde{h}^n} \right\vert_{U \cap V} \).
+\end{proof}
+
+\begin{proposition}
+  假设 \( X \) 是一个预簇, \( Z \subseteq X \) 是一个不可约闭子集. 假设 \(
+  \mathscr{O}_Z \) 按如上定义, 那么 \( (Z, \mathscr{O}_Z) \) 是一个预簇,
+  包含映射 \( Z \hookrightarrow X \) 是预簇态射.
+\end{proposition}
+
+\subsection{齐次多项式}
+
+假设 \( R \) 是一个给定的任意交换环. 一个多项式 \( f \in R[X_0, \ldots, X_n] \)
+称为 \emph{\( d \in \mathbb{Z}_{\geq 0} \) 次齐次多项式}, 如果 \( f \) 是 \( d
+\) 次单项式的和.
+
+\begin{proposition}
+  如果 \( R \) 是一个由无数个元素的整环, 那么一个多项式 \( f \in R[X_0, \ldots,
+  X_n] \) 为 \( d \) 次齐次多项式当且多项式
+  \[
+    f(\lambda x_0, \ldots, \lambda x_n) = \lambda^d(x_0, \ldots, x_n),
+  \]
+  对所有 \( x_0, \ldots, x_n \in R \), \( 0 \neq \lambda \in R \) 成立.
+\end{proposition}
+
+我们可以将多项式环 \( R[X_0,\ldots, X_n] \) 分解为齐次多项式的直和
+\[
+  R[X_0, \ldots, X_n] = \bigoplus_{d \geq 0} R[X_0, \ldots, X_n]_d.
+\]
+
+\begin{lemma}
+  假设 \( i \in \left\lbrace 0, \ldots, n \right\rbrace \) 以及 \( d \geq 0 \).
+  那么存在 \( R \)-线性双射
+  \begin{align*}
+    \Phi_i = \Phi^{(d)}_i: R[X_0, \ldots, X_n]_d &\xrightarrow{\sim}
+    \left\lbrace g \in R[T_0, \ldots, \widehat{T_i}, \ldots, T_n]: \deg (g) \leq
+  d \right\rbrace,\\ f &\mapsto f(T_0, \ldots, 1, \ldots, T_n),
+  \end{align*}
+  其中 \( \widehat{\cdot} \) 是忽略此项的意思.
+\end{lemma}
+\begin{proof}
+  假设 \( g \) 为右边的一个多项式, 将其分解为齐次项的和 \( g = \sum_{j = 0}^{d}
+  g_j \), 考虑
+  \[
+    \Psi_i(g) = \sum_{j = 0}^{d}X_{i}^{d - j}g_j(X_0, \ldots, \widehat{X_i},
+    \ldots, X_n).
+  \]
+  验证 \( \Phi_i \) 和 \( \Psi_i \) 互为逆映射即可.
+\end{proof}
+其中, 上面映射 \( \phi_i \) 称为 \emph{去齐次化}, \( \Psi \) 称为 \emph{齐次化}.
+对 \( f \in R[X_0, \ldots, X_n]_d \) 以及 \( g \in R[X_0, \ldots, X_n]_e \)(\(
+d, e \geq 0 \)), 容易知道乘积 \( fg \) 是 \( d + e \) 此齐次多项式, 我们有
+\begin{equation}
+  \Phi^{(d)}_i(f) \Phi^{(e)}_i(g) = \Phi^{(d + e)}_i (fg).
+  \label{equation-dehomogenization}
+\end{equation}
+如果 \( R = K \) 是一个域, 我们可以将去齐次化和齐次化其扩张到分式域上去. 假设 \(
+\mathcal{F} \) 是 \( K(X_0, \ldots, X_n) \) 由 \( \frac{f}{g} \) 组成的子集,
+其中 \( f, g \in K[X_0, \ldots, X_n] \) 为相同次数的齐次多项式. 可以验证, \(
+\mathcal{F} \) 是 \( K(X_0, \ldots, X_n) \) 的一个子域.
+\eqref{equation-dehomogenization} 给出了下面 \( K \)-扩张同构
+\begin{equation}
+  \Phi_i \mathcal{F} \xrightarrow{\sim} K(T_0,\ldots, \widehat{T_i}, \ldots,
+  T_n),\quad \frac{f}{g} \mapsto \frac{\Phi_i(f)}{\Phi_i(g)}.
+  \label{equation-dehomogenization-isomorphism}
+\end{equation}
+我们经常将 \( K(T_0,\ldots, \widehat{T_i}, \ldots, T_n) \) 看作 \( K(K_0,
+\ldots, K_n) \) 的子环 \( K \left( \frac{X_0}{X_i}, \ldots, \frac{X_n}{X_i}
+\right) \). 在这种看法下, \eqref{equation-dehomogenization-isomorphism}
+可以描述如下: 假设 \( \frac{f}{g} \in \mathcal{F} \) 其中 \( f, g \in K[X_0,
+\ldots, X_n]_d \) 对某个 \( d \) 成立. 置 \( \widetilde{f} = \frac{f}{X_i^d} \)
+以及 \( \widetilde{g} = \frac{g}{X_i^d} \), 那么 \( \widetilde{f}, \widetilde{g}
+\in k \left[ \frac{X_0}{X_i}, \ldots, \frac{X_n}{X_i} \right] \) 以及 \(
+\Phi_i\left(\frac{f}{g}\right) = \frac{\widetilde{f}}{\widetilde{g}} \).
+
+\subsection{射影空间 \texorpdfstring{\( \mathbb{P}^n(k) \)}{Pn(k)} 的定义}
+
+作为集合, 对每个域 \( k \) 我们定义
+\[
+  \mathbb{P}^n(k) = \left\lbrace k^{n + 1}\text{中过原点的直线} \right\rbrace =
+  \left\lbrace k^{n + 1} \setminus \left\lbrace 0 \right\rbrace \right\rbrace /
+  k^{\times},
+\]
+其中我们记 \( \left\lbrace k^{n + 1} \setminus \left\lbrace 0 \right\rbrace
+\right\rbrace / k^{\times} \) 为 \( k^{n + 1} \setminus \left\lbrace 0
+\right\rbrace \) 关于下面等价关系的等价类
+\[
+  (x_0, \ldots, x_n) \sim (x'_0, \ldots, x'_n) \iff \text{存在} \lambda \in
+  k^{\times} \text{使得} x_i = \lambda x'_i.
+\]
+我们记等价类中的点 \( (x_0, \ldots, x_n) \) 为 \( (x_0: \ldots :x_n) \). 我们称
+\( x_i \) 为 \( \mathbb{P}^n(k) \) 的 \emph{齐次坐标}.
+
+现在假设 \( k \) 是一个代数闭集, 考察下面观察: 对 \( 0 \leq i \leq n \),
+如果我们置
+\[
+  U_i := \left\lbrace (x_0: \ldots :x_n) \in \mathbb{P}^n(k): x_i \neq 0
+  \right\rbrace \subseteq \mathbb{P}^n(k),
+\]
+那么 \( U_i, 0 \leq i \leq n \) 就是整个 \( \mathbb{P}^n(k) \). 存在双射
+\[
+  U_i \xrightarrow{\sim} \mathbb{A}^n(k),\quad (x_0: \ldots: x_n) \mapsto \left(
+  \frac{x_0}{x_i}, \ldots, \widehat{\frac{x_i}{x_i}}, \ldots, \frac{x_n}{x_i}
+\right).
+\]
+我们定义 \( \mathbb{P}^n(k) \) 的拓扑如下: 称 \( U \subseteq \mathbb{P}^n(k) \)
+开, 如果对所有 \( i \), \( U \cap U_i \) 在 \( U_i \) 中开.
+我们按如下定义开集 \( U \subseteq \mathbb{P}^n(k) \) 的函数
+\[
+  \mathscr{O}_{\mathbb{P}^n(k)}(U) = \left\lbrace f \in \operatorname{Map}(U,
+  k): \text{对所有} i \in \left\lbrace 0, \ldots, n \right\rbrace, \text{有}
+  \left. f \right\vert_{U \cap U_i} \in \mathcal{O}_{U_i}(U \cap U_i)
+  \right\rbrace.
+\]
+\begin{proposition}
+  假设 \( U \subseteq \mathbb{P}^n(k) \) 是开集, 那么
+  \[
+    \mathscr{O}_{\mathbb{P}^n(k)}(U) = \left\lbrace f: U \to k \Bigg\vert
+      \begin{aligned}
+      &\text{对所有} x \in U, \text{存在} x \in V \subseteq U \text{开, 以及} g,
+      h \in k[X_0,\ldots, X_n]\\& \text{同次且齐次使得} h(v) \neq 0 \text{且}
+      f(v) = \frac{g(v)}{h(v)} \text{对所有} v \in V \text{成立}
+    \end{aligned} \right\rbrace.
+  \]
+\end{proposition}
+\begin{proof}
+  假设 \( f \in \mathscr{O}_{\mathbb{P}^n(k)}(U) \), 按定义 \( \left. f
+    \right\vert_{U \cap U_i} \in \mathscr{O}_{U_i}(U \cap U_i) \), 函数 \( f \)
+    局部上具有形式 \( \frac{\widetilde{g}}{\widetilde{h}} \) 其中 \(
+    \widetilde{g}, \widetilde{h} \in k[T_0, \ldots, \widehat{T_i}, \ldots, T_n]
+    \). \eqref{equation-dehomogenization-isomorphism} 给出了我们想要的形式.
+
+  反过来, 假设 \( f \) 是右边的一个元素. 我们固定一个 \( i \in \left\lbrace 0,
+  \ldots, n \right\rbrace \), 按假设局部上在 \( U \cap U_i \) 里面, 函数 \( f \)
+  有形式 \( g/h \) 其中 \( g, h \in k[X_0,\ldots, X_n]_d \), \( d \) 为某个整数.
+  再次应用 \eqref{equation-dehomogenization-isomorphism}, 我们知道 \( f \)
+  局部上形如 \( \frac{\widetilde{g}}{\widetilde{h}} \), 其中 \( \widetilde{g},
+  \widetilde{h} \in k[T_0, \ldots, \widehat{T_i}, \ldots, T_n] \). 这证明了 \(
+  \left. f \right\vert_{U \cap U_i} \in \mathscr{O}_{U_i}(U \cap U_i) \).
+\end{proof}
+
+\begin{corollary}
+  假设 \( i \in \left\lbrace 0, \ldots, n \right\rbrace \). 双射 \( U_i
+  \xrightarrow{\sim} \mathbb{A}^n(k) \) 诱导了带函数空间的同构
+  \[
+    (U_i, \mathscr{O}_{\mathbb{P}^n(K) \mid U_i}) \xrightarrow{\sim}
+    \mathbb{A}^n(k).
+  \]
+  带函数空间 \( (\mathbb{P}^n(k), \mathscr{O}_{\mathbb{P}^n(k)}) \) 是一个预簇.
+\end{corollary}
+
+利用同构 \( \Phi_i \) \eqref{equation-dehomogenization-isomorphism},
+我们经常将函数域 \( K(\mathbb{P}^n(k)) \) 描述为域
+\[
+  K(\mathbb{P}^n(k)) = \left\lbrace \frac{f}{g}: f,g \in k{X_0, \ldots, X_n}
+  \text{相同次数且齐次且} g\geq 0 \right\rbrace.
+\]
+对 \( 0 \leq i, j \leq n \), 同构 \( K(U_i) \xrightarrow{\sim} K(U_j) \) 由 \(
+\Phi_j \circ \Phi_i^{-1} \) 给出, 它们可以显式写作
+\begin{align*}
+  K(U_i) = k \left( \frac{X_0}{X_i},\ldots,\frac{X_n}{X_i} \right) &\to k \left(
+  \frac{X_0}{X_j}, \ldots, \frac{X_n}{X_j} \right) = K(U_j),\\
+    \frac{X_l}{X_i} &\mapsto \frac{X_l / X_j}{X_i / X_j} = \frac{X_l}{X_i}.
+\end{align*}
+也就是说, \( K(X_0, \ldots, X_n) \) 的所有子域 \( K(U_i) \) 都是一样的,
+从而它们和 \( K(\mathbb{P}^n(k)) \).
+
+\begin{proposition}
+  \( \mathbb{P}^n(k) \) 中的所有整体函数都是常数函数, 换句话说 \(
+  \mathscr{O}_{\mathbb{P}^n(k)}(\mathbb{P}^n(k)) = k \). 特别地, 如果 \( n \geq
+  1 \), \( \mathbb{P}^n(k) \) 不是仿射代数簇, 
+\end{proposition}
+\begin{proof}
+  由 \cref{proposition-prevariaty-local-and-global} 有
+  \[
+    \mathscr{O}_{\mathbb{P}^n(k)} (\mathbb{P}^n(k)) = \bigcap_{0 \leq i \leq n}
+    \mathscr{O}_{\mathbb{P}^n(k)} (U_i) = \bigcap_{0 \leq i \leq n} k
+    \left[\frac{X_0}{X_i}, \ldots, \frac{X_n}{X_i}\right] = k,
+  \]
+  其中上面交取在 \( K(\mathbb{P}^n(k)) \) 中. 最后一句话成立是因为, 如果 \(
+  \mathbb{P}^n(k) \) 仿射, 那么其点与环 \( k =
+  \mathcal{O}_{\mathbb{P}^n(k)}(\mathbb{P}^n(k)) \) 的极大理想一一对应, 只能 \(
+  n = 0 \).
+\end{proof}
+
+\subsection{射影簇}
+
+一个预簇称为 \emph{射影簇} 如果其同构于射影空间 \( \mathbb{P}^n(k) \) 的闭预簇.
+
+设齐次多项式 \( f_1, \ldots, f_m \in k[X_0, \ldots, X_n] \)(不必相同次数)
+的消失集为
+\[
+  V_{+}(f_1, \ldots, f_m) = \left\lbrace (x_0: \ldots : x_n) \in \mathbb{P}^n(k)
+  : f_j(x_0, \ldots, x_n) = 0, \forall j \right\rbrace.
+\]
+形如这样的子集是闭的, 因为对每个 \( i = 0,\ldots, n \)
+\[
+  V_{+}(f_1, \ldots, f_m) \cap U_i = V(\Phi_i(f_1), \ldots, \Phi_i(f_m))
+\]
+是闭集. 我们将会知道, 仿射空间的闭集都形如这样.
+
+我们首先考虑映射
+\[
+  f: \mathbb{A}^{n + 1}(k) \setminus 0 \to \mathbb{P}^n(k),\quad (x_0, \ldots,
+  x_n) \mapsto (x_0 : \cdots : x_n).
+\]
+对于每个 \( i \), 其限制 \( \left. f \right\vert_{f^{-1}(U_i)}: f^{-1}(U_i) \to
+U_i \) 这是预簇的态射, 因此 \( f \) 亦是预簇的态射. 如果 \( Z \subseteq
+\mathbb{P}^n(k) \) 是一个闭集, \( f^{-1}(Z) \) 是 \( \mathbb{A}^{n + 1}(k)
+\setminus 0 \) 的一个闭集, 我们记 \( C(Z) \) 为它在 \( \mathbb{A}^{n + 1}(k)
+\)的闭包.
+
+仿射代数集 \( X \subseteq \mathbb{A}^{n + 1}(k) \) 称为\emph{仿射锥}, 如果对每个
+\( x \in X \), 对所有 \( \lambda \in k^{\times} \), 我们都有 \( \lambda x \in X
+\). \( C(Z) \) 是 \( \mathbb{A}^{n + 1}(k) \) 的一个仿射锥, 其称为 \( Z \)
+的\emph{仿射锥}.
+
+\begin{proposition}
+  假设 \( X \subseteq \mathbb{A}^{n + 1}(k) \) 为一个仿射代数集使得 \( X \neq
+  \left\lbrace 0 \right\rbrace \). 那么以下等价
+  \begin{enumerate}
+    \item \( X \) 是一个仿射锥.
+    \item \( I(X) \) 由齐次多项式生成.
+    \item 存在闭集 \( Z \subseteq \mathbb{P}^n(k) \) 使得 \( X = C(Z) \).
+  \end{enumerate}
+  如果 \( I(X) \) 由齐次多项式 \( f_1, \ldots, f_m \in k[X_0, \ldots, X_n] \)
+  生成, 那么 \( Z = V_{+}(f_1, \ldots, f_m) \).
+\end{proposition}

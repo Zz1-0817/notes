@@ -52,6 +52,10 @@
   \( \operatorname{id}_X \) 被其性质唯一确定.
 \end{remark}
 
+\begin{example}
+  下面是一些基本的例子
+\end{example}
+
 \begin{definition}
   给定任意 \( \mathcal{C} \), 其 \emph{反范畴} \(
   \mathcal{C}^{\operatorname{op}} \) 定义为
@@ -721,10 +725,24 @@ F^{\operatorname{op}}, G^{\operatorname{op}}: \mathcal{C}_1^{\operatorname{op}}
 \end{proposition}
 
 假设 \( \mathcal{C} \) 有零对象, 记作 \( \mathbf{0} \). 对任意 \( X, Y \in
-\operatorname{Ob}(\mathcal{C}) \), 我们定义零态射 \( 0: X \to Y \) 为复合
+\operatorname{Ob}(\mathcal{C}) \), 我们定义 \emph{零态射} \( 0: X \to Y \) 为复合
 \[
   X \to 0 \to Y.
 \]
+
+\begin{example}
+  下面是一些典型的例子.
+  \begin{enumerate}
+    \item 集合范畴 \( \operatorname{Set} \): \( \varnothing \) 是始对象, \(
+      \left\lbrace \operatorname{pt} \right\rbrace \) 是终对象.
+    \item 带基点的集合范畴 \( \operatorname{Set}_{\bullet} \): \( (\left\lbrace
+      \operatorname{pt} \right\rbrace, \operatorname{pt}) \) 是零对象.
+    \item 群范畴 \( \operatorname{Grp} \): 平凡群 \( \left\lbrace 1
+      \right\rbrace \) 是零对象, 取常值 \( 1 \) 的同态是零态射.
+    \item 域 \( \Bbbk \) 上的向量空间范畴 \(
+      \operatorname{Vect}(\Bbbk) \): 零空间是零对象, 零映射是零态射.
+  \end{enumerate}
+\end{example}
 
 \subsection{核与余核}
 
