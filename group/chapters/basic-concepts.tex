@@ -1,0 +1,851 @@
+\chapter{Basic Concepts}
+\section{Group}
+\section{Basic definitions}
+\begin{definition}
+  A \emph{group} is a set \( G \) together with a binary operation \( * \):
+  \[
+    (a, b) \mapsto a * b: G \times G \to G
+  \]
+  satisfying the following
+  \begin{enumerate}[label=(G\arabic*)]
+    \item for all \( a, b, c \in G \),
+      \[
+        (a * b) * c = a * (b * c).
+      \]
+    \item there exists an element(called \emph{neutral element}) \( e \in G \) such that
+      \[
+        a * e = a = e * a
+      \]
+      for all \( a \in G \).
+    \item for each \( a \in G \), there exists an \( a' \in G \)(called \emph{inverse} of \( a \), and denoted it \( a^{-1} \)) such that
+      \[
+         a * a' = e = a' * a.
+      \]
+  \end{enumerate}
+\end{definition}
+\begin{remark}
+  The group conditions (G2) and (G3) can be replaced by the following weaker
+  conditions:
+  \begin{itemize}
+    \item (G2') there exists an \( e \) such that \( e * a = a \) for all \( a
+      \).
+    \item (G3') for each \( a \in G \), there exits an \( a' \in G \) such that
+      \( a' * a = e \).
+  \end{itemize}
+\end{remark}
+
+\begin{remark}
+  \begin{enumerate}
+    \item By (G1), we can deduce that
+      \[
+        (a_1 \cdots a_i)(a_{i + 1}\cdots a_n) =
+        (a_1 \cdots a_j) (a_{j + 1} \cdots a_n).
+      \]
+    \item By (G3), we can deduce the \emph{cancellation laws}(reps. ring and
+      domain)
+  \end{enumerate}
+\end{remark}
+
+\begin{definition}
+  \begin{enumerate}
+    \item A set \( S \) together with a binary operation
+      \[
+        (a, b) \mapsto a \cdot b: S \times S \to S
+      \]
+      is called a \emph{magma}.
+    \item When the binary operation is associative, \( (S, \cdot) \) is called a \emph{semigroup}.
+    \item A semigroup with a neutral element is called a \emph{monoid}.
+  \end{enumerate}
+\end{definition}
+
+\begin{definition}
+  \begin{enumerate}
+    \item The \emph{order} \( \left\vert G \right\vert \) of a group \( G \) is its cardinality.
+    \item A finite group whose order is a power of a prime \( p \) is called a \emph{\( p \)-group}.
+    \item For an element \( a \) of a group \( G \), define
+      \[
+        a^n = \begin{cases}
+          \underbrace{a a \cdots a}_{n \textmd{copies}} & n > 0\\
+          e & n = 0\\ 
+          \underbrace{a^{-1} a^{-1} \cdots a^{-1}}_{n \textmd{copies}} & n < 0
+        \end{cases}
+      \]
+    \item The set \( \left\lbrace n \in \mathbb{Z}: a^n = e \right\rbrace \) is an ideal in \( \mathbb{Z} \), and so equals \( m \mathbb{Z} \) for some integer \( m \geq 0 \).
+      \begin{itemize}
+        \item When \( m = 0, a^n = e  \) unless \( n = 0 \), and \( a \) is said to have \emph{infinite order}.
+        \item When \( m \neq 0 \), it is the smallest integer \( m > 0 \) such that \( a^m = e \), and \( a \) is said to have \emph{finite order} \( m \).
+      \end{itemize}
+  \end{enumerate}
+\end{definition}
+
+\begin{definition}
+  When \( G \) and \( H \) are  groups, we can construct a new group \( G \times H \), called the \emph{direct product} of \( G \) and \( H \).
+  As a set, it is the Cartesian product of \( G \) and \( H \), and multiplication is defnied by
+  \[
+    (g, h)(g', h') := (gg', hh').
+  \]
+\end{definition}
+
+\begin{definition}
+  A group \( G \) is \emph{commutative}(or \emph{abelian}) if
+  \[
+    ab = ba, \textmd{ for all } a, b \in G.
+  \]
+  And usually, we write commutative groups additively.
+\end{definition}
+
+\begin{definition}
+  In a commutative group \( G \), the elements of finite order form a subgroup \( G_{\textmd{tors}} \) of \( G \), called the \emph{torsion subgroup}.
+\end{definition}
+
+\subsection{Examples}
+
+\begin{example}
+  We usually use \( C_\infty \) to denote the group \( ( \mathbb{Z}, + ) \) and
+  for an integer \( m \geq 1 \), and \( C_m \) to denote the group \((\mathbb{Z}
+  / m \mathbb{Z}, +)\).
+\end{example}
+
+\begin{example}
+  Let \( S \) be a set and let \( \operatorname{Sym}(S) \) be the set of bijections \( \alpha: S \to S \).
+  We define the product the two elements of \( \operatorname{Sym}(S) \) to be their composite:
+  \[
+    \alpha \beta = \alpha \circ \beta.
+  \]
+  \( \operatorname{Sym}(S) \) is group, called the \emph{group of symmetries} of \( S \).
+  For example, the \emph{permutation group on } \( n \)  \emph{letters} \( S_n \) defined to be the group of symmetries of the set \( \left\lbrace 1,\cdots, n\right\rbrace \), and it has order \( n! \).
+\end{example}
+
+\begin{example}
+  Let \( F \) be a field.
+  \begin{enumerate}
+    \item The \( n \times n \) matrices with coefficients in \( F \) and nonzero determinant form a group \( \operatorname{GL}_n(F) \) called the \emph{general linear group of degree} \( n \).
+    \item For a finite-dimensional \( F \)-vector space \( V \), the \( F \)-linear automorphisms of \( V \) form a group \( \operatorname{GL}(V) \) called the \emph{general linear group of} \( V \).
+  \end{enumerate}
+\end{example}
+
+\begin{example}
+  Let \( V \) be a finite dimensional vector space over a field \( F \).
+  A bilinear form on \( V \) is a mapping \( \phi: V \times V \to F \) that is linear in each variable.
+  An \emph{automorphism} of such a \( \phi \) is an isomorphism \( \alpha: V \to V \) such that
+  \[
+    \phi(\alpha v, \alpha w) = \phi(v, w) \textmd{ for all } v, w \in V.
+  \]
+  The automorphisms of \( \phi \) form a group \( \operatorname{Aut}(\phi) \).
+  \begin{enumerate}
+    \item When \( \phi \) is symmetric, i.e.
+      \[
+        \phi(v, w) = \phi(w, v) \textmd{ all } v, w \in V,
+      \]
+      and nondegenerate, \( \operatorname{Aut}(\phi) \) is called the \emph{orthogonal group} of \( \phi \).
+    \item When \( \phi \) is skew-symmetric, i.e.
+      \[
+        \phi(v, w) = - \phi(w, v) \textmd{ all } v, w\in V,
+      \]
+      and nondegenerate, \( \operatorname{Aut}(\phi) \) is called the \emph{symplectic group} of \( \phi \).
+  \end{enumerate}
+\end{example}
+\begin{remark}
+  Let \( \left\lbrace e_1, \cdots, e_n \right\rbrace \) be a basis for \( V \), ane let
+  \[
+    P = \left(\phi(e_i, e_j)\right)_{1 \leq i,j \leq n}
+  \]
+  be the matrix of \( \phi \).
+  The choice of the basis identifies \( \operatorname{Aut}(\phi) \) with the group of invertible matrices \( A \) such that
+  \[
+    A^T \cdot P \cdot A = P.
+  \]
+\end{remark}
+
+\section{Subgroup, Homomorphism and Normal subgroup}
+
+\subsection{Subgroups}
+
+\begin{proposition}
+  Let \( S \) be a nonempty subset of a group \( G \).
+  If
+  \begin{enumerate}[label=(S\arabic*)]
+    \item \( a, b \in S \implies ab \in S \), and
+    \item \( a \in S \implies a^{-1} \in S \),
+  \end{enumerate}
+  then the binary operation on \( G \) makes \( S \) into a group, called a
+  \emph{subgroup} of \( G \).
+  Moreover, if \( S \) is finite, then condition (S1) \( \implies \) (S2).
+\end{proposition}
+
+\begin{proposition}
+  An intersection of subgroups of \( G \) is a subgroup of \( G \).
+\end{proposition}
+\begin{remark}
+  It is generally true that an intersection of subobjects of an algebraic object
+  is a subobject.
+\end{remark}
+
+\begin{definition}
+  The \emph{centre} of a group \( G \) is the subset
+  \[
+    Z(G) := \left\lbrace g \in G: gx = xg \textmd{ for all } x \in G \right\rbrace.
+  \]
+  It is a subgroup of \( G \).
+\end{definition}
+
+\subsection{Subgroups generated by Set}
+
+\begin{proposition}
+  For any subset \( X \) of a group \( G \), there is a smalleset subgroup of \( G \) containing \( X \).
+  It consists of all finite products of elements of \( X \) and their inverses.
+\end{proposition}
+
+\begin{definition}
+  The subgroup \( S \) in the above proposition is denoted \( \left\langle X
+  \right\rangle \), and is called the \emph{subgroup generated} by \( X \). In
+  particular, \( \left\langle \emptyset \right\rangle = \left\lbrace e
+  \right\rbrace \). We say that \( X \) \emph{generates} if \( G = \left\langle
+  X \right\rangle \).
+\end{definition}
+
+\subsection{Examples}
+
+\begin{example}
+  A group is said to be \emph{cyclic} if it is generated by a single element, i.e. if \( G = \left\langle r \right\rangle \) for some \( r \in G \).
+  \begin{enumerate}
+    \item If \( r \) has finite order \( n \), then
+      \[
+        G = \left\lbrace e, r, r^2, \cdots, r^{n - 1} \right\rbrace \simeq C_n,\quad r^i \leftrightarrow i \mod{n},
+      \]
+      and \( G \) can be thought of as the group of rotational symmetries about the centre of a regular polygon with \( n \)-sides.
+    \item If \( r \) has infinite order, then
+      \[
+        G = \left\lbrace \cdots, r^{-i}, \cdots, r^{-1}, e, r, \cdots, r^i, \cdots \right\rbrace \simeq C_\infty,\quad r^i \leftrightarrow i.
+      \]
+  \end{enumerate}
+\end{example}
+
+\begin{example}
+  \emph{The dihedral groups \( D_n \)}.
+  For \( n \geq 3 \), \( D_n \) is the group of symmetries of a regular polygon with \( n \)-sides.
+  Number the vertices \( 1, \cdots, n \) in the counterclockwise direction.
+  Let \( r \) be the rotation through \( 2 \pi / n \) about the centre of polygon, i.e. \( i \mod n \mapsto i + 1 \mod n \), and let \( s \) be the reflection in the line through vertex \( 1 \) and the centre of the polygon, i.e. \( i \mod n \mapsto n + 2 - i \mod n \).
+  In general case,
+  \[
+    r^n = e, \quad s^2 = e;\quad srs = r^{-1}(\textmd{so } sr = r^{n - 1}s).
+  \]
+  These equalities imply that
+  \[
+    D_n = \left\lbrace e, r, \cdots, r^{n - 1}, s, rs, \cdots, r^{n - 1}s \right\rbrace.
+  \]
+  Then \( \left\vert D_n \right\vert = 2n \).
+\end{example}
+
+\begin{enumerate}
+  \item We define \( D_1 \) to be \( C_2 = \left\lbrace 1, r \right\rbrace \) and \( D_2 \) to be \( C_2 \times C_2 = \left\lbrace 1, r, s, rs \right\rbrace \).
+    The group \( D_2 \) is also called the \emph{Klein Vierergruppe} and denoted \( V \) or \( V_4 \).
+  \item \( D_3 = S_3 \) is the smamllest noncommutative group.
+\end{enumerate}
+
+\begin{example}
+  \emph{The quaternion group \( Q \)}.
+  Let \( a = \begin{pmatrix}
+    0 & \sqrt{-1}\\ \sqrt{-1} &0
+  \end{pmatrix} \) and \( b = \begin{pmatrix}
+    0 & 1\\ -1 & 0
+  \end{pmatrix} \).
+  Then
+  \[
+    a^4 = e,\quad a^2 = b^2, \quad b a b^{-1} = a^3(\textmd{so } ba = a^3 b)
+  \]
+  The subgroup of \( \operatorname{GL}_2(\mathbb{C}) \) generated by \( a \) and \( b \) is
+  \[
+    Q = \left\lbrace e, a, a^2, a^3, b, ab, a^2b, a^3b \right\rbrace
+  \]
+  The group \( Q \) can also be described as the subset \( \left\lbrace \pm 1, \pm i, \pm j, \pm k \right\rbrace \) of the quaternion algebra \( \mathbb{H} \).
+\end{example}
+
+\subsection{Homomorphism}
+
+\begin{definition}
+  A \emph{homomorphism} from a group \( G \) to a second \( G' \) is a map \( \alpha: G \to G' \) such that \( \alpha(ab) = \alpha(a) \alpha(b) \) for all \( a, b \in G \).
+  An isomorphism is a bijective homomorphism.
+\end{definition}
+
+\begin{theorem}[Cayley]
+  There is a canonical injective homomorphism
+  \[
+    \alpha: G \to \operatorname{Sym}(G).
+  \]
+\end{theorem}
+\begin{corollary}
+  A finite group of order \( n \) can be realized as a subgroup of \( S_n \).
+\end{corollary}
+
+For a subset \( S \) of a group \( G \) and an element \( a \) of \( G \), we let
+\[
+  aS = \left\lbrace as: s \in S \right\rbrace,\quad Sa = \left\lbrace sa: s \in S \right\rbrace.
+\]
+When \( H \) is a subgroup of \( G \), the sets of the form \( aH \) are called the \emph{left cosets} of \( H \) in \( G \), and the sets of the form \( Ha \) are called the \emph{right cosets} of \( H \) in \( G \).
+
+\begin{example}
+  Let \( G = (\mathbb{R}^2, +) \), and let \( H \) be a subspace of dimension \( 1 \), i.e. line through the origin.
+  Then the cosets of \( H \) are the lines \( a + H \) paralllel to \( H \).
+\end{example}
+
+\begin{proposition}
+  Let \( H \) be a subgroup of a group \( G \).
+  \begin{enumerate}
+    \item An element \( a \) of \( G \) lies in a left coset \( C \) of \( H \iff C = aH \).
+    \item Two left cosets are either disjoint or equal.
+    \item \( a H = b H \iff a^{-1}b \in H \).
+    \item Any two left coset have the same number of elements.
+  \end{enumerate}
+\end{proposition}
+
+\begin{definition}
+  The \emph{index} \( (G: H) \) of \( H \) in \( G \) is defined to be the
+  number of left cosets of \( H \) in \( G \). In particular, \( (G: 1) \) is
+  the order of \( G \).
+\end{definition}
+
+\begin{theorem}[Lagrange]
+  If \( G \) is finite, then
+  \[
+    (G : 1) = (G : H)(H : 1).
+  \]
+  In particular, the order of every subgroup of a finite group divides the order of the group.
+\end{theorem}
+\begin{remark}
+  Lagrange's theorem has partial converses:
+  \begin{enumerate}
+    \item (Cauchy's theorem)if a prime \( p \) divides \( m = (G: 1) \), then \( G \) has an element of order \( p \).
+    \item (Sylow's theorem)if a prime power \( p^n \) divides \( m \), then \( G \) has a subgroup of order \( p^n \).
+  \end{enumerate}
+  However, Klein \( 4 \)-group \( C_2 \times C_2 \) has no element of order \( 4 \); \( A_4 \) has order \( 12 \), but has no subgroup of order \( 6 \).
+\end{remark}
+
+\begin{proposition}
+  For any subgroups \( H \supseteq K \) of \( G \), 
+  \[
+    (G: K) = (G: H)(H: K).
+  \]
+  (meaning either both are infinite or both are finite and equal). In
+  particular, the order of each element of a finite group divides the order of
+  the group.
+\end{proposition}
+\begin{proof}
+  We write \( G = \sqcup_{i \in I} g_i H \) and \( H = \sqcup_{j \in J} h_jK \), then \( G = \sqcup_{i, j \in I \times J} g_i h_j K \).
+\end{proof}
+
+\subsection{Normal subgroup}
+
+When \( S \) and \( T \) are two subsets of a group \( G \), we let
+\[
+  ST = \left\lbrace st: s \in S, t \in T \right\rbrace.
+\]
+\begin{definition}
+  A subgroup \( N \) of \( G \) is \emph{normal}, denoted \( N \triangleleft G \), if \( gNg^{-1} = N \) for all \( g \in G \).
+\end{definition}
+
+\begin{proposition}
+  \begin{enumerate}
+    \item To show that \( N \) is normal, it suffices to check that \( g N
+      g^{-1}
+  \subseteq N \) for all \( g \).
+    \item A subgroup \( N \) of \( G \) is normal \( \iff \) every left coset of
+      \( N \) in \( G \) is also a right coset, in which case, \( gN = N g \)
+      for all \( g \in G \).
+  \end{enumerate}
+\end{proposition}
+
+\begin{example}
+  Here is an example that a subgroup is NOT a normal subgroup. Let \( G =
+  \operatorname{GL}_2(\mathbb{Q}) \), and let \( H = \left\lbrace
+    \begin{psmallmatrix}
+      1 &n\\0 &1
+  \end{psmallmatrix}: n \in \mathbb{Z} \right\rbrace \). Then \( H \) is a
+  subgroup of \( G \); in fact \( H \simeq \mathbb{Z} \). Let \( g =
+  \begin{psmallmatrix}
+    5 & 0\\0 & 1
+  \end{psmallmatrix} \).
+  Then
+  \[
+    g \begin{pmatrix}
+      1 &n \\0 &1
+    \end{pmatrix} = \begin{pmatrix}
+      1 &5n\\ 0 &1
+    \end{pmatrix}
+  \]
+  Hence \( g H g^{-1} \subsetneq H \) and \( g^{-1}Hg \not\subset H \).
+\end{example}
+
+
+\begin{example}
+  \begin{enumerate}
+    \item Every subgroup of index two is normal.
+      Indeed, let \( g \in G \backslash H \).
+      Then \( G = H \sqcup gH \).
+      It implies that \( gH \) and \( Hg \) are the complements of \( H \) in \( G \), and hence they are equal.
+    \item Consider the dihedral group
+      \[
+        D_n = \left\lbrace e, r, \cdots, r^{n - 1}, s, \cdots,r^{n - 1}s \right\rbrace.
+      \]
+      Then \( C_n = \left\lbrace e, r, \cdots, r^{n - 1} \right\rbrace \) has index \( 2 \) and hence is normal.
+      For \( n \geq 2 \), the subgroup \( \left\lbrace e, s \right\rbrace \) is not normal because \( r^{-1}sr = r^{n - 2}s \notin \left\lbrace e, s \right\rbrace \).
+  \end{enumerate}
+\end{example}
+
+\begin{definition}
+  A group \( G \) is said to be \emph{simple} if it has no normal subgroups
+  other than \( G \) and \( \left\lbrace e \right\rbrace \).
+\end{definition}
+
+\subsection{Constructing normal subgroups}
+
+\begin{theorem}
+  If \( H \) and \( N \) are subgroups of \( G \) and \( N \) is normal, then \( HN \) is a subgroup of \( G \).
+  If \( H \) is also normal, then \( HN \) is a normal subgroup of \( G \).
+\end{theorem}
+\begin{proposition}
+  An intersection of normal subgroups of a group is again a normal subgroup.
+  Therefore, we can define the \emph{normal subgroup generated by a subset} \( X \) of a group \( G \) to be the intersection of the normal subgroups containing \( X \).
+\end{proposition}
+
+\begin{definition}
+  We say that a subset \( X \) of a group \( G \) is \emph{normal} if \( gXg^{-1} \subseteq X \) for all \( g \in G \).
+\end{definition}
+
+\begin{lemma}
+  \begin{enumerate}
+    \item If \( X \) is normal, then the subgroup \( \left\langle X \right\rangle \) is normal.
+    \item For any subset \( X \) of \( G \), the subset \( \bigcup_{g \in G} g X g^{-1} \) is normal, and it is the smallest normal set containing \( X \).
+  \end{enumerate}
+\end{lemma}
+
+\begin{proposition}
+  The normal subgroup generated by a subset \( X \) of \( G \) is \( \left\langle \bigcup_{g \in G} g X g^{-1} \right\rangle \).
+\end{proposition}
+
+\subsection{Kernels and Quotients}
+
+\begin{definition}
+  The \emph{kernel} of a homomorphism \( \alpha: G\to G" \) is
+  \[
+    \ker (\alpha) = \left\lbrace g \in G: \alpha(g) = e \right\rbrace.
+  \]
+\end{definition}
+\begin{proposition}
+  \begin{enumerate}
+    \item \( \alpha \) is injective \( \iff \ker (\alpha) = \left\lbrace e \right\rbrace \).
+    \item The kernel of a homomorphism is a normal subgroup.
+  \end{enumerate}
+\end{proposition}
+
+\begin{example}
+  The kernel of the homomorphism \( \det: \operatorname{GL}_n(F) \to F^\times \) is the group of \( n \times n \) matrics with determinant \( 1 \), this group \( \operatorname{SL}_n(F) \) is called the \emph{special linear group} of \emph{degree} \( n \).
+\end{example}
+
+\begin{proposition}
+  Every normal subgroup occurs as the kernel of a homomorphism.
+  More precisely, if \( N \) is a normal subgroup of \( G \), then there is a unique group structure on the set \( G / N \) of cosets of \( N \) in \( G \) for which the natrual map
+  \[
+    a \mapsto [a] : G \to G / N
+  \]
+  is a homomorphism.
+  The group \( G / N \) is called the \emph{quotient} of \( G  \) by \( N \).
+\end{proposition}
+
+\begin{proposition}
+  The map \( a \mapsto a N: G \to G / N \) has the following universal property:
+  for any homomorphism \( \alpha: G \to G' \) of groups such that \( \alpha(N) = \left\lbrace e \right\rbrace \), there exists a unique homomorphism \( G / N \to G' \) making the diagram commute.
+  \[\begin{tikzcd}
+    G & { G/ N} \\
+    & {G'}
+    \arrow[from=1-1, to=1-2]
+    \arrow[from=1-1, to=2-2]
+    \arrow[dashed, from=1-2, to=2-2]
+  \end{tikzcd}\]
+\end{proposition}
+
+\subsection{Theorem concerning homomorphisms}
+
+\begin{theorem}[Homomorphism]
+  For any homomorphism \( \alpha: G \to G' \) of groups, the kernel \( N \) of \( \alpha \) is a normal subgroup of \( G \), the image \( I \) of \( \alpha \) is a subgroup of \( G' \), and \( \alpha \) factors in a natural way into the composite of a surjection, an isomorphism, and an injection:
+  \[\begin{tikzcd}
+    G & {G/N} & I & {G'}
+    \arrow[from=1-1, to=1-2]
+    \arrow[from=1-2, to=1-3]
+    \arrow[from=1-3, to=1-4]
+  \end{tikzcd}\]
+\end{theorem}
+
+\begin{theorem}[Isomorphism]
+  Let \( H \)b e a subgroup of \( G \) and \( N \) a normal subgroup of \( G \).
+  Then \( HN \) is a subgroup of \( G \), \( H \cap N \) is a normal subgroup of \( H \), and the map
+  \[
+    h(H \cap N) \mapsto hH: H / H \cap N \to HN / N
+  \]
+  is an isomorphism.
+\end{theorem}
+
+\begin{theorem}[Correspondence]
+  Let \( \alpha: G \twoheadrightarrow \widetilde{G} \) be a surjective homomorphism, and let \( N = \ker(\alpha) \).
+  Then there is a one-to-one correspondence
+  \[
+    \left\lbrace \textmd{subgroup of } G \textmd{ containing }N \right\rbrace \mathop{\leftrightarrow}\limits^{1:1} \left\lbrace \textmd{subgroups of } \widetilde{G} \right\rbrace
+  \]
+  under which a subgroup \( H \) of \( G \) containing \( N \) corresponds to \( \widetilde{H} \) of \( \widetilde{G} \) coresponds to \( H = \alpha^{-1}(H) \).
+  Moreover, if \( H \leftrightarrow \widetilde{H} \) and \( H' \leftrightarrow \widetilde{H}' \), then
+  \begin{enumerate}
+    \item \( \widetilde{H} \subseteq \widetilde{H}' \iff H \subseteq H' \), in which case \( (\widetilde{H}': \widetilde{H}) = (H' : H) \);
+    \item \( \widetilde{H} \) is normal in \( \widetilde{G} \iff H \) is normal in \( G \), in which case, \( \alpha \) induces an isomorphism
+      \[
+        G / H \simeq \widetilde{G} / \widetilde{H}.
+      \]
+  \end{enumerate}
+\end{theorem}
+
+\begin{corollary}
+  Let \( N \) be a normal subgroup of \( G \).
+  \begin{enumerate}
+    \item Then there is a one-to-one correspondence between the set of subgroups of \( G \) containing \( N \) and the set of subgroups of \( G / N \)
+    \item Moreover, \( H \) is normal in \( G \iff H / N \) is normal in \( G / N \), in which case the homomorphism \( g \mapsto gN: G \to G / N \) induces an isomorphism
+      \[
+        G / H \simeq (G / N) / (H / N).
+      \]
+  \end{enumerate}
+\end{corollary}
+
+\subsection{Direct products}
+
+\begin{definition}
+  Let \( G \) be a group, and let \( H_1, \cdots, H_k \) be subgroups of \( G \).
+  We says that \( G \) is a \emph{direct product} of the subgroups \( H_i \) if the map
+  \[
+    (h_1, h_2, \cdots, h_k) \mapsto h_1h_2\cdots h_k: H_1 \times H_2 \times \cdots \times H_k \to G
+  \]
+  is an isomorphism of groups.
+\end{definition}
+\begin{remark}
+  This means that each element \( g \) of \( G \) can be written uniquely in the form \( g = h_1h_2 \cdots h_k, h_i \in H_i \), and that if \( g = h_1 h_2 \cdots h_k \) and \( g' = h'_1 h'_2 \cdots h'_k \), then
+  \[
+    g g' = (h_1 h_1')(h_2 h_2') \cdots (h_k h_k').
+  \]
+\end{remark}
+
+\begin{proposition}
+  A group \( G \) is a direct product of subgroups \( H_1, H_2 \iff \)
+  \begin{enumerate}
+    \item \( G = H_1 H_2 \),
+    \item \( H_1 \cap H_2 = \left\lbrace e \right\rbrace \),
+    \item every element of \( H_1 \) commutes with every element of \( H_2 \)
+  \end{enumerate}
+\end{proposition}
+
+\begin{proposition}
+  A group \( G \) is a direct product of subgroups \( H_1, H_2 \iff \)
+  \begin{enumerate}
+    \item \( G = H_1 H_2 \),
+    \item \( H_1 \cap H_2 = \left\lbrace e \right\rbrace \),
+    \item \( H_1 \) and \( H_2 \) are both normal in \( G \).
+  \end{enumerate}
+\end{proposition}
+\begin{proof}
+  To show the converse, it suffices to show that the conditions imply that each element \( h_1 \) of \( H_1 \) commutes with each element \( h_2 \) of \( H_2 \).
+  Consider the comutator \( [h_1, h_2] = (h_1 h_2)(h_2 h_1)^{-1} \), but \( [h_1, h_2] = h_1 h_2 h_1^{-1} h_2^{-1} \in H_1 \cap H_2 \).
+\end{proof}
+
+\begin{proposition}
+  A group \( G \) is a direct product of subgroups \( H_1, H_2, \cdots, H_k \iff \)
+  \begin{enumerate}
+    \item \( G = H_1 H_2 \cdots H_k \),
+    \item for each \( j \), \( H_j \cap (H_1 \cdots H_{j - 1} H_{j + 1} \cdots
+      H_k) = \left\lbrace e \right\rbrace \),
+    \item each of \( H_1, H_2, \cdots, H_k \) is normal in \( G \).
+  \end{enumerate}
+\end{proposition}
+
+\section{Commutative Groups}
+
+\subsection{Structure of Commutative groups}
+Let \( M \) be a commutative group, written additively. The subgroup \(
+\left\langle x_1, \cdots, x_k \right\rangle \) of \( M \) generated by the
+elements \( x_1, \cdots, x_k \) consists of the sums \( \sum m_i x_i, m_i \in
+\mathbb{Z} \).
+\begin{definition}
+  A subset \( \left\lbrace x_1, \cdots, x_k \right\rbrace \) of \( M \) is a
+  \emph{basis} for \( M \) if it generates \( M \) and
+  \[
+    m_1 x_1 + \cdots + m_k x_k = 0,\quad m_i \in \mathbb{Z} \implies m_i x_i = 0
+    \textmd{ for every } i
+  \]
+  then
+  \[
+    M = \left\langle x_1 \right\rangle \oplus \cdots \oplus \left\langle x_k
+    \right\rangle.
+  \]
+\end{definition}
+
+\begin{lemma}
+  Let \( x_1, \cdots, x_k \) generate \( M \). For any \( c_1, \cdots, c_k \in
+  \mathbb{N} \) with \( \gcd (c_1, \cdots, c_k) = 1 \), there exists generators
+  \( y_1, \cdots, y_k \) for \( M \) such that \( y_1 = c_1 x_1 + \cdots + c_k
+  x_k \).
+\end{lemma}
+\begin{proof}
+  We argue by induction on \( s = c_1 + \cdots + c_k \).
+  The lemma certainly holds if \( s = 1 \), and so we assume \( s > 1 \).
+  Then, at least two \( c_i \) are nonzero, say, \( c_1 \geq c_2 > 0 \).
+  Now
+  \begin{itemize}
+    \item \( \left\lbrace x_1, x_2 + x_1, x_3, \cdots, x_k \right\rbrace \) generates \( M \).
+    \item \( \gcd(c_1 - c_2, c_2, c_3, \cdots, c_k) = 1 \),
+    \item \( (c_1 - c_2) + c_2 + \cdots + c_k < s \),
+  \end{itemize}
+  and so, by induction, there exist generators \( y_1, \cdots, y_k \) for \( M \) such that
+  \begin{align*}
+    y_1 &= (c_1 - c_2) x_1 + c_2(x_1 + x_2) + c_3 x_3 + \cdots + c_k x_k\\
+        &= c_1 x_1 + \cdots + c_k x_k.
+  \end{align*}
+\end{proof}
+
+\begin{theorem}
+  \label{theorem-finite-generated-commutative-group-structure}
+  Every finitely generated commutative group \( M \) has a basis;
+  hence it is a finite direct sum of cyclic group.
+\end{theorem}
+\begin{proof}
+  We argue by induction on the number of generators of \( M \). If \( M \) can
+  be generated by one element, the statement is trivial, and so we may assume
+  that it requires at least \( k > 1 \) generators. Among the generating sets \(
+  \left\lbrace x_1, \cdots, x_k \right\rbrace \) for \( M \) with \( k \)
+  elements there is one for which the order of \( x_1 \) is the smallest
+  possible. \( M \) is then the direct sum of \( \left\langle x_1 \right\rangle
+  \) and \( \left\langle x_2, \cdots, x_k \right\rangle \). If \( M \) is not
+  the direct sum of \( \left\langle x_1 \right\rangle \) and \( \left\langle
+  x_2, \cdots, x_k \right\rangle \), then there exists a relation
+  \[
+    m_1 x_1 + m_2 x_2 + \cdots + m_k x_k = 0
+  \]
+  with \( m_1 x_1 \neq 0 \). After possibly changing the sign of some of the \(
+  x_i \), we may suppose that \( m_1, \cdots, m_k \in \mathbb{Z}_{\geq 0} \) and
+  \( m_1 < \operatorname{order}(x_1) \). Let \( d = \gcd (m_1, \cdots, m_k) > 0
+  \) and let \( c_i = m_i / d \). According to the lemma, there exists a
+  generating set \( y_1, \cdots, y_k \) such that \( y_1 = c_1 x_1 + \cdots +
+  c_k x_k \). But
+  \[
+    d y_1 = m_1 x_1 + m_2 x_2 + \cdots + m_k x_k = 0
+  \]
+  and \( d \leq m_1 < \operatorname{order}(x_1) \), and so this contradicts the
+  choice of \( \left\lbrace x_1, \cdots, x_k \right\rbrace \).
+\end{proof}
+
+\begin{corollary}
+  \label{corollary-finite-cyclic-property}
+  A finite commutative group is cyclic if, for each \( n > 0 \), it contains at
+  most \( n \) elements or order dividing \( n \).
+\end{corollary}
+\begin{proof}
+  By \cref{theorem-finite-generated-commutative-group-structure}, we may suppose
+  that \( G = C_{n_1} \times \cdots \times C_{n_r} \) for some \( n_i \in
+  \mathbb{Z}_{> 0} \). If \( n \) divides \( n_i \) and \( n_j \) with \( i \neq
+  j \), then \( G \) has more than \( n \) elements of order dividing \( n \).
+  Therefore, the hypothesis implies that the \( n_i \) are relatively prime. Let
+  \( a_i \) generate the \( i \)th factor. Then \( a_1 \cdots a_r \) has
+  order \( n_1\cdots n_r \), and so generates \( G \).
+\end{proof}
+
+\begin{theorem}
+  A nonzero finitely generated commutative group \( M \) can be expressed
+  \[
+    M \simeq C_{n_1} \times \cdots \times C_{n_s} \times C^r_\infty
+  \]
+  for certain integers \( n_1, \cdots, n_s \geq 2 \) and \( r \geq 0 \).
+  Moreover,
+  \begin{enumerate}
+    \item \( r \) is uniquely determined by \( M \).
+    \item the \( n_i \) can be chosen so that \( n_1 \geq 2 \) and \( n_1 \mid
+      n_2, \ldots, n_{s - 1} \mid n_s \), and then they are uniquely determined
+      by \( M \).
+    \item the \( n_i \) can be chosen to be powers of prime numbers, and then
+      they are uniquely determined by \( M \).
+  \end{enumerate}
+\end{theorem}
+\begin{remark}
+  \begin{itemize}
+    \item The number \( r \) is called the \emph{rank} of \( M \).
+    \item The integers \( n_1, \cdots, n_s \) in (2) are called the
+      \emph{invariant factors} of \( M \).
+    \item (3) says that \( M \) can be expressed
+      \begin{equation}
+        M \simeq C_{p^{e_1}_1} \times \cdots \times C_{p^{e_t}_t} \times
+        C^r_\infty,\quad e_i \geq 1,\tag{*}\label{eq: elementary decomposition}
+      \end{equation}
+      for certain prime power \( p^{e_i}_i \)(repetitions of primes allowed),
+      and that the integers \( p^{e_1}_{1}, \cdots, p^{e_t}_t \) are uniquely
+      determined by \( M \); they are called the \emph{elementary divisors} of
+      \( M \).
+  \end{itemize}
+\end{remark}
+\begin{proof}
+  \begin{enumerate}
+    \item For a prime \( p \) not dividing any of the \( n_i \)
+      \[
+        M / p M \simeq (C_\infty / p C_\infty)^r \simeq (\mathbb{Z} / p \mathbb{Z})^r,
+      \]
+      and so \( r \) is the dimension of \( M / p M \) as an \( \mathbb{F}_p
+      \)-vector space. Given two decompositions, choose such prime \( p \).
+    \item and (3).
+      If \( \gcd(m, n) = 1 \), then \( C_m \times C_n \) contains an element of
+      order \( mn \), and so
+      \[
+        C_m \times C_n \simeq C_{mn}.
+      \]
+      Use the above equation to decompose the \( C_{n_i} \) into products of
+      cyclic groups of prime power order. Once this has been achieved, it can be
+      used to combine factors to achieve a decomposition as in (2): for example,
+      \( C_{n_s} = \prod C_{p_i}^{e_i} \), where the product is over the
+      distinct primes among the \( p_i \) and \( e_i \) is the highest exponent
+      for the prime \( p_i \).
+
+      In proving the uniqueness statements, we can replace \( M \) with its
+      torsion subgroup(and so assume \( r = 0 \)). A prime \( p \) will occur as
+      one of the primes \( p_i \) in \eqref{eq: elementary decomposition} \(
+      \iff M \) has an element of order \( p \), in which case \( p \) will
+      occur exactly \( a \) times, where \( p^a \) is the number of elements of
+      order dividing \( p \). Similarly, \( p^2 \) will divide some \( p^{e_i}_i
+      \) in \eqref{eq: elementary decomposition} \( \iff M  \) has an element of
+      order \( p^2 \), in which case it will divide exactly \( b \) of the \(
+      p^{e_i}_i \), where \( p^{a - b}p^{2b} \) is the number of elements in \(
+      M \) of order dividing \( p^2 \). Continuing in this fashion, we find that
+      the elementary divisors of \( M \) can be read off from knowing the
+      numbers of elements of \( M \) of each prime power order.
+
+      The uniqueness of the invariant factors can be derived from that of the
+      elementary divisors.
+  \end{enumerate}
+\end{proof}
+
+\subsection{The linear characters of a commutative groups}
+
+Let \( \mu(\mathbb{C}) = \left\lbrace z \in \mathbb{C}: \left\vert z \right\vert = 1 \right\rbrace \).
+Then \( \mu(\mathbb{C}) \) is an infinite group.
+For any integer \( n \), the set \( \mu_n(\mathbb{C}) \) of elements of orer dividing \( n \) is cycle of order \( n \), i.e.
+\[
+  \mu_n(\mathbb{C}) := \left\lbrace e^{2\pi i m / n}: 0 \leq m \leq n - 1 \right\rbrace = \left\lbrace 1, \xi, \cdots, \xi^{n - 1} \right\rbrace,
+\]
+where \( \xi = e^{2 \pi i / n} \) is a primitive \( n \)th root of \( 1 \).
+\begin{definition}
+  \begin{enumerate}
+    \item A \emph{linear character}(or just \emph{character}) of a group \( G \) is a homomorphism \( G \to \mu(\mathbb{C}) \).
+    \item The homomorphism \( a \mapsto 1 \) is called the \emph{trivial} (or \emph{principal}) \emph{character}.
+  \end{enumerate}
+\end{definition}
+
+\begin{example}
+  \emph{The Legendre symbol} modulo \( p \) of an integer \( a \) not divisible
+  by \( p \) is
+  \[
+    \left(\frac{a}{p}\right) := \begin{cases}
+      1 &\textmd{if } a \textmd{ is a square in } \mathbb{Z} / p\mathbb{Z}\\
+      -1 & \textmd{otherwise}
+    \end{cases}.
+  \]
+  Applying the fact that \( \mathbb{Z} / p \mathbb{Z} \) is a field and
+  \cref{corollary-finite-cyclic-property}, we know that \( (\mathbb{Z} / p
+  \mathbb{Z})^{\times} \) is cyclic, and hence \( \left\langle q \right\rangle =
+  (\mathbb{Z} / p \mathbb{Z})^{\times} \) for some \( q \). Since \( \left\lvert
+    (\mathbb{Z} / p \mathbb{Z})^{\times} \right\rvert \) is even, Each element
+    in \( (\mathbb{Z} / p \mathbb{Z})^{\times} \) is either an odd power of \( q
+    \) nor even power \( q \). Hence, \( a \) is a square in \( \mathbb{Z} / p
+    \mathbb{Z} \) if and only if \( a \) is an even power of \( q \).
+
+  Following the above observation, \( \left(\frac{ab}{p}\right) =
+  \left(\frac{a}{p}\right)\left(\frac{b}{p}\right) \). Therefore \( [a] \mapsto
+  \left(\frac{a}{p}\right): \left(\mathbb{Z} / p \mathbb{Z}\right)^\times \to
+  \left\lbrace \pm 1 \right\rbrace = \mu_2(\mathbb{C}) \) is a character of \(
+  \left(\mathbb{Z} / p \mathbb{Z}\right)^\times \), sometimes called \emph{the
+  quadratic character}.
+\end{example}
+
+\begin{definition}
+  The set of characters of a group \( G \) becomes a group \( G^\vee \) under
+  the addition,
+  \[
+    (\chi + \chi')(g) := \chi(g) \chi'(g),
+  \]
+  called the \emph{dual group} of \( G \). For example, the dual group \(
+  \mathbb{Z}^\vee \) of \( \mathbb{Z} \) is isomorphic to \( \mu(\mathbb{C}) \)
+  by the map \( \chi \mapsto \chi(1) \).
+\end{definition}
+
+\begin{theorem}
+  Let \( G \) be a finite commutative group.
+  \begin{enumerate}
+    \item The dual of \( G^\vee \) is isomorphic to \( G \).
+    \item The map \( G \to G^{\vee\vee} \) sending an element \( a \) of \( G \)
+      to the character \( \chi \to \chi(a) \) of \( G^{\vee} \) is an
+      isomorphism.
+  \end{enumerate}
+  In other words, \( G \simeq G^\vee \) and \( G \simeq G^{\vee\vee} \).
+\end{theorem}
+\begin{proof}
+  We prove the statement for finite cyclic groups first. Let \( G = (\mathbb{Z}
+  / m \mathbb{Z}, +) \) for some \( m \). Then \( \chi \in G^{\vee} \) is
+  totally determined by \( \chi(1) \), and hence \( i \mapsto (1 \mapsto
+  \mu_m^i) \) is one such isomorphism, where \( \mu_m \) is the \( m \)th
+  primitive root of \( 1 \).
+
+  And note that \( (G \times H)^{\vee} \simeq G^{\vee} \times H^{\vee} \) by the map
+  \[
+    \chi \mapsto (\chi_1, \chi_2),\quad (G \times H)^{\vee} \to G^\vee \times H^\vee,
+  \]
+  where \( \chi_1(g) = \chi(g, e) \) and \( \chi_2(h) = \chi(e, h) \).
+\end{proof}
+
+\begin{theorem}[Orthogonality relations]
+  Let \( G \) be a finite commutative group.
+  For any characters \( \chi \) and \( psi \) of \( G \),
+  \[
+    \chi_{a \in G} \chi(a) \psi(a^{-1}) =
+    \begin{cases}
+      \left\vert G \right\vert & \textmd{if } \chi = \psi,\\
+      0 &\textmd{otherwise}
+    \end{cases}.
+  \]
+  In particular,
+  \[
+    \sum_{a \in G} \chi(a) = \begin{cases}
+      \left\vert G \right\vert & \textmd{ if } \chi \textmd{ is trivial }\\
+      0 & \textmd{otherwise}
+    \end{cases}.
+  \]
+\end{theorem}
+\begin{proof}
+  If \( \chi = \psi \), then \( \chi(a) \psi(a^{-1}) = 1 \), and so the sum is
+  \( \left\vert G \right\vert \). Otherwise there exists a \( b \in G \) such
+  that \( \chi(b) \neq \psi(b) \). As \( a \) runs over \( G \), so also does \(
+  ab \) and so
+  \[
+    \sum_{a \in G} \chi(a) \psi(a^{-1}) = \sum_{a \in G} \chi(ab)
+    \psi((ab)^{-1}) = \chi(b)\psi(b)^{-1}\sum_{a \in G}\chi(a)\psi(a^{-1}).
+  \]
+  Because \( \chi(b)\psi(b)^{-1} \neq 1 \), this implies that \( \sum_{a \in G}
+  \chi(a) \psi(a^{-1}) = 0 \).
+\end{proof}
+
+\begin{corollary}
+  For any \( a \in G \),
+  \[
+    \sum_{\chi \in G^{\vee}} \chi(a) = \begin{cases}
+      \left\vert G \right\vert & \textmd{ if } a = e\\
+      0 &\textmd{otherwise}
+    \end{cases}.
+  \]
+\end{corollary}
+
+\subsection{The order of \texorpdfstring{\( ab \)}{ab}}
+
+\begin{theorem}
+  For any integers \( m, n, r > 1 \), there exists a finite group \( G \) with
+  elements \( a \) and \( b \) such that \( a \) has order \( m \), \( b \) has
+  order \( n \), and \( ab \) has order \( r \).
+\end{theorem}
+

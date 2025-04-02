@@ -1,0 +1,527 @@
+\section{Automorphisms and Extensions}
+
+\subsection{Automorphisms of groups}
+
+\paragraph{Inner and outer automorphisms}
+
+\begin{definition}
+  An \emph{automorphism} of a group \( G \) is an isomorphism of the group with itself.
+  The set \( \operatorname{Aut}(G) \) of automorphisms of \( G \) becomes a group under composition.
+\end{definition}
+
+\begin{definition}
+  For \( g \in G \), the map \( i_g \) ``conjugation by \( g \)''
+  \[
+    x \mapsto g x g^{-1}:\quad G \to G
+  \]
+  is an automorphism of \( G \).
+  An automorphism of this form is called an \emph{inner automorphism}, and the remaining automorphisms are said to be \emph{outer}.
+\end{definition}
+
+Note that
+\[
+  (gh) x (gh)^{-1} = g(h x h^{-1})g^{-1}, \textmd{i.e.} i_{gh}(x) = (i_g \circ i_h)(x),
+\]
+and so the map \( g \mapsto i_g: G \to \operatorname{Aut}(G) \) is a homomorphism.
+Its image is denoted by \( \operatorname{Inn}(G) \).
+Its kernel is the centre of \( G \), and so we obtain an isomorphism
+\[
+  G / Z(G) \simeq \operatorname{Inn}(G).
+\]
+In fact, \( \operatorname{Inn}(G) \) is a normal subgroup of \( \operatorname{Aut}(G) \): for \( g \in G \) and \( \alpha \in \operatorname{Aut}(G) \), we have
+\[
+  \alpha \circ i_g \circ \alpha^{-1} = i_{\alpha(g)}.
+\]
+
+\begin{example}
+  \begin{enumerate}
+    \item Let \( G = (\mathbb{F}^n_p, +) \).
+      The automorphisms of \( G \) as a commutative group are just the automorphisms of \( G \) as a vector space over \( \mathbb{F}_p \).
+      Thus \( \operatorname{Aut}(G) = \operatorname{GL}_n(\mathbb{F}_p) \).
+      Because \( G \) is commutative, all nontrivial automorphisms of \( G \) are outer.
+    \item We see that \( \operatorname{Aut}(C_2 \times C_2) \simeq \operatorname{GL}_2(\mathbb{F}_2) \).
+    \item As the centre of the quaternion group \( Q \) is \( \left\langle a^2 \right\rangle \),
+      \[
+        \operatorname{Inn}(Q) \simeq Q / \left\langle a^2 \right\rangle \simeq C_2 \times C_2.
+      \]
+        Recall that \( Q = \left\langle a, b \mid a^4, a^2b^{-2}, bab^{-1}a  \right\rangle \)
+      In fact, \( \operatorname{Aut}(Q) \simeq S_4 \).
+  \end{enumerate}
+\end{example}
+
+\subsection{Automorphisms of Cyclic Groups}
+
+Let \( G \) be a cyclic group of order \( n \), say, \( G = \left\langle a \right\rangle \).
+Let \( m \) be an integer \( \geq 1 \).
+The smallest multiple of \( m \) divisible by \( n \) is \( m \cdot \frac{n}{\gcd (m, n)} \), and so the generators of \( G \) are exactly the elements \( a^m \) with \( \gcd(m, n) = 1 \).
+An automorphism \( \alpha \) of \( G \) must send \( \alpha \) to another generator of \( G \), and so \( \alpha(a) = a^m \) for some \( m \) relatively prime to \( n \).
+The map \( \alpha \mapsto m \) defines an isomorphism
+\[
+  \operatorname{Aut}(C_n) \to (\mathbb{Z} / n \mathbb{Z})^\times,
+\]
+where
+\[
+  (\mathbb{Z} / n \mathbb{Z})^\times = \left\lbrace \textmd{units in the ring } \mathbb{Z} / n \mathbb{Z} \right\rbrace = \left\lbrace m + n \mathbb{Z}: \gcd(m, n) = 1 \right\rbrace.
+\]
+It remains to determine \( (\mathbb{Z} / n \mathbb{Z})^\times \).
+If \( n = p^{r_1}_1 \cdots p^{r_s}_s \) is the factorization of \( n \) into a product of powers distinct primes, then
+\[
+  \mathbb{Z} / n \mathbb{Z} \simeq \mathbb{Z} / p^{r_1}\mathbb{Z} \times \cdots \times \mathbb{Z} / p^{r_s}_s \mathbb{Z},\quad m \mod n \leftrightarrow (m \mod p_1^{r_1}, \cdots, n \mod p_s^{r_s})
+\]
+by the Chinese Remainder Theorem(ring isomorphism).
+And so
+\[
+  (\mathbb{Z} / n \mathbb{Z})^\times \simeq (\mathbb{Z} / p^{r_1}_1 \mathbb{Z})^\times \times \cdots \times (\mathbb{Z} / p^{r_s}_s \mathbb{Z})^\times.
+\]
+It remains to consider the case \( n = p^r \), where \( p \) is prime.
+\( (\mathbb{Z} / p^r \mathbb{Z})^\times \) has order \( p^{r - 1}(p - 1) \).
+The homomorphism
+\[
+  (\mathbb{Z} / p^r \mathbb{Z})^\times \to (\mathbb{Z} / p \mathbb{Z})^\times
+\]
+is surjective with kernel of order \( p^{r - 1} \), and we know that \( (\mathbb{Z} / p \mathbb{Z})^\times \) is cyclic.
+Let \( a^{p^r(p - 1)} = 1 \) and \( a^{p^r} \) again maps to a generator of \( (\mathbb{Z} / p \mathbb{Z})^\times \).
+Then \( a^{p^r(p - 1)} = \left(a^{p^{r - 1}(p - 1)}\right)^{p} = 1 \).
+And \( a^{p^r} \neq 1 \) in \( (\mathbb{Z} / p \mathbb{Z})^\times \), hence \( a^{p^r} \) again maps to a generator of \( (\mathbb{Z} / p \mathbb{Z})^\times \).
+Therefore, \( (\mathbb{Z} / p^r \mathbb{Z})^\times \) contains an element \( \xi := a^{p^r} \) of order \( p - 1 \).
+Apply the binomial theorem(see the following lemma), we have  that \( 1 + p \) has order \( p^{r - 1} \) in \( (\mathbb{Z} / p^r \mathbb{Z})^\times \).
+Therefore \( (\mathbb{Z} / p^r \mathbb{Z})^\times \) is cyclic with generator \( \xi \cdot (1 + p) \) and every element can be written uniquely in the form
+\[
+  \xi^i \cdot (1 + p)^j,\quad 0 \leq i < p - 1,\quad 0 \leq j < p^{r - 1}.
+\]
+On the other hand,
+\[
+  (\mathbb{Z} / 8\mathbb{Z})^{\times} = \left\lbrace \bar{1}, \bar{3}, \bar{5}, \bar{7} \right\rbrace = \left\langle \bar{3}, \bar{5} \right\rangle \simeq C_2 \times C_2
+\]
+is not cyclic.
+
+In summary, we have(Also see the lemma at the end of this paragraph)
+\begin{theorem}
+  \begin{enumerate}
+    \item For a cyclic group of \( G \) of order \( n \), \( \operatorname{Aut}(G) \simeq (\mathbb{Z} / n \mathbb{Z})^\times \).
+      The automorphism of \( G \) of \( G \) corresponding to \( [m] \in (\mathbb{Z} / n\mathbb{Z})^{\times} \) is \( a \mapsto a^m \).
+    \item If \( n = p^{r_1}_1 \cdots p^{r_s}_s \) with the \( p_i \) distinct primes, then
+      \[
+        (\mathbb{Z} / n\mathbb{Z})^\times \simeq (\mathbb{Z} / p^{r_1}_1\mathbb{Z})^\times \times \cdots \times (\mathbb{Z} / p_s^{r_r}\mathbb{Z})^\times,\quad m \mod{n} \leftrightarrow (m \mod{p_1^{r_1}}, \cdots, m \mod{p_s^{r_s}}).
+      \]
+    \item For a prime \( p \),
+      \[
+        (\mathbb{Z} / p^r \mathbb{Z}) \simeq \begin{cases}
+          C_{(p - 1)p^{r - 1}} & p \textmd{ odd }\\
+          C_2 & p^r = 2^2\\
+          C_2 \times C_{2^{r - 2}} & p = 2, r > 2.
+        \end{cases}
+      \]
+  \end{enumerate}
+\end{theorem}
+\begin{lemma}
+  \begin{enumerate}
+    \item Let \( n \) and \( k \) be integers, with \( n \geq 2 \) and \( k \geq 0 \).
+      Then
+      \[
+        (1 + n)^{n^k} \equiv 1 \pmod{n^{k + 1}}.
+      \]
+    \item If \( p \) is an odd prime, then
+      \[
+        (1 + p)^{p^k} \equiv 1 + p^{k + 1} \pmod{p^{k + 2}}
+      \]
+      for every positive integer \( k \).
+    \item If \( p \) is an odd prime, then
+      \[
+        (1 + p)^{p^k} \not\equiv 1 \pmod{p^{k + 2}}
+      \]
+      for all \( k \geq 0 \).
+    \item Let \( p \) be an odd prime, and \( n \) positive integer.
+      Then the order of \( \overline{1 + p} \in (\mathbb{Z} / p^{n}\mathbb{Z})^{\times} \) is \( p^{n - 1} \).
+  \end{enumerate}
+\end{lemma}
+\begin{proof}
+  (1) and (2) are by induction.
+  (3) and (4) are direct corollaries of (1) and (2).
+\end{proof}
+
+\begin{lemma}
+  \begin{enumerate}
+    \item Calculate that \( (1 + 4)^{2^{n - 3}} \in (\mathbb{Z} / 2^n \mathbb{Z})^\times \) and show that the element \( 5 \) has order \( 2^{n - 2} \) for \( n \geq 2 \).
+    \item Prove that \( 5 \) and \( -1 \) generate the group \( (\mathbb{Z} / 2^n \mathbb{Z})^{\times} \).
+    \item Prove that \( -1 \notin \left\langle 5 \right\rangle \).
+    \item Prove that \( (\mathbb{Z} / 2^n\mathbb{Z})^{\times} \simeq \mathbb{Z} / 2 \mathbb{Z} \times \mathbb{Z} / 2^{n - 2} \mathbb{Z}  \).
+  \end{enumerate}
+\end{lemma}
+\begin{proof}
+  \begin{enumerate}
+    \item \( (1 + 4)^{2^{n - 3}} = 1 + 2^{n - 1} \in (\mathbb{Z} / 2^n \mathbb{Z})^\times \).
+    \item  \( -5^n \) and \( 5^m \) are distinct since their sum is even.
+      \( -1, -5, \cdots, -5^{2^{n - 2} - 1} \) are different by (1).
+    \item have shown in (2).
+    \item directly from (2) and (3).
+  \end{enumerate}
+\end{proof}
+
+\begin{remark}
+  The first lemma is from \href{https://math.stackexchange.com/questions/238414/showing-1p-is-an-element-of-order-pn-1-in-mathbbz-pn-mathbbz-t}{stackexchange1} and the second one is from \href{https://math.stackexchange.com/questions/459815/the-structure-of-the-group-mathbbz-2n-mathbbz}{stackexchange2}.
+\end{remark}
+
+\paragraph{Characteristic subgroups}
+
+\begin{definition}
+  A \emph{characteristic subgroup} of a group \( G \) is a subgroup \( H \) such that \( \alpha(H) = H \) for all automorphisms \( \alpha \) of \( G \).
+\end{definition}
+
+\begin{remark}
+  To show \( H \) is a subgroup is to check that \( \alpha(H) \subseteq H \) for all \( \alpha \in \operatorname{Aut}(G) \).
+  Thus a subgroup \( H \) of \( G \) is normal if it is stable under all \emph{inner automorphisms} of \( G \), and it is characteristic if it is stable under all automorphisms.
+  In particular, a characteristic subgroup is normal.
+\end{remark}
+
+\begin{remark}
+  \begin{enumerate}
+    \item Consider a group \( G \) and a normal subgroup \( N \).
+      An inner automorphism of \( G \) restricts to an automorphism of \( N \), which may be outer.
+      Thus a normal subgroup of \( N \) need not be a normal subgroup of \( G \).
+      However, a characteristic subgroup of \( N \) will be a normal subgroup of \( G \).
+      Also a characteristic subgroup of a characteristic subgroup is a characteristic subgroup.
+    \item The centre \( Z(G) \) of \( G \) is a characteristic subgroup.
+    \item If \( H \) is the only nontrivial subgroup of \( G \), then it must be characteristic.
+    \item Every subgroup of a commutative group is normal but not necessarily characteristic.
+      For example, every subspace of dimension \( 1 \) in \( \mathbb{F}^2_p \) is subgroup of \( \mathbb{F}_p^2 \), but it is not characteristic because it is not characteristic because it is not stable under \( \operatorname{Aut}(\mathbb{F}^2_p) = \operatorname{GL}_2(\mathbb{F}_p) \).
+  \end{enumerate}
+\end{remark}
+
+\subsection{Semidirect Products}
+
+Let \( N \) be a normal subgroup of \( G \).
+Each element \( g \) of \( G \) defines an automorphism of \( N \), \( n \mapsto g n g^{-1} \), and this defines a homomorphism
+\[
+  \theta: G \to \operatorname{Aut}(N),\quad g \mapsto \left. i_g \right\vert_N.
+\]
+If there exists a subgroup \( Q \) of \( G \) such that \( G \to G / N \) maps \( Q \) isomorphiscally onto \( G / N \), then we can reconstruct \( G \) from \( N, Q \), and the restriction of \( \theta \) to \( Q \).
+Indeed, an element \( g \) of \( G \) can be written uniquely in the form(existence: any element \( g \in G \) falls in a coset of \( N \); uniqueness: from ``isomorphism'')
+\[
+  g = nq,\quad n \in N,\quad q \in Q.
+\]
+\( q \) must be the unique element of \( Q \) mapping to \( gN \in G / N \), and \( n \) must be \( gq^{-1} \).
+Thus, we have a one-to-one correspondence of sets
+\[
+  G \mathop{\longleftrightarrow}^{1:1} N \times Q.
+\]
+If \( g = nq \) and \( g' = n'q' \), then
+\[
+  gg' = (nq)(n'q') = n(qn'q^{-1})qq' = n \cdot \theta(q)(n') \cdot qq'.
+\]
+\begin{definition}
+  A group \( G \) is a \emph{semidirect product} of its subgroups \( N \) and \( Q \) if \( N \) is normal and the homomorphism \( G \to G / N \) induces an isomorphism \( Q \to G / N \).
+  When \( G \) is the semidirect product of subgroups \( N \) and \( Q \), we write \( G = N \rtimes Q \)(or \( N \rtimes_\theta Q \), where \( \theta: Q \to \operatorname{Aut}(N) \)).
+\end{definition}
+\begin{remark}
+  \begin{enumerate}
+    \item Equivalently, \( G \) is a semidirect product of subgroup \( N \) and \( Q \) if
+      \[
+        N \triangleleft G;\quad NQ = G;\quad N \cap Q = \left\lbrace 1 \right\rbrace.
+      \]
+    \item \( Q \) need not be a normal subgroup of \( G \).
+  \end{enumerate}
+\end{remark}
+
+\begin{example}
+  \begin{enumerate}
+    \item In \( D_n \), \( n \geq 2 \), let \( C_n = \left\langle r \right\rangle \) and \( C_2 = \left\langle s \right\rangle \); then
+      \[
+        D_n = \left\langle r \right\rangle \rtimes_{\theta} \left\langle s \right\rangle = C_n \rtimes C_2,
+      \]
+      where \( \theta(s)(r^i) = r^{-i} \).
+    \item The alternating subgroup \( A_n \) is a normal subgroup of \( S_n \) and \( C_2 = \left\langle (12) \right\rangle \) maps isomorphically onto \( S_n / A_n \).
+      Therefore \( S_n = A_n \rtimes C_2 \).
+    \item The quaternion group can not be written as a semidirect product in any nontrivial fashion.
+    \item A cyclic group of order \( p^2 \), \( p \) prime, is not a semidirect product, because it has only one subgroup of order \( p \).
+    \item Let \( G = \operatorname{GL}_n(F) \).
+      Let \( B \) be the subgroup of upper triangular matrices in \( G, T \) the subgroup of diagonal matrices in \( G \), and \( U \) the subgroup of upper triangular matrices with all their diagonal coefficients equal to \( 1 \).
+      When \( n =2 \), \( U \) is a normal subgroup of \( B \), \( UT = B \), and \( U \cap T = \left\lbrace 1 \right\rbrace \).
+      Therefore,
+      \[
+        B = U \rtimes T.
+      \]
+      Note that, when \( n \geq 2 \), the action of \( T \) on \( U \) is not trivial, for example
+      \[
+        \begin{pmatrix}
+          a & 0\\ 0 & b
+        \end{pmatrix} \begin{pmatrix}
+          1 & 0\\ 0 & 1
+        \end{pmatrix}\begin{pmatrix}
+          a^{-1} & 0\\ 0 & b^{-1}
+        \end{pmatrix} = \begin{pmatrix}
+          1 & ac/b\\ 0 & 1
+        \end{pmatrix},
+      \]
+      and so \( B \) is not the direct product of \( T \) and \( U \).
+  \end{enumerate}
+\end{example}
+
+We have seen that, from a semidirect product \( G = N \rtimes Q \), we obtain a triple
+\[
+  (N, Q, \theta: Q \to \operatorname{Aut}(N)),
+\]
+and that the triple determines \( G \).
+
+\begin{proposition}
+  Every triple \( (N, Q, \theta) \) consisting of two groups \( N \) and \( Q \) and a homomorphism \( \theta: Q \to \operatorname{Aut}(N) \) arises from a semidirect product.
+As a set, let \( G = N \times Q \), and define
+\[
+  (n, q) (n', q') = (n \cdot \theta(q)(n'), qq').
+\]
+\end{proposition}
+\begin{proof}
+  Write \( {}^qn \) for \( \theta(q)(n) \), so that the composition law becomes
+  \[
+    (n, q)(n', q') = (n\cdot {}^qn', qq').
+  \]
+  Then
+  \[
+    ((n, q), (n', q'))(n'', q'') = (n \cdot {}^q n' \cdot {}^{qq'}n'', qq'q'') = (n, q)((n', q')(n'', q''))
+  \]
+  and so the asscociative law holds.
+  Because \( \theta(1) = 1 \) and \( \theta(q)(1) = 1 \),
+  \[
+    (1, 1) (n, q) = (n, q) = (n, q)(1, 1),
+  \]
+  and so \( (1, 1) \) is an identity element.
+  Next
+  \[
+    (n, q)({}^{q^{-1}}n^{-1}, q^{-1}) = (1, 1) ({}^{q^{-1}}n^{-1}, q^{-1})(n, q),
+  \]
+  and so \( ({}^{q^{-1}}n^{-1}, q^{-1}) \) is an inverse for \( (n, q) \).
+  Thus \( G \) is a group, and it is obvious that \( N \triangleleft G, N Q = G \) and \( N \cap Q = \left\lbrace 1 \right\rbrace \) and so \( G = N \rtimes Q \).
+\end{proof}
+
+\paragraph{Examples}
+
+\begin{example}
+  A \emph{group of order }\( 12 \).
+  Let \( \theta \) be the nontrivial homomorphism
+  \[
+    C_4 \to \operatorname{Aut}(C_3) \simeq C_2,
+  \]
+  namely, that sending a generator of \( C_4 \) to the map \( a \mapsto a^2 \).
+  Then \( G := C_3 \rtimes_\theta C_4 \) is a noncommutative group of order \( 12 \), not isomorphic to \( A_4 \).
+  If we denote the generators of \( C_3 \) and \( C_4 \) by \( a \) and \( b \), then \( a \) and \( b \) generatate \( G \), and have the defining relations
+  \[
+    a^3 = 1,\quad b^4 = 1,\quad bab^{-1} = a^2.
+  \]
+\end{example}
+
+\begin{example}
+  \emph{Direct products}.
+\end{example}
+
+\begin{example}
+  \emph{Making outer automorphisms inner}.
+  Let \( \alpha \) be an automorphism, possibly outer, of a group \( N \).
+  We can realize \( N \) as a normal subgroup of a group \( G \) in such a way that \( \alpha \) becomes the restriction to \( N \) of an inner automorphism of \( G \).
+  To see this, let \( \theta: C_\infty \to \operatorname{Aut}(N) \) be the homomorphism sending a generator \( a \) of \( C_\infty \) to \( \alpha \in \operatorname{Aut}(N) \), and let \( G = N \rtimes_\theta C_\infty \).
+  The element \( g = (1, a) \) of \( G \) has the property that \( g(n, 1)g^{-1} = (\alpha(n), 1) \) for all \( n \in N \).
+\end{example}
+
+\paragraph{Criteria for semidirect product to be isomorphic}
+
+It will be useful to have criteria for when two triples \( (N, Q, \theta) \) and \( (N, Q, \theta') \) determine isomorphic groups.
+
+\begin{lemma}
+  If there exists an \( \alpha \in \operatorname{Aut}(N) \) such that
+  \[
+    \theta'(q) = \alpha \circ \theta(q) \circ \alpha^{-1},\quad \textmd{ all } q \in Q,
+  \]
+  then the map
+  \[
+    \gamma: (n, q) \mapsto (\alpha(n), q)\quad N \rtimes_\theta Q \to N \rtimes_{\theta'} Q
+  \]
+  is an isomorphism.
+\end{lemma}
+\begin{proof}
+  For \( (n, q) \in N \rtimes_\theta Q \), then
+  \begin{align*}
+    \gamma(n, q) \cdot \gamma(n', q') &= (\alpha(n), q) \cdot (\alpha(n'), q')\\
+                                      &=(\alpha(n)\cdot(\alpha \circ \theta(q) \circ \alpha^{-1})(\alpha(n')), qq')\\
+                                      &= (\alpha(n) \cdot \alpha(\theta(q)(n')), qq'),
+  \end{align*}
+  and
+  \begin{align*}
+    \gamma((n, q) \cdot (n', q')) &= \gamma(n \cdot \theta(q)(n'), qq')\\
+                                  &= (\alpha(n)\cdot \alpha(n) \cdot\alpha(\theta(q)(n')), qq').
+  \end{align*}
+  Therefore \( \gamma \) is a homomorphism.
+  The map
+  \[
+    (n, q) \mapsto (\alpha^{-1}(n, q)): \quad N \rtimes_{\theta'}Q \to N \rtimes_\theta Q
+  \]
+  is also a homomorphism, and it is inverse to \( \gamma \).
+\end{proof}
+
+\begin{lemma}
+  If \( \theta = \theta' \circ \alpha \) with \( \alpha \in \operatorname{Aut}(Q) \), then the map
+  \[
+    \gamma: (n, q) \mapsto (n, \alpha(q))\quad N \rtimes_\theta Q \simeq N \rtimes_{\theta'}Q
+  \]
+  is an isomorphism.
+\end{lemma}
+\begin{proof}
+  \begin{align*}
+    \gamma(n, q) \cdot \gamma(n', q') &= (n, \alpha(q))(n', \alpha(q'))\\
+                                      &= (n \cdot \theta'\circ\alpha(q)(n'), \alpha(qq'))\\
+                                      &= (n \cdot \theta(q)n, \alpha(qq'))\\
+                                      &= \gamma(n \cdot \theta(q)(n'), qq') = \gamma((n, q)\cdot(n', q')).
+  \end{align*}
+\end{proof}
+
+\begin{lemma}
+  If \( Q \) is finite and cyclic and the subgroup \( \theta(G) \) of \( \operatorname{Aut}(N) \) is conjugate to \( \theta'(Q) \), then
+  \[
+    N \rtimes_\theta Q \simeq N \rtimes_{\theta'}  Q.
+  \]
+\end{lemma}
+\begin{proof}
+  Let \( a \) generate \( Q \).
+  By assumption, there exists an \( \alpha' \in Q \) and an \( \alpha \in \operatorname{Aut}(N) \) such that
+  \[
+    \theta'(a') = \alpha \cdot \theta(a) \cdot \alpha^{-1}.
+  \]
+  The element \( \theta'(a') \) generatates \( \theta'(Q) \), and we can choose \( a' \) to generate \( Q \), say \( a' = a^i \).
+  Now the map \( (n, q) \mapsto (\alpha(n), q^i) \) is an isomorphism \( N \rtimes_\theta Q \to N \rtimes_{\theta'} Q \), with the inverse \( (n, q^i) \mapsto (\alpha^{-1}(n), q) \).
+\end{proof}
+
+\begin{theorem}
+  Let \( G \) be a group with subgroups \( H_1 \) and \( H_2 \) such that \( G = H_1 H_2 \) and \( H_1 \cap H_2 = \left\lbrace e \right\rbrace \), so that each element \( g \) of \( G \) can be writtern uniquely as \( g = h_1 h_2 \) with \( h_1 \in H_1 \) and \( h_2 \in H_2 \).
+  \begin{enumerate}
+    \item If \( H_1 \) and \( H_2 \) are both normal, then \( G \) is the direct product of \( H_1 \) and \( H_2 \), \( G = H_1 \times H_2 \).
+    \item If \( H_1 \) is normal in \( G \), then \( G \) is the semidirect product of \( H_1 \) and \( H_2 \), \( G = H_1 \rtimes H_2 \).
+    \item If neither \( H_1 \) nor \( H_2 \) is normal, then \( G \) is the Zappa-Sz\'{e}p (or knit) product of \( H_1 \) and \( H_2 \).
+  \end{enumerate}
+\end{theorem}
+
+\subsection{Extensions of Groups}
+
+\paragraph{Complete groups}
+
+\begin{definition}
+  A group \( G \) is \emph{complete} if the map \( g \mapsto i_g: G \to \operatorname{Aut}(G) \) is an isomorphism.
+\end{definition}
+
+\begin{proposition}
+  A group \( G \) is a complete \( \iff \)
+  \begin{enumerate}
+    \item the centre \( Z(G) \) of \( G \) is trivial.
+    \item every automorphism of \( G \) is inner.
+  \end{enumerate}
+\end{proposition}
+
+\begin{example}
+  \begin{enumerate}
+    \item The group \( S_n \) is complete for \( n \neq 2, 6 \), but \( S_2 \) fails (1) and \( S_6 \) fails (2) in the preceding proposition.
+    \item If \( G \) is a simple noncommutative group, then \( \operatorname{Aut}(G) \) is complete.
+  \end{enumerate}
+\end{example}
+
+
+\paragraph{Extension of groups}
+
+\begin{definition}
+  A sequence of groups and homomorphisms
+  \begin{equation}
+    1 \to N \xrightarrow{\iota} G \xrightarrow{\pi} 1
+    \tag{*}\label{eq: extension of group}
+  \end{equation}
+  is \emph{exact} if \( \iota \) is injective, \( \pi \) is surjective, and \( \ker \pi = \operatorname{Im}(\iota) \).
+\end{definition}
+Thus \( \iota(N) \) is a normal subgroup of \( G \) and \( G / \iota(N) \simeq Q \).
+We often identify \( N \) with the subgroup \( \iota(N) \) of \( G \) and \( Q \) with the quotient \( G / N \).
+\begin{definition}
+  An exact sequence \cref{eq: extension of group} is also called an \emph{extension of} \( Q \) by \( N \).
+  An extension is \emph{central} if \( \iota(N) \subseteq Z(G) \).
+\end{definition}
+\begin{remark}
+  For example, a semidirect product \( N \rtimes_\theta Q \) gives rise to an extension of \( Q \) by \( N \),
+  \[
+    1 \to N \to N \rtimes_\theta Q \to Q \to 1,
+  \]
+  which is central \( \iff \theta \)  is the trivial homomorphism and \( N \) is commutative:
+  \[
+    (n, q)(n', 1)({}^{q^{-1}}n^{-1}, q^{-1}) = (n, q)(n' \cdot {}^{q^{-1}}n^{-1}, q^{-1}) = (n \cdot {}^q (n' \cdot {}^{q^{-1}}n^{-1}), 1)
+  \]
+\end{remark}
+
+\begin{definition}
+  Two extensions of \( Q \) by \( N \) are said to be \emph{isomorphic} if there exists a commutative diagram
+  \[\begin{tikzcd}
+    1 & N & G & Q & 1 \\
+    1 & N & {G'} & Q & 1
+    \arrow[from=1-1, to=1-2]
+    \arrow[from=1-2, to=1-3]
+    \arrow[Rightarrow, no head, from=1-2, to=2-2]
+    \arrow[from=1-3, to=1-4]
+    \arrow["\simeq"{description}, from=1-3, to=2-3]
+    \arrow[from=1-4, to=1-5]
+    \arrow[Rightarrow, no head, from=1-4, to=2-4]
+    \arrow[from=2-1, to=2-2]
+    \arrow[from=2-2, to=2-3]
+    \arrow[from=2-3, to=2-4]
+    \arrow[from=2-4, to=2-5]
+  \end{tikzcd}\]
+\end{definition}
+\begin{definition}
+  An extension of \( Q \) by \( N \),
+  \[
+    1 \to N \xrightarrow{\iota} G \xrightarrow{\pi} Q \to 1,
+  \]
+  is said to be \emph{split} if it is isomorphic to the extension definded by a semidirect product \( N \rtimes_\theta Q \).
+\end{definition}
+\begin{remark}
+  Equivalent conditions:
+  \begin{enumerate}
+    \item there exists a subgroup \( Q' \subseteq G \) such that \( \pi \) induces an isomorphism \( Q' \to Q \);
+    \item there exists a homomorphism: \( s: Q \to G \) such that \( \pi \circ s = \operatorname{id} \).(\( G = \iota(N) \rtimes s(Q) \)).
+  \end{enumerate}
+\end{remark}
+
+\begin{example}
+  In general, an extension will not split.
+  For example,
+  \[
+    1 \to C_p \to C_{p^2} \to C_p \to 1
+  \]
+  doesn't split.
+    \( C_p \) is the only nontrivial subgroup of \( C_{p^2} \).
+  If \( Q \) is the quaternion group and \( N \) is its centre, then
+  \[
+    1 \to N \to Q \to Q / N \to 1
+  \]
+  doesn't split.(if it did, \( Q \) would be commutative because \( N \) and \( Q / N \) are commutative and \( \theta \) trivial(\( N \) is its centre))
+\end{example}
+
+\begin{theorem}[Schur-Zassenhaus]
+  An extension of finite groups of relatively prime order is split.
+\end{theorem}
+
+\begin{proposition}
+  An extension \cref{eq: extension of group} splits if \( N \) is complete.
+  In fact, \( G \) is then the direct product of \( N \) with the \emph{centralizer} of \( N \) in \( G \),
+  \[
+    C_G(N) := \left\lbrace g \in G: gn = ng \textmd{ all } n \in N \right\rbrace.
+  \]
+\end{proposition}
+\begin{proof}
+  Let \( H = C_G(N) \).
+  \begin{enumerate}
+    \item for any \( g \in G, n \mapsto g n g^{-1}: N \to N \) is an automorphism of \( N \)(\( N \) is already a normal subgroup of \( G \)), and it must be the inner automorphism defined by an element \( \gamma \) of \( N \);
+      thus
+      \[
+        g n g^{-1} = \gamma n \gamma^{-1}\quad \textmd{ all } n \in N.
+      \]
+      It implies that \( \gamma^{-1}g \in H \), and hence \( g = \gamma(\gamma^{-1}g) \in N H \).
+      Since \( g \) was arbitrary, \( G = NH \).
+    \item \( N \) is complete and hence \( Z(N) = \left\lbrace e \right\rbrace \).
+    \item Finally, for any element \( g = nh \in G \),
+      \[
+        g H g^{-1} = n(h H h^{-1})n^{-1} = nH n^{-1} = H
+      \]
+      Therefore, \( H \) is normal in \( G \).
+  \end{enumerate}
+\end{proof}

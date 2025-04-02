@@ -54,6 +54,17 @@
 
 \begin{example}
   下面是一些基本的例子
+  \begin{enumerate}
+    \item 预序集等同于仍两个对象间至多只有一个态射的范畴, 对于预序集 \( (P,
+      \leq) \), 定义范畴使得其对象集为 \( P \), 而存在态射 \( p \to p' \)
+      当且仅当 \( p \leq p' \), 此时这样的态射唯一.
+
+      作为特例, \( 0 \) 给出空范畴 \( \mathbf{0} \), 而 \( 1 \)
+      给出恰有一个对象和一个态射的范畴 \( \mathbf{1} \).
+    \item 给定集合 \( S \), 定义相应的 \emph{离散范畴 \( \operatorname{Disc}(S)
+      \) }: 其对象是 \( S \), 而态射只有恒等映射 \( \left\lbrace
+      \operatorname{id}_{x}: x \in S \right\rbrace \).
+  \end{enumerate}
 \end{example}
 
 \begin{definition}
@@ -182,6 +193,19 @@
       \operatorname{Hom}_{\mathcal{C}}(FX, FY) \) 都是满射.
   \end{enumerate}
 \end{definition}
+
+\begin{example}
+  一些经典的例子包括
+  \begin{enumerate}
+    \item 考虑群范畴 \( \operatorname{Grp} \). 对于任一个群 \( G \),
+      总是可以忘掉 \( G \) 的群结构而视之为集合.
+      群同态当然也可以视为集合间的映射. 此程序给出 \emph{忘却函子 \(
+      \operatorname{Grp} \to \operatorname{Set} \) }.
+      准此要领可对其他结构定义忘却函子, 例如 \( \operatorname{Top} \to
+      \operatorname{Set}, \operatorname{Vect(\Bbbk)} \to \operatorname{Ab}
+      \)(忘记纯量乘法)等等. 这类函子显然忠实而非全.
+  \end{enumerate}
+\end{example}
 
 \subsection{自然变换}
 
@@ -617,6 +641,8 @@ G\) 是 \( F \) 的\emph{逆}.
 有时也说这时 \( \phi \) 对 \( f \) 的\emph{拉回}, 对 \( g \) 的\emph{推出}.
 习惯用符号 \( f^* \phi = \phi f \) 和 \( g_* \phi = g \phi \) 表示. 容易知道 \(
 (f_1 f_2)^* = f_2^* f_1^* \) 和 \( (f_1 f_2)_* = (f_1)_* (f_2)_* \).
+我们称这个二元函子为 \( \operatorname{Hom} 函子 \), 并在不混淆的情况下记为 \(
+\operatorname{Hom}_{\mathcal{C}} \).
 \subsection{函子范畴与范畴的中心}
 
 \begin{definition}
@@ -651,6 +677,7 @@ F^{\operatorname{op}}, G^{\operatorname{op}}: \mathcal{C}_1^{\operatorname{op}}
 因此我们由下面命题
 
 \begin{proposition}
+  \label{proposition-opposite-functor-category}
   存在自然同构 \( \operatorname{Fct}(\mathcal{C}_1,
   \mathcal{C}_2)^{\operatorname{op}} \xrightarrow{\sim}
   \operatorname{Fct}(\mathcal{C}_1^{\operatorname{op}},
@@ -741,8 +768,129 @@ F^{\operatorname{op}}, G^{\operatorname{op}}: \mathcal{C}_1^{\operatorname{op}}
       \right\rbrace \) 是零对象, 取常值 \( 1 \) 的同态是零态射.
     \item 域 \( \Bbbk \) 上的向量空间范畴 \(
       \operatorname{Vect}(\Bbbk) \): 零空间是零对象, 零映射是零态射.
+    \item 离散范畴既没有始对象, 也没有终对象.
   \end{enumerate}
 \end{example}
+
+\subsection{逗号范畴}
+
+\begin{example}
+  \label{example-free-vector-space}
+  选定域 \( \Bbbk \), 定义函子 \( V: \operatorname{Set} \to
+  \operatorname{Vect}(\Bbbk) \) 如下
+  \begin{itemize}
+    \item 对于集合 \( X \), 命 \( V(X) := \bigoplus_{x \in X} \Bbbk x \) 为以 \(
+      X \) 为基的 \( \Bbbk \)-向量空间.
+    \item 任意映射 \( f: X \to Y \) 皆诱导出线性映射 \( V(f): V(X) \to V(Y) \),
+      它由在基上的限制 \( f \) 刻画.
+  \end{itemize}
+  令 \( U: \operatorname{Vect}(\Bbbk) \to \operatorname{Set} \) 为忘却函子, 则
+  \( x \mapsto V(X) \) 给出态射 \( \iota: X \to UV(X) \).
+
+  定义范畴 \( (X / U) \) 使得其对象形如\( (W, i: X \to U(W)) \), 其中 \( W \in
+  \operatorname{Ob}\left( \operatorname{Vect} \Bbbk \right) \), 而 \( X
+  \xrightarrow{i} U(W) \) 是 \( \operatorname{Set} \) 中的态射.
+  态射定为使下图交换的线性映射 \( h: W_1 \to W_2 \)
+  % https://q.uiver.app/#q=WzAsMyxbMSwwLCJYIl0sWzAsMSwiVShXXzEpIl0sWzIsMSwiVShXXzIpIl0sWzAsMSwiaV8xIiwyXSxbMCwyLCJpXzIiXSxbMSwyLCJVKGgpIiwyXV0=
+  \[\begin{tikzcd}
+    & X \\
+    {U(W_1)} && {U(W_2)}
+    \arrow["{i_1}"', from=1-2, to=2-1]
+    \arrow["{i_2}", from=1-2, to=2-3]
+    \arrow["{U(h)}"', from=2-1, to=2-3]
+  \end{tikzcd}\]
+  我们断言 \( (V(X), \iota) \) 是 \( (X / U) \) 中的始对象. 这说的无非是对任意
+  \( (W, i) \in \operatorname{Ob}(X / U) \), 存在唯一的 \( h: V(X) \to W \)
+  使得图表
+  % https://q.uiver.app/#q=WzAsMyxbMSwwLCJYIl0sWzAsMSwiVShWKFgpKSJdLFsyLDEsIlUoV18yKSJdLFswLDEsIlxcaW90YSIsMl0sWzAsMiwiaSJdLFsxLDIsIlUoaCkiLDJdXQ==
+  \[\begin{tikzcd}
+    & X \\
+    {U(V(X))} && {U(W_2)}
+    \arrow["\iota"', from=1-2, to=2-1]
+    \arrow["i", from=1-2, to=2-3]
+    \arrow["{U(h)}"', from=2-1, to=2-3]
+  \end{tikzcd}\]
+  交换.
+\end{example}
+
+\begin{definition}
+  对于函子 \( \mathcal{A} \xrightarrow{S} \mathcal{C} \xleftarrow{T} \mathcal{B}
+  \) 定义\emph{逗号范畴\( (S/T) \)} 如下
+  \begin{itemize}
+    \item 对象: 形如 \( (A, B, f) \), 其中 \( A \in
+      \operatorname{Ob}(\mathcal{A}), B \in \operatorname{Ob}(\mathcal{B}), f:
+      SA \to TB \).
+    \item 态射: 从 \( (A, B, f) \) 到 \( (A', B', f') \) 的态射形如 \( (g, h)
+      \), 其中 \( g: A \to A', h: B \to B' \) 分别是 \( \mathcal{A}, \mathcal{B}
+      \) 中的态射, 使得下图交换
+      % https://q.uiver.app/#q=WzAsNCxbMCwwLCJTQSJdLFsxLDAsIlNBJyJdLFswLDEsIlRCIl0sWzEsMSwiVEInIl0sWzIsMywiVGgiLDJdLFswLDIsImYiLDJdLFswLDEsIlNnIl0sWzEsMywiZiciXV0=
+      \[\begin{tikzcd}
+        SA & {SA'} \\
+        TB & {TB'}
+        \arrow["Sg", from=1-1, to=1-2]
+        \arrow["f"', from=1-1, to=2-1]
+        \arrow["{f'}", from=1-2, to=2-2]
+        \arrow["Th"', from=2-1, to=2-2]
+      \end{tikzcd}\]
+      态射的合成是 \( (g_1, h_1) \circ (g_2, h_2) = (g_1 \circ g_2, h_1 \circ
+      h_2) \), 而 \( (A, B, f) \) 到自身的恒等态射是 \( (\operatorname{id}_A,
+      \operatorname{id}_B) \).
+  \end{itemize}
+\end{definition}
+
+我们有明显的左, 右投影函子 \( P: (S / T) \to \mathcal{A} \) 和 \( Q: (S / T) \to
+\mathcal{B} \).
+
+\begin{example}
+  设 \( \mathbf{1} \) 为先前定义的预序集范畴. 指定 \( \mathcal{C}
+  \) 中的一个对象 \( X \) 相当于指定了一个函子 \( j_X: \mathbf{1} \to \mathcal{C}
+  \).
+  \begin{itemize}
+    \item 考虑函子 \( T: \mathcal{C}' \to \mathcal{C} \) 以及 \( X \in
+      \operatorname{Ob}(\mathcal{C}) \). 对应于 \( \mathbf{1} \xrightarrow{j_X}
+      \mathcal{C} \xleftarrow{T} \mathcal{C}' \) 的逗号范畴 \( (X / T) := (j_X /
+      T) \) 的对象形如 \( (W, X \xrightarrow{i} TW)_{W \in
+      \operatorname{Ob}(\mathcal{C}')} \), 而 \( (W_1, i_1), (W_2, i_2) \)
+      间的态射是使得下图交换的 \( h: W_1 \to W_2 \)
+      % https://q.uiver.app/#q=WzAsMyxbMSwwLCJYIl0sWzAsMSwiVFdfMSJdLFsyLDEsIlRXXzIiXSxbMCwxLCJpXzEiLDJdLFswLDIsImlfMiJdLFsxLDIsIlRoIiwyXV0=
+      \[\begin{tikzcd}
+        & X \\
+        {TW_1} && {TW_2}
+        \arrow["{i_1}"', from=1-2, to=2-1]
+        \arrow["{i_2}", from=1-2, to=2-3]
+        \arrow["Th"', from=2-1, to=2-3]
+      \end{tikzcd}\]
+      这正是 \cref{example-free-vector-space} 中使用的范畴.
+    \item 考虑 \( \mathcal{C}' \xrightarrow{T} \mathcal{C} \xleftarrow{j_X}
+      \mathbf{1} \). 逗号范畴 \( (T / X) \) 的对象形如 \( (W, TW \xrightarrow{p}
+      X)_{W \in \operatorname{Ob}(\mathcal{C}')} \), 从 \( (W_1, p_1) \) 到 \(
+      (W_2, p_2) \) 的态射是使得下图交换的 \( f: W_1 \to W_2 \)
+      % https://q.uiver.app/#q=WzAsMyxbMCwwLCJUIFdfMSJdLFsyLDAsIlQgV18yIl0sWzEsMSwiWCJdLFswLDIsInBfMSIsMl0sWzEsMiwicF8yIl0sWzAsMSwiVGYiXV0=
+      \[\begin{tikzcd}
+        {T W_1} && {T W_2} \\
+        & X
+        \arrow["Tf", from=1-1, to=1-3]
+        \arrow["{p_1}"', from=1-1, to=2-2]
+        \arrow["{p_2}", from=1-3, to=2-2]
+      \end{tikzcd}\]
+    \item 逗号范畴 \( (\operatorname{id}_{\mathcal{C}},
+      \operatorname{id}_{\mathcal{C}}) \) 的对象是 \( \mathcal{C} \)
+      中的所有态射 \( f: X \to Y \), 两个对象 \( f: X \to Y \), \( f': X' \to Y'
+      \) 之间的态射是交换图表
+      % https://q.uiver.app/#q=WzAsNCxbMCwwLCJYIl0sWzAsMSwiWCciXSxbMSwxLCJZJyJdLFsxLDAsIlkiXSxbMCwzLCJmIl0sWzAsMV0sWzMsMl0sWzEsMiwiZiciLDJdXQ==
+      \[\begin{tikzcd}
+        X & Y \\
+        {X'} & {Y'}
+        \arrow["f", from=1-1, to=1-2]
+        \arrow[from=1-1, to=2-1]
+        \arrow[from=1-2, to=2-2]
+        \arrow["{f'}"', from=2-1, to=2-2]
+      \end{tikzcd}\]
+      \( (\operatorname{id}_{\mathcal{C}} / \operatorname{id}_{\mathcal{C}}) \)
+      也叫 \( \mathcal{C} \) 的箭头范畴.
+  \end{itemize}
+\end{example}
+
 
 \subsection{核与余核}
 
@@ -807,6 +955,145 @@ g'p \), 其中 \( g': D \to D' \) 唯一.
 	\arrow["{\alpha_j}", from=2-5, to=2-4]
 \end{tikzcd}\]
 
+\section{可表函子}
+
+\subsection{Yoneda 引理}
+
+假设 \( \mathcal{C} \) 是一个范畴. 定义
+
+\[
+  \mathcal{C}^{\wedge} := \operatorname{Fct}(\mathcal{C}^{\operatorname{op}},
+  \operatorname{Set}),\quad \mathcal{C}^{\vee} :=
+  \operatorname{Fct}(\mathcal{C}^{\operatorname{op}},
+  \operatorname{Set}^{\operatorname{op}}) = \operatorname{Fct}(\mathcal{C},
+  \operatorname{Set})^{\operatorname{op}}.
+\]
+基于一些几何学的渊源, 也把 \( \mathcal{C}^{\wedge} \) 称为 \( \mathcal{C} \) 的
+\emph{预层} 范畴. \cref{proposition-opposite-functor-category} 告诉我们
+\[
+  (\mathcal{C}^{\vee})^{\operatorname{op}} =
+  (\mathcal{C}^{\operatorname{op}})^{\wedge}.
+\]
+定义函子
+\begin{align*}
+  h_{\mathcal{C}}: \mathcal{C} &\to \mathcal{C}^{\wedge}\\
+  S &\mapsto \operatorname{Hom}_{\mathcal{C}}(\cdot, S).
+\end{align*}
+其中这里的 \( \operatorname{Hom}_{\mathcal{C}} \) 是我们先前定义的 \(
+\operatorname{Hom} \) 函子. 我们有自然的求值函子 \( \operatorname{ev}^{\wedge}:
+\mathcal{C}^{\operatorname{op}} \times \mathcal{C}^{\wedge} \to
+\operatorname{Set} \), 其将 \( (S, A) \) 映至集合 \( A(S) \). 同理定义函子
+\begin{align*}
+  k_{\mathcal{C}}: \mathcal{C} &\to \mathcal{C}^{\vee}, &\operatorname{ev}^{\vee}:
+  (\mathcal{C}^{\vee})^{\operatorname{op}} \times \mathcal{C} &\to
+  \operatorname{Set}\\
+  S &\mapsto \operatorname{Hom}_{\mathcal{C}}(S, \cdot) & (B, S) &\mapsto B(S).
+\end{align*}
+我们称 \( h_{\mathcal{C}}, k_{\mathcal{C}} \) 为 \emph{Yoneda 嵌入}.
+
+\begin{theorem}[Yoneda引理]
+  对于 \( S \in \operatorname{Ob}(\mathcal{C}) \) 和 \( A \in
+  \operatorname{Ob}(\mathcal{C}^{\wedge}) \), 映射
+  \begin{align*}
+    \operatorname{Hom}_{\mathcal{C}^{\wedge}}(h_{\mathcal{C}}(S), A) &\to A(S)\\
+    \left[ \operatorname{Hom}_{\mathcal{C}}(\cdot, S) \xrightarrow{\phi}
+  A(\cdot) \right] &\mapsto \phi_S (\operatorname{id}_S)
+  \end{align*}
+  是双射; 它给出函子的同构 \(
+  \operatorname{Hom}_{\mathcal{C}^{\wedge}}(h_{\mathcal{C}}(\cdot), \cdot)
+  \xrightarrow{\sim} \operatorname{ev}^{\wedge} \). 函子 \( h_{\mathcal{C}} \)
+  是全忠实的.
+  同理, 存在自然的函子同构 \( \operatorname{Hom}_{\mathcal{C}^{\vee}}(\cdot,
+  k_{\mathcal{C}}(\cdot)) \xrightarrow{\sim} \operatorname{ev}^{\vee} \). 函子
+  \( k_{\mathcal{C}} \) 是全忠实的.
+\end{theorem}
+\begin{proof}
+  \( \phi \mapsto \phi_S(\operatorname{id}_S) \) 如图
+% https://q.uiver.app/#q=WzAsNCxbMCwxLCJcXG1hdGhjYWx7Q31ee1xcb3BlcmF0b3JuYW1le29wfX0iXSxbMSwwLCJcXG9wZXJhdG9ybmFtZXtTZXR9Il0sWzIsMSwiXFxwaGlfUyhcXG9wZXJhdG9ybmFtZXtpZH1fUykgXFxpbiBBKFMpIl0sWzIsMCwiXFxvcGVyYXRvcm5hbWV7aWR9X1MgXFxpbiBoX3tcXG1hdGhjYWx7Q319KFMpKFMpID0gXFxvcGVyYXRvcm5hbWV7SG9tfV97XFxtYXRoY2Fse0N9fShTLCBTKSJdLFswLDEsImhfe1xcbWF0aGNhbHtDfX0oUykiLDAseyJjdXJ2ZSI6LTV9XSxbMCwxLCJBIiwyLHsiY3VydmUiOjV9XSxbMywyLCIiLDAseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJtYXBzIHRvIn19fV0sWzQsNSwiXFxwaGkiLDEseyJzaG9ydGVuIjp7InNvdXJjZSI6MjAsInRhcmdldCI6MjB9fV0sWzcsMiwiIiwwLHsic2hvcnRlbiI6eyJzb3VyY2UiOjIwfSwibGV2ZWwiOjEsInN0eWxlIjp7InRhaWwiOnsibmFtZSI6Im1hcHMgdG8ifX19XV0=
+\[\begin{tikzcd}
+	& {\operatorname{Set}} & {\operatorname{id}_S \in h_{\mathcal{C}}(S)(S) = \operatorname{Hom}_{\mathcal{C}}(S, S)} \\
+	{\mathcal{C}^{\operatorname{op}}} && {\phi_S(\operatorname{id}_S) \in A(S)}
+	\arrow[maps to, from=1-3, to=2-3]
+	\arrow[""{name=0, anchor=center, inner sep=0}, "{h_{\mathcal{C}}(S)}", curve={height=-30pt}, from=2-1, to=1-2]
+	\arrow[""{name=1, anchor=center, inner sep=0}, "A"', curve={height=30pt}, from=2-1, to=1-2]
+	\arrow[""{name=2, anchor=center, inner sep=0}, "\phi"{description}, shorten <=9pt, shorten >=9pt, Rightarrow, from=0, to=1]
+	\arrow[shorten <=13pt, maps to, from=2, to=2-3]
+\end{tikzcd}\]
+对 \( \mathcal{C} \) 中任一态射 \( f: T \to S \), 我们由下面交换图
+% https://q.uiver.app/#q=WzAsOCxbMCwwLCJcXG9wZXJhdG9ybmFtZXtIb219X3tcXG1hdGhjYWx7Q319KFMsIFMpIl0sWzAsMywiXFxvcGVyYXRvcm5hbWV7SG9tfV97XFxtYXRoY2Fse0N9fShULCBTKSJdLFszLDMsIkEoVCkiXSxbMywwLCJBKFMpIl0sWzEsMSwiXFxvcGVyYXRvcm5hbWV7aWR9X1MiXSxbMSwyLCJmIl0sWzIsMSwiXFxwaGlfUyhcXG9wZXJhdG9ybmFtZXtpZH1fUykiXSxbMiwyLCJcXHBoaV9UKGYpID0gQShmKShcXHBoaV9TKFxcb3BlcmF0b3JuYW1le2lkfV9TKSkiXSxbMCwxLCJmXioiLDJdLFszLDIsIkEoZikiXSxbMSwyLCJcXHBoaV9UIiwyXSxbMCwzLCJcXHBoaV9TIl0sWzQsNSwiIiwxLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoibWFwcyB0byJ9fX1dLFs2LDcsIiIsMSx7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Im1hcHMgdG8ifX19XSxbNCw2LCIiLDEseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJtYXBzIHRvIn19fV0sWzUsNywiIiwxLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoibWFwcyB0byJ9fX1dXQ==
+\[\begin{tikzcd}
+	{\operatorname{Hom}_{\mathcal{C}}(S, S)} &&& {A(S)} \\
+	& {\operatorname{id}_S} & {\phi_S(\operatorname{id}_S)} \\
+	& f & {\phi_T(f) = A(f)(\phi_S(\operatorname{id}_S))} \\
+	{\operatorname{Hom}_{\mathcal{C}}(T, S)} &&& {A(T)}
+	\arrow["{\phi_S}", from=1-1, to=1-4]
+	\arrow["{f^*}"', from=1-1, to=4-1]
+	\arrow["{A(f)}", from=1-4, to=4-4]
+	\arrow[maps to, from=2-2, to=2-3]
+	\arrow[maps to, from=2-2, to=3-2]
+	\arrow[maps to, from=2-3, to=3-3]
+	\arrow[maps to, from=3-2, to=3-3]
+	\arrow["{\phi_T}"', from=4-1, to=4-4]
+\end{tikzcd}\]
+这说明 \( \phi \) 完全由每个 \( \phi_S(\operatorname{id}_S) \) 决定,
+因此映射的单满性显然.
+
+第二个论断是第一个论断的推论, 见下图
+% https://q.uiver.app/#q=WzAsNixbMCwxLCJcXG1hdGhjYWx7Q31ee1xcb3BlcmF0b3JuYW1le29wfX0gXFx0aW1lc1xcbWF0aGNhbHtDfV57XFx3ZWRnZX0iXSxbMiwxLCJcXG9wZXJhdG9ybmFtZXtTZXR9Il0sWzMsMiwiXFxvcGVyYXRvcm5hbWV7SG9tfV97XFxtYXRoY2Fse0N9fShoX3tcXG1hdGhjYWx7Q319KFQpLCBBKFQpKSJdLFs1LDIsIkEoVCkiXSxbMywwLCJcXG9wZXJhdG9ybmFtZXtIb219X3tcXG1hdGhjYWx7Q319KGhfe1xcbWF0aGNhbHtDfX0oUyksIEEoUykpIl0sWzUsMCwiQShTKSJdLFswLDEsIlxcb3BlcmF0b3JuYW1le0hvbX1fe1xcbWF0aGNhbHtDfX0oaF97XFxtYXRoY2Fse0N9fShcXGNkb3QpLCBcXGNkb3QpIiwwLHsiY3VydmUiOi0zfV0sWzAsMSwiXFxvcGVyYXRvcm5hbWV7ZXZ9XntcXHdlZGdlfSIsMix7ImN1cnZlIjozfV0sWzIsMywiIiwwLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiYXJyb3doZWFkIn19fV0sWzQsMl0sWzUsM10sWzQsNSwiIiwyLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiYXJyb3doZWFkIn19fV0sWzYsNywiIiwwLHsic2hvcnRlbiI6eyJzb3VyY2UiOjIwLCJ0YXJnZXQiOjIwfSwic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiYXJyb3doZWFkIn19fV1d
+\[\begin{tikzcd}
+	&&& {\operatorname{Hom}_{\mathcal{C}}(h_{\mathcal{C}}(S), A(S))} && {A(S)} \\
+	{\mathcal{C}^{\operatorname{op}} \times\mathcal{C}^{\wedge}} && {\operatorname{Set}} \\
+	&&& {\operatorname{Hom}_{\mathcal{C}}(h_{\mathcal{C}}(T), A(T))} && {A(T)}
+	\arrow[tail reversed, from=1-4, to=1-6]
+	\arrow[from=1-4, to=3-4]
+	\arrow[from=1-6, to=3-6]
+	\arrow[""{name=0, anchor=center, inner sep=0}, "{\operatorname{Hom}_{\mathcal{C}}(h_{\mathcal{C}}(\cdot), \cdot)}", curve={height=-18pt}, from=2-1, to=2-3]
+	\arrow[""{name=1, anchor=center, inner sep=0}, "{\operatorname{ev}^{\wedge}}"', curve={height=18pt}, from=2-1, to=2-3]
+	\arrow[tail reversed, from=3-4, to=3-6]
+	\arrow[shorten <=5pt, shorten >=5pt, Rightarrow, 2tail reversed, from=0, to=1]
+\end{tikzcd}\]
+
+关于全忠实性, 取 \( A = h_{\mathcal{C}}(T) \), 给定 \( f: T \to S \). 由前面所述
+\( h_{\mathcal{C}}(f) \) 诱导的态射(即自然变换) \(
+\operatorname{Hom}_{\mathcal{C}}(\cdot, S) \to
+\operatorname{Hom}_{\mathcal{C}}(\cdot, T) \) 由 \( \operatorname{id}_S \mapsto
+\phi_S(\operatorname{id}_S)\) 决定, 而后者正是 \( f \in
+\operatorname{Hom}_{\mathcal{C}}(T, S) \).
+% https://q.uiver.app/#q=WzAsNyxbMCwwLCJTIl0sWzEsMCwiVCJdLFsyLDAsIlxcbWF0aG9we1xcbGVhZHN0b31cXGxpbWl0c157aF97XFxtYXRoY2Fse0N9fX0iXSxbMywwLCJoX3tcXG1hdGhjYWx7Q319KFMpPVxcb3BlcmF0b3JuYW1le0hvbX1fe1xcbWF0aGNhbHtDfX0oXFxjZG90LCBTKSJdLFs0LDAsImhfe1xcbWF0aGNhbHtDfX0oVCk9XFxvcGVyYXRvcm5hbWV7SG9tfV97XFxtYXRoY2Fse0N9fShcXGNkb3QsIFQpIl0sWzMsMSwiXFxvcGVyYXRvcm5hbWV7SG9tfV97XFxtYXRoY2Fse0N9fShTLCBTKVxcbmlcXG9wZXJhdG9ybmFtZXtpZH1fUyJdLFs0LDEsImYgPSBcXHBoaV9TKFxcb3BlcmF0b3JuYW1le2lkfV9TKVxcaW4gXFxvcGVyYXRvcm5hbWV7SG9tfV97XFxtYXRoY2Fse0N9fShTLCBUKSJdLFsxLDAsImYiLDJdLFszLDRdLFs1LDYsIiIsMix7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Im1hcHMgdG8ifX19XSxbOSw4LCIiLDIseyJzaG9ydGVuIjp7InNvdXJjZSI6MjAsInRhcmdldCI6MjB9fV1d
+\[\begin{tikzcd}
+	S & T & {\mathop{\leadsto}\limits^{h_{\mathcal{C}}}} & {h_{\mathcal{C}}(S)=\operatorname{Hom}_{\mathcal{C}}(\cdot, S)} & {h_{\mathcal{C}}(T)=\operatorname{Hom}_{\mathcal{C}}(\cdot, T)} \\
+	&&& {\operatorname{Hom}_{\mathcal{C}}(S, S)\ni\operatorname{id}_S} & {f = \phi_S(\operatorname{id}_S)\in \operatorname{Hom}_{\mathcal{C}}(S, T)}
+	\arrow["f"', from=1-2, to=1-1]
+	\arrow[""{name=0, anchor=center, inner sep=0}, from=1-4, to=1-5]
+	\arrow[""{name=1, anchor=center, inner sep=0}, maps to, from=2-4, to=2-5]
+	\arrow[shorten <=4pt, shorten >=4pt, Rightarrow, from=1, to=0]
+\end{tikzcd}\]
+\end{proof}
+
+\begin{definition}
+  \begin{enumerate}
+    \item 称函子 \( A: \mathcal{C}^{\operatorname{op}} \to \operatorname{Set} \)
+      是\emph{可表函子}, 如果存在 \( X \in \operatorname{Ob}(\mathcal{C}) \)
+      以及同构 \( \phi: h_{\mathcal{C}}(X) \xrightarrow{\sim} A \), 并称 \( (X,
+      \phi) \) 是其代表元.
+    \item 类似地, 称函子 \( B: \mathcal{C} \to \operatorname{Set}
+      \)是\emph{可表函子}, 如果存在 \( X \in \operatorname{Ob}(\mathcal{C}) \)
+      以及同构 \( \phi: k_{\mathcal{C}}(X) \xrightarrow{\sim} B \), 并称 \( (X,
+      \phi) \) 是其代表元.
+  \end{enumerate}
+\end{definition}
+
+\begin{lemma}
+  如果函子 \( A: \mathcal{C}^{\operatorname{op}} \to \operatorname{Set} \) 可表,
+  则其代表元 \( (X, \phi: h_{\mathcal{C}}(S) \xrightarrow{\sim} A) \)
+  在至多差一个唯一同构的意义下是唯一的. 对函子 \( B: \mathcal{C} \to
+  \operatorname{Set} \) 也有类似的性质.
+\end{lemma}
+
+
+我们将经常忽略符号 \( h_{\mathcal{C}} \) 或 \( k_{\mathcal{C}} \), 将 \(
+\mathcal{C} \) 看作 \( \mathcal{C}^{\wedge} \) 或 \( \mathcal{C}^{\vee} \)
+的全子范畴.
 
 \section{Ab-范畴}
 给定一个范畴 \( \mathcal{A} \).

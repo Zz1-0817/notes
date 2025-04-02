@@ -1,0 +1,312 @@
+\chapter{Free Group}
+
+\section{Free Group}
+
+\subsection{Free monoid}
+
+\begin{definition}
+  Let \( X = \left\lbrace a, b, c, \cdots \right\rbrace \) be a set of symbols.
+  A \emph{word} is a finite sequence of symbols from \( X \) in which repetition
+  is allowed. For example,
+  \[
+    aa,\quad aabac,\quad b
+  \]
+  are distinct words.
+  Two words can be ultiplied by \emph{juxtaposition}, for example,
+  \[
+    aaaa * aabac = aaaaaabac.
+  \]
+  This defines on the set of all words an associative binary operation.
+  The empty sequence is allowed, and we denoted it by \( 1 \).
+  Then \( 1 \) serves as an identity element.
+  Write \( SX \) for the set of words together with this binary operation.
+  Then \( SX \) is a monoid, called the \emph{free monoid} on \( X \).
+\end{definition}
+
+\begin{proposition}
+  When we identify an element \( a \) of \( X \) with the word \( a \), \( X \)
+  becomes a subset of \( SX \) and generates it, i.e. no proper submonoid of \(
+  SX \) contains \( X \). Moreover, the map \( X \to SX \) has the following
+  universal property: for any map of sets \( \alpha: X \to S \) from \( X \) to
+  a monoid \( S \), there exists a unique homomorphism \( SX \to S \) making the
+  diagram commute.
+  \[\begin{tikzcd}
+    X & SX \\
+    & S
+    \arrow["{a \mapsto a}", from=1-1, to=1-2]
+    \arrow["\alpha"', from=1-1, to=2-2]
+    \arrow[dashed, from=1-2, to=2-2]
+  \end{tikzcd}\]
+\end{proposition}
+
+\subsection{Free group}
+
+We want to construct a group \( FX \) containing \( X \) and having the same
+universal property as \( SX \) with ``monoid'' replaced by ``group''. Define \(
+X' \) to be the set consisting of the symbols in \( X \) and also one addition
+symbol, denoted \( a^{-1} \), for each \( a \in X \); thus
+\[
+  X' = \left\lbrace a, a^{-1}, b, b^{-1}, \cdots \right\rbrace.
+\]
+Let \( W' \) be the set of words using symbols from \( X' \). This becomes a
+monoid under juxtaposition, but it is not a group because \( a^{-1} \) is not
+yet the inverse of \( a \), and we can't cancel out the obvious terms in words
+of the following form:
+\[
+  \cdots a a^{-1} \cdots \textmd{ or } \cdots a^{-1}a \cdots
+\]
+\begin{definition}
+  A word is said to be \emph{reduced} if it contains no pairs of the form \( a a^{-1} \) or \( a^{-1} a \).
+\end{definition}
+Starting with a word \( w \), we can perform a finite sequence of cancellations to arrive at a reduced word(possibly empty), which will be called the \emph{reduced form} \( w_0 \) of \( w \).
+There may be many different ways of performing the cancellations, for example
+\begin{align*}
+  ca\underline{bb^{-1}}a^{-1}c^{-1}ca \to c\underline{aa^{-1}}c^{-1}ca \to \underline{cc^{-1}}ca \to ca\\
+  cabb^{-1}a^{-1}\underline{c^{-1}c} a\to ca bb^{-1} \underline{a^{-1}a} \to  ca \underline{bb^{-1}} \to ca.
+\end{align*}
+We ended up with teh smae answer, and the next result says that this always happens.
+\begin{proposition}
+  There is only one reduced form of a word.
+\end{proposition}
+\begin{proof}
+  Use induction on the length of the word \( w \).
+  Assume that \( w \) is not reduced and a pair of the form \( a_0 a^{-1}_0 \) occurs.
+  Observe that
+  \begin{enumerate}
+    \item Any two reduced forms of \( w \) obtained by a sequence of cancellations in which \( a_0 a_0^{-1} \) is cancelled first are equal by induction.
+    \item Any two reduced forms of \( w \) obtained by a sequence of cancellations in which \( a_0 a^{-1}_0 \) is cancelled at some point are equal, because the result of such a sequence of cancellations will not be affected if \( a_0 a_0^{-1} \) is cancelled first.
+    \item Finally, consider a reduced form \( w_0 \) obtained by a sequence in which no cancellation cancels \( a_0 a_0^{-1} \) directly.
+      Since \( a_0 a_0^{-1} \) does not remain in \( w_0 \), at least one of \( a_0 \) or \( a_0^{-1} \) must be cancelled at some point.
+      If the pair itself is not cancelled, then the first cancellation involving the pair must look like
+      \[
+        \cdots \cancel{a}_0^{-1} \overline{\cancel{a}_0a_0^{-1}} \cdots \textmd{ or } \cdots \underline{a_0 \cancel{a}_0^{-1}} \cancel{a}_0 \cdots.
+      \]
+      But the word obtained after this cancellation is the same as if our original pair were cancelled, and so we may cancel the original pair instead.
+  \end{enumerate}
+\end{proof}
+
+\begin{definition}
+  We say two words \( w, w' \) are equivalent, denoted \( w \sim w' \), if they have the same reduced form.
+  This is an equivalence relation.
+\end{definition}
+
+\begin{proposition}
+  Products of equivalent words are equivalent, i.e.,
+  \[
+    w \sim w',\quad v \sim v' \implies wv \sim w'v'.
+  \]
+\end{proposition}
+
+\begin{definition}
+  Let \( FX \) be the set of equivalence classes of words.
+  Then \( FX \) is a group, called the \emph{free group} on \( X \).
+\end{definition}
+
+\begin{proposition}
+  For any maps of sets \( \alpha: X \to G \) from \( X \) to a group \( G \), there exists a unique homomorphism \( FX \to G \) making the following diagram commute:
+  \begin{equation}
+    \begin{tikzcd}
+      X & FX \\
+      & G
+      \arrow["{a \mapsto a}", from=1-1, to=1-2]
+      \arrow["\alpha"', from=1-1, to=2-2]
+      \arrow[dashed, from=1-2, to=2-2]
+    \end{tikzcd}
+    \tag{*}\label{eq: universal property of free group}
+  \end{equation}
+\end{proposition}
+\begin{remark}
+  The universal property of the map \( \iota: X \to FX,\quad x \mapsto x \), characterizes it: if \( \iota': X \to F' \) is a second map with the same universal property, then there is a unique isomorphism \( \alpha: FX \to F' \) such that \( \alpha  \circ \iota = \iota' \),
+  \[\begin{tikzcd}
+    && FX \\
+    X \\
+    && {F'}
+    \arrow["\alpha", dashed, from=1-3, to=3-3]
+    \arrow["\iota", from=2-1, to=1-3]
+    \arrow["{\iota'}"', from=2-1, to=3-3]
+  \end{tikzcd}.\]
+\end{remark}
+
+\begin{corollary}
+  Every group is a quotient of a free group.
+\end{corollary}
+
+\subsection{Important results on free groups}
+
+\begin{theorem}[Nielsen-Schreier]
+  Subgroups of free group are free.
+\end{theorem}
+
+\begin{proposition}
+  Two free groups \( FX \) and \( FY \) are isomorphic \( \iff X \) and \( Y \)
+  have the same cardinality. Thus we can define the \emph{rank} of a free group
+  \( G \) to be the cardinality of any free generating set, where a \emph{free
+  generating set} is a subset \( X \) of \( G \) for which the homomorphism \(
+  FX \to G \) given by \eqref{eq: universal property of free group} is an
+  isomorphism.
+\end{proposition}
+
+\begin{proposition}
+  Let \( H \) be a finitely generated subgroup of a free group \( G \). Then
+  there is an algorithm for constructing from any finite set of generators for
+  \( H \) a free finite set of generators. If \( G \) has finite rank \( n \)
+  and \( (G: H) = i < \infty \), then \( H \) is free of rank
+  \[
+    ni - i + 1.
+  \]
+  In particular, \( H \) may have rank greater than that of \( G \).
+\end{proposition}
+
+\subsection{Generators and relations}
+
+Consider a set \( X \) and a set \( R \) of words made up of symbols in \( X \).
+Each element of \( R \) represents an element of the free group \( FX \), and
+the quotient \( G \) of \( FX \) by the normal subgroup generated by these
+elements is said to have \( X \) as \emph{generators} and \( R \) as
+\emph{relations}(or as a \emph{set of defining relations}). One also says that
+\( (X, R) \) is a \emph{presentation} for \( G \), and denoted by \(
+\left\langle X \mid R \right\rangle \).
+
+\begin{example}
+  \begin{enumerate}
+    \item The dihendral group \( D_n \) has generators \( r, s \) and defining
+      relations
+      \[
+        r^n, s^2, srsr.
+      \]
+    \item The \emph{generalized quaternion group} \( Q_n \), \( n \geq 3 \), has
+      generators \( a, b \) and relations
+      \[
+        a^{2^{n - 1}} = 1, a^{2^{n - 2}} = b^2, bab^{-1} = a^{-1}.
+      \]
+      It has order \( 2^n \).
+  \end{enumerate}
+\end{example}
+
+\begin{proposition}
+  Let \( G \) be the group defined by the presentation \( (X, R) \). For any
+  group \( H \) and map of sets \( \alpha: X \to H \) sending each element of \(
+  R \) to \( 1 \), there exists a unique homomorphism \( G \to H \) making the
+  following diagram commute:
+  \[\begin{tikzcd}
+    X & G \\
+    & H
+    \arrow["{a \mapsto a}", from=1-1, to=1-2]
+    \arrow["\alpha"', from=1-1, to=2-2]
+    \arrow[dashed, from=1-2, to=2-2]
+  \end{tikzcd}\]
+\end{proposition}
+\begin{proof}
+  From the universal property of free group, we know that \( \alpha \) can be extended to a homomorphism \( FX \to H \), which we denote again \( \alpha \).
+  Then the normal subgroup \( N \) generated by \( \iota R \) is contained in \( \ker \alpha \).
+  Now apply the universal property of quotient.
+\end{proof}
+
+\begin{example}
+  Let \( G = \left\lbrace a, b \mid a^n, b^2, baba \right\rbrace \).
+  We prove that \( G \) is isomorphic to the dihedral group \( D_n \): the map
+  \[
+    \left\lbrace a, b \right\rbrace \to D_n,\quad a \mapsto r,\quad b \mapsto s
+  \]
+  extends uniquely to a homomorphism \( G \to D_n \).
+\end{example}
+
+\subsection{Finitely presented groups}
+
+\begin{definition}
+  A group is said to be \emph{finitely presented} if it admits a presentation \(
+  (X, R) \) with both \( X \) and \( R \) finite.
+\end{definition}
+
+\begin{proposition}
+  Let \( G \) be a finite group, \( X \) be the underlying set of \( G \), and
+  \( R \) be the set of words
+  \[
+    \left\lbrace abc^{-1}: ab = c \textmd{ in } G \right\rbrace.
+  \]
+  Then \( (X, R) \) is a presentation of \( G \), and so \( G \) is
+  finitely presented. In particular, any finite group is finitely presented
+\end{proposition}
+\begin{proof}
+  Let \( G' = \left\langle X \mid R \right\rangle \). The extension of \( a
+  \mapsto a: X \to G \) to \( FX \) sends each element of \( R \) to \( 1 \),
+  and therefore defines a homomorphism \( G' \to G \), which is obviously
+  surjective. But every element of \( G' \) is represented by an element of \( X
+  \), and so \( \left\vert G' \right\vert \leq \left\vert G \right\vert \).
+  Therefore, the homomorphism is bijective.
+\end{proof}
+
+Although it is easy to define a group by a finite presentation, calculating the
+properties of the group can be very difficult.
+
+\subsection{Coxeter groups}
+
+\begin{definition}
+  A \emph{Coxeter system} is a pair \( (G, S) \) consisting of a group \( G \) and a set of generators \( S \) for \( G \) subject only to relations of the form \( (st)^{m(s, t)} = 1 \), where
+  \begin{equation}
+    \begin{cases}
+      m(s, s) = 1 & \textmd{ all } s\\
+      m(s, t) \geq 2\\
+      m(s, t) = m(t, s)
+    \end{cases}.
+    \tag{*} \label{eq: Coxeter system}
+  \end{equation}
+  When no relation occurs between \( s \) and \( t \), we set \( m(s, t) = \infty \).
+  \[
+    m: S \times S \to \mathbb{N} \cup \left\lbrace \infty \right\rbrace
+  \]
+  satisfying \cref{eq: Coxeter system}, and the group \( G = \left\langle S \mid R \right\rangle \), where
+  \[
+    R = \left\lbrace (st)^{m(s, t)} \mid m(s, t) \neq \infty \right\rbrace.
+  \]
+  The \emph{Coxeter groups} are those that arise as part of a Coxeter system.
+  The cardinality of \( S \) is called the \emph{rank} of the Coxeter system.
+\end{definition}
+
+\begin{example}
+  Up to isomorphism, the only Coxeter system of rank \( 1 \) is \( (C_2, \left\lbrace s \right\rbrace) \).
+\end{example}
+\begin{example}
+  The Coxeter systems of rank \( 2 \) are indexed by \( m(s, t) \geq 2 \).
+  \begin{enumerate}
+    \item If \( m(s, t) \) is an integer \( n \), then the Coxeter system is \( (G, \left\lbrace s, t \right\rbrace) \), where
+      \[
+        G = \left\langle s, t \mid s^2, t^2, (st)^n \right\rangle.
+      \]
+      And \( G \simeq D_n \).
+    \item If \( m(s, t) = \infty \), then the Coxeter system is \( (G, \left\lbrace s, t \right\rbrace) \), where \( G = \left\langle s, t \mid s^2, t^2 \right\rangle \).
+  \end{enumerate}
+\end{example}
+
+\begin{example}
+  Finite reflection group.
+\end{example}
+
+\begin{theorem}
+  Let \( (G, S) \) be the Coxeter system defined by a map \( m: S \times S \to \mathbb{N} \cup \left\lbrace \infty \right\rbrace \) satisfying \cref{eq: Coxeter system}.
+  Then
+  \begin{enumerate}
+    \item The natural map \( S \to G \) is injective.
+    \item Each \( s \in S \) has order \( 2 \) in \( G \).
+    \item For each \( s \neq t \) in \( S \), \( st \) has order \( m(s, t) \) in \( G \).
+  \end{enumerate}
+\end{theorem}
+\begin{proof}
+  (b) can be showed by the universal property of free group.
+  (c) is a bit complicated.
+\end{proof}
+
+\subsection{Groups of small order}
+
+In the following table, \( c + n = t \) means that there are \( c \) commutative groups and \( n \) noncommutative groups.
+\begin{table}[H]
+  \centering
+  \begin{tabular}{c|c|c}
+    \hline
+    \( \left\vert G \right\vert \) & \( c + n = t \) & Groups\\
+    \hline
+    \( 4 \) & \( 2 + 0 = 2 \) & \( C_4, C_2 \times C_2 \)\\
+    \( 6 \) & \( 1 + 1 = 2 \) & \( C_6; S_3 \)\\
+    \hline
+  \end{tabular}
+\end{table}
