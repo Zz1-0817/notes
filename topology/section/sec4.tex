@@ -1,0 +1,445 @@
+\section{Complete Metric Spaces and Function Spaces}
+
+\subsection{Complete Metric Space}
+
+\begin{definition}
+  Let \( (X, d) \) be a metric space.
+  A sequence \( (x_n) \) of points of \( X \) is said to be a \emph{Cauchy sequence} in \( (X, d) \) if it has the property that given \( \varepsilon > 0 \), there is an integer \( N \) such that
+  \[
+    d(x_n, x_m) < \varepsilon \quad \text{ whenever } n, m \geq N.
+  \]
+  The metric space \( (X, d) \) is said to be \emph{complete} if every Cauchy sequence in \( X \) converges.
+\end{definition}
+
+Note also that if \( X \) is complete under the metric \( d \), then \( X \) is complete under the \underline{standard bounded metric}
+\[
+  \overline{d}(x, y) =\min \left\lbrace d(x, y), 1 \right\rbrace
+\]
+corresponding to \( d \), and conversely.
+For a sequence \( (x_n) \) is a Cauchy sequence under \( \overline{d} \iff \) it is a Cauchy sequence under \( d \).
+And a sequence converges under \( \overline{d} \iff \) it converges under \( d \).
+
+\paragraph{Euclidean space \( \mathbb{R}^N \) and the completeness}
+
+\begin{lemma}
+  A metric space \( X \) is complete if every Cauchy sequence in \( X \) has a convergent subsequence.
+\end{lemma}
+
+\begin{theorem}
+  Euclidean space \( \mathbb{R}^k \) is complete in either of its usual metrics, the Euclidean metric \( d \) or the square metric \( \rho \).
+\end{theorem}
+\begin{sketchproof}
+  Recall that compactness implies limit point compactness(and use the preceding lemma).
+\end{sketchproof}
+
+\begin{lemma}
+  Let \( X \) be the product space \( X = \prod X_\alpha \);
+  let \( x_n \) be a sequence of points of \( X \).
+  Then \( x_n \to x \iff \pi_\alpha(x_n) \to \pi_\alpha(x) \) for each \( \alpha \).
+\end{lemma}
+\begin{sketchproof}
+  \( \implies \) note that \( \pi_\alpha \) is continuous.
+  \( \impliedby \) consider basis.
+\end{sketchproof}
+
+\begin{theorem}
+  There is a metric for the product space \( \mathbb{R}^\omega \) relative to which \( \mathbb{R}^\omega \) is complete.
+\end{theorem}
+\begin{proof}
+  Let \( \overline{d}(a, b) = \min \left\lbrace \left\vert a - b \right\vert, 1 \right\rbrace \) be the standard bounded metric on \( \mathbb{R} \).
+  Let \( D \) be the metric on \( \mathbb{R}^\omega \) defined by
+  \[
+    D(x, y) = \sup \left\lbrace \overline{d}(x_i, y_i) / i \right\rbrace
+  \]
+  Then \( D \) induces the product topology on \( \mathbb{R}^\omega \); we verify that \( \mathbb{R}^\omega \) is complete under \( D \).
+  Let \( x_n \) be a Cauchy sequence in \( (\mathbb{R}^\omega, D) \).
+  Because
+  \[
+    \overline{d}(\pi_i(x), \pi_i(y)) \leq i D(x, y),
+  \]
+  we see that for fixed \( i \) the sequence \( \pi_i(x_n) \) is a Cauchy sequence in \( \mathbb{R} \), so it converges, say to \( a_i \).
+  Then the sequence \( x_n \) converges to the point \( a = (a_1, a_2, \cdots) \) of \( \mathbb{R}^\omega \).
+\end{proof}
+
+\paragraph{Uniform metric}
+
+\begin{definition}
+  Let \( (Y, d) \) be a metric space;
+  let \( \overline{d}(a, b) = \min \left\lbrace d(a, b), 1 \right\rbrace \) be the standard bounded metric on \( Y \) derived from \( d \).
+  If \( x = (x_\alpha)_{\alpha \in J} \) and \( y = (y_\alpha)_{\alpha \in J} \) are points or the Cartesian product \( Y^J \), let
+  \[
+    \overline{\rho}(x, y) = \sup \left\lbrace \overline{d}(x_\alpha, y_\alpha): \alpha \in J \right\rbrace.
+  \]
+  It is easy to check that \( \rho \) is a metric;
+  it is called the \emph{uniform metric} on \( Y^J \) corresponding to the metric \( d \) on \( Y \).
+\end{definition}
+\begin{remark}
+  Here we have used the standard ``tuple'' notation for the elements of the Cartesian product \( Y^J \).
+  Since the elements of \( Y^J \) are simply functions from \( J \) to \( Y \), we could also use functional notation for them.
+  In this notation, the definition of the uniform metric takes the following form: if \( f, g: J \to Y \), then
+  \[
+    \overline{\rho}(f, g) = \sup \left\lbrace \overline{d}(f(\alpha), g(\alpha)): \alpha \in J \right\rbrace.
+  \]
+\end{remark}
+
+\begin{theorem}
+  If the space \( Y \) is complete in the metric \( d \), then the space \( Y^J \) is complete in the uniform metric \( \overline{\rho} \) corresponding to \( d \).
+\end{theorem}
+\begin{proof}
+  We have shown that \( (Y, d) \) is complete \( \iff (Y, \overline{d}) \) is complete.
+  Now suppose that \( f_1, f_2, \cdots \) is a sequence of points of \( Y^J \) that is a Cauchy sequence relative to \( \overline{\rho} \).
+  Given \( \alpha \) in \( J \), the fact that
+  \[
+    \overline{d}(f_N(\alpha), f_m(\alpha)) \leq \overline{\rho}(f_n, f_m)
+  \]
+  for all \( n, m \) means that the sequence \( f_1(\alpha), f_2(\alpha), \cdots \) is a Cauchy sequence in \( (Y, \overline{d}) \).
+  Hence this sequence converges, say to a point \( y_\alpha \).
+  Let \( f: J \to Y \) be the function defined by \( f(\alpha) = y_\alpha \).
+  We assert that the sequence \( (f_n) \) converges to \( f \) in the metric \( \overline{\rho} \).
+
+  Given \( \varepsilon > 0 \), first choose \( N \) large enough that \( \overline{\rho}(f_n, f_m) < \varepsilon / 2 \) whenever \( n, m \geq N \).
+  Then in particular
+  \[
+    \overline{d}(f_n(\alpha), f_m(\alpha)) < \varepsilon / 2
+  \]
+  for \( n, m \geq N \) and \( \alpha \in J \).
+  Letting \( n \) and \( \alpha \) be fixed, and letting \( m \) become arbitrarily large, we see that
+  \[
+    \overline{d}(f_n(\alpha), f(\alpha)) \leq \varepsilon / 2.
+  \]
+  This inequality holds for all \( \alpha \) in \( J \), provided merely that \( n \geq N \).
+  Therefore,
+  \[
+    \overline{\rho}(f_n, f) \leq \varepsilon / 2 < \varepsilon
+  \]
+  for \( n \geq N \), as desired.
+\end{proof}
+
+Now let us specialize somewhat, and consider the set \( Y^X \) where \( X \) is a topological space rather than merely a set.
+The topology of \( X \) is irrelevant when considering the set of all functions \( f: X \to Y \).
+But suppose that we consider the subset \( \mathcal{C}(X, Y) \) of \( Y^X \) consisting of all continuous functions \( f: X \to Y \) and the subset \( \mathcal{B}(X, Y) \) consisting of all bounded function \( f: X \to Y \).
+
+\begin{theorem}
+  Let \( X \) be a topological space and let \( (Y, d) \) be a metric space.
+  The set \( \mathcal{C}(X, Y) \) of continuous functions is closed in \( Y^X \) under the uniform metric.
+  So is the set \( \mathcal{B}(X, Y) \) of bounded functions.
+  Therefore, if \( Y \) is complete, these spaces are complete in the uniform metric.
+\end{theorem}
+\begin{proof}
+  First, we show that if a sequence of elements \( f_n \) of \( Y^X \) converges to the element \( f \) of \( Y^X \) relative to the metric \( \overline{\rho} \) on \( Y^X \), then it converges to \( f \) uniformly in the sense we defined before, relative to the metric \( \overline{d} \) on \( Y \).
+  Given \( \varepsilon > 0 \), choose an integer \( N \) such that
+  \[
+    \overline{\rho}(f, f_n) < \varepsilon
+  \]
+  for all \( n > N \).
+  Then for all \( x \in X \) and all \( n \geq N \),
+  \[
+    \overline{d}(f_n(x), f(x)) \leq \overline{\rho}(f_n, f) < \varepsilon.
+  \]
+  Thus \( (f_n) \) converges uniformly to \( f \).
+
+  Now we show that \( \mathcal{C}(X, Y) \) is closed in \( Y^X \) relative to the metric \( \overline{\rho} \).
+  Let \( f \) be an element of \( Y^X \) that is a limit point of \( \mathcal{C}(X, Y) \).
+  Then there is a sequence \( (f_n) \) of elements of \( \mathcal{C}(X, Y) \) converging to \( f \) in the metric \( \overline{\rho} \).
+  By the uniform limit theorem, \( f \) is continuous, so that \( f \in \mathcal{C}(X, Y) \).
+
+  Finally, we show that \( \mathcal{B}(X, Y) \) is closed in \( Y^X \).
+  If \( f \) is a limit point of \( \mathcal{B}(X, Y) \), there is a sequence of elements \( f_n \) of \( \mathcal{B}(X, Y) \) converging to \( f \).
+  Choose \( N \) so large that \( \overline{\rho}(f_N, f) < 1 / 2 \).
+  Then for \( x \in X \), we have \( \overline{d}(f_N(x), f(x)) < 1 / 2 \), which implies that \( d(f_N(x), f(x)) < 1/2 \).
+  It follows that if \( M \) is the diameter of the set \( f_N(X) \), then \( f(X) \) has diameter at most \( M + 1 \).
+  Hence \( f \in \mathcal{B}(X, Y) \).
+\end{proof}
+
+\begin{definition}
+  If \( (Y, d) \) is a metric space, one can define another metric on the set \( \mathcal{B}(X, Y) \) of bounded functions from \( X \) to \( Y \) by the equation
+  \[
+    \rho(f, g) = \sup \left\lbrace d(f(x), g(x)): x \in X \right\rbrace.
+  \]
+  It is easy to see that \( \rho \) is well-defined, for the \( f(X) \cup g(X) \) is bounded if both \( f(X) \) and \( g(X) \) are.
+  The metric \( \rho \) is called the \emph{sup metric}.
+\end{definition}
+
+\begin{theorem}
+  Let \( (X, d) \) be a metric space.
+  There is an isometric embedding of \( X \) into a complete metric space.
+\end{theorem}
+\begin{proof}
+  Let \( x_0 \) be a fixed point of \( X \).
+  Given \( a \in X \), define \( \phi_\alpha: X \to \mathbb{R} \) by the equation
+  \[
+    \phi_a(x) = d(x, a) - d(x, x_0)
+  \]
+  We assert that \( \phi_a \) is bounded.
+  For it follows, from the inequalities
+  \begin{align*}
+  d(x, a) \leq d(x, b) + d(a, b),\\
+  d(x, b) \leq d(x, a) + d(a, b),
+  \end{align*}
+  that
+  \[
+    \left\vert d(x, a) - d(x, b) \right\vert \leq d(a, b).
+  \]
+  Setting \( b = x_0 \), we conclude that \( \left\vert \phi_a(x) \right\vert \leq d(a, x_0) \) for all \( x \).
+  Define \( \Phi: X \to \mathcal{B}(X, \mathbb{R}) \) by setting
+  \[
+    \Phi(a) = \phi_a.
+  \]
+  We show that \( \Phi \) is an isometric embedding of \( (X, d) \) into the complete metric space \( (\mathcal{B}(X, \mathbb{R}), \rho) \).
+  That is, we show that for every pair of points \( a, b \in X \),
+  \[
+    \rho(\phi_a, \phi_b) = d(a, b).
+  \]
+  By definition,
+  \begin{align*}
+    \rho(\phi_a, \phi_b) &= \sup \left\lbrace \left\vert \phi_a(x) - \phi_b(x) \right\vert: x \in X \right\rbrace\\
+                         &= \sup \left\lbrace \left\vert d(x, a) - d(x, b) \right\vert: x \in X \right\rbrace.
+  .\end{align*}
+\end{proof}
+
+\paragraph{A Space-Filling Curve}
+
+As an application of the completeness of the metric space \( \mathcal{C}(X, Y) \) in the uniform metric When \( Y \) is completeness, we shall construct the famous ``Peano space-filling curve.''
+
+\begin{theorem}
+  Let \( I = [0, 1] \).
+  There exists a continuous map \( f: I \to I^2 \) whose image fills up the entire square \( I^2 \).
+\end{theorem}
+\begin{proof}
+  TODO %TODO
+  % \begin{enumerate}
+  %   \item We shall construct the map \( f \) as the limit of a sequence of continuous functions \( f_n \).
+  %     First we describe a particular operation on paths, which will be used to generate the sequence \( f_n \).
+  %     \begin{quote}
+  %       Begin with an arbitrary closed interval in the real line and an arbitrary square in the plane with sides parallel to the coordinate axes, and consider the triangluar path
+  %     \end{quote}
+  % \end{enumerate}
+\end{proof}
+
+\subsection{Compactness in Metric spaces}
+
+\paragraph{Totally Bounded}
+
+\begin{definition}
+  A metric space \( (X, d) \) is said to be \emph{totally bounded} if for every \( \varepsilon > 0 \), there is a finite covering of \( X \) by \( \varepsilon \)-balls.
+\end{definition}
+
+\begin{example}
+  Total boundedness implies boundedness, but the converse may not be TRUE.
+  For example, in the metric \( \overline{d}(a, b) = \min \left\lbrace 1, \left\vert a - b \right\vert \right\rbrace \), the real line \( \mathbb{R} \) is bounded but not totally bounded.
+  Also, in this example, one can find that bounded and closed condition does NOT imply compactness.
+\end{example}
+
+\begin{example}
+  Under the metric \( d(a, b) = \left\vert a - b \right\vert \), the real line \( \mathbb{R} \) is complete but not totally bounded, while the subspace \( (-1, 1) \) is totally bounded but not complete.
+  The subspace \( [-1, 1] \) is both complete and totally bounded.
+\end{example}
+
+\begin{theorem}
+  A metric space \( (X, d) \) is compact \( \iff \) it is complete and totally bounded.
+\end{theorem}
+\begin{proof}
+  \( \implies \) to prove the completeness, it suffices to show that every Cauchy sequence contains a convergent sequence.
+  But recall that we have prove the compactness of a metric space is equivalent to the sequentially compactness, and so we have done.
+  The fact that \( X \) is totally bounded is direct from the compactness.
+
+  \( \impliedby \) we shall prove that \( X \) is sequencetially compact.
+  Let \( (x_n) \) be a sequence of points of \( X \).
+  First cover \( X \) by finitely many balls of radius \( 1 \).
+  At least one of these balls, say \( B_1 \), contains \( x_n \) for infinitely many values of \( n \).
+  Let \( J_1 \) be the subset of \( \mathbb{Z}_+ \) consisting of those indices \( n \) for which \( x_n \in B_1 \).
+
+  Next, cover \( X \) by finitely many balls of radius \( 1 / 2 \).
+  Because \( J_1 \) is infinite, at least one of these balls, say \( B_2 \) must contain \( x_n \) for infinitely many values of \( n \) in \( J_1 \).
+  In general, given an infinite set \( J_k \) of positive integers, choose \( J_{k + 1} \) to be an infinite subset of \( J_k \) such that there is a ball \( B_{k + 1} \) of radius \( 1 / (k + 1) \) that contains \( x_n \) for all \( n \in J_{k + 1} \).
+
+  Choose \( n_1 \in J_1 \).
+  Given \( n_k \), choose \( n_{k + 1} \in J_{k + 1} \) such that \( n_{k + 1} > n_k \); this we can do because \( J_{k + 1} \) is an infinite set.
+  Now for \( i, j \geq k \), the indices \( n_i \) and \( n_j \) both belong to \( J_k \).
+  Therefore, for all \( i, j \geq k \), the points \( x_{n_i} \) and \( x_{n_j} \) are contained in a ball \( B_k \) of radius \( 1 / k \).
+  It follows that the sequence \( (x_{n_i}) \) is a Cauchy sequence.
+\end{proof}
+
+\begin{definition}
+  Let \( (Y, d) \) be a metric space.
+  Let \( \mathcal{F} \) be a subset of the function space \( \mathcal{C}(X, Y) \).
+  If \( x_0 \in X \), the set \( \mathcal{F} \) of functions is said to be \emph{equicontinuous(等度连续) at} \( x_0 \) if given \( \varepsilon > 0 \), there is a neighborhood \( U \) of \( x_0 \) such that for all \( x \in U \) and all \( f \in \mathcal{F} \),
+  \[
+    d(f(x), f(x_0)) < \varepsilon.
+  \]
+  If the set \( \mathcal{F} \) is equicontinuous at \( x_0 \) for each \( x_0 \in X \), it is said simply to be \emph{equicontinuous}.
+\end{definition}
+
+\begin{lemma}
+  Let \( X \) be a space;
+  let \( (Y, d) \) be a metric space.
+  If the subset \( \mathcal{F} \) of \( \mathcal{C}(X, Y) \) is totally bounded under the uniform metric corresponding to \( d \), then \( \mathcal{F} \) is equicontinuous under \( d \).
+\end{lemma}
+\begin{proof}
+  Assume \( \mathcal{F} \) is totally bounded.
+  Given \( 0 < \varepsilon < 1 \), and given \( x_0 \), we find a neighborhood \( U \) of \( x_0 \) such that \( d(f(x), f(x_0)) < \varepsilon \) for \( x \in U \) and \( f \in \mathcal{F} \).
+  Set \( \delta = \varepsilon / 3 \), cover \( \mathcal{F} \) by finitely many open \( \delta \)-balls
+  \[
+    B(f_1, \delta), \cdots, B(f_n, \delta)
+  \]
+  in \( \mathcal{C}(X, Y) \).
+  Each function \( f_i \) is continuous;
+  therefore, we can choose a neighborhood \( U \) of \( x_0 \) such that for \( i = 1, \cdots, n \),
+  \[
+    d(f_i(x), f_i(x_0)) < \delta
+  \]
+  whenever \( x \in U \).
+  Let \( f \) be an arbitrary element of \( \mathcal{F} \).
+  Then \( f \) belongs to at least one of the above \( \delta \)-ball, say to \( B(f_i, \delta) \).
+  Then for \( x \in U \), we have
+  \begin{align*}
+  \overline{d}(f(x), f_i(x)) < \delta,\\
+  d(f_i(x), f_i(x_0)) < \delta,\\
+  \overline{d}(f_i(x_0), f(x_0)) < \delta.
+  \end{align*}
+  The first and third inqualities hold because \( \overline{\rho}(f, f_i) < \delta \), and the second holds because \( x \in U \).
+  Since \( \delta < 1 \), the first and third also hold if \( \overline{d} \) is replaced by \( d \);
+  then the triangle inequalities implies that for all \( x \in U \), we have \( d(f(x), f(x_0)) < \varepsilon \).
+\end{proof}
+
+\paragraph{Ascoli's theorem: the classical version}
+
+\begin{lemma}
+  Let \( X \) be a space; let \( (Y, d) \) be a metric space; assume \( X \) and \( Y \) are compact.
+  If the subset \( \mathcal{F} \) of \( \mathcal{C}(X, Y) \) is equicontinuous under \( d \), then \( \mathcal{F} \) is totally bounded under the uniform and sup metrics corresponding to \( d \).
+\end{lemma}
+\begin{proof}
+  We may use the sup metric \( \rho \) throughout.
+  Assume \( \mathcal{F} \) is equicontinuous.
+  Given \( \varepsilon > 0 \), we cover \( \mathcal{F} \) by finitely many sets that are open \( \varepsilon \)-balls in the metric \( \rho \).
+  Set \( \delta = \varepsilon / 3 \), given any \( a \in X \), there is a corresponding neighborhood \( U_a \) of \( a \) such that \( d(f(x), f(a)) < \delta \) for all \( x \in U_a \) and all \( f \in \mathcal{F} \).
+  Cover \( X \) by finitely many such neighborhoods \( U_a \) for \( a = a_1, \cdots, a_k \);
+  denote \( U_{a_i} \) by \( U_i \).
+  Then cover \( Y \) by finitely many open sets \( V_1, \cdots, V_m \) of diameter less than \( \delta \).
+
+  Let \( J \) be the collection of all functions \( \alpha: \left\lbrace 1, \cdots, k \right\rbrace \to \left\lbrace 1, \cdots, m \right\rbrace \).
+  Given \( \alpha \in J \), if there exists a function \( f \) of \( \mathcal{F} \) such that \( f(a_i) \in V_{\alpha(i)} \) for each \( i = 1,\cdots, k \), choose one such function and label it \( f_\alpha \).
+  The collection \( \left\lbrace f_{\alpha} \right\rbrace \) is indexed by a subset \( J' \) of the set \( J \) and is thus finite.
+  We assert that the open balls \( B_{\rho}(f_{\alpha}, \varepsilon) \) for \( \alpha \in J' \), cover \( \mathcal{F} \).
+
+  Let \( f \) be an element of \( \mathcal{F} \).
+  For each \( i = 1, \cdots, k \), choose an integer \( \alpha(i) \) such that \( f(a_i) \in V_{\alpha(i)} \).
+  Then the function \( \alpha \) is in \( J' \).
+  We assert that \( f \) belongs to the ball \( B_{\rho}(f_{\alpha}, \varepsilon) \).
+
+  Let \( x \) be a point of \( X \).
+  Choose \( i \) so that \( x \in U_i \).
+  Then
+  \begin{align*}
+  d(f(x), f(a_i)) < \delta,\\
+  d(f(a_i), f_{\alpha}(a_i)) < \delta,\\
+  d(f_{\alpha}(x), f_{\alpha}(x)) < \delta.
+  \end{align*}
+  Because this inequality holds for every \( x \in X \),
+  \[
+    \rho(f, f_{\alpha}) = \max \left\lbrace d(f(x), f_{\alpha}(x)) \right\rbrace < \varepsilon.
+  \]
+\end{proof}
+
+\begin{definition}
+  If \( (Y, d) \) is a metric space, a subset \( \mathcal{F} \) of \( \mathcal{C}(X, Y) \) is said to be \emph{pointwise bounded} under \( d \) if for each \( x \in X \), the subset
+  \[
+    \mathcal{F}_a = \left\lbrace f(a): f \in \mathcal{F} \right\rbrace
+  \]
+  of \( Y \) is bounded under \( d \).
+\end{definition}
+
+\begin{theorem}[Ascoli'theorem, classsical version]
+  Let \( X \) be a compact space;
+  let \( (\mathbb{R}^n, d) \) denote Euclidean space in either the square metric or the Euclidean metric;
+  give \( \mathcal{C}(X, \mathbb{R}^n) \) the corresponding uniform topology.
+  A subspace \( \mathcal{F} \) of \( \mathcal{C}(X, \mathbb{R}^n) \) has compact closure \( \iff \mathcal{F} \) is equicontinuous and pointwise bounded under \( d \).
+\end{theorem}
+\begin{proof}
+  TODO %TODO
+\end{proof}
+
+\subsection{Pointwise and Compact convergence}
+
+\begin{definition}
+  Given a point \( x \) of the set \( X \) and an open set \( U \) of the spacce \( Y \), let
+  \[
+    S(x, U) = \left\lbrace f: f \in Y^X \text{ and } f(x) \in U \right\rbrace.
+  \]
+  The set\textbf{s} \( S(x, U) \) are a subbasis for topology on \( Y^X \), which is called the \emph{topology of pointwise convergence}(or the \emph{point-open topology}).
+\end{definition}
+
+\begin{theorem}
+  A sequence \( f_n \) of functions converges to the function \( f \) in the topology of pointwise convergence \( \iff \) for each \( x \) in \( X \), the sequence \( f_n(x) \) of points of \( Y \) converges to the point \( f(x) \).
+\end{theorem}
+\begin{proof}
+  \( \implies \) \( f_n \to f \) in the topology of pointwise convergence implies that for any \( x \in X \), and any neighborhood \( U \) of \( f(x) \), there exists a \( N \in \mathbb{N}_+ \) such that \( f_n \in S(x, U) \) for all \( n > N \).
+  \( \impliedby \) it is clear.
+\end{proof}
+
+\begin{definition}
+  Let \( (Y, d) \) be a metric space;
+  let \( X \) be a topological space.
+  Given an element \( f \) of \( Y^X \), a compact subspace \( C \) of \( X \), and a number \( \varepsilon > 0 \), let \( B_C(f, \varepsilon) \) denote the set of all those element \( g \) of \( Y^X \) for which
+  \[
+    \sup \left\lbrace d(f(x), g(x)): x \in C \right\rbrace < \varepsilon.
+  \]
+  The set \( B_C(f, \varepsilon) \) form a basis for a topology on \( Y^X \).
+  It is called the \emph{topology of compact convergence}.
+\end{definition}
+
+\begin{theorem}
+  A sequence \( f_n: X \to Y \) of functions converges to the function \( f \) in the topology of compact convergence \( \iff \) for each compact subspace \( C \) of \( X \), the sequence \( \left. f_n \right\vert_C \) converges uniformly to \( \left. f \right\vert_C \).
+\end{theorem}
+
+\paragraph{Compactly generated space}
+
+\begin{definition}
+  A space \( X \) is said to be \emph{compactly generated} if it satisfies the following condition:
+  a set \( A \) is open in \( X \) if \( A \cap  C \) is open in \( C \) for each compact subspace \( C \) of \( X \).
+\end{definition}
+
+\begin{lemma}
+  If \( X \) is locally compact, or if \( X \) satisfies the first countability axiom, then \( X \) is compactly generated.
+\end{lemma}
+\begin{proof}
+  Suppose that \( X \) is locally compact.
+  Let \( A \cap C \) be open in \( C \) for every compact subspace \( C \) of \( X \).
+  We show \( A \) is open in \( X \).
+  Given \( x \in A \), choose a neighborhood \( U \) of \( x \) that lies in a compact subspace \( C \) of \( X \).
+  Since \( A \cap C \) is open in \( C \) by hypothesis, \( A \cap U \) is open in \( U \), and hence open in \( X \).
+  Then \( A \cap U \) is a neighborhood of \( x \) contained in \( A \), so that \( A \) is open in \( X \).
+
+  Suppose that \( x \) satisfies the first countability axiom.
+  If \( B \cap C \) is closed in \( C \) for each compact subspace \( C \) of \( X \).
+  We show that \( B \) is closed in \( X \).
+  Let \( x \) be a point of \( \overline{B} \);
+  We show that \( x \in B \).
+  Since \( X \) has a countable basis at \( x \), there is a sequence \( (x_n) \) of points of \( B \) converging to \( x \).
+  The subspace
+  \[
+    C = \left\lbrace x \right\rbrace \cup \left\lbrace x_n : n \in \mathbb{Z}_+ \right\rbrace
+  \]
+  is compact, so that \( B \cap C \) is by assumption closed in \( C \).
+  Since \( B \cap C \) contains \( x_n \) for every \( n \), it contains \( x \) as well.
+  Therefore, \( x \in B \), as desired.
+\end{proof}
+
+\begin{lemma}
+  If \( X \) is compactly generated, then a function \( f: X \to Y \) is continuous if for each compact subspace \( C \) of \( X \), the restricted function \( \left. f \right\vert_C \) is continuous.
+\end{lemma}
+\begin{proof}
+  Let \( V \) be an open subset of \( Y \);
+  we show that \( f^{-1}(V) \) is open in \( X \).
+  Given any subspace \( C \) of \( X \),
+  \[
+    f^{-1}(V) \cap C = (\left. f \right\vert_C)^{-1}(V).
+  \]
+  If \( C \) is compact, this set is open in \( C \) because \( \left. f \right\vert_C \) is continuous.
+  Since X is compactly generated, it follows that \( f^{-1}(V) \) is open in \( X \).
+\end{proof}
+
+\begin{theorem}
+  Let \( X \) be a compactly generated space: let \( (Y, d) \) be a metric space.
+  Then \( \mathcal{C}(X, Y) \) is closed in \( Y^X \) in the topology of compact convergence.
+\end{theorem}

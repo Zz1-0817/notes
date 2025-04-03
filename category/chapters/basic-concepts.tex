@@ -1106,14 +1106,15 @@ g'p \), 其中 \( g': D \to D' \) 唯一.
 \end{definition}
 
 \begin{lemma}
+  \label{lemma-uniqueness-representable-functor}
   如果函子 \( A: \mathcal{C}^{\operatorname{op}} \to \operatorname{Set} \) 可表,
   则其代表元 \( (X, \phi: h_{\mathcal{C}}(X) \xrightarrow{\sim} A) \)
   在至多差一个唯一同构的意义下是唯一的. 对函子 \( B: \mathcal{C} \to
   \operatorname{Set} \) 也有类似的性质.
 \end{lemma}
 \begin{proof}
-  由 \cref{theorem-Yoneda-lemma}, 对于任意 \( Y \in
-  \operatorname{Ob}(\mathcal{C}) \) 与 \( \psi: h_{\mathcal{C}}(Y) \to A \),
+  由 \cref{theorem-Yoneda-lemma} \( h_{\mathcal{C}} \) 全忠实, 对于任意 \( Y
+  \in \operatorname{Ob}(\mathcal{C}) \) 与 \( \psi: h_{\mathcal{C}}(Y) \to A \),
   存在唯一的 \( f \in \operatorname{Hom}_{\mathcal{C}}(Y, X) \) 使得下图交换
 % https://q.uiver.app/#q=WzAsMyxbMCwwLCJoX3tcXG1hdGhjYWx7Q319KFkpIl0sWzIsMCwiaF97XFxtYXRoY2Fse0N9fShYKSJdLFsxLDEsIkEiXSxbMCwyLCJcXHBzaSIsMl0sWzEsMiwiXFxwaGksIFxcc2ltZXEiXSxbMCwxLCJoX3tcXG1hdGhjYWx7Q319KGYpIl1d
 \[\begin{tikzcd}
@@ -1145,6 +1146,19 @@ g'p \), 其中 \( g': D \to D' \) 唯一.
   \xrightarrow{\sim} \operatorname{Hom}_{\mathcal{C}_1}(\cdot, G(\cdot)).
 \]
 一般称 \( G \) 是 \( F \) 的右伴随, \( F \) 是左伴随.
+% https://q.uiver.app/#q=WzAsNixbMCwxLCJcXG1hdGhjYWx7Q31fMV57XFxvcGVyYXRvcm5hbWV7b3B9fSBcXHRpbWVzIFxcbWF0aGNhbHtDfV8yIl0sWzIsMSwiXFxtYXRoY2Fse0N9XzFee1xcb3BlcmF0b3JuYW1le29wfX0gXFx0aW1lcyBcXG1hdGhjYWx7Q31fMiJdLFszLDAsIlxcb3BlcmF0b3JuYW1le0hvbX1fe1xcbWF0aGNhbHtDfV8yfShGKFhfMSksIFlfMSkiXSxbMywyLCJcXG9wZXJhdG9ybmFtZXtIb219X3tcXG1hdGhjYWx7Q31fMn0oRihYXzIpLCBZXzIpIl0sWzUsMCwiXFxvcGVyYXRvcm5hbWV7SG9tfV97XFxtYXRoY2Fse0N9XzF9KFhfMSwgRyhZXzEpKSJdLFs1LDIsIlxcb3BlcmF0b3JuYW1le0hvbX1fe1xcbWF0aGNhbHtDfV8xfShYXzIsIEcoWV8yKSkiXSxbMCwxLCJcXG9wZXJhdG9ybmFtZXtIb219X3tcXG1hdGhjYWx7Q31fMn0oRihcXGNkb3QpLCBcXGNkb3QpIiwwLHsiY3VydmUiOi0zfV0sWzAsMSwiXFxvcGVyYXRvcm5hbWV7SG9tfV97XFxtYXRoY2Fse0N9XzF9KFxcY2RvdCwgRyhcXGNkb3QpKSIsMix7ImN1cnZlIjozfV0sWzIsMywiXFxvcGVyYXRvcm5hbWV7SG9tfV97XFxtYXRoY2Fse0N9XzJ9KEYoXFxjZG90KSwgXFxjZG90KShmLCBnKSIsMV0sWzIsNCwiXFx2YXJwaGlfeyhYXzEsIFlfMSl9Il0sWzQsNSwiXFxvcGVyYXRvcm5hbWV7SG9tfV97XFxtYXRoY2Fse0N9XzF9KFxcY2RvdCwgRyhcXGNkb3QpKShmLGcpIiwxXSxbMyw1LCJcXHZhcnBoaV97KFhfMiwgWV8yKX0iLDJdLFs2LDcsIlxcdmFycGhpIiwxLHsic2hvcnRlbiI6eyJzb3VyY2UiOjIwLCJ0YXJnZXQiOjIwfX1dXQ==
+\[\begin{tikzcd}
+	&&& {\operatorname{Hom}_{\mathcal{C}_2}(F(X_1), Y_1)} && {\operatorname{Hom}_{\mathcal{C}_1}(X_1, G(Y_1))} \\
+	{\mathcal{C}_1^{\operatorname{op}} \times \mathcal{C}_2} && {\mathcal{C}_1^{\operatorname{op}} \times \mathcal{C}_2} \\
+	&&& {\operatorname{Hom}_{\mathcal{C}_2}(F(X_2), Y_2)} && {\operatorname{Hom}_{\mathcal{C}_1}(X_2, G(Y_2))}
+	\arrow["{\varphi_{(X_1, Y_1)}}", from=1-4, to=1-6]
+	\arrow["{\operatorname{Hom}_{\mathcal{C}_2}(F(\cdot), \cdot)(f, g)}"{description}, from=1-4, to=3-4]
+	\arrow["{\operatorname{Hom}_{\mathcal{C}_1}(\cdot, G(\cdot))(f,g)}"{description}, from=1-6, to=3-6]
+	\arrow[""{name=0, anchor=center, inner sep=0}, "{\operatorname{Hom}_{\mathcal{C}_2}(F(\cdot), \cdot)}", curve={height=-18pt}, from=2-1, to=2-3]
+	\arrow[""{name=1, anchor=center, inner sep=0}, "{\operatorname{Hom}_{\mathcal{C}_1}(\cdot, G(\cdot))}"', curve={height=18pt}, from=2-1, to=2-3]
+	\arrow["{\varphi_{(X_2, Y_2)}}"', from=3-4, to=3-6]
+	\arrow["\varphi"{description}, shorten <=5pt, shorten >=5pt, Rightarrow, from=0, to=1]
+\end{tikzcd}\]
 \end{definition}
 
 \begin{example}
@@ -1300,16 +1314,161 @@ g'p \), 其中 \( g': D \to D' \) 唯一.
 \end{tikzcd} \), 以下的映射互为逆
 \begin{align*}
   \left\lbrace \varphi: (F, G, \varphi) \text{是伴随对} \right\rbrace
-  &\leftrightarrow \left\lbrace (\eta, \varepsilon): \text{满足
-  \eqref{equation-identity-and-coidentity}} \right\rbrace\\
-  \varphi &\mapsto \left(\eta_X := \varphi(\operatorname{id}_{FX}), \varepsilon_Y :=
-  \varphi^{-1}(\operatorname{id}_{GY})\right),\\ \varphi(f) := Gf \circ \eta_X
+  &\leftrightarrow \left\lbrace \text{满足
+\eqref{equation-identity-and-coidentity} 的} (\eta, \varepsilon)
+  \text{的自然变换对} \right\rbrace\\ \varphi &\mapsto \left(\eta_X :=
+  \varphi(\operatorname{id}_{FX}), \varepsilon_Y :=
+\varphi^{-1}(\operatorname{id}_{GY})\right),\\ \varphi(f) := Gf \circ \eta_X
   &\mapsfrom (\eta, \varepsilon).
 \end{align*}
 因此伴随对亦可用资料 \( (F, G, \eta, \varepsilon) \) 描述, 这样不必涉及 \(
 \operatorname{Hom} \) 集.
 \end{proposition}
+\begin{proof}
+  给定 \( (\eta, \varepsilon) \) 满足 \eqref{equation-identity-and-coidentity}.
+  对任意 \( f: X_2 \to X_1, g: Y_1 \to Y_2, \phi: F(X_1) \to Y_1, \psi: X_1 \to
+  GY_1 \). 定义 \( \varphi(\phi) = G \phi \circ \eta_{X_1} \) 和 \( \xi(\psi) =
+  \varepsilon_{Y_1} \circ F \psi \). 我们首先验证 \( \varphi \)
+  确实是自然映射,也就是下图交换性
+% https://q.uiver.app/#q=WzAsNixbMCwwLCJcXG9wZXJhdG9ybmFtZXtIb219X3tcXG1hdGhjYWx7Q31fMn0oRihYXzEpLCBZXzEpIl0sWzAsMSwiXFxvcGVyYXRvcm5hbWV7SG9tfV97XFxtYXRoY2Fse0N9XzJ9KEYoWF8yKSwgWV8yKSJdLFsyLDAsIlxcb3BlcmF0b3JuYW1le0hvbX1fe1xcbWF0aGNhbHtDfV8xfShYXzEsIEcoWV8xKSkiXSxbMiwxLCJcXG9wZXJhdG9ybmFtZXtIb219X3tcXG1hdGhjYWx7Q31fMX0oWF8yLCBHKFlfMikpIl0sWzEsMSwiXFxvcGVyYXRvcm5hbWV7SG9tfV97XFxtYXRoY2Fse0N9XzF9KEdGWF8yLCBHWV8yKSJdLFsxLDAsIlxcb3BlcmF0b3JuYW1le0hvbX1fe1xcbWF0aGNhbHtDfV8xfShHRlhfMSwgR1lfMSkiXSxbMCwxLCJcXG9wZXJhdG9ybmFtZXtIb219X3tcXG1hdGhjYWx7Q31fMn0oRihcXGNkb3QpLCBcXGNkb3QpKGYsIGcpIiwxXSxbMiwzLCJcXG9wZXJhdG9ybmFtZXtIb219X3tcXG1hdGhjYWx7Q31fMX0oXFxjZG90LCBHKFxcY2RvdCkpKGYsZykiLDFdLFsxLDQsIkciLDJdLFs0LDMsIlxcZXRhXipfe1hfMn0iLDJdLFswLDUsIkciXSxbNSwyLCJcXGV0YV4qX3tYXzF9Il1d
+\[\begin{tikzcd}
+	{\operatorname{Hom}_{\mathcal{C}_2}(F(X_1), Y_1)} & {\operatorname{Hom}_{\mathcal{C}_1}(GFX_1, GY_1)} & {\operatorname{Hom}_{\mathcal{C}_1}(X_1, G(Y_1))} \\
+	{\operatorname{Hom}_{\mathcal{C}_2}(F(X_2), Y_2)} & {\operatorname{Hom}_{\mathcal{C}_1}(GFX_2, GY_2)} & {\operatorname{Hom}_{\mathcal{C}_1}(X_2, G(Y_2))}
+	\arrow["G", from=1-1, to=1-2]
+	\arrow["{\operatorname{Hom}_{\mathcal{C}_2}(F(\cdot), \cdot)(f, g)}"{description}, from=1-1, to=2-1]
+	\arrow["{\eta^*_{X_1}}", from=1-2, to=1-3]
+	\arrow["{\operatorname{Hom}_{\mathcal{C}_1}(\cdot, G(\cdot))(f,g)}"{description}, from=1-3, to=2-3]
+	\arrow["G"', from=2-1, to=2-2]
+	\arrow["{\eta^*_{X_2}}"', from=2-2, to=2-3]
+\end{tikzcd}\]
+只需知道下图右下方等式是否成立.
+% https://q.uiver.app/#q=WzAsNixbMCwwLCJcXHBoaSJdLFswLDEsImcgXFxwaGkgRihmKSJdLFsxLDEsIkcoZyBcXHBoaSBGKGYpKSJdLFsxLDAsIkdcXHBoaSJdLFsyLDAsIkcgXFxwaGkgXFxjaXJjIFxcZXRhX3tYXzF9Il0sWzIsMSwiRyhnKSAoRyBcXHBoaSBcXGNpcmMgXFxldGFfe1hfMX0pIGYgXFxtYXRob3B7PX1cXGxpbWl0c157P30gRyhnIFxccGhpIEYoZikpXFxjaXJjIFxcZXRhX3tYXzJ9Il0sWzAsMSwiIiwwLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoibWFwcyB0byJ9fX1dLFswLDMsIiIsMix7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Im1hcHMgdG8ifX19XSxbMSwyLCIiLDAseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJtYXBzIHRvIn19fV0sWzMsNCwiIiwyLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoibWFwcyB0byJ9fX1dLFs0LDUsIiIsMix7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Im1hcHMgdG8ifX19XSxbMiw1LCIiLDIseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJtYXBzIHRvIn19fV1d
+\[\begin{tikzcd}
+	\phi & {G\phi} & {G \phi \circ \eta_{X_1}} \\
+	{g \phi F(f)} & {G(g \phi F(f))} & {G(g) (G \phi \circ \eta_{X_1}) f \mathop{=}\limits^{?} G(g \phi F(f))\circ \eta_{X_2}}
+	\arrow[maps to, from=1-1, to=1-2]
+	\arrow[maps to, from=1-1, to=2-1]
+	\arrow[maps to, from=1-2, to=1-3]
+	\arrow[maps to, from=1-3, to=2-3]
+	\arrow[maps to, from=2-1, to=2-2]
+	\arrow[maps to, from=2-2, to=2-3]
+\end{tikzcd}\]
+由 \( \eta \) 的自然性, 我们有下面交换图
+% https://q.uiver.app/#q=WzAsNCxbMCwwLCJYXzEiXSxbMCwxLCJYXzIiXSxbMSwwLCJHRihYXzEpIl0sWzEsMSwiR0YoWF8yKSJdLFswLDEsImYiLDJdLFswLDIsIlxcZXRhX3tYXzF9Il0sWzEsMywiXFxldGFfe1hfMn0iLDJdLFsyLDMsIkdGKGYpIl1d
+\[\begin{tikzcd}
+	{X_1} & {GF(X_1)} \\
+	{X_2} & {GF(X_2)}
+	\arrow["{\eta_{X_1}}", from=1-1, to=1-2]
+	\arrow["f"', from=1-1, to=2-1]
+	\arrow["{GF(f)}", from=1-2, to=2-2]
+	\arrow["{\eta_{X_2}}"', from=2-1, to=2-2]
+\end{tikzcd}\]
+换言之, \( \eta_{X_2} \circ f = GF(f) \circ \eta_{X_1} \), 因此欲证等式成立.
+同理, \( \xi \) 亦是自然映射, 从而 \( \varphi, \xi \) 给出了函子的一对态射 \(
+\operatorname{Hom}_{\mathcal{C}_2}(F(\cdot), \cdot) \leftrightarrow
+\operatorname{Hom}_{\mathcal{C}_1}(\cdot, G(\cdot)) \).
 
+现证明 \( \xi \varphi = \operatorname{id} \). 首先 \( \xi \varphi(\phi) = \xi (G
+\phi \circ \eta_{X_1}) = \varepsilon_{Y_1} \circ FG \phi \circ F \eta_{X_1} \).
+\( \varepsilon \) 的自然性告诉我们下图交换
+% https://q.uiver.app/#q=WzAsNSxbMCwwLCJGWF8xIl0sWzEsMCwiRkdGWF8xIl0sWzIsMCwiRkdZXzEiXSxbMSwxLCJGWF8xIl0sWzIsMSwiWV8xIl0sWzEsMywiXFx2YXJlcHNpbG9uX3tGWF8xfSIsMl0sWzEsMiwiRkdcXHBoaSJdLFszLDQsIlxccGhpIiwyXSxbMiw0LCJcXHZhcmVwc2lsb25fe1lfMX0iXSxbMCwxLCJGIFxcZXRhX1giXV0=
+\[\begin{tikzcd}
+	{FX_1} & {FGFX_1} & {FGY_1} \\
+	& {FX_1} & {Y_1}
+	\arrow["{F \eta_X}", from=1-1, to=1-2]
+	\arrow["{FG\phi}", from=1-2, to=1-3]
+	\arrow["{\varepsilon_{FX_1}}"', from=1-2, to=2-2]
+	\arrow["{\varepsilon_{Y_1}}", from=1-3, to=2-3]
+	\arrow["\phi"', from=2-2, to=2-3]
+\end{tikzcd}\]
+这意味着 \( \xi \varphi (\phi) = \phi \circ \varepsilon_{FX_1} \circ F
+\eta_{X_1}  \), \eqref{equation-identity-and-coidentity} 告诉我们这就是 \( \phi \).
+同样地, \( \varphi \xi = \operatorname{id} \). 结合
+\eqref{equation-determine-adjoint-pair-isomorphism} 我们得到知道欲证双射成立.
+\end{proof}
+
+\begin{example}
+  忘却函子 \( \operatorname{Top} \to \operatorname{Set} \) 兼有左右伴随函子:
+  左伴随函子 \( L: \operatorname{Set} \to \operatorname{Top} \)
+  赋予一个集合离散拓扑, 而右伴随函子 \( R: \operatorname{Set} \to
+  \operatorname{Top} \) 赋予一个集合 \( S \) 平凡拓扑.
+\end{example}
+
+\subsection{伴随函子的逐点构造}
+
+以下结果表明伴随函子对变元 \( Y \in \operatorname{Ob}(\mathcal{C}_2) \)
+其实是一种 ``逐点'' 的构造. 为了方便, 我们置
+\[
+  A_Y := \operatorname{Hom}_{\mathcal{C}_2}(F(\cdot), Y) \in
+  \mathcal{C}_1^{\wedge} = \operatorname{Fct}(\mathcal{C}_1^{\operatorname{op}},
+  \operatorname{Set}).
+\]
+\begin{proposition}
+  函子 \( F: \mathcal{C}_1 \to \mathcal{C}_2 \) 有右伴随的充要条件是 \( A_Y \)
+  对每个 \( Y \) 皆可表; 类似地, \( G: \mathcal{C}_2 \to \mathcal{C}_1 \)
+  有左伴随的充要条件是 \( \operatorname{Hom}_{\mathcal{C}_1}(X, G(\cdot)) \)
+  对每个 \( X \) 皆可表.
+\end{proposition}
+\begin{proof}
+  这里只对 \( F \) 证明. \( \implies \) 是依定义的. 对 \( \impliedby \),
+  假设对每个 \( Y \), 都存在对象 \( GY \) 和同构 \( \psi_Y:
+  h_{\mathcal{C}_1}(GY) = \operatorname{Hom}_{\mathcal{C}_2}(\cdot, GY)
+  \xrightarrow{\sim} A_Y = \operatorname{Hom}(F(\cdot), Y) \).
+  \cref{lemma-uniqueness-representable-functor} 告诉我们, \( (GY, \psi_Y) \)
+  是差一个同构意义下唯一的. 对每个 \( Y \) 选定 \( (GY, \psi_Y) \). 任意态射 \(
+  h: Y \to Y' \) 诱导了 \( h_*: A_Y \to A_{Y'} \), 因而由
+  \cref{theorem-Yoneda-lemma} 知道 \( h_{\mathcal{C}} \)
+  全忠实, 从而存在唯一的 \( Gh: GY \to GY' \) 使得下图交换
+% https://q.uiver.app/#q=WzAsNCxbMCwwLCJoX3tcXG1hdGhjYWx7Q31fMX0oR1kpIl0sWzAsMSwiaF97XFxtYXRoY2Fse0N9XzF9KEdZJykiXSxbMSwwLCJBX1kiXSxbMSwxLCJBX3tZJ30iXSxbMCwxLCJoX3tcXG1hdGhjYWx7Q31fMX0oR2gpIiwyXSxbMiwzLCJoXyoiXSxbMCwyLCJcXHBzaV9ZLFxcc2ltIl0sWzEsMywiXFxwc2lfe1knfSxcXHNpbSIsMl1d
+\[\begin{tikzcd}
+	{h_{\mathcal{C}_1}(GY)} & {A_Y} \\
+	{h_{\mathcal{C}_1}(GY')} & {A_{Y'}}
+	\arrow["{\psi_Y,\sim}", from=1-1, to=1-2]
+	\arrow["{h_{\mathcal{C}_1}(Gh)}"', from=1-1, to=2-1]
+	\arrow["{h_*}", from=1-2, to=2-2]
+	\arrow["{\psi_{Y'},\sim}"', from=2-1, to=2-2]
+\end{tikzcd}\]
+因此, \( (GY, \psi_Y)_Y \) 给出了 \( G: \mathcal{C}_2 \to \mathcal{C}_1 \) 和 \(
+\varphi = \psi^{-1}: \operatorname{Hom}(F(\cdot), \cdot) \xrightarrow{\sim}
+\operatorname{Hom}(\cdot, G(\cdot)) \).
+\end{proof}
+
+\begin{proposition}
+  函子 \( F: \mathcal{C}_1 \to \mathcal{C}_2 \) 若有右伴随, 则在下述意义下唯一:
+  如果 \( (F, G, \varphi) \) 和 \( (F, G', \varphi') \) 是伴随对,
+  则存在唯一的同构 \( \psi: G \xrightarrow{\sim} G' \) 使得对每个 \( Y \in
+  \operatorname{Ob}(\mathcal{C}_2) \), 下图交换
+% https://q.uiver.app/#q=WzAsMyxbMCwwLCJoX3tcXG1hdGhjYWx7Q31fMX0oR1kpIl0sWzIsMCwiaF97XFxtYXRoY2Fse0N9XzF9KEcnWSkiXSxbMSwxLCJBX1kiXSxbMCwyLCJcXHZhcnBoaV9ZIiwyXSxbMSwyLCJcXHZhcnBoaSdfWSJdLFswLDEsImhfe1xcbWF0aGNhbHtDfV8xfShcXHBzaV9ZKSJdXQ==
+\[\begin{tikzcd}
+	{h_{\mathcal{C}_1}(GY)} && {h_{\mathcal{C}_1}(G'Y)} \\
+	& {A_Y}
+	\arrow["{h_{\mathcal{C}_1}(\psi_Y)}", from=1-1, to=1-3]
+	\arrow["{\varphi_Y}"', from=1-1, to=2-2]
+	\arrow["{\varphi'_Y}", from=1-3, to=2-2]
+\end{tikzcd}\]
+左伴随也满足类似的唯一性.
+\end{proposition}
+
+\begin{proposition}
+  考虑函子 \( % https://q.uiver.app/#q=WzAsMyxbMCwwLCJcXG1hdGhjYWx7Q31fMSJdLFsyLDAsIlxcbWF0aGNhbHtDfV8yIl0sWzQsMCwiXFxtYXRoY2Fse0N9XzMiXSxbMCwxLCJGIiwwLHsiY3VydmUiOi0yfV0sWzEsMiwiRiciLDAseyJjdXJ2ZSI6LTJ9XSxbMiwxLCJHJyIsMCx7ImN1cnZlIjotMn1dLFsxLDAsIkciLDAseyJjdXJ2ZSI6LTJ9XV0=
+\begin{tikzcd}
+	{\mathcal{C}_1} && {\mathcal{C}_2} && {\mathcal{C}_3}
+	\arrow["F", curve={height=-12pt}, from=1-1, to=1-3]
+	\arrow["G", curve={height=-12pt}, from=1-3, to=1-1]
+	\arrow["{F'}", curve={height=-12pt}, from=1-3, to=1-5]
+	\arrow["{G'}", curve={height=-12pt}, from=1-5, to=1-3]
+\end{tikzcd} \), 如果 \( (F, G, \eta, \varepsilon), (F', G', \eta',
+\varepsilon') \) 是伴随对, 则 \( (F'F, GG', G\eta' F \circ \eta, \varepsilon'
+\circ F' \varepsilon G') \) 亦然, 其中 \( \circ \) 是纵合成.
+\end{proposition}
+\begin{proof}
+  考虑下面同构的合成
+  \[
+    \operatorname{Hom}_{\mathcal{C}_3}(F' F(\cdot), \cdot) \xrightarrow{\sim}
+    \operatorname{Hom}_{\mathcal{C}_2}(F(\cdot), G'(\cdot)) \xrightarrow{\sim}
+    \operatorname{Hom}_{\mathcal{C}_1}(\cdot, GG'(\cdot)).
+  \]
+\end{proof}
 
 \section{Ab-范畴}
 给定一个范畴 \( \mathcal{A} \).

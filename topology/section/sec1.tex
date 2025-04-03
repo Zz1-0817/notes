@@ -1,0 +1,959 @@
+\section{Topological spaces and Continuous maps}
+
+\subsection{Topology spaces}
+
+\begin{definition}
+  A \emph{topology} on a set \( X \) is a nonempty collection  of subsets of \(
+  X \), \( \mathcal{T} \subseteq \mathcal{P}(X) \), called \emph{open set}, such
+  that
+  \begin{enumerate}
+    \item \( \varnothing, X \in \mathcal{T} \);
+    \item if \( U_1, U_2 \in \mathcal{T} \), then \( U_1 \cap U_2 \in
+      \mathcal{T} \);
+    \item if \( I \subseteq \mathcal{T} \), then \( \cup_{U \in I} U \in
+      \mathcal{T} \).
+  \end{enumerate}
+  In such case, \( (X, \mathcal{T}) \) is said to be topological space.
+\end{definition}
+\begin{proposition}
+  Let \( \mathcal{T}_\alpha \) be any topology on \( X(X \neq \emptyset) \),
+  then \( \bigcap_\alpha \mathcal{T}_\alpha \).
+\end{proposition}
+
+\begin{example}
+  \begin{enumerate}
+    \item If \( X \) is any set, the collection of all subsets of \( X \) is a
+      topology on \( X \); it is called the \emph{discrete topology}.
+    \item The collection consisting of \( X \) and \( \emptyset \) only is also
+      a topology on \( X \); we shall call it the \emph{trivial topology}
+  \end{enumerate}
+\end{example}
+
+\begin{example}
+  Let \( X \) be a set;
+  \begin{enumerate}
+    \item Let \( \mathcal{T}_f \) be the collection of all subsets \( U \) of \(
+      X \) such that \( X \setminus U \) either is finite or is all of \( X \).
+      Then \( \mathcal{T}_f \) is a topology on \( X \), called the \emph{finite
+      complement topology}.
+    \item Let \( \mathcal{T}_c \) be the collection of all subsets \( U \) of \(
+      X \) such that \( X \backslash U \) either is countable or is all of \( X
+      \). Then \( \mathcal{T}_c \) is a topology on \( X \), called the
+      \emph{countable complement topology}.
+  \end{enumerate}
+\end{example}
+
+\begin{definition}
+  Suppose that \( \mathcal{T} \) and \( \mathcal{T}' \)  are two topologies on a
+  given set \( X \).
+  \begin{enumerate}
+    \item If \( \mathcal{T}' \supseteq \mathcal{T} \), we say that \(
+      \mathcal{T}' \) is \emph{finer} than \( \mathcal{T} \); if \( \mathcal{T}'
+      \) properly contains \( \mathcal{T} \), we say that \( \mathcal{T}' \) is
+      \emph{strictly finer} than \( \mathcal{T} \).
+    \item We also say that \( \mathcal{T} \) is \emph{coarser} than \(
+      \mathcal{T}' \), or \emph{strictly coarser}, in these two respective
+      situations.
+    \item We say \( \mathcal{T} \) is \emph{comparable} with \( \mathcal{T}' \)
+      if either \( \mathcal{T}' \supseteq \mathcal{T} \) or \( \mathcal{T}
+      \supseteq \mathcal{T}' \).
+  \end{enumerate}
+\end{definition}
+
+\subsection{Closed set}
+
+\begin{definition}
+  A subset of a topological space is said to be \emph{closed} if its complement
+  is open.
+\end{definition}
+
+\begin{example}
+  \begin{enumerate}
+    \item Closed interval \( [a, b] \) in \( \mathbb{R} \).
+    \item \( \{ (x, y): x \geq 0 \textmd{ and } y \geq 0 \} \subset \mathbb{R}^2 \)
+    \item any set in discrete space.
+  \end{enumerate}
+\end{example}
+
+\begin{theorem}
+  Let \( X \) be a topological space. Then
+  \begin{enumerate}
+    \item \( \emptyset \) and \( X \) are closed.
+    \item Arbitrary intersections of closed sets are closed.
+    \item Finite unons of closed sets are closed.
+  \end{enumerate}
+\end{theorem}
+
+\subsection{Interior, closure and limit point}
+
+\begin{definition}
+  Given a subset \( A \) of a topological space \( X \),
+  \begin{enumerate}
+    \item the \emph{interior} of \( A \) is defined as the union of all open
+      sets contained in \( A \).
+    \item the \emph{closure} of \( A \) is defined as the intersection of all
+      closed sets containing \( A \).
+  \end{enumerate}
+\end{definition}
+
+\begin{proposition}
+  \begin{enumerate}
+    \item A set is open \( \iff \) it is equal to its interior.
+    \item A set is closed \( \iff \) it is equal to its closure.
+  \end{enumerate}
+\end{proposition}
+
+\begin{itemize}
+  \item a set \( A \) \emph{intersects} a set \( B \) if \( A \cap B \neq
+    \emptyset \).
+  \item a \emph{neighborhood} of \( x \) is often referred to an open set
+    containing \( x \) or a set containing an open set containing \( x \), and
+    we use the \underline{former} one in this note.
+\end{itemize}
+
+\begin{theorem}
+  Let \( A \) be a subset of the topological space \( X \).
+  \begin{enumerate}
+    \item Then \( x \in \overline{A} \iff \) every neighborhood of \( x \)
+      intersects A.
+    \item Supposing the topology of \( X \) is given by a basis, then \( x \in
+      \overline{A} \iff \) every basis element \( B \) containing \( x \)
+      intersects \( A \).
+  \end{enumerate}
+\end{theorem}
+
+\begin{definition}
+  If \( A \) is a subset of the topological space \( X \) and if \( x \) is a
+  point of \( X \), we say that \( x \) is a \emph{limit point} of \( A \) if
+  every neighborhood of \( x \) intersects \( A \) in some point other than \( x
+  \).
+\end{definition}
+
+\begin{theorem}
+  Let \( A \) be a subset of the topological space \( X \);
+  let \( A' \) be the set of all limit points of \( A \).
+  Then
+  \[
+    \overline{A} = A \cup A'.
+  \]
+\end{theorem}
+
+\begin{corollary}
+  \begin{enumerate}
+    \item A subset of topological space is closed \( \iff \) it contains all its
+      limit points.
+    \item \( \overline{A} = \overline{\overline{A}} \).
+  \end{enumerate}
+\end{corollary}
+
+\paragraph{Basis and Subbase}
+
+\begin{definition}
+  If \( X \) is a set, a \emph{basis} for a topology on \( X \) is a collection
+  \( \mathcal{B} \) of subsets of \( X \), called \emph{basis elements}, such
+  that
+  \begin{enumerate}
+    \item For each \( x \in X \), there is at least one basis element \( B \)
+      containing \( x \).
+    \item If \( x \) belongs to the intersection of two basis elements \( B_1 \)
+      and \( B_2 \), then there is a basis element \( B_3 \) containing \( x \)
+      such that \( B_3 \subseteq B_1 \cap B_2 \).
+  \end{enumerate}
+  \emph{topology \( \mathcal{T} \) generated by \( \mathcal{B} \)} is endowing
+  \( X \) a topological structure by saying \( U \subseteq X \)  open in \( X
+  \), if for each \( x \in U \) , there is a basis element \( B \in \mathcal{B}
+  \) such that \( x \in B \) and \( B \subseteq U \).
+\end{definition}
+
+\begin{example}
+  \begin{enumerate}
+    \item All circular(interiors of circles) in the plane.
+    \item All rectangular regions(interior of rectangles) in the plane.
+    \item All one-point subsets in the discrete topology on a set.
+  \end{enumerate}
+\end{example}
+
+\begin{lemma}
+  \begin{enumerate}
+    \item Let \( X \) be a set and \( \mathcal{B} \) be a basis for a topology
+      \( \mathcal{T} \) on \( X \). Then \( \mathcal{T} \) equals the collection
+      of all unions of elements of \( \mathcal{B} \).
+    \item Let \( X \) be a topological space. Suppose that \( \mathcal{C} \) is
+      a collection of open sets of \( X \) such that for each open set \( U \)
+      of \( X \) and each \( x \) in \( U \), there is an element \( C \) of \(
+      \mathcal{C} \) such that \( x \in C \subseteq U \). Then \( \mathcal{C} \)
+      is a basis for the topology of \( X \).
+  \end{enumerate}
+\end{lemma}
+
+\begin{proposition}
+  Let \( \mathcal{B} \) and \( \mathcal{B}' \) be bases for the topologies \(
+  \mathcal{T} \) and \( \mathcal{T}' \), respectively, on \( X \). Then the
+  following are equivalent:
+  \begin{enumerate}
+    \item \( \mathcal{T}' \) is finer than \( \mathcal{T} \).
+    \item For each \( x \in X \), and each basis element \( B \in \mathcal{B} \)
+      containing \( x \), there is a basis element \( B' \in \mathcal{B}' \)
+      such that \( x \in B' \subseteq B \)
+  \end{enumerate}
+\end{proposition}
+
+\begin{example}
+  We now define three topologies on the real line \( \mathbb{R} \):
+  \begin{enumerate}
+    \item \emph{standard topology}, generated by basis $\mathcal{B} = (a, b) =
+      \{ x: a < x < b \}$
+    \item \emph{lower limit topology}, generated by basis $\mathcal{B'} = [a, b)
+      = \{ x: a \leq x < b \}$. We denote it by \( \mathbb{R}_l \).
+    \item \emph{$K$-topology}. Let $K = \{ 1 / n: n \in \mathbb{Z}^+ \}$, and it
+      is generated by basis $\mathcal{B''} = (a, b) \setminus K$. We denote it
+      by \( \mathbb{R}_K \).
+  \end{enumerate}
+\end{example}
+
+\begin{proposition}
+  The topoligies of \( \mathbb{R}_l \) and \( \mathbb{R}_K \) are strictly finer
+  than the standard topology on \( \mathbb{R} \), but are not comparable with
+  one another.
+\end{proposition}
+
+\paragraph{Subbase}
+
+\begin{definition}
+  Let \( X \) be a topological space, a collection \( \mathcal{S} \) of open sets is said to be a \emph{subbase} of \( X \), if
+  \[
+    \mathcal{B} := \left\lbrace B \mid B = S_1 \cap \cdots \cap S_m, \textmd{ where } S_i \in \mathcal{S}, i = 1, 2, \cdots, m, m \in \mathbb{N}^+ \right\rbrace
+  \]
+  is a base of \( X \).
+\end{definition}
+
+\subsection{Continuous functions}
+
+\begin{definition}
+  A function \( f: X \to Y \) is said to be \emph{continuous} if for each open subset \( V \) of \( Y \), the set \( f^{-1}(V) \) is an open subset of \( X \).
+\end{definition}
+\begin{remark}
+  Note that
+  \begin{enumerate}
+    \item \( f(X \cup Y) = f(X) \cup f(Y), f^{-1}(X \cup Y) = f^{-1}(X) \cup f^{-1}(Y) \) and \( f^{-1}(X \cap Y) = f^{-1}(X) \cap f^{-1}(Y) \)  but \( f(X \cap Y) \subseteq f(X) \cap f(Y) \).
+    \item \( ff^{-1}(B) \subseteq B \) and \( f^{-1}f(A) \supseteq A \).
+  \end{enumerate}
+\end{remark}
+
+\begin{theorem}
+  The following are equivalent:
+  \begin{enumerate}
+    \item \( f: X \to Y \) is a continuous map.
+    \item for every subset \( A \) of \( X \), one has \( f(\overline{A}) \subseteq \overline{f(A)} \).
+    \item for every closed set \( B \) of \( Y \), the set \( f^{-1}(B) \) is closed in \( X \).
+    \item for each \( x \in X \) and each neighborhood \( V \) of \( f(x) \), there is a neighborhood \( U \) of \( x \) such that \( f(U) \subseteq V \).
+  \end{enumerate}
+\end{theorem}
+\begin{proof}
+  (1) \( \implies \) (2): let \( x \in A \) and let \( V \) be a neighborhood of \( f(x) \).
+  Then \( f^{-1}(V) \) is an open set of \( X \) containing \( x \); it must intersect \( A \) in some point \( y \).
+  Then \( V \) intersects \( f(A) \) in the point \( f(y) \), so that \( f(x) \in \overline{f(A)} \).
+
+  (2) \( \implies \) (3): let \( A = f^{-1}(B) \), then if \( x \in \overline{A} \),
+  \[
+    f(x) \in f(\overline{A}) \subseteq \overline{f(A)} \subseteq \overline{B} = B.
+  \]
+  so that \( x \in f^{-1}(B) = A \), thus \( \overline{A} \subseteq A \).
+\end{proof}
+
+\begin{definition}
+  let \( f: X \to Y \) be a bijection.
+  If both the function \( f \) and the inverse function \( f^{-1}: Y \to X \) are continuous, then \( f \) is called a \emph{homeomorphism}.
+\end{definition}
+
+\noindent An important example is
+\begin{example}[stereographic projection]
+\end{example}
+
+\paragraph{Constructing continuous functions}
+
+\begin{theorem}
+  Let \( X, Y \) and \( Z \) be topological spaces.
+  \begin{enumerate}
+    \item (constant function) if \( f: X \to Y \) maps all of \( X \) into the single point \( y_0 \) of \( Y \), then \( f \) is continuous.
+    \item (inclusion) if \( A \) is a subspace of \( X \), the inclusion function \( j: A \to X \) is continuous.
+    \item (composites) if \( f: X \to Y \) and \( g: Y \to Z \) are continuous, then the map \( g \circ f: X \to Z \) is continuous.
+    \item (restricting the domain) if \( f: X \to Y \) is continuous, and if \( A \) is a subspace of \( X \), then the restricted function \( \left. f \right\vert_A: A \to Y \) is continuous.
+    \item (restricting or expanding the range) let \( f: X \to Y \) be continuous.
+      If \( Z \) is  a subspace of \( Y \) containing the image set \( f(X) \), then the function \( g: X \to Z \) obtained by restricting the range of \( f \) is continuous.
+      If \( Z \) is a space having \( Y \) as a subspace, then the function \( h: X \to Z \) obtained by expanding the range of \( f \) is continuous.
+    \item (local formulation of continuity) the map \( f: X \to Y \) is continuous if \( X \) can be written as the union of open sets \( U_\alpha \) such that \( \left. f \right\vert_{U_\alpha} \) is continuous for each \( \alpha \).
+  \end{enumerate}
+\end{theorem}
+\begin{sketchproof}
+  (6) by hypothesis, we can write \( X \) as a union of open sets \( U_\alpha \), such that \( \left. f \right\vert_{U_\alpha} \) is continuous for each \( \alpha \).
+    Let \( V \) be an open set in \( Y \).
+    Then
+    \[
+      f^{-1}(V) \cap U_\alpha = ( \left. f \right\vert_{U_\alpha} )^{-1}(V),
+    \]
+    hence \( f^{-1}(V) = \bigcup_\alpha(f^{-1}(V) \cap U_\alpha) \).
+\end{sketchproof}
+
+\begin{theorem}[The pasting lemma]
+  Let \( X = A \cup B \), where \( A \) and \( B \) are closed or open in \( X \).
+  Let \( f: A \to Y \) and \( g: B \to Y \) be continuous.
+  If \( f(x) = g(x) \) for every \( x \in A \cap B \), then \( f \) and \( g \) combine to give a continuous function \( h: X \to Y \), defined by setting \( h(x) = f(x) \) if \( x \in A \), and \( h(x) = g(x) \) if \( x \in B \).
+\end{theorem}
+
+\begin{theorem}[maps into products]
+  Let \( f: A \to X \times Y \) be given by the equation
+  \[
+    f(a) = (f_1(a), f_2(a)).
+  \]
+  Then \( f \) is continuous \( \iff \) the functions
+  \[
+    f_1: A \to X \text{ and } f_2: A \to Y
+  \]
+  are continuous.
+  The maps \( f_1 \) and \( f_2 \) are called the \emph{coordinate functions} of \( f \).
+\end{theorem}
+\begin{sketchproof}
+  \( \impliedby \): a point \( a \) is in \( f^{-1}(U \times V) \iff f(a) \in U \times V \iff f_1(a) \in U \)  and \( f_2(a) \in V \).
+  Therefore,
+  \[
+    f^{-1}(U \times V) = f^{-1}_1(U) \cap f^{-1}_2(V).
+  \]
+\end{sketchproof}
+
+\subsection{The order topology}
+
+Suppose that \( X \) is a set having a simple order(total order) relation \( < \).
+Given elements \( a \) and \( b \) of \( X \) such that \( a < b \), there are four subsets of \( X \) that are called the \emph{intervals} determined by \( a \) and \( b \).
+They are the following
+\begin{align*}
+  (a, b) = \left\lbrace x: a < x < b \right\rbrace,\\
+  (a, b] = \left\lbrace x: a < x \leq b \right\rbrace,\\
+  [a, b) = \left\lbrace x: a \leq x < b \right\rbrace,\\
+  [a, b] = \left\lbrace x: a \leq x \leq b \right\rbrace.
+.\end{align*}
+A set of the first type is called an \emph{open interval} in \( X \), a set the last type is called a \emph{closed interval} in \( X \), and sets of the second and third types are called \emph{half-open intervals}.
+
+\begin{definition}
+  Let \( X \) be aset with a simple order relation;
+  assume \( X \) has more than one element.
+  Let \( \mathcal{B} \) be the collection of all sets of the following types
+  \begin{enumerate}
+    \item all open intervals \( (a, b) \) in \( X \).
+    \item all intervals of the form \( [a_0, b) \), where \( a_0 \) is the smallest element of \( X \).
+    \item all intervals of the form \( (a, b_0] \), where \( b_0 \) is the largest element of \( X \).
+  \end{enumerate}
+  The collection \( \mathcal{B} \) is a basis for a topology on \( X \), which is called the \emph{order topology}.
+\end{definition}
+\begin{remark}
+  If \( X \) has no smallest element, there are no sets of type (2), and if \( X \) has no largest element, there are no sets of type (3).
+\end{remark}
+
+\begin{example}
+  The standard topology on \( \mathbb{R} \), as defined before, is just the order topology derived from the usual order on \( \mathbb{R} \).
+\end{example}
+
+\begin{definition}
+  If \( X \) is an ordered set, and \( a \) is an element of \( X \), there are four subsets of \( X \) that are called the \emph{rays} determined by \( a \).
+  They are the following
+  \begin{align*}
+    (a, +\infty) = \left\lbrace x: x > a \right\rbrace,\\
+    (-\infty, a) = \left\lbrace x: x < a \right\rbrace,\\
+    [a, +\infty) = \left\lbrace x: x \geq a \right\rbrace,\\
+    (-\infty, a] = \left\lbrace x: x \leq a \right\rbrace
+  .\end{align*}
+  Sets of the first two types are called \emph{open rays}, and sets of the last two types are called closed rays.
+\end{definition}
+
+\subsection{Initial topology}
+
+\paragraph{The subspace topology}
+
+\begin{definition}[subspace topology]
+  Let \( (X, \mathcal{T}) \) be a topological space with a subset \( A \subseteq X \), then
+  \[
+    \mathcal{T}' := \left\lbrace U \cap A \mid U \in \mathcal{T} \right\rbrace
+  \]
+  is a topology on \( A \), which is said to be the \emph{subspace topology} of \( A \subseteq X \).
+\end{definition}
+
+Recall that: if \( Y \) is a subspace topology of \( X \), we say that a set \( U \) is \emph{open in} \( Y \) if it belongs to the topology of \( Y \).
+
+\begin{lemma}
+  \begin{enumerate}
+    \item if \( \mathcal{B} \) is a basis for the topology of \( X \) then the collection
+      \[
+        \mathcal{B}_Y = \left\lbrace B \cap Y: B \in \mathcal{B} \right\rbrace
+      \]
+      is a basis for the subspace topology on \( Y \).
+    \item let \( Y \) be a subspace of \( X \).
+      If \( U \) is open in \( Y \) and \( Y \) is open in \( X \), then \( U \) is open in \( X \).
+  \end{enumerate}
+\end{lemma}
+
+\begin{theorem}
+  Let \( X \) be an ordered set in the order topology;
+  let \( Y \) be a subset of \( X \) that is convex in \( X \).
+  Then the order topology on \( Y \) is the same as the topology \( Y \) inherits as a subspace of \( X \).
+\end{theorem}
+\begin{proof}
+  % TODO
+  TODO
+\end{proof}
+
+\begin{theorem}[Universal property of subspace topology]
+  Suppose \( f: X \to Y \) is continuous, and let \( A \subseteq X \) have the subspace topology.
+  Then the restriction \( \left. f \right\vert_{A}: A \to Y \) is continuous.
+  \[\begin{tikzcd}
+    X \\
+    A & Y
+    \arrow["\iota", from=2-1, to=1-1]
+    \arrow["f", from=1-1, to=2-2]
+    \arrow["{\left. f \right\vert_A}"', from=2-1, to=2-2]
+  \end{tikzcd}\]
+\end{theorem}
+
+\paragraph{The product topology on \( X \times Y \)}
+
+\begin{definition}
+  Let \( X \) and \( Y \) be topological spaces.
+  The \emph{product topology} on \( X \times Y \) is the topology have as basis the collection \( \mathcal{B} \) of all sets of the form \( U \times V \), where \( U \) is an open subset of \( X \) and \( V \) is an open subset of \( Y \).
+\end{definition}
+
+\begin{theorem}
+  If \( \mathcal{B} \) is a basis for the topology of \( X \) and \( \mathcal{C} \) is a basis for the topology of \( Y \), then the collection
+  \[
+    \mathcal{D} = \left\lbrace B \times C: B \in \mathcal{B} \text{ and } C \in \mathcal{C} \right\rbrace
+  \]
+  is a basis for the topology of \( X \times Y \).
+\end{theorem}
+
+\begin{definition}
+  Let \( \pi_1: X \times Y \to X \) be defined by the equation
+  \[
+    \pi_1(x, y) = x;
+  \]
+  let \( \pi_2: X \times Y \to Y \) be defined by the equation
+  \[
+    \pi_2(x, y) = y.
+  \]
+  The maps \( \pi_1 \) and \( \pi_2 \) are called the projections of \( X \times Y \) onto its first and second factors, respectively.
+\end{definition}
+
+\begin{theorem}
+  The collction
+  \[
+    \mathcal{S} = \left\lbrace \pi_1^{-1}(U): U \text{ open in } X \right\rbrace \cup \left\lbrace \pi_2^{-1}(V): V \text{ open in } Y \right\rbrace.
+  \]
+  is a subbasis of \( X \times Y \).
+\end{theorem}
+
+\begin{theorem}
+  If \( A \) is a subspace of \( X \) and \( B \) is a subspace of \( Y \), then the product topology on \( A \times B \) is the same as the topology \( A \times B \) inherit as a subspace of \( X \times Y \).
+\end{theorem}
+
+\paragraph{The product topology}
+
+\begin{definition}
+  Let \( J \) be an index set.
+  Given a set \( X \), we define  a \( J \)-\emph{tuple} of elements of \( X \) to be a function \( x: J \to X \).
+  If \( \alpha \) is an element of \( J \), we often denote the value of \( x \) at \( \alpha \) by \( x_\alpha \) rather than \( x(\alpha) \);
+  we call it the \( \alpha \)th \emph{coordinate} of \( x \).
+  And we often denote the function \( x \) itself by the symbol
+  \[
+    (x_\alpha)_{\alpha \in J}.
+  \]
+\end{definition}
+
+\begin{definition}
+  Let \( \left\lbrace A_\alpha \right\rbrace_{\alpha \in J} \) be an indexed family of sets;
+  let \( X = \bigcup_{\alpha \in J} A_{\alpha} \).
+  The \emph{Cartesian product} of this indexed family, denoted by
+  \[
+    \prod_{\alpha \in J} A_{\alpha},
+  \]
+  is defined to be the set of all \( J \)-tuples \( (x_\alpha)_{\alpha \in J} \) of elements of \( X \) such that \( x_\alpha \in A_\alpha \) for each \( \alpha \in J \).
+  That is, it is the set of all functions
+  \[
+    x: J \to \bigcup_{\alpha \in J}A_{\alpha}
+  \]
+  such that \( x(\alpha) \in A_\alpha \) for each \( \alpha \in J \).
+\end{definition}
+
+\begin{definition}
+  Let \( (X_\alpha, \mathcal{T}_\alpha) \) be a collection of topological space, and
+  \[
+    \mathcal{B} : =\left\lbrace \prod_\alpha U_\alpha \mid U_\alpha \in \mathcal{T}_\alpha \right\rbrace
+  \]
+  The topology, with the base \( \mathcal{B} \), is said to be the \emph{box topology} of \( \prod_\alpha X_\alpha \).
+\end{definition}
+
+Now we generalize the subbasis formulation of the definition.
+Let
+\[
+  \pi_\beta: \prod_{\alpha \in J} X_\alpha \to X_{\beta}
+\]
+be the function assigning to each element of the product space its \( \beta \)th coordinate,
+\[
+  \pi_\beta((x_\alpha)_{\alpha \in J}) = x_\beta.
+\]
+it is called the \emph{projection mapping} associated with the index \( \beta \).
+
+\begin{definition}
+  Let \( (X_\alpha, \mathcal{T}_\alpha) \) be a collection of topological space, and
+  \[
+    S := \bigcup_\alpha \left\lbrace \pi^{-1}_\alpha(U_\alpha) \mid U_\alpha \in \mathcal{T}_\alpha \right\rbrace, \textmd{ where } \pi_\alpha \textmd{ is the projection } \pi_\alpha: \prod_\alpha X_\alpha \to X_\alpha.
+  \]
+  The topology, generated by the subbase \( S \) of \( \prod_\alpha X_\alpha \), is said to be the \emph{product topology} of \( \prod_\alpha X_\alpha \).
+\end{definition}
+
+\begin{theorem}[Comparison of the box and product topologies]
+  \begin{itemize}
+    \item The box topology on \( \prod X_\alpha \) has as basis all sets of the form \( \prod U_\alpha \), where \( U_\alpha \) is open in \( X_\alpha \) for each \( \alpha \).
+    \item The product topology on \( \prod X_\alpha \) has as basis all sets of the form \( \prod U_\alpha \), where \( U_\alpha \) is open in \( X_\alpha \) for each \( \alpha \) and \( U_\alpha \) equals \( X_\alpha \) except for finitgly many values of \( \alpha \).
+  \end{itemize}
+\end{theorem}
+
+\noindent Theorems holding for both the product topology and the box topology include:
+
+\begin{theorem}
+  Let \( A_\alpha \) be a subspace of \( X_\alpha \), for each \( \alpha \in J \).
+  Then \( \prod A_\alpha \) is a subspace of \( \prod X_\alpha \) if both products are given the box topology, or if both products are given the product topology.
+\end{theorem}
+
+\begin{theorem}
+  Let \( \left\lbrace X_\alpha \right\rbrace \) be an indexed family of spaces;
+  let \( A_\alpha \subseteq X_\alpha \) for each \( \alpha \).
+  If \( \prod X_\alpha \) is given either the product or the box topology, then
+  \[
+    \prod \overline{A}_\alpha = \overline{\prod A_\alpha}.
+  \]
+\end{theorem}
+\begin{proof}
+  Let \( x = (x_\alpha) \) be a point of \( \prod \overline{A}_\alpha \); let \( U = \prod U_\alpha \) be a basis element for either the box or the product topology that contains \( x \).
+  Since \( x_\alpha \in \overline{A}_\alpha \), we can choose a point \( y_\alpha \in U_\alpha \cap A_\alpha \) for each \( \alpha \).
+  Then \( y = (y_\alpha) \) belongs to both \( U \) and \( \prod A_\alpha \).
+  Since \( U \) is arbitrary, it foolows that \( x \) belongs to the closure of \( \prod A_\alpha \).
+
+  Conversely, suppose \( x = (x_\alpha) \) lies in the closure of \( \prod A_\alpha \), in either topology.
+  We show that for any given index \( \beta \), we have \( x_\beta \in \overline{A}_\beta \).
+  Since \( \pi_\beta^{-1}(V_\beta) \) is open in \( \prod X_{\alpha} \) in either topology, it contains a point \( y = (y_\alpha) \) of \( \prod A_\alpha \).
+  Then \( y_\beta \) belongs to \( V_\beta \cap A_\beta \).
+  It follows that \( x_\beta \in \overline{A}_\beta \).
+\end{proof}
+
+\noindent Here is a theorem that does not hold if \( \prod X_\alpha \) is given the box topology:
+\begin{theorem}[Universal property]
+  Let \( f: A \to \prod_{\alpha \in J} X_\alpha  \) be given by the equation
+  \[
+    f(a) = (f_\alpha(a))_{\alpha \in J},
+  \]
+  where \( f_\alpha: A \to X_\alpha \) for each \( \alpha \).
+  Let \( \prod X_\alpha \) have the product topology.
+  Then the function \( f \) is continuous \( \iff \) each function \( f_\alpha \) is continuous.
+\end{theorem}
+
+\begin{example}
+  Consider \( \mathbb{R}^\omega \), teh countably infinite product of \( \mathbb{R} \) with itself.
+  Recall that
+  \[
+    \mathbb{R}^\omega = \prod_{n \in \mathbb{Z}_+} X_n,
+  \]
+  where \( X_n = \mathbb{R} \) for each \( n \).
+  Let us define a function \( f: \mathbb{R} \to \mathbb{R}^\omega \) by the equation
+  \[
+    f(t) = (t, t, t, \cdots);
+  \]
+  the \( n \)th coordinate function of \( f \) is the function \( f_n(t) = t \), and thus continuous.
+  Therefore, \( f \) is continuous if \( \mathbb{R}^\omega \) is given the product topology.
+  But \( f \) is not continuous if \( \mathbb{R}^\omega \) is given the box topology.
+  Consider, for example, the basis element
+  \[
+    B = (-1, 1) \times (-\frac{1}{2}, \frac{1}{2}) \times (-\frac{1}{3}, \frac{1}{3}) \times \cdots
+  \]
+  for the box topology. \( f^{-1}{B} \) is not open in \( \mathbb{R} \).
+\end{example}
+
+\paragraph{Inital topology}
+\begin{definition}[initial topology]
+  Suppose
+  \begin{enumerate}
+    \item \( S \) is a set;
+    \item \( X = \left\lbrace (X_i, \mathcal{T}_i) \right\rbrace_{i \in I} \) is a family of topological spaces;
+    \item \( \mathcal{F} = \left\lbrace f_i: S \to X_i \right\rbrace_{i \in I} \) is an indexed set of functions from \( S \) to the family \( \left\lbrace X_i \right\rbrace_{i \in I} \).
+  \end{enumerate}
+  Let \( \Gamma \) denotes the set of all topologies \( \mathcal{\tau} \) on \( S \), such that \( f_i \) is a continuous map for every \( i \in I \).
+  Then the intersection \( \cap_{\tau \in \Gamma} \tau \) is again a topology and also belongs to \( \Gamma \), which is said to be the \emph{initial topology} on \( X \) such that each function \( f_i: S \to X_i \) is a continuous map.
+\end{definition}
+ 
+\begin{example}
+  Both subspace topology and product topology are initial topoligies.
+\end{example}
+
+\begin{theorem}[universal property]
+  Let \( X_\alpha, \mathcal{T}_\alpha \) is a family of topological space, \( \mathcal{F} = \left\lbrace f_\alpha: S \to X_\alpha \right\rbrace \) a family of maps.
+  Equip \( S \) the initial topology.
+  For any topological space \( Y \), map \( f: Y \to S \) continuous \( \iff f_\alpha \circ f: Y \to X_\alpha \) is continuous.
+  Moreover, the initial topology induced by \( \mathcal{F} \) is the unique topology satisfying such property.
+  \[\begin{tikzcd}
+    S \\
+    Y & {X_\alpha}
+    \arrow["f", from=2-1, to=1-1]
+    \arrow["{f_\alpha}", from=1-1, to=2-2]
+    \arrow["{f_\alpha \circ f}"', from=2-1, to=2-2]
+  \end{tikzcd}\]
+\end{theorem}
+
+\subsection{The Metric Topology}
+
+\paragraph{Topology induced by metric}
+
+\begin{definition}
+  A \emph{metric} on a set \( X \) is a function
+  \[
+    d: X \times X \to \mathbb{R}
+  \]
+  have the following properties:
+  \begin{enumerate}
+    \item \( d(x, y) > 0 \) for all \( x , y \in X \); equality holds \( \iff x = y \).
+    \item \( d(x, y) = d(y, x) \) for all \( x, y \in X \).
+    \item \( d(x, y) + d(y, z) \geq d(x, z) \) for all \( x, y, z \in X \).
+  \end{enumerate}
+  Given a metric \( d \) on \( X \), the number \( d(x, y) \) is often called the \emph{distance} between \( x \) and \( y \) in the metric \( d \).
+\end{definition}
+
+\begin{definition}
+  Given \( \varepsilon > 0 \), consider the set
+  \[
+    B_d(x, \varepsilon) = \left\lbrace y: d(x, y) < \varepsilon \right\rbrace
+  \]
+  of all points \( y \) whose distance from \( x \) is less than \( \varepsilon \).
+  It is called the \( \varepsilon \)-\emph{ball centered at} \( x \).
+\end{definition}
+
+\begin{definition}
+  If \( d \) is a metric on the set \( X \), then the collection of all \( \varepsilon \)-ball \( B_d(x, \varepsilon) \), for \( x \in X \) and \( \varepsilon > 0 \), is a basis for a topology on \( X \), called the \emph{metric topology} induced by \( d \).
+\end{definition}
+
+\begin{definition}
+  If \( X \) is a topological space, \( X \) is said to be \emph{metrizable} if there exists a metric \( d \) on the set \( X \) that induces the topology of \( X \).
+  A \emph{metric space} is a metrizable space \( X \) together with a specific metric \( d \) that gives the topology of \( X \).
+\end{definition}
+\begin{remark}
+  A problem of fundamental importance in topology to find conditions on a topological space that will guarantee it is metrizable, which are expressed there in the famous theorem called \textbf{Urysohn's metrization theorem}.
+\end{remark}
+
+\paragraph{Square metric and Euclidean metric on \( \mathbb{R}^n \)}
+
+\begin{definition}
+  Given \( x = (x_1, \cdots, x_n) \) in \( \mathbb{R}^n \), we define the \emph{norm} of \( x \) by the equation
+  \[
+    \left\Vert x \right\Vert = (x_1^2 + \cdots + x^2_n)^{1/2};
+  \]
+  and we define the \emph{Euclidean metric} \( d \) on \( \mathbb{R}^n \) by the equation
+  \[
+    d(x, y) = \left\Vert x - y \right\Vert.
+  \]
+  We define the \emph{square metric} \( \rho \) by the equation
+  \[
+    \rho(x, y) = \max \left\lbrace \left\vert x_1 - y_1 \right\vert, \cdots, \left\vert x_n - y_n \right\vert \right\rbrace.
+  \]
+\end{definition}
+
+\begin{lemma}
+  Let \( d \) and \( d' \) be two metrics on the set \( X \); let \( \mathcal{T} \) and \( \mathcal{T}' \) be the topologies they induce, respectively.
+  Then \( \mathcal{T}' \) is finer than \( \mathcal{T} \iff \) for each \( x \in X \) and each \( \varepsilon > 0 \), there exists a \( \delta > 0 \) such that
+  \[
+    B_{d'}(x, \delta) \subseteq B_d(x, \varepsilon).
+  \]
+\end{lemma}
+
+\begin{theorem}
+  The topologies on \( \mathbb{R}^n \) induced by the Euclidean metric \( d \) and the square metric \( \rho \) are the ame as the product topologies on \( \mathbb{R}^n \).
+\end{theorem}
+
+\paragraph{Uniform metric}
+
+We need some preperation here:
+
+\begin{definition}
+  Let \( X \) be a metric space with metric \( d \).
+  A subset \( A \) of \( X \) is said to be \emph{bounded} if there is some number \( M \) such that
+  \[
+    d(a_1, a_2) \leq M
+  \]
+  for every pair \( a_1, a_2 \) of points of \( A \).
+  If \( A \) is bounded and nonempty, the \emph{diameter} of \( A \) is defined to be the number
+  \[
+    \operatorname{diam} A = \sup \left\lbrace d(a_1, a_2): a_1, a_2 \in A \right\rbrace.
+  \]
+\end{definition}
+
+\begin{theorem}
+  Let \( X \) be a metric space with metric \( d \).
+  Define \( \overline{d}: X \times X \to \mathbb{R} \) by the equation
+  \[
+    \overline{d}(x, y) = \min \left\lbrace d(x, y), 1 \right\rbrace
+  \]
+  The metric \( \overline{d} \) is called the \emph{standard bounded metric} corresponding to \( d \).
+\end{theorem}
+
+Now we consider the infinite Cartesian product \( \mathbb{R}^\omega \).
+One can attempt to define a metric \( d \) on \( \mathbb{R}^\omega \) by the equation
+\[
+  d(x, y) = \left(\sum_{i = 1}^\infty(x_i - y_i)^2\right)^{1/2}
+\]
+But this equation does not always make sense, since for the series need not converge.
+Similarly,
+\[
+  \rho(x, y) = \sup \left\lbrace \left\vert x_n - y_n \right\vert \right\rbrace
+\]
+may always not make sense.
+  If however we replace the usual metric \( d(x, y) = \left\vert x - y \right\vert \) on \( \mathbb{R} \) by its bounded counterpart \( \overline{d}(x, y) = \min \left\lbrace \left\vert x - y \right\vert, 1 \right\rbrace \), then this definition does make sense; it gives a metric on \( \mathbb{R}^\omega \) called the \emph{uniform metric}.
+
+The uniform metric can be defined more generally on the Cartesian product \( \mathbb{R}^J \) for arbitrary \( J \), as follows:
+\begin{definition}
+  Given an index set \( J \), and given points \( x = (x_\alpha)_{\alpha \in J} \) and \( y = (y_\alpha)_{\alpha \in J} \) of \( \mathbb{R}^J \), let us define a metric \( \overline{\rho} \) on \( \mathbb{R}^J \) by the equation
+  \[
+    \overline{\rho}(x, y) = \sup \left\lbrace \overline{d}(x_\alpha, y_\alpha): \alpha \in J \right\rbrace,
+  \]
+  where \( \overline{d} \) is the standard bounded metric on \( \mathbb{R} \).
+  \( \overline{\rho} \) is indeed a metric, and is called the \emph{uniform metric} on \( \mathbb{R}^J \), and the topology it induces is called the \emph{uniform topology}.
+\end{definition}
+
+\begin{theorem}
+  The uniform topology on \( \mathbb{R}^J \) is finer than the product topology and coarser than the box topology;
+  these three topologies are all different if \( J \) is finite.
+\end{theorem}
+
+\paragraph{Continuity and \( \varepsilon \)-\( \delta \) condition}
+
+\begin{theorem}
+  Let \( f: X \to Y \);
+  let \( X \) and \( Y \) be metrizable with metrics \( d_X \) and \( d_Y \), respectively.
+  Then the continuity of \( f \) is equivalent to the requirement that given \( x \in X \) and given \( \varepsilon > 0 \), there exists \( \delta > 0  \) such that
+  \[
+    d_X(x, y) < \delta \implies d_Y(f(x), f(y)) < \varepsilon.
+  \]
+\end{theorem}
+\begin{sketchproof}
+  \( \impliedby \): Suppose that the \( \varepsilon \)-\( \delta \)condition.
+  Let \( V \) be open in \( Y \); we may show that \( f^{-1}(V) \) is open in \( X \).
+\end{sketchproof}
+
+\begin{lemma}[The sequence lemma]
+  Let \( X \) be a topological space.
+  let \( A \subseteq X \).
+  If there is a sequence of points of \( A \) converging to \( x \), then \( x \in \overline{A} \);
+  the converse holds if \( X \) is metrizable.
+\end{lemma}
+\begin{proof}
+  Suppose that \( x_n \to x \), where \( x_n \in A \).
+  Then every neighborhood \( U \) of \( x \) contains a point of \( A \), so \( x \in \overline{A} \).
+  Conversely, suppose that \( X \) is metrizable and \( x \in \overline{A} \).
+  Let \( d \) be a metric for the topology of \( X \).
+  For each positive integer \( n \), take the neighborhood \( B_d(x, 1/n) \) of radius \( 1/n \) of \( x \).
+  and choose \( x_n \) to be a point of its intersection with \( A \).
+\end{proof}
+
+\begin{theorem}
+  Let \( f: X \to Y \).
+  If the function \( f \) is continuous, then for every convergent sequence \( x_n \to x \) in \( X \), the sequence \( f(x_n) \) converges to \( f(x) \).
+  The converse holds if \( X \) is metrizable.
+\end{theorem}
+\begin{proof}
+  \( \impliedby \): assume that the convergent sequence condition is satisfied.
+  Let \( A \) be a subset of \( X \), we show that \( f(\overline{A}) \subseteq \overline{f(A)} \).
+  If \( x \in \overline{A} \), then there is a sequence \( x_n \) of points of \( A \) converging to \( x \).
+  By assumption the sequence \( f(x_n) \) converges to \( f(x) \).
+  Since \( f(x_n) \in f(A) \), the preceding lemma implies that \( f(x) \in \overline{f(A)} \).
+  Hence \( f(\overline{A}) \subseteq \overline{f(A)} \), as desired.
+\end{proof}
+\begin{remark}
+  We do not need the full strength of the typothese that the space is metrizable.
+  All we really needed was the countable collection \( B_d(x, 1/n) \) of balls about \( x \), i.e. the following definition.
+\end{remark}
+
+\begin{definition}
+  A space \( X \) is said to have a \emph{countable basis at the point} \( x \) if there is a countable collection \( \left\lbrace U_n \right\rbrace_{n \in \mathbb{Z}_+} \) of neighborhoods of \( x \) such that any neighborhood \( U \) of \( x \) contains at least one of the sets \( U_n \).
+  A space \( X \) that has a countable basis at each of its points is said to satisfy the \emph{first countability axiom}.
+\end{definition}
+
+\paragraph{Addtional method for constructing continuous functions}
+
+\begin{lemma}
+  The addition, subtraction, and multiplication operations are continuous functions from \( \mathbb{R} \times \mathbb{R} \to \mathbb{R} \), and the quotient operation is a continuous functions from \( \mathbb{R} \times (\mathbb{R} - \left\lbrace 0 \right\rbrace) \to \mathbb{R} \).
+\end{lemma}
+\begin{remark}
+  Exercise: prove continuity of the algebraic operations on \( \mathbb{R} \), as follows: Use the metric \( d(a, b) = \left\vert a - b \right\vert \) on \( \mathbb{R} \) and the metric on \( \mathbb{R}^2 \) given by the equation
+  \[
+    \rho((x, y), (x_0, y_0)) = \max \left\lbrace \left\vert x - x_0 \right\vert, \left\vert y - y_0 \right\vert \right\rbrace.
+  \]
+  \begin{enumerate}
+    \item show that addtion is continuous.[Hint: Given \( \varepsilon \), let \( \delta = \varepsilon / 2 \) and note that
+      \[
+        d(x + y, x_0 + y_0) \leq \left\vert x - x_0 \right\vert + \left\vert y - y_0 \right\vert.]
+      \]
+    \item show that multiplication is continuous.[Hint Given \( (x_0, y_0) \) and \( 0 < \varepsilon < 1 \), let
+      \[
+        3\delta = \varepsilon / ( \left\vert x_0 \right\vert + \left\vert y_0 \right\vert + 1 )
+      \]
+      and note that
+      \[
+        d(xy, x_0 y_0) \leq \left\vert x_0 \right\vert \left\vert y - y_0 \right\vert + \left\vert y_0 \right\vert \left\vert y_0 \right\vert \left\vert x - x_0 \right\vert + \left\vert x - x_0 \right\vert \left\vert y - y_0 \right\vert.
+      \]
+  \end{enumerate}
+\end{remark}
+
+\begin{theorem}
+  If \( X \) is a topological space, and if \( f, g: X \to \mathbb{R} \) are continuous functions, then \( f + g, f - g \) and \( f \cdot g \) are continuous.
+  If \( g(x) \neq 0 \) for all \( x \), then \( f / g \) is continuous.
+\end{theorem}
+
+\paragraph{Uniform convergence}
+
+\begin{definition}
+  Let \( f_n: X \to Y \) be a sequence of functions from the set \( X \) to the metric space \( Y \).
+  Let \( d \) be the metric for \( Y \).
+  We say that the sequence \( (f_n) \) \emph{converges uniformly} to the function \( f: X \to Y \) if given \( \varepsilon > 0 \), there exists an integer \( N \) such that
+  \[
+    d(f_n(x), f(x)) < \varepsilon
+  \]
+  for all \( n > N \) and all \( x \) in \( X \).
+\end{definition}
+
+\begin{theorem}[Uniform limit theorem]
+  Let \( f_n: X \to Y \) be a sequence of continuous functions from the topological space \( X \) to the metric space \( Y \).
+  If \( (f_n) \) converges uniformly to \( f \), then \( f \) is continuous.
+\end{theorem}
+\begin{proof}
+  Let \( V \) be open in \( Y \); let \( x_0 \) be a point of \( f^{-1}(V) \).
+  We wish to find a neighborhood \( U \) of \( x_0 \) such that \( f(U) \subseteq V \).
+  Let \( y_0 = f(x_0) \).
+  First choose \( \varepsilon \) so that the \( \varepsilon \)-ball \( B(y_0, \varepsilon) \) is contained in \( V \).
+  Then using uniformly convergence, choose \( N \) so that for all \( n \geq N \) and all \( x \in X \),
+  \[
+    d(f_n(x), f(x))  < \varepsilon / 3.
+  \]
+  Finally, using continuity of \( f_N \), choose a neighborhood \( U \) of \( x_0 \) such that \( f_N \) carries \( U \) into the \( \varepsilon / 3 \) ball in \( Y \) centered at \( f_N(x_0) \).
+  Note that if \( x \in U \), then
+  \[
+    d(f(x), f_N(x)) < \varepsilon / 3, \quad d(f_N(x), f_N(x_0)) < \varepsilon / 3, \quad d(f_N(x_0), f(x_0)) < \varepsilon /3.
+  \]
+\end{proof}
+
+\subsection{Final topology}
+
+\paragraph{Final topology}
+
+\begin{definition}
+  Suppose
+  \begin{enumerate}
+    \item \( S \) is a set;
+    \item \( X = \left\lbrace (X_i, \mathcal{T}_i) \right\rbrace_{i \in I} \) is a family of topological spaces;
+    \item \( \mathcal{F} = \left\lbrace f_i: X_i \to S \right\rbrace_{i \in I} \) is an indexed set of functions from \( S \) to the family \( \left\lbrace X_i \right\rbrace_{i \in I} \).
+  \end{enumerate}
+  Let \( \Gamma \) denotes the set of all topologies \( \mathcal{\tau} \) on \( S \), such that \( f_i \) is a continuous map for every \( i \in I \).
+  Then the union \( \bigcup_{\tau \in \Gamma} \tau \) is again a topology and also belongs to \( \Gamma \), which is said to be the \emph{final topology} on \( X \) such that each function \( f_i: S \to X_i \) is a continuous map.
+\end{definition}
+
+\begin{theorem}[universal property]
+  Let \( X_\alpha, \mathcal{T}_\alpha \) is a family of topological space, \( \mathcal{F} = \left\lbrace f_\alpha: X_\alpha \to S \right\rbrace \) a family of maps.
+  Equip \( S \) the final topology.
+  For any topological space \( Z \), map \( f: S \to Z \) continuous \( \iff f_\alpha \circ f: X_\alpha \to Z \) is continuous.
+  Moreover, the final topology induced by \( \mathcal{F} \) is the unique topology satisfying such property.
+  \[\begin{tikzcd}
+    S \\
+    Z & {X_\alpha}
+    \arrow["f"', from=1-1, to=2-1]
+    \arrow["{{f_\alpha}}"', from=2-2, to=1-1]
+    \arrow["{{f_\alpha \circ f}}", from=2-2, to=2-1]
+  \end{tikzcd}\]
+\end{theorem}
+
+\paragraph{The quotient topology}
+
+\begin{definition}
+  Let \( (X, \mathcal{T}_X) \) be a topological space, \( Y \) a set, \( p: X \to Y \) is surjective.
+  \begin{enumerate}
+    \item the final topology \( \mathcal{T}_Y \) induced by \( p \) is said to be the \emph{quotient topology} on \( Y \).
+    \( (Y, \mathcal{T}_Y) \) is said to be the quotient space of \( (X, \mathcal{T}_X) \) and \( p:(X, \mathcal{T}_X) \to (Y, \mathcal{T}_Y) \) is said to be the \emph{quotient map}.
+    \item given quotient map, \( p^{-1}(y) \) is said to be the \emph{fibre} of \( y \in Y \).
+  \end{enumerate}
+\end{definition}
+
+Another way of describing a quotient map is as follows: we say that a subset \( C \) of \( X \) is \emph{saturated} w.r.t. the surjective map \( p: X \to Y \) if \( C \) contains every set \( p^{-1}(\left\lbrace y \right\rbrace) \) that it intersects.
+Thus \( C \) is saturated if it equals the complete inverse image of a subset of \( Y \).
+To say that \( p \) is a quotient map is equivalent to saying that \( p \) is continuous and \( p \) maps saturated open sets of \( X \) to open sets of \( Y \).
+
+Two special kinds of quotient maps are the open maps and the closed maps.
+Recall that a map \( f: X \to Y \) is said to be an \emph{open map} if for each open set \( U \) of \( X \), the set \( f(U) \) is open in \( Y \).
+It is said to be a \emph{closed map} if for each closed set \( A \) of \( X \), the set \( f(A) \) is closed in \( Y \).
+
+\begin{example}
+  Let \( X \) be the subspace \( [0, 1] \cup [2, 3] \) of \( \mathbb{R} \), and let \( Y \) be the subspace \( [0, 2] \) of \( \mathbb{R} \).
+  The map \( p: X \to Y \) defined by
+  \[
+    p(x) = \begin{cases}
+      x & \text{ for } x \in [0, 1],\\
+      x - 1 & \text{ for } x \in [2, 3]
+    .\end{cases}
+  \]
+  is readily seen to be surjective, continuous, and closed.
+  Therefore it is a quotient map.
+  It is not, however, an open map; the image of open set \( [0, 1] \) of \( X \) is not open in \( Y \).
+
+  Note that if \( A \) is the subspace \( [0, 1) \cup [2, 3] \) of \( X \), then the map \( q: A \to Y \) obtained by restricting \( p \) is continuous and surjective, but it is not a quotient map.
+  For the set \( [2, 3] \) is open in \( A \) and is saturated w.r.t. \( q \), but its image is not open in \( Y \).
+\end{example}
+
+\begin{definition}
+  Let \( X \) be a topological space, and let \( X^* \) be a partition of \( X \) into disjoint subsets whose union is \( X \).
+  Let \( p: X \to X^* \) be the surjective map that carries each point of \( X \) to the element of \( X^* \) containing it.
+  In the quotient topology induced by \( p \), the space \( X^* \) is called a \emph{quotient space} of \( X \).
+\end{definition}
+\begin{remark}
+  Given \( X^* \), there is an equivalence relation on \( X \) of which the elements of \( X^* \) are the equivalence classes.
+  One can think of \( X^* \) as having been obtained by ``identifying'' each pair of equivalent points.
+  For this reason, the quotient space \( X^* \) is often called an \emph{identification space}, or a \emph{decomposition space}, of the space \( X \).
+\end{remark}
+
+\begin{example}
+  Let \( X \) be the closed unit ball
+  \[
+    \left\lbrace (x, y): x^2 + y^2 \leq 1 \right\rbrace
+  \]
+  in \( \mathbb{R}^2 \), and let \( X^* \) be the partition of \( X \) consisting of all the one-point sets \( \left\lbrace (x, y) \right\rbrace \) for which \( x^2 + y^2 < 1 \), along with the set \( S^1 = \left\lbrace (x, y): x^2 + y^2 = 1 \right\rbrace \).
+  One can show that \( X^* \) is homeomorphic with the subspace of \( \mathbb{R}^3 \) called the \emph{unit} \( 2 \)\emph{-sphere}, defined by
+  \[
+    S^2 = \left\lbrace (x, y, z): x^2 + y^2 + z^2 = 1 \right\rbrace.
+  \]
+\end{example}
+
+\begin{example}
+  Let \( X \) be the rectangle \( [0, 1] \times [0, 1] \).
+  Define a partition \( X^* \) of \( X \) as follows:
+  it consists of all the one-point sets \( \left\lbrace (x, y) \right\rbrace \) where \( 0 < x < 1 \) and \( 0 < y < 1 \), the following types of two-point sets
+  \begin{align*}
+  \left\lbrace (x, 0), (x, 1) \right\rbrace, \quad \text{ where } 0 < x < 1,\\
+  \left\lbrace (0, y), (1, y) \right\rbrace, \quad \text{ where } 0 < y < 1
+  .\end{align*}
+  and the four-points set
+  \[
+    \left\lbrace (0, 0), (0, 1), (1, 0), (1, 1) \right\rbrace.
+  \]
+\end{example}
+
+We have already noted that subspaces do not behave well;
+if \( p: X \to Y \) is a quotient map and \( A \) is a subspace of \( X \), then the map \( q: A \to p(A) \) obtained by restricting \( p \) need not be a quotient map.
+
+\begin{theorem}
+  Let \( p: X \to Y \) be a quotient map;
+  let \( A \) be a subspace of \( X \) that is saturated w.r.t. \( p \);
+  let \( q: A \to p(A) \) be the map obtained by restricting \( p \).
+  \begin{enumerate}
+    \item if \( A \) is either open or closed in \( X \), then \( q \) is a quotient map.
+    \item if \( p \) is either open map or a closed map, then \( q \) is a quotient map.
+  \end{enumerate}
+\end{theorem}
+

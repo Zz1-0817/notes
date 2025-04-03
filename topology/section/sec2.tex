@@ -1,0 +1,679 @@
+\section{Compactness}
+
+\subsection{Compact Spaces}
+
+\begin{definition}
+  Let \( (X, \mathcal{T}) \) be a topological space, \( A \subset X \) a subset.
+  \begin{enumerate}
+    \item if a family of subsets \( \mathcal{U} = \left\lbrace U_\alpha \right\rbrace \) satisfying \( A \subset \cup_\alpha U_\alpha \), then \( \mathcal{U} \) is said to be \emph{cover} of \( A \);
+    \item if \( \mathcal{U} \) is finite, then \( \mathcal{U} \) is said to be a \emph{finite cover};
+    \item if all the element of \( \mathcal{U} \) is open set, then \( \mathcal{U} \) is said to be a \emph{open cover};
+    \item if \( \mathcal{U}, \mathcal{V} \) are both cover and \( \mathcal{V} \subset \mathcal{U} \), then \( \mathcal{V} \) is said to be a \emph{subcover} of \( \mathcal{U} \);
+    \item if \( \mathcal{U}, \mathcal{V} \) are both cover, and for any \( V \in \mathcal{V} \), there exists \( U \in \mathcal{U} \) such that \( V \subset U \), then \( \mathcal{V} \) is said to be a \emph{refinement} of \( \mathcal{U} \).
+  \end{enumerate}
+\end{definition}
+
+\begin{definition}
+  A space \( X \) is said to be \emph{compact} if every open covering \( \mathcal{A} \) of \( X \) contains a finite subcollection that also covers \( X \).
+\end{definition}
+
+\begin{lemma}
+  Let \( Y \) be a subspace of \( X \).
+  Then \( Y \) is compact \( \iff \) every covering of \( Y \) by sets open in \( X \) contains a finite subcollection covering \( Y \).
+\end{lemma}
+
+\begin{theorem}
+  Every closed subspace of a compact space is compact.
+\end{theorem}
+
+\begin{theorem}
+  Every compact subspace of a Hausdorff space is closed.
+\end{theorem}
+
+\begin{lemma}
+  If \( Y \) is a compact subspace of the Hausdorff space \( X \) and \( x_0 \) is not in \( Y \), then there exist disjoint open sets \( U \) and \( V \) of \( X \) containing \( x_0 \) and \( Y \), respectively.
+\end{lemma}
+
+\begin{theorem}
+  The image of a compact space under a continuous map is compact.
+\end{theorem}
+
+\paragraph{Verifying homeomorphism}
+
+\begin{theorem}
+  Let \( f: X \to Y \) be a bijective continuous function.
+  If \( X \) is compact and \( Y \) is Hausdorff, then \( f \) is a homeomorphism.
+\end{theorem}
+
+\paragraph{Product of compact spaces}
+\begin{theorem}
+  The product of finitely many compact spaces is compact.
+\end{theorem}
+\begin{proof}
+  By induction.
+  \begin{enumerate}
+    \item Suppose that we are given spaces \( X \) and \( Y \), with \( Y \) compact.
+      Suppose that \( x_0 \) is a point of \( X \), and \( N \) is an open set of \( X \times Y \) containing the ``slice'' \( x_0 \times Y \) of \( X \times Y \).
+      We prove the following:
+      \begin{claim}
+        there is a neighborhood \( W \) of \( x_0 \) in \( X \) such that \( N \) contains the entire set \( W \times Y \).
+      The set \( W \times Y \) is often called a \emph{tube} about \( x_0 \times Y \).
+      \end{claim}
+      \begin{claimproof}
+        Let \( U_1 \times V_1, \cdots, U_n \times V_n \) be a finite open cover of \( x_0 \times Y \) by basis element lying in \( N \) (compact since \( \simeq Y \)), then one can choose \( W = U_1 \cap \cdots \cap U_n \).
+      \end{claimproof}
+    \item Let \( X \) and \( Y \) be compact spaces.
+      Let \( \mathcal{A} \) be an open covering of \( X \times y \).
+      Given \( x_0 \in X \), the slice \( x_0 \times Y \) is compact and may cover by finitely many elements \( A_1, \cdots, A_m \) of \( \mathcal{A} \).
+      There union \( N = A_1 \cup \cdots \cup A_m \) is an open set containing \( x_0 \times Y \).
+      By (1), the open set \( N \) contains a tube \( W \times Y \) about \( x_0 \times Y \) where \( W \) is open in \( X \).
+      Then \( W \times Y \) is covered by finitely many elements \( A_1, \cdots, A_m \) of \( \mathcal{A} \).
+
+      Thus foe each \( x \) in \( X \), we can choose a neighborhood \( W_x \) of \( x \) such that the tube \( W_x \times y \) can be covered by finitely many elements of \( \mathcal{A} \).
+      The collection of all the neighborhoods \( W_x \) is an open covering of \( X \);
+      therefore by compactness of \( X \), there exists a finite subcollection
+      \[
+        \left\lbrace W_1, \cdots, W_k \right\rbrace
+      \]
+      covering \( X \).
+      The union of the tubes
+      \[
+        W_1 \times Y, \cdots, W_k \times Y
+      \]
+      is all of \( X \times Y \).
+  \end{enumerate}
+\end{proof}
+
+\noindent Note that we have proved the following useful lemma in the preceding proof.
+
+\begin{lemma}[The tube lemma]
+  Consider the product space \( X \times Y \), where \( Y \) is compact.
+  If \( N \) is an open set of \( X \times Y \) containing the slice \( x_0 \times Y \) of \( X \times Y \), then \( N \) contains some tube \( W \times Y \) about \( x_0 \times Y \), where \( W \) is a neighborhood of \( x_0 \) in \( X \).
+\end{lemma}
+
+There is an obvious question to ask at this point.
+Is the product of infinitely many compact spaces compact?
+One would hope that the answer is ``yes'', and in fact it is.
+The result is important(and difficult) enough to be called by the name of the man who proved it;
+it is called the \emph{Tychonoff theorem}.
+
+\paragraph{Finite intersection property}
+\begin{definition}
+  A collection \( \mathcal{C} \) of subsets of \( X \) is said to have the \emph{finite intersection property} if for every finite subcollection
+  \[
+    \left\lbrace C_1, \cdots, C_n \right\rbrace
+  \]
+  of \( \mathcal{C} \), the intersection \( C_1 \cap \cdots \cap C_n \) is nonemtpy.
+\end{definition}
+
+\begin{theorem}
+  Let \( X \) be a topological space.
+  Then \( X \) is compact \( \iff \) for every collection \( \mathcal{C} \) of closed sets in \( X \) having the finite intersection property, the intersection \( \bigcap_{C \in \mathcal{C}} C \) of all the elements of \( \mathcal{C} \) is nonemtpy.
+\end{theorem}
+\begin{proof}
+  Given a collection \( \mathcal{A} \) of subsets of \( X \), let
+  \[
+    \mathcal{C} = \left\lbrace X - A: A \in \mathcal{A} \right\rbrace
+  \]
+  be the collection of their complements.
+  Then the following statements hold:
+  \begin{enumerate}
+    \item \( \mathcal{A} \) is a collection of open sets \( \iff \mathcal{C} \) is a collection of closed sets.
+    \item the collection \( \mathcal{A} \) covers \( X \iff \) the intersection \( \bigcap_{C \in \mathcal{C}} C \) of all the elements of \( \mathcal{C} \) is empty.
+    \item the finite subcollection \( \left\lbrace A_1, \cdots, A_n \right\rbrace \) of \( \mathcal{A} \) covers \( X \iff \) the intersection of the corresponding elements \( C_i = X - A_i \) of \( \mathcal{C} \) is empty.
+  \end{enumerate}
+  \( X \) is compact \( \iff \) Given any collection \( \mathcal{A} \) of open sets, if no finite subcollection of \( \mathcal{A} \) covers \( X \), then \( \mathcal{A} \) does not cover \( X \) \( \iff \) Given any collection \( \mathcal{C} \) of closed sets, if every finite intersection of elements of \( \mathcal{C} \) is nonemtpy, then the intersection of all the elements of \( \mathcal{C} \) is nonemtpy.
+\end{proof}
+\noindent A special case of this theorem occurs
+\begin{proposition}
+   when we have a \emph{nested sequence} \( C_1 \supseteq C_2 \supseteq \cdots \supseteq C_n \supseteq C_{n + 1} \supseteq \cdots \) of closed sets in a compact space \( X \).
+   If each of the sets \( C_n \) is nonempty, then the collection \( \mathcal{C} = \left\lbrace C_n \right\rbrace_{n \in \mathbb{Z}_+} \) has the finite intersection property.
+   Then the intersection
+   \[
+     \bigcap_{n \in \mathbb{Z}_+} C_n
+   \]
+   is nonemtpy.
+\end{proposition}
+
+\subsection{Compact subspaces of the real line}
+
+\paragraph{Compact sets in real space \( \mathbb{R}^n \)}
+
+\begin{theorem}
+  Let \( X \) be a simply ordered set having the least upper bound property.
+  In the order topology, each closed interval in \( X \) is compact.
+\end{theorem}
+\begin{proof}
+  TODO %TODO
+\end{proof}
+
+\begin{corollary}
+  Every closed interval in \( \mathbb{R} \) is compact.
+\end{corollary}
+
+\begin{theorem}
+  A subspace \( A \) of \( \mathbb{R}^n \) is compact \( \iff \) it is closed and is bounded in the Euclidean metric \( d \) or the square metric \( \rho \).
+\end{theorem}
+\begin{proof}
+  It will suffice to consider only the metric \( \rho \);
+  Suppose that \( A \) is compact.
+  Then \( A \) is closed.
+  consider the collection of open sets
+  \[
+    \left\lbrace B_{\rho}(0, m): m \in \mathbb{Z}_+ \right\rbrace,
+  \]
+  we will know that \( A \) is bounded.
+
+  Conversely, suppose that \( A \) is closed and bounded under \( \rho \);
+  suppose that \( \rho(x, y) \leq N \) for every pair \( x, y \) of points of \( A \).
+  Choose a point \( x_0 \) of \( A \), and let \( \rho(x_0, 0) = b \).
+  The triangle inequality implies that \( \rho(x, 0) \leq N + b \) for every \( x \) in \( A \).
+  If \( P = N + b \), then \( A \) is a subset of the cube \( [-P, P]^n \), which is compact.
+  Being closed, \( A \) is also compact.
+\end{proof}
+\begin{remark}
+  This theorem is not stating that the collection of compact sets in a metric space equals the collection of closed and bounded sets.
+  Such statement is clearly ridiculous as it stands, since the question as to which sets are bounded depends for its answer on the metric, whereas which sets are compact depends only on the topology of the space.
+\end{remark}
+
+\begin{example}
+  The unit sphere \( S^{n - 1} \) and the closed unit ball \( B^n \) in \( \mathbb{R}^n \) are compact because they are closed and bounded.
+  The set
+  \[
+    A = \left\lbrace (x, 1/x): 0 < x \leq 1 \right\rbrace
+  \]
+  is closed in \( \mathbb{R}^2 \).
+  But it is not compact because it is not bounded.
+  The set
+  \[
+    S = \left\lbrace (x, \sin(1/x)): 0 < x \leq 1 \right\rbrace
+  \]
+  is bounded in \( \mathbb{R}^2 \), but it is not compact because it is not closed.
+\end{example}
+
+\paragraph{Extre value theorem and Lebesgue number lemma}
+
+\begin{theorem}[Extreme value theorem]
+  Let \( f: X \to Y \) be continuous, where \( Y \) is an ordered set in the order topology.
+  If \( X \) is compact, then there exist points \( c \) and \( d \) in \( X \) such that \( f(c) \leq f(x) \leq f(d) \) for every \( x \in X \).
+\end{theorem}
+\begin{proof}
+  TODO %TODO
+\end{proof}
+
+\begin{definition}
+  let \( (X, d) \) be a metric space;
+  let \( A \) be a nonemtpy subset of \( X \).
+  For each \( x \in X \), we define the \emph{distance from} \( x \) \emph{to} \( A \) by the equation
+  \[
+    d(x, A) = \inf \left\lbrace d(x, a): a \in A \right\rbrace.
+  \]
+\end{definition}
+
+\begin{lemma}
+  For fixed \( A \), the function \( d(x, A) \) is a continuous function of \( x \).
+\end{lemma}
+\begin{sketchproof}
+  Given \( x, y \in X \), one has the inequality
+  \[
+    d(x, A) \leq d(x, a) \leq d(x, y) + d(y, a),
+  \]
+  for each \( a \in A \).
+  It follows that
+  \[
+    d(x, A) - d(x, y) \leq \inf d(y, a) = d(y, A),
+  \]
+  so that
+  \[
+    d(x, A) - d(y, A) \leq d(x, y).
+  \]
+\end{sketchproof}
+
+\begin{theorem}[The Lebesgue number lemma]
+  Let \( \mathcal{A} \) be an open covering of the metric space \( (X, d) \).
+  If \( X \) is compact, there is a \( \delta > 0 \) such that for each subset of \( X \) having diameter less than \( \delta \), there exists an element of \( \mathcal{A} \) containing it.
+  The number \( \delta \) is called a \emph{Lebesgue number} for the covering \( \mathcal{A} \).
+\end{theorem}
+\begin{proof}
+  Let \( \mathcal{A} \) be an open covering of \( X \).
+  Assume \( X \) is not an element of \( \mathcal{A} \).
+  Choose a finite subcollection \( \left\lbrace A_1, \cdots, A_n \right\rbrace \) of \( \mathcal{A} \) that covers \( X \).
+  For each \( i \), set \( C_i = X - A_i \), and define \( f: X \to \mathbb{R} \) by letting \( f(x) \) be the average of the numbers \( d(x, C_i) \).
+  That is,
+  \[
+    f(x) = \frac{1}{n} \sum_{i = 1}^n d(x, C_i).
+  \]
+  \begin{claim}
+     \( f(x) > 0 \) for all \( x \).
+  \end{claim}
+  \begin{claimproof}
+    Given \( x \in X \), choose \( i \) so that \( x \in A_i \).
+    Then choose \( \varepsilon \) so the \( \varepsilon \)-neighborhood of \( x \) lies in \( A_i \).
+    Then \( d(x, C_i) \geq \varepsilon \), so that \( f(x) \geq \varepsilon / n \).
+  \end{claimproof}
+  Since \( f \) is continuous, it has a minimum value \( \delta \) by the preceding theorem; Then
+  \begin{claim}
+    \( \delta \) is the Lebesgue number.
+  \end{claim}
+  \begin{claimproof}
+    Let \( B \) be a subset of \( X \) of diameter less than \( \delta \).
+    Choose a point \( x_0 \) of \( B \);
+    then \( B \) lies in the \( \delta \)-neighborhood of \( x_0 \).
+    Now
+    \[
+      \delta \leq f(x_0) \leq d(x_0, C_m)
+    \]
+    where \( d(x_0, C_m) \) is the largest of the numbers \( d(x_0, C_i) \).
+    Then the \( \delta \)-neighborhood of \( x_0 \) is contained in the element \( A_m = X - C_m \) of the covering \( \mathcal{A} \).
+  \end{claimproof}
+\end{proof}
+
+\paragraph{Uniform continuity}
+
+\begin{definition}
+  A function \( f \) from the metric space \( (X, d_X) \) to the metric space \( (Y, d_Y) \) is said to be \emph{uniformly continuous} if given \( \varepsilon > 0 \), there is a \( \delta > 0 \) such that for every pair of points \( x_0, x_1 \) of \( X \),
+  \[
+    d_X(x_0, x_1) < \delta \implies d_Y(f(x_0), f(x_1)) < \varepsilon.
+  \]
+\end{definition}
+
+\begin{theorem}[uniform continuity theorem]
+  Let \( f: X \to Y \) be a continuous map of the compact metric space \( (X, d_X) \) to the metric space \( (Y, d_Y) \).
+  Then \( f \) is uniformly continuous.
+\end{theorem}
+\begin{sketchproof}
+  Applying the Lebesgue number lemma.
+\end{sketchproof}
+
+\paragraph{Uncountable real numbers}
+
+\begin{definition}
+  If \( X \) is a space, a point \( x \) of \( X \) is said to be an \emph{isolated point} of \( X \) if the one-point set \( \left\lbrace x \right\rbrace \) is open in \( X \).
+\end{definition}
+
+\begin{theorem}
+  Let \( X \) be a nonempty compact Hausdorff space.
+  If \( X \) has no isolated points, then \( X \) is uncountable.
+\end{theorem}
+\begin{proof}
+  TODO %TODO
+\end{proof}
+
+\begin{corollary}
+  Every closed interval in \( \mathbb{R} \) is uncountable.
+\end{corollary}
+
+\subsection{Limit Point Compactness}
+
+\paragraph{limit point compact and sequetially compact}
+
+\begin{definition}
+  A space \( X \) is said to be \emph{limit point compact} if every infinite subset of \( X \) has a limit point.
+\end{definition}
+
+\begin{theorem}
+  Compactness implies limit point compactness, but not conversely.
+\end{theorem}
+\begin{proof}
+  Let \( X \) be a compact space.
+  Given a subset \( A \) of \( X \), we wish to prove that if \( A \) is infinte, then \( A \) has a limit point.
+  We pove the contrapositive -- if \( A \) has no limit point, then \( A \) must be finite.
+
+  So suppose \( A \) has no limit point.
+  Then \( A \) is closed.
+  One can prove that \( A \) is finite.
+\end{proof}
+
+\begin{definition}
+  Let \( X \) be topological space.
+  If \( (x_n) \) is a sequence of points of \( X \), and if
+  \[
+    n_1 < n_2 < \cdots < n_i < \cdots
+  \]
+  is an increasing sequence of positive integers, then the sequence \( (y_i) \) defined by setting \( y_i = x_{n_i} \) is called a \emph{subsequence} of the sequence \( (x_n) \).
+  The space \( X \) is said to be \emph{sequentially compact} if every sequence of points of \( X \) has a convergent subsequence.
+\end{definition}
+
+\noindent Also we have
+
+\begin{theorem}
+  Let \( X \) be a topological space.
+  If \( X \) is sequentially compact, then \( X \) is limit point compact.
+\end{theorem}
+\begin{sketchproof}
+  Let \( A \) be a subset of \( X \) with infinite elements.
+  Choose a sequence \( (x_n) \) with \( x_i \neq x_j \) if \( i \neq j \).
+\end{sketchproof}
+
+
+\paragraph{Metrizabale space and compactness}
+
+\begin{theorem}
+  Let \( X \) be a metrizable space.
+  TFAE
+  \begin{enumerate}
+    \item \( X \) is compact.
+    \item \( X \) is limit point compact.
+    \item \( X \) is sequentially compact.
+  \end{enumerate}
+\end{theorem}
+\begin{proof}
+  (3) \( \implies \) (1)(from \href{https://math.stackexchange.com/questions/164472/proving-that-sequentially-compact-spaces-are-compact}{StackExchange}): Say \( A \) is sequentially compact, and \( \left\lbrace U_i \right\rbrace_{i \in I} \) is an open cover of \( A \).
+  Firstly, there is a \( \delta > 0 \) such that any ball \( B(x, \delta) \) with \( x \in A \) is contained in some \( U_i \).
+  \begin{quote}
+    Suppose not.
+    Then for every integer \( n > 0 \), there is an \( x_n \in A \) such that \( B(x_n, \frac{1}{n}) \) is not fully contained in any \( U_i \).
+    Pass to a subsequence \( (x_j)_{j \in J}, J \subseteq \mathbb{Z}_{> 0} \) which converges to a point \( p \in A \) as \( j \in J, j \in \infty \).
+    Now \( p \) is contained in some \( U_k \), and there is an \( \varepsilon > 0 \) such that \( B(p, \varepsilon) \subseteq U_k \).
+    Picking a \( j \in J \) such that \( \dif(x_j, p) < \frac{\varepsilon}{2} \) where \( \frac{1}{j} < \frac{\varepsilon}{2} \), we see \( B(x_j, \frac{1}{j}) \subseteq B(p, \varepsilon) \subseteq U_k \), a contradiction.
+  \end{quote}
+  There are finitely many open balls, with radius \( \delta \) and centres in \( A \), whose union contains \( A \).
+  \begin{quote}
+    Suppose not.
+    Pick \( x_1 \in A \).
+    As \( B(x_1, \delta) \) does not cover \( A \), pick \( x_2 \in A - B(x_1, \delta) \).
+    As \( B(x_1, \delta) \cup B(x_2, \delta) \) does not cover \( A \), let \( x_3 \in A - (B(x_1, \delta) \cup B(x_2, \delta)) \), and so on.
+    Pass to a subsequence \( (x_j)_{j \in J}, J \subseteq \mathbb{Z}_{> 0} \) convergent to a point \( p \in A \) as \( j \in J, j \to \infty \).
+    But \( \dif(x_j, x_{j'}) \geq \delta \) for all distinct \( j, j' \) in \( J \).
+    Especially \( (x_j)_{j \in J} \) is not Cauchy, a contradiction.
+  \end{quote}
+  So there are finitely many balls \( B(x_1, \delta), \cdots, B(x_n, \delta) \) with centres in \( A \), whose union contains \( A \).
+  Also each of these balls is contained in some \( U_i \), giving a finite subcover.
+\end{proof}
+
+\subsection{Local Compactness and Compactification}
+
+\paragraph{Local compactness and its equivalent condition}
+
+\begin{definition}
+  A space \( X \) is said to be \emph{locally compact} at \( x \) if there is some compact subspace \( C \) of \( X \) that contains a neighborhood of \( x \).
+  If \( X \) is locally compact at each of its points, \( X \) is said simply to be \emph{locally compact}.
+\end{definition}
+\begin{remark}
+  A compact space is automatically locally compact.
+\end{remark}
+
+\begin{theorem}
+  Let \( X \) be a space.
+  Then \( X \) is locally compact Hausdorff \( \iff \) there exists a space \( Y \) satisfying the followings
+  \begin{enumerate}
+    \item \( X \) is a subspace of \( Y \).
+    \item The set \( Y - X \) consists of a single point.
+    \item \( Y \) is a compact Hausdorff space.
+  \end{enumerate}
+  If \( Y \) and \( Y' \) are two spaces satisfying these conditions, then there is a homeomorphism of \( Y \) with \( Y' \) that equals the identity map on \( X \).
+\end{theorem}
+\begin{proof}
+  \begin{enumerate}
+    \item (uniqueness) define \( h: Y \to Y' \) by letting \( h \) map the single point \( p \) of \( Y - X \) to the point \( q \) of \( Y' - X \) and letting \( h \) equal the identity on \( X \).
+      We show that if \( U \) is open in \( Y \), then \( h(U) \) is open in \( Y' \), and symmetry then implies that \( h \) is a homeomorphism.
+      \begin{quote}
+         Consider the case where \( U \) does not contain \( p \).
+         It is clear as desired.
+         Suppose that \( U \) contains \( p \).
+         Since \( C = Y - U \) is closed in \( Y \), \( C \) is compact.
+         Because \( C \) is contained in \( X \), it is a compact subspace of \( X \).
+         Then because \( X \) is a subspace \( Y' \), the space \( C \) is also a compact subspace of \( Y' \).
+         Because \( Y' \) is Hausdorff, \( C \) is closed in \( Y' \), so that \( h(U) = Y' - C \) is open in \( Y' \).
+      \end{quote}
+     \item (existence)
+       Now we suppose \( X \) is locally compact Hausdorff and construct the space \( Y \).
+       Let us take some object that is not a point of \( X \), denote it by the symbol \( \infty \) for convenience, and adjoin it to \( X \), forming the set \( Y = Y \cup \left\lbrace \infty \right\rbrace \).
+       Topologize \( Y \) by defining the collection of open sets of \( Y \) to consist of (a) all sets \( U \) that are open in \( X \), and (b) all sets of the form \( Y - C \), where \( C \) is a compact subspace of \( X \).
+
+         To show that \( Y \) is compact, let \( \mathcal{A} \) be a open covering of \( Y \).
+         The collection \( \mathcal{A} \) must contain an open set of type (b), say \( Y - C \), since none of the open sets of type (a) contain the point \( \infty \).
+         Take all the members of \( \mathcal{A} \) different from \( Y - C \) and intersect them with \( X \); they form a collection of open sets of \( X \) covering \( C \).
+         Because \( C \) is compact, finitely many of them cover \( C \); the corresponding finite collection of elements of \( \mathcal{A} \) will, along with the element \( Y - C \), cover all of \( Y \).
+
+         To show that \( Y \) is Hausdorff, let \( x \) and \( y \) be two points of \( Y \).
+         If both of them lie in \( X \), there are disjoint sets \( U \) and \( V \) open in \( X \) containing them, respectively.
+         On the other hand, if \( x \in X \) and \( y = \infty \), we can choose a compact set \( C \) in \( X \) containing a neighborhood \( U \) of \( x \).
+         Then \( U \) and \( Y - C \) are disjoint neighborhoods of \( x \) and \( \infty \), respectively, in \( Y \).
+     \item Finally, we prove the converse.
+       \( X \) is Hausdorff since it is a subspace of the Hausdorff space \( Y \).
+       Given \( x \in X \), we show \( X \) is locally compact at \( x \).
+       Choose disjoint open sets \( U \) and \( V \) of \( Y \) containing \( x \) and the single point of \( Y - X \), respectively.
+       Then the set \( C = Y - V \) is closed in \( Y \), so it is a compact subspace of \( Y \).
+       Since \( C \) lies in \( X \), it is also compact as a subspace of \( X \);
+       it contains the neighborhood \( U \) of \( x \).
+  \end{enumerate}
+\end{proof}
+
+\begin{definition}
+  If \( Y \) is a compact Hausdorff space and \( X \) is a proper subspace of \( Y \) whose closure equals \( Y \), then \( Y \) is said to be a \emph{compactification} of \( X \).
+  If \( Y - X \) equals a single point, then \( Y \) is called the \emph{one-compactification} of \( X \).
+\end{definition}
+
+\paragraph{Formulaion of local compactification}
+
+\begin{theorem}
+  Let \( X \) be a Hausdorff space.
+  Then \( X \) is locally compact \( \iff \) given \( x \) in \( X \), and given a neighborhood \( U \) of \( x \), there is a neighborhood \( V \) of \( x \) such that \( \overline{V} \) is compact and \( \overline{V} \subseteq U \).
+\end{theorem}
+\begin{proof}
+  \( \impliedby \) is clear.
+  To prove the converse, suppose \( X \) is locally compact; let \( x \) be a point \( x \) and let \( U \) be a neighborhood of \( x \).
+  Take the one-point compactification \( Y \) of \( X \), and let \( C \) be the set \( Y - U \).
+  Then \( C \) is closed in \( Y \), so that \( C \) is a compact subspace of \( Y \).
+  Hence, we can choose disjoint open sets \( V \) and \( W \) containing \( x \) and \( C \)(by Hausdorff property and the fact that \( C \) is compact), respectively.
+  Then the closure \( \overline{V} \) of \( V \) in \( Y \) is compact; furthermore, \( \overline{V} \) is disjoint from \( C \), so that \( \overline{V} \subseteq U \).
+\end{proof}
+
+\begin{corollary}
+  Let \( X \) be locally compact Hausdorff;
+  let \( A \) be a subspace of \( X \).
+  If \( A \) is closed in \( X \) or open in \( X \), then \( A \) is locally compact.
+  Moreover, in the closed case, \( A \) is still locally compact if \( X \) is not Hausdorff.
+\end{corollary}
+
+\begin{corollary}
+  A space \( X \) is homeomorphic to an open subspace of a compact Hausdorff space \( \iff \) \( X \) is locally \( X \) is locally compact Hausdorff.
+\end{corollary}
+
+\begin{corollary}
+  Any locally compact Hausdorff space is regular.
+\end{corollary}
+
+\subsection{Paracompactness}
+
+\begin{definition}
+  A collection of set \( \left\lbrace U_\alpha \right\rbrace \) is said to be \emph{locally finite}, if for all \( x \in X \), there exists an open set \( V_x \ni x \), such that only finite \( \alpha \) with \( V_x \cap U_\alpha \neq \emptyset \).
+\end{definition}
+
+\begin{definition}
+  Let \( (X, \mathcal{T}) \) be a topological space.
+  \( X \) is said to be \emph{paracompact}, if any open cover of it has a locally finite refinement.
+\end{definition}
+
+\begin{proposition}
+  The closed set in paracompact space is paracompact.
+\end{proposition}
+\begin{proof}
+  Let \( X \) be a paracompact space and \( A \subseteq X \) closed.
+  Let \( \mathcal{U} \) be an open cover of \( A \), let \( \mathcal{U}_1 = \mathcal{U} \cup \left\lbrace A^c \right\rbrace \), then \( \mathcal{U}_1 \) is an open cover of \( X \).
+  By definition, there exists a locally finite open refinement \( \widetilde{\mathcal{U}}_1 \) of \( \mathcal{U}_1 \). Let
+  \[
+    \widetilde{\mathcal{U}} = \left\lbrace U \in \widetilde{\mathcal{U}_1} \mid U \not\subset A^c \right\rbrace.
+  \]
+  Then \( \mathcal{U} \) is an open cover of \( A \), and a locally finite refinement of  \( \mathcal{U} \).
+\end{proof}
+
+\begin{proposition}
+  A Lindel\"{o}f regular space is paracompact.
+\end{proposition}
+\begin{proof}
+  Let \( X \) be a Lindel\"{o}f and regular space.
+  Let \( \mathcal{U} = \left\lbrace U_\alpha \right\rbrace \) be any open cover of \( X \).
+  Then for any \( x \in X \), we can choose \( \alpha(x) \) such that \( x \in U_{\alpha(x)} \).
+  Since \( X \) is regular, we can find open sets \( V_x, W_x \) such that
+  \[
+    x \in V_x \subset \overline{V_x} \subset W_x \subset \overline{W_x} \subset U_{\alpha(x)}.
+  \]
+  Now \( \mathcal{V} = \left\lbrace V_x \right\rbrace \) is an open cover of \( X \).
+  Since \( X \) is Lindel\"{o}f, we can find a countably subcover
+  \[
+    \left\lbrace V_1, V_2, V_3, \cdots \right\rbrace \subset \mathcal{V}
+  \]
+  At this time, \( \left\lbrace W_1, W_2, \cdots \right\rbrace \) is also an open cover of \( X \).
+  We write \( R_1 = W_1 \), and define recursively
+  \[
+    R_n := W_n \backslash (\overline{V_1} \cup \cdots \cup \overline{V_{n - 1}}), \quad n > 1.
+  \]
+  Then, \( \mathcal{R} = \left\lbrace R_n \right\rbrace \) is a locally finite open refinement of \( \mathcal{U} \):
+  \begin{enumerate}
+    \item \( \mathcal{R} \) is a refinement of \( \mathcal{U} \).
+    \item \( \mathcal{R} \) is a cover of \( X \), since let \( n \) be the minimal index \( n \) such that \( x \in W_n \), then \( x \notin V_i \) where \( i < n \) by construct, and hence \( x \in R_n \).
+    \item \( \mathcal{R} \) is locally finite, since if \( x \in V_n \) then \( x \) is possibly in \( R_m \) for only \( m \leq n \).
+  \end{enumerate}
+\end{proof}
+
+\begin{corollary}
+  Topological manifold is paracompact.
+\end{corollary}
+
+\paragraph{Paracompactness enhances separations}
+
+\begin{lemma}
+  let \( \left\lbrace U_\alpha \right\rbrace \) be locally finite on \( X \), then
+  \[
+    \overline{\cup_{\alpha} U_\alpha} = \cup_{\alpha} \overline{U_\alpha}.
+  \]
+\end{lemma}
+\begin{proof}
+  \( \supseteq \) is clear.
+  Now we prove the converse.
+  For \( x \in \overline{\bigcup_\alpha U_\alpha} \), there exists a neighborhood \( V \) of \( x \) such that \( V \cap U_\alpha = \emptyset \) for all but finite \( \alpha \), say \( U_1, \cdots, U_n \).
+  Then \( x \in \overline{U_1 \cup \cdots \cup U_n} = \overline{U_1} \cup \cdots \cup \overline{U_n}  \).
+\end{proof}
+
+\begin{proposition}
+  \begin{enumerate}
+    \item A paracompact Hausdorff space is regular.
+    \item A paracompact regular space is normal.
+  \end{enumerate}
+\end{proposition}
+\begin{proof}
+  \begin{enumerate}
+    \item Let \( x \) be a paracompact Hausdorff space, \( B \subseteq X \) closed and \( x \notin B \).
+      Since \( X \) is Hausdorff, for any \( y \in B \), there exist open sets \( U_y \ni x, V_y \ni y \) such that \( U_y \cap V_y = \emptyset \), then
+      \[
+        \mathcal{U}_1 := \left\lbrace V_y \mid y \in B \right\rbrace
+      \]
+      is an open cover of \( B \).
+      Since \( B \) is compact, \( B \) is paracompact, thus there exists a locally finite open refinement \( \widetilde{\mathcal{U}} \) of \( \mathcal{U}_1 \).
+      By definition, for any \( V \in \widetilde{\mathcal{U}} \), there exists a \( V_y \in \mathcal{U}_1 \) such that \( V \subset V_y \), thus \( \overline{V} \subset \overline{V}_y \subset U^c_y \).
+      In particular, for any \( V \in \widetilde{\mathcal{U}} \), we have \( x \notin \overline{V} \).
+      Let
+      \[
+        U := \cup_{V \in \widetilde{U}}V.
+      \]
+      Then \( U \) is open and \( B \subset U \).
+      By the preceding lemma, we have
+      \[
+        \overline{U} = \overline{\cup_{V \in \widetilde{U}}} = \cup_{V \in \widetilde{U}} \overline{V}.
+      \]
+      Hence, \( {\overline{U}}^c \) is an open neighborhood of \( x \), and \( U \cap {\overline{U}}^c = \emptyset \).
+  \end{enumerate}
+\end{proof}
+
+\subsection{The Tychonoff Theorem}
+
+\begin{lemma}
+  Let \( X \) be a set;
+  let \( \mathcal{A} \) be a collection of subsets of \( X \) having the finite intersection property.
+  Then there is a collection \( \mathcal{D} \) of subsets of \( X \) such that \( \mathcal{D} \) contains \( \mathcal{A} \), and \( \mathcal{D} \) has the finite intersection property, and no collection of subsets of \( X \) that properly contains \( \mathcal{D} \) has this property.
+\end{lemma}
+\begin{proof}
+  We construct \( \mathcal{D} \) by using Zorn's lemma.
+  The set \( A \) to which we shall apply Zorn's lemma is not a subset of \( X \), nor even a collection of subsets of \( X \), but a set whose \underline{elements} are collections of subsets of \( X \).
+  For purposes of this proof, we shall call a set whose elements are collections of subsets of \( X \) a ``superset'' and shall denote it by an outerline letter.
+  To summarize the notation:
+  \begin{itemize}
+    \item \( c \) is an element of \( X \).
+    \item \( C \) is a subset of \( X \).
+    \item \( \mathcal{C} \) is a collection of subsets of \( X \).
+    \item \( \mathbb{C} \) is a superset whose elements are collections of subsets of \( X \).
+  \end{itemize}
+  Now by hypothesis, we have a collection \( \mathcal{A} \) of subsets of \( X \) that has the finite intersection property.
+  Let \( \mathbb{A} \) denote the superset consisting of all collections \( \mathcal{B} \) of subsets of \( X \) such that \( \mathcal{B} \supseteq \mathcal{A} \) and \( \mathcal{B} \) has the finite intersection property.
+  To prove our lemma, we need to show that \( \mathbb{A} \) has a maximal element \( \mathcal{D} \).
+
+  In order to apply Zorn's lemma, we must show that if \( \mathbb{B} \) is a subsuperset of \( \mathbb{A} \) that is \underline{simply ordered} by proper inclusion, then \( \mathbb{B} \) has an upper bound in \( \mathbb{A} \).
+  We shall show in fact the collection
+  \[
+    \mathcal{C} = \bigcup_{\mathcal{B} \in \mathbb{B}}\mathcal{B},
+  \]
+  which is the union of the collections belonging to \( \mathbb{B} \), is an element of \( \mathbb{A} \); then it is the required upper bound on \( \mathbb{B} \).
+
+  To show that \( \mathcal{C} \) is an element of \( \mathcal{A} \), we only need to show that \( \mathcal{C} \) has the finite intersection property.
+  Let \( C_1, \cdots, C_n \) be elements of \( \mathcal{C} \).
+  Because \( \mathcal{C} \) is the union of the elements of \( \mathbb{B} \), there is, for each \( i \), an element \( \mathcal{B}_i \) of \( \mathbb{B} \) such that \( C_i \in \mathcal{B}_i \).
+  The superset \( \left\lbrace \mathcal{B}_1, \cdots, \mathcal{B}_n \right\rbrace \) is contained in \( \mathbb{B} \), so it is simply ordered by the relation of proper inclusion.
+  Being finite, it has a largest element;
+  that is, there is an index \( k \) such that \( \mathcal{B}_i \subseteq \mathcal{B}_k \) for \( i = 1, \cdots, n \).
+  Then all the sets \( C_1, \cdots, C_n \) are elements of \( \mathcal{B}_k \).
+  Since \( \mathcal{B}_k \) has the finite intersection property, the intersection of the sets \( C_1,\cdots, C_n \) is nonemtpy, as desired.
+\end{proof}
+
+\begin{lemma}
+  Let \( X \) be a set;
+  let \( \mathcal{D} \) be a collection of subsets of \( X \) that is maximal w.r.t. the finite intersection property.
+  Then
+  \begin{enumerate}
+    \item Any finite intersection of elements of \( \mathcal{D} \) is an element of \( \mathcal{D} \).
+    \item If \( A \) is a subset of \( X \) that intersects every element of \( \mathcal{D} \), then \( A \) is an element of \( \mathcal{D} \).
+  \end{enumerate}
+\end{lemma}
+\begin{sketchproof}
+    \item Let \( B \) equal the intersection of finitely many elements of \( \mathcal{D} \).
+      Define a collection \( \mathcal{E} \) by adjoining \( B \) to \( \mathcal{D} \), so that \( \mathcal{E} = \mathcal{D} \cup \left\lbrace B \right\rbrace \).
+      We only need to show that \( \mathcal{E} \) has the finite intersection property.
+\end{sketchproof}
+
+\begin{theorem}[Tychonoff theorem]
+  An arbitrary product of compact spaces is compact in the product topology.
+\end{theorem}
+\begin{proof}
+  Let \( X = \prod_{\alpha \in J} X_\alpha \), where each \( X_\alpha \) is compact.
+  Let \( \mathcal{A} \) be a collection of subsets of \( X \) having the finite intersection property.
+  We prove that the intersection
+  \[
+    \bigcap_{A \in \mathcal{A}} \overline{A}
+  \]
+  is nonempty, and hence compactness of \( X \) follows.
+
+  Apply the first lemma, we can choose a collection \( \mathcal{D} \) of subsets of \( X \) such that \( \mathcal{D} \supseteq \mathcal{A} \) and \( \mathcal{D} \) is maximal w.r.t. the finite intersection property.
+  It will suffice to show that the intersection \( \bigcap_{D \in \mathcal{D}} \overline{D} \) is nonempty.
+
+  Given \( \alpha \in J \), let \( \pi_\alpha: X \to X_\alpha \) be the projection map, as usual.
+  Consider the collection
+  \[
+    \left\lbrace \pi_\alpha(D): D \in \mathcal{D} \right\rbrace
+  \]
+  of subsets of \( X_\alpha \).
+  This collection has the finite intersection property because \( \mathcal{D} \) does.
+  By compactness of \( X_\alpha \), we can for each \( \alpha \) choose a point \( x_\alpha \) of \( X_\alpha \) such that
+  \[
+    x_\alpha \in \bigcap_{D \in \mathcal{D}} \overline{\pi_\alpha(D)}.
+  \]
+  Let \( x \) be the point \( (x_\alpha)_{\alpha \in J} \) of \( X \).
+  We shall show that \( x \in \overline{D} \) for every \( D \in \mathcal{D} \); then our proof will be finished.
+
+  First we show that if \( \pi_\beta^{-1}(U_\beta) \) is any subbasis element containing \( x \), then \( \pi_\beta^{-1}(U_\beta) \) intersects every element of \( \mathcal{D} \).
+  The set \( U_\beta \) is a neighborhood of \( x_\beta \) in \( X_\beta \).
+  Since \( x_\beta \in \overline{\pi_\beta(D)} \) by definition, \( U_b \) intersects \( \pi_\beta(D) \) in some point \( \pi_\beta(y) \), where \( y \in D \).
+  Then it follows that \( y \in \pi^{-1}_\beta(U_\beta) \cap D \).
+
+  It follows from (2) of the preceding lemma that every subbasis element containing \( x \) belongs to \( \mathcal{D} \).
+  Then it follows from (1) of the preceding lemma that every basis element containing \( x \) belongs to \( \mathcal{D} \).
+  Since \( \mathcal{D} \) has the finite intersection property, this means that every basis element containing \( x \) containing \( x \) intersects every element of \( \mathcal{D} \).
+  Hence \( x \in \overline{D} \) for every \( D \in \mathcal{D} \) as desired.
+\end{proof}
+
+\subsection{The Stone-\v{C}ech Compactification}
+
+We have already studied one way of compactifying a topological space \( X \), the one-point compactification; it is in some sense the minimal compactification of \( X \).
+The Stone-\v{C}ech compactification of \( X \), which we study now, is in some sense the maximal compactification of \( X \).
+
+TODO %TODO
