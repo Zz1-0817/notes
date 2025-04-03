@@ -1,0 +1,60 @@
+\chapter{Regular sequences and Regular rings}
+
+\section{Regular Sequences and the Koszul Complex}
+
+\subsection{Regular Sequences}
+
+\paragraph{Regular Sequences}
+
+Let \( A \) be a ring and \( M \) an \( A \)-module. Then
+\begin{itemize}
+  \item An element \( a \in A \) is said to be \( M \)-\emph{regular} if \( ax \neq 0 \) for all \( 0 \neq x \in M \).
+  \item A sequence \( a_1,\cdots, a_n \) of elements of \( A \) is an \( M \)-sequence if the followings hold:
+    \begin{enumerate}
+      \item \( a_1 \) is \( M \)-\emph{regular}, \( a_2 \) is \( (M / a_1 M) \)-regular, \dots, \( a_n \) is \( (M / \sum_{1}^{n - 1}a_i M) \)-regular
+      \item \( M / \sum_1^na_i M \neq 0 \)
+    \end{enumerate}
+\end{itemize}
+
+\begin{remark}
+  The elements of an \( M \)-sequence may no longer form an \( M \)-sequence.
+\end{remark}
+
+\begin{theorem}
+  If \( a_1, \cdots, a_n \) is an \( M \)-sequence then so is \( a^{v_1}_1, \cdots, a^{v_n}_n \) for any \( v_1, \cdots, v_n > 0 \).
+\end{theorem}
+
+\paragraph{Polynomials ``over modules''}
+
+Let \( A \) be a ring, \( X_1, \cdots, X_n \) indeterminates over \( A \), and \( M \) an \( A \)-module.
+We can view elements of \( M \otimes_A A[X_1, \cdots, X_n] \) as polynomials in the \( X_i \) with coeffients in \( M \),
+\[
+  F(X) = F(X_1, \cdots, X_n) = \sum \xi_{(\alpha)}X^{\alpha_1}_1 \cdots X_{n}^{\alpha_n}, \text{ with } \xi_{(\alpha)} \in M.
+\]
+For this reason we write \( M[X_1, \cdots, X_n] \) for \( M \otimes_A A[X_1, \cdots, X_n] \).
+
+\paragraph{Quasi-regular Sequence}
+
+Let \( a_1, \cdots, a_n \in A \), set \( I = \sum_1^n a_i A \), and let \( M \) be an \( A \)-module with \( I M \neq M \).
+We say that \( a_1, \cdots, a_n \) is an \( M \)-\emph{quasi-regular-sequence} if for each \( v \): \( F(X_1, \cdots, X_n) \in M[X_1, \cdots, X_n] \) is a homogeneous of degree \( v \) and \( F(a) \in I^{v + 1}M \) implies that all the coefficients of \( F \) are in \( IM \).
+
+\begin{remark}
+  \begin{enumerate}[label=\arabic*.]
+    \item different from regular sequences, the quasi-regular sequence is independent of the order \( a_1, \cdots, a_n \).
+    \item we can replace \( F(a) \in I^{v + 1}M \) by \( F(a) = 0 \):
+
+      The fact that the former implies the latter is obvious.
+      Now suppose that the latter is satisfied and \( F(a) \in I^{v + 1}M \).
+      Then there exists a homogeneous polynomial \( G(X) \in M[X_1, \cdots, X_n] \) with degree \( v + 1 \) such that \( G(a) = F(a) \), and we write \( G(X) = \sum_i X_i G_i(X) \).
+      Consider \( g(X) = F(X) - a_i G_i(X) \), we have \( g(a) = 0 \).
+      Then by hyperthesis, we have the coefficients of \( g \) are in \( IM \).
+      Hence the coefficients in \( F \) lie in \( IM \).(and we will use this technique to prove the following theorem)
+    \item with a \( M \)-quasi-regular-sequence, we may see the graded ring \( \operatorname{gr}_I M = \bigoplus_{v \geq 0}I^v M / I^{v + 1}M \) as a polynomial ring in the following manner:
+      given a homogeneous elements \( F \in M[X] \) with degree \( v \), maps it into the image of \( F(a) \) in \( I^v M / I^{v + 1}M \).
+      This is clearly surjective, and using the quasi-regular condition, we know the kernel is \( IM[X] \).
+      In other words,
+      \[
+        M[X] / IM[X] \simeq (M / IM)[X] \simeq \operatorname{gr}_IM.
+      \]
+  \end{enumerate}
+\end{remark}

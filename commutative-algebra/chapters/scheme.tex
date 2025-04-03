@@ -1,0 +1,113 @@
+\chapter{Sheaves and Schemes}
+
+\section{Coherent Sheaves}
+
+\paragraph{Sheaf of \( \mathcal{O}_X \)-modules}
+
+\( (X, \mathcal{O}_X) \): a ring space.
+A \emph{sheaf} of \( \mathcal{O}_X \)-modules is a sheaf \( \mathcal{F} \) such that
+\begin{enumerate}
+  \item for every open subset \( U \subseteq X \), and
+  \item for every inclusion of open subsets \( V \subseteq U \), the restriction \( \mathcal{F}(U) \to \mathcal{F}(V) \) is compatible, that is, for any sections \( a \in \mathcal{O}_X(U) \) and \( s, t \in \mathcal{F}(U) \), we have
+    \[
+      (s + t) = s \mid_V + t \mid_V, \quad (as) \mid_V = a \mid_V \cdot s \mid_V.
+    \]
+\end{enumerate}
+Let \( \mathcal{F} \) and \( \mathcal{G} \) be \( \mathcal{O}_X \)-modules.
+A \emph{morphism} \( \phi: \mathcal{F} \to \mathcal{G} \) is a morphism of sheaves such that for every open subset \( U \), \( \phi(U) \in \hom_{\mathcal{O}_X(U)}(\mathcal{F}(U), \mathcal{G}(U)) \).
+The set of morphisms from \( \mathcal{F} \) to \( \mathcal{G} \) is denoted by \( \hom_{\mathcal{O}_X}(\mathcal{F}, \mathcal{G}) \).
+
+\paragraph{Construction}
+\begin{enumerate}[label=\arabic*.]
+  \item \( \mathcal{H}om_{\mathcal{O}_X}(\mathcal{F}, \mathcal{G}) \), \( U \mapsto \hom_{\mathcal{O}_X \mid_U} (\mathcal{F}_U, \mathcal{G}_U) \).
+    Distinguish \( \hom_{\mathcal{O}_X}(\mathcal{F}, \mathcal{G}) \) and \( \mathcal{H}om_{\mathcal{O}_X}(\mathcal{F}, \mathcal{G}) \)!
+  \item \( \mathcal{F} \otimes_{\mathcal{O}_X} \mathcal{G} \), the \( \mathcal{O}_X \)-module associated to the presheaf(the following might NOT be a sheaf!)
+    \[
+      U \mapsto \mathcal{F}(U) \otimes_{\mathcal{O}_X(U)} \mathcal{G}(U).
+    \]
+  \item \( \bigoplus_i \mathcal{F}_i \), the \( \mathcal{O}_X \)-module associated to the presheaf(the following might NOT be a sheaf!)
+    \[
+      U \mapsto \bigoplus_{i \in I} \mathcal{F}_i (U).
+    \]
+  \item \( \prod_i \mathcal{F}_i \), \( U \mapsto \prod_{i \in I} \mathcal{F}_i (U) \).
+  \item \( \varinjlim \mathcal{F}_i \), the \( \mathcal{O}_X \)-module associated to the presheaf(the following might NOT be a sheaf!)
+    \[
+      U \mapsto \varinjlim_i \mathcal{F}_i(U).
+    \]
+  \item \( \varprojlim \mathcal{F}_i \), \( U \mapsto \varprojlim \mathcal{F}_i(U) \).
+\end{enumerate}
+
+Some constructions above involve presheaves, then a natural question is when these presheaves will be sheaves.
+
+\paragraph{Properties: Free, Locally free and finite presentation}
+
+An \( \mathcal{O}_X \)-module is called
+\begin{enumerate}[label=\arabic*]
+  \item \emph{free} if it is isomorphic ot a direct sum of copies \( \mathcal{O}_X \).
+    And the number of copies is called the \emph{rank} of the free \( \mathcal{O}_X \)-module.
+  \item \emph{locally free} if \( X \) can be covered by \( \left\lbrace U_i \right\rbrace_{i \in I} \) such that \( \mathcal{F} \mid_{U_i} \) is a free \( \mathcal{O}_{U_i} \)-module.
+\end{enumerate}
+\begin{example}
+  \( X \): a topological space; \( \mathcal{C} \): the sheaf of complex valued continuous functions.
+  For any complex vector bundle \( p: E \to X \) over \( X \), the sheaf of sections defined by
+  \[
+    U \mapsto \left\lbrace s: U \to p^{-1}(U): s \text{ is continuous and } ps = \operatorname{id} \right\rbrace
+  \]
+  is a locally free sheaf of \( \mathcal{C} \)-modules.
+\end{example}
+An \( \mathcal{O}_X \)-module \( \mathcal{F} \) is called
+\begin{enumerate}
+  \item \emph{finite presentation} if \( X \) can be covered by \( \left\lbrace {U_i} \right\rbrace_{i \in I} \), and we have an exact sequence of the form
+    \[
+      \mathcal{O}_{U_i}^{m_i} \to \mathcal{O}_{U_i}^{n_i} \to \mathcal{F} \mid_{U_i} \to 0.
+    \]
+  \item \emph{finite type} if \( X \) can be covered by \( \left\lbrace {U_i} \right\rbrace_{i \in I} \), and we have an exact sequence of the form
+    \[
+      \mathcal{O}_{U_i}^{n_i} \to \mathcal{F}\mid_{U_i} \to 0.
+    \]
+\end{enumerate}
+
+\begin{proposition}
+  \( (X, \mathcal{O}_X) \): a ringed space; \( \mathcal{F}, \mathcal{G} \): \( \mathcal{O}_X \)-modules.
+  \begin{enumerate}
+    \item if \( \mathcal{F} \) is of finite presentation, then \( \forall P \in X \), we have
+      \[
+        (\mathcal{H}om_{\mathcal{O}_X}(\mathcal{F}, \mathcal{G}))_P \simeq \hom_{\mathcal{O}_{X, P}}(\mathcal{F}_P, \mathcal{G}_P).
+      \]
+    \item \( \mathcal{F}, \mathcal{G} \): finite presentation; \( P \in X \).
+      If \( \phi_P: \mathcal{F}_P \simeq \mathcal{G}_P \), then \( \exists \) neighborhood \( U \ni P \), and \( \phi: \mathcal{F}\mid_{U} \simeq \mathcal{G}\mid_U \) of \( \mathcal{O}_U \)-modules inducing the stalk isomorphism.
+  \end{enumerate}
+\end{proposition}
+\begin{sketchproof}
+(1)
+\[\begin{tikzcd}
+	{\mathcal{O}_{U}^m} & {\mathcal{O}_{U}^n} & {\mathcal{F}\mid_{U}} & 0
+	\arrow[from=1-1, to=1-2]
+	\arrow[from=1-2, to=1-3]
+	\arrow[from=1-3, to=1-4]
+\end{tikzcd}\]
+induces
+% https://q.uiver.app/#q=WzAsNCxbMywwLCJcXG1hdGhjYWx7SH1vbV97XFxtYXRoY2Fse099X1V9KFxcbWF0aGNhbHtPfV97VX1ebSwgXFxtYXRoY2Fse0d9KSJdLFsyLDAsIlxcbWF0aGNhbHtIfW9tX3tcXG1hdGhjYWx7T31fVX0oXFxtYXRoY2Fse099X3tVfV5uLCBcXG1hdGhjYWx7R30pIl0sWzEsMCwiXFxtYXRoY2Fse0h9b21fe1xcbWF0aGNhbHtPfV9VfShcXG1hdGhjYWx7Rn1cXG1pZF97VX0sIFxcbWF0aGNhbHtHfSkiXSxbMCwwLCIwIl0sWzIsMV0sWzEsMF0sWzMsMl1d
+\[\begin{tikzcd}
+	0 & {\mathcal{H}om_{\mathcal{O}_U}(\mathcal{F}\mid_{U}, \mathcal{G})} & {\mathcal{H}om_{\mathcal{O}_U}(\mathcal{O}_{U}^n, \mathcal{G})} & {\mathcal{H}om_{\mathcal{O}_U}(\mathcal{O}_{U}^m, \mathcal{G})}
+	\arrow[from=1-1, to=1-2]
+	\arrow[from=1-2, to=1-3]
+	\arrow[from=1-3, to=1-4]
+\end{tikzcd}\]
+Then we have
+% https://q.uiver.app/#q=WzAsOCxbMywwLCIoXFxtYXRoY2Fse0h9b21fe1xcbWF0aGNhbHtPfV9VfShcXG1hdGhjYWx7T31fe1V9Xm0sIFxcbWF0aGNhbHtHfVxcbWlkX1UpKV9QIl0sWzIsMCwiKFxcbWF0aGNhbHtIfW9tX3tcXG1hdGhjYWx7T31fVX0oXFxtYXRoY2Fse099X3tVfV5uLCBcXG1hdGhjYWx7R31cXG1pZF9VKSlfUCJdLFsxLDAsIihcXG1hdGhjYWx7SH1vbV97XFxtYXRoY2Fse099X1V9KFxcbWF0aGNhbHtGfVxcbWlkX3tVfSwgXFxtYXRoY2Fse0d9IFxcbWlkX1UpKV9QIl0sWzAsMCwiMCJdLFsxLDEsIlxcaG9tX3tcXG1hdGhjYWx7T31fe1UsIFB9fShcXG1hdGhjYWx7Rn1fUCwgXFxtYXRoY2Fse0d9X1ApIl0sWzAsMSwiMCJdLFsyLDEsIlxcaG9tX3tcXG1hdGhjYWx7T31fe1UsIFB9fShcXG1hdGhjYWx7T31fe1UsIFB9Xm4sIFxcbWF0aGNhbHtHfV9QKSJdLFszLDEsIlxcaG9tX3tcXG1hdGhjYWx7T31fe1UsIFB9fShcXG1hdGhjYWx7T31fe1UsIFB9Xm0sIFxcbWF0aGNhbHtHfV9QKSJdLFsyLDFdLFsxLDBdLFszLDJdLFsyLDRdLFs1LDRdLFsxLDZdLFswLDddLFs0LDZdLFs2LDddXQ==
+\[\begin{tikzcd}
+	0 & {(\mathcal{H}om_{\mathcal{O}_U}(\mathcal{F}\mid_{U}, \mathcal{G} \mid_U))_P} & {(\mathcal{H}om_{\mathcal{O}_U}(\mathcal{O}_{U}^n, \mathcal{G}\mid_U))_P} & {(\mathcal{H}om_{\mathcal{O}_U}(\mathcal{O}_{U}^m, \mathcal{G}\mid_U))_P} \\
+	0 & {\hom_{\mathcal{O}_{U, P}}(\mathcal{F}_P, \mathcal{G}_P)} & {\hom_{\mathcal{O}_{U, P}}(\mathcal{O}_{U, P}^n, \mathcal{G}_P)} & {\hom_{\mathcal{O}_{U, P}}(\mathcal{O}_{U, P}^m, \mathcal{G}_P)}
+	\arrow[from=1-1, to=1-2]
+	\arrow[from=1-2, to=1-3]
+	\arrow[from=1-2, to=2-2]
+	\arrow[from=1-3, to=1-4]
+	\arrow[from=1-3, to=2-3]
+	\arrow[from=1-4, to=2-4]
+	\arrow[from=2-1, to=2-2]
+	\arrow[from=2-2, to=2-3]
+	\arrow[from=2-3, to=2-4]
+\end{tikzcd}\]
+The vertical arrows are induced by the universal propety of directed limit, and last two are isomorphic to \( \mathcal{G}_P^n \) and \( \mathcal{G}_P^m \), respectively.
+\end{sketchproof}

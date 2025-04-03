@@ -1,0 +1,245 @@
+\chapter{Preliminary}
+Throughout this note, a ring (usually \( A \)) is referred to a commutative ring with identity \( 1 \).
+
+\section{Ideals}
+
+\subsection{Prime ideal}
+
+\begin{proposition}
+  \( A \): a ring, \( \mathfrak{p} \) a prime ideal, \( I, I_i \) ideals.
+  \begin{enumerate}
+    \item if \( a_1 \cdots a_n \in \mathfrak{p} \), then \( a_j \in \mathfrak{p}
+      \) for some \( i \).
+    \item if \( I_1 \cdots I_n \in \mathfrak{p} \), then \( I_j \subseteq
+      \mathfrak{p} \) for some \( j \).
+  \end{enumerate}
+\end{proposition}
+\begin{proof}
+  (2) by contradiction.
+\end{proof}
+
+\subsection{Principal Ideal Domain}
+
+\subsection{Unique Factorization Domain}
+
+\section{Tensor products, direct and inverse limits}
+
+\subsection{Tensor products}
+
+\paragraph{Bilinear map and Tensor product}
+
+\( A \): a ring; \( L, M, N \): \( A \)-modules.
+We say that a map \( \phi: M \times N \to L \) is \emph{bilinear} if
+\begin{align*}
+  \varphi(x + x', y) = \varphi(x, y) + \varphi(x', y), \quad \varphi(ax, y) = a \varphi (x, y),\\
+  \varphi(x, y + y') = \varphi(x, y) + \varphi(x, y'), \quad \varphi(x, ay) = a \varphi (x, y).
+\end{align*}
+Write \( \mathscr{L}(M, N; L) \) or \( \mathscr{L}_A(M, N; L) \) for the set of all bilinear maps from \( M \times N \) to \( L \).
+
+We call a \( A \)-module \( L_0 \) together with a bilinear map \( \otimes: M \times N \to L_0 \) the \emph{tensor product} of \( M \) and \( N \) over \( A \), and write \( L_0 = M \otimes_A N \), if it satisfies the following universal property:
+given any \( A \)-module \( L \), and \( \varphi \in \mathscr{L}(M, N; L) \), there exists a unique \( \phi \in \hom_A(L_0, L) \) such that \( \phi \circ \otimes = \varphi \).
+And we usually denote \( \otimes(x, y) \) as \( x \otimes y \).
+% https://q.uiver.app/#q=WzAsMyxbMCwwLCJNIFxcdGltZXMgTiJdLFswLDEsIk0gXFxvdGltZXMgTiJdLFsxLDEsIkwiXSxbMCwxLCJcXG90aW1lcyIsMl0sWzEsMiwiXFxleGlzdHMgISBcXHBoaSIsMix7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dLFswLDIsIlxcdmFycGhpIl1d
+\begin{center}
+	 \begin{tikzcd}
+	{M \times N} \\
+	{M \otimes N} & L
+	\arrow["\otimes"', from=1-1, to=2-1]
+	\arrow["\varphi", from=1-1, to=2-2]
+	\arrow["{\exists ! \phi}"', dashed, from=2-1, to=2-2]
+	 \end{tikzcd}
+\end{center}
+We can define \emph{multilinear maps} from an \( r \)-fold product of \( A \)-modules \( M_1, \cdots, M_r \) to an \( A \)-module \( L \) similarly, and get the modules \( \mathscr{L}(M_1, \cdots, M_r; L) \) and \( M_1 \otimes_A \cdots \otimes_A M_r \).
+
+\paragraph{Construction}
+
+\paragraph{Properties of Tensor products}
+
+\begin{enumerate}
+  \item \( \hom_A(M \otimes_A N, L) \simeq \mathscr{L}(M, N; L) \)
+  \item \( (M \otimes_A M') \otimes_A M'' = M \otimes_A M' \otimes_A M'' = M \otimes_A (M' \otimes_A M'') \)
+  \item \( M \otimes_A N \simeq N \otimes_A M \)
+  \item \( M \otimes_A A = M \)
+  \item \( (\bigoplus_\lambda M_\lambda) \otimes_A N = \bigoplus_\lambda(M_\lambda \otimes_A N) \)
+  \item if \( f: M \to M' \) and \( g: N \to N' \) are both \( A \)-linear, then \( (x, y) \mapsto f(x) \otimes g(y) \) is a bilinear map from \( M \times N \) to \( M' \otimes_A N' \), thus defines a linear map \( M \otimes N \to M' \otimes_A N' \), which we denote \( f \otimes g \).
+    Then \( (f \otimes g)(\sum_i x_i \otimes y_i) = \sum_i f(x_i) \otimes g(y_i) \).
+  \item suppose given exact sequences
+    \[
+      0 \to K \xrightarrow{i} M  \xrightarrow{f} M' \to 0 \text{ and }
+      0 \to L \xrightarrow{j} N  \xrightarrow{g} N' \to 0;
+    \]
+    then \( M' \otimes N' \simeq (M \otimes N) / T \), where \( T = (i \otimes 1)(M \otimes N) + (1 \otimes j)(M \otimes L) \).
+  \item if \( N' \xrightarrow{\alpha} N \xrightarrow{\beta} N'' \to 0 \) is exact, then
+    \[
+       N' \otimes M \xrightarrow{\alpha \otimes 1} N \otimes M \xrightarrow{\beta \otimes 1} N'' \otimes M \to 0
+    \]
+    is exact.
+    \begin{proof}
+      Let \( N \otimes M \xrightarrow{\phi} Q \) be the cokernel of \( \alpha \otimes 1 \).
+      Show that \( Q \simeq N'' \otimes M \).
+    \end{proof}
+  \item \( A, B \): rings; \( P \): an \( A \)-\( B \)-module; \( N \): a \( B \)-module.
+    \[
+      \hom_A(M, \hom_B({}_AP_B, {}_BN) \simeq \hom_B(M \otimes_A {}_AP_B, {}_BN),
+    \]
+    where \( \hom_B({}_AP_B, {}_BN) \) can be viewed as an \( A \)-module as following: \( a\phi(x) \coloneq \phi(ax) \).
+    \begin{proof}
+      \( f \mapsto \left(m \otimes p \mapsto f(m)(p) \right) \) and
+      \( \left(m \mapsto (p \mapsto g(m \otimes p))\right) \mapsfrom g \).
+    \end{proof}
+  \item \( (M \otimes_A P) \otimes_B N \simeq M \otimes_A (P \otimes_B N) \)
+\end{enumerate}
+
+\subsection{Direct limits}
+
+\paragraph{Directed set, Directed system and Direct limit}
+
+A partial ordering \( \leq \) on a set \( I \) is said to be \emph{direct}, and the pair \( (I, \leq) \) is called a \emph{directed set}, if for all \( i, j \in I \) there exists a \( k \in I \) such that \( i, j \leq k \).
+
+Let \( (I, \leq) \) be a directed set, and let \( A \) be a ring.
+A \emph{direct system} of \( A \)-modules indexed by \( (I, \leq) \) is a family \( (M_i)_{i \in I} \) of \( A \)-modules together with a famiy \( (\alpha_j^i: M_i \to M_j)_{i \leq j} \) of \( A \)-linear maps such that $\alpha^i_i = \operatorname{id}_{M_i} \text{ and } \alpha_k^j \circ \alpha_j^i= \alpha_k^i \text{ for all } i \leq j \leq k.$
+% https://q.uiver.app/#q=WzAsMyxbMCwxLCJNX2kiXSxbMSwxLCJNX2oiXSxbMiwwLCJNX2siXSxbMCwxLCJcXGFscGhhX2peaSIsMl0sWzEsMiwiXFxhbHBoYV9rXmoiLDJdLFswLDIsIlxcYWxwaGFeaV9rIl1d
+\begin{center}
+  \begin{tikzcd}
+	&& {M_k} \\
+	{M_i} & {M_j}
+	\arrow["{\alpha^i_k}", from=2-1, to=1-3]
+	\arrow["{\alpha_j^i}"', from=2-1, to=2-2]
+	\arrow["{\alpha_k^j}"', from=2-2, to=1-3]
+\end{tikzcd}
+\end{center}
+An \( A \)-module \( M \) together with a family \( (\alpha^i: M_i \to M)_{i \in I} \) of \( A \)-linear maps satisfying \( \alpha^i = \alpha^j \circ \alpha^i_j \) for all \( i \leq j \) is said to be a \emph{direct limit} of the system \( ((M_i), (\alpha^i_j)) \) if it has the following universal property:
+for every other other \( A \)-module \( N \) and family \( (\beta^i: M_i \to N) \) of \( A \)-linear maps such that \( \beta^i = \beta^j \circ \alpha^i_j \) for all \( i \leq j \), there exists a unique morphism \( \alpha: M \to N \) such that \( \alpha \circ \alpha^i = \beta^i \) for all \( i \).
+We denote it as \( \varinjlim (M_i, \alpha^j_i) \) or just \( \varinjlim M_i \).
+% https://q.uiver.app/#q=WzAsNCxbMCwxLCJNX2kiXSxbMSwxLCJNX2oiXSxbMiwwLCJNX2siXSxbMiwyLCJOIl0sWzAsMSwiXFxhbHBoYV9qXmkiLDFdLFsxLDIsIlxcYWxwaGFfa15qIiwyXSxbMCwyLCJcXGFscGhhXmlfayJdLFswLDMsIlxcYmV0YV5pIiwyXSxbMSwzLCJcXGJldGFeaiJdLFsyLDMsIlxcYWxwaGEiLDAseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XV0=
+\begin{center}
+  \begin{tikzcd}
+	&& {M_k} \\
+	{M_i} & {M_j} \\
+	&& N
+	\arrow["\alpha", dashed, from=1-3, to=3-3]
+	\arrow["{\alpha^i_k}", from=2-1, to=1-3]
+	\arrow["{\alpha_j^i}"{description}, from=2-1, to=2-2]
+	\arrow["{\beta^i}"', from=2-1, to=3-3]
+	\arrow["{\alpha_k^j}"', from=2-2, to=1-3]
+	\arrow["{\beta^j}", from=2-2, to=3-3]
+\end{tikzcd}
+\end{center}
+
+\paragraph{Construction}
+
+\paragraph{Examples}
+
+\begin{enumerate}
+  \item every ideal is the direct limit of the finitely generated ideals contained in it.
+  \item for every multiplicative subset \( S \) of a ring \( A \), \( S^{-1}A \simeq \varinjlim A_h \), where \( h \) runs over the elements of \( S \), and it is partially ordered by division, i.e. \( h \mid h' \iff h \leq h' \).
+  \item stalk.
+\end{enumerate}
+
+\paragraph{Properties}
+
+\begin{proposition}
+  \( A \): a ring; \( N \): \( A \)-module; \( \mathscr{F} = \left\lbrace M_\lambda; f_{\mu \lambda} \right\rbrace \): a direct system of \( A \)-modules.
+  Then
+  \[
+    \varinjlim (M_\lambda \otimes_A N) = (\varinjlim M_\lambda) \otimes_A N.
+  \]
+\end{proposition}
+\begin{proposition}
+  \( \mathcal{F}' = \lbrace M'_\lambda; f'_{\mu \lambda} \rbrace, \mathcal{F}' = \lbrace M_\lambda; f_{\mu \lambda} \rbrace, \mathcal{F}' = \lbrace M''_\lambda; f''_{\mu \lambda} \rbrace \); maps \( \left\lbrace \varphi_\lambda \right\rbrace: \mathscr{F}' \to \mathscr{F} \) and \( \left\lbrace \psi_\lambda \right\rbrace: \mathscr{F} \to \mathscr{F}'' \) such that for every \( \lambda \),
+  \[
+    M'_\lambda \xrightarrow{\varphi_\lambda} M_\lambda \xrightarrow{\psi_\lambda} M''_\lambda
+  \]
+  is exact.
+  Then
+  \[
+    \varinjlim M'_\lambda \xrightarrow{\varphi_\infty} \varinjlim M_\lambda \xrightarrow{\psi_\infty} \varinjlim M''_\lambda
+  \]
+  is exact.
+\end{proposition}
+
+\subsection{Inverse limits}
+
+\section{Nakayama's Lemma}
+
+\section{Zariski's Lemma, Hilbert Nullstellensatz and Noetherian Normalization theorem}
+
+\subsection{Zariski's Lemma}
+\( k \): a field, \( K \): a finite generated \( k \)-algebra and also a field, \( A \): a finite generated \( k \)-algebra.
+\begin{theorem}[Zariski]
+  \( K \) is algebraic over \( k \).
+\end{theorem}
+\begin{proof}
+  \cite{milneCA} 13.1.
+\end{proof}
+
+\( A \) do not necessarily be a field, since it maybe not a domain.
+If \( A \) is a domain, it is still not necessarily a field.
+Acturally, we have the following theorem.
+
+\begin{theorem}
+  If \( A \) is also a domain, and \( \operatorname{tr.deg}_k A > 0 \), then \( K \) is not a field.
+\end{theorem}
+\begin{proof}
+  \cite{Matsumura1989-ab} 5.2.
+\end{proof}
+
+Using the first theorem, we can conclude some things(ibid.) about \( A \).
+
+\begin{corollary}
+  \begin{enumerate}
+    \item Any maximal ideal in \( A \) is a kernel of \( A \to K \), for some \( K \) as described above.
+    \item If \( k \subseteq K \subseteq A \) be \( k \)-algebras, then \( K \) is algebraic over \( k \).
+  \end{enumerate}
+\end{corollary}
+\begin{proof}
+  (2) noting the pullback of maximal ideal is just \( 0 \).
+\end{proof}
+
+\subsection{Hilbert Nullstellensatz}
+
+\( A = k[X_1, \cdots, X_n] \), \( \mathfrak{a} \): an ideal.
+
+\begin{theorem}[Nullstellensatz]
+  \begin{enumerate}
+  \item Every proper ideal \( \mathfrak{a} \) in \( A \) has a zero in \( (k^{\operatorname{al}})^n \).
+  \item If a polynomial \( h \in A \) is zero on \( Z(\mathfrak{a}) \), then \( h \in \sqrt{\mathfrak{a}} \).
+  \end{enumerate}
+\end{theorem}
+\begin{proof}
+  \cite{milneCA} 13.8 or \cite{Matsumura1989-ab} 5.4.
+  (1) (Using Zariski's Lemma)show that a kernel \( \operatorname{ker} f \) containing \( \mathfrak{a} \), and thus \( (f(x_1), f(x_2), \cdots, f(x_n)) \) is a common zero.
+  (2) Famous Rabinowitsch's trick.
+\end{proof}
+
+\begin{theorem}[Weak Nullstellensatz]
+  If \( k = k^{\operatorname{al}} \), the maximal ideal of \( A \) has the form $(x_1 - a_1, x_2 - a_2, \cdots, x_n - a_n)$.
+\end{theorem}
+\begin{proof}
+  Direct from the preceding theorem(1).
+\end{proof}
+
+\subsection{Noetherian Normalization Theorem}
+
+\begin{theorem}[Noetherian Normalization Theorem]
+  Every finite generated algebra \( A \) over a field \( k \) contains a polynomial algebra \( R \) such that \( A \) is a finite \( R \)-algebra.
+\end{theorem}
+\begin{proof}
+  \cite{milneCA} 8.1.(use the following lemma and induction)
+\end{proof}
+\begin{quote}
+  \begin{lemma}
+    \( A = k[x_1, \cdots, x_n] \) be a finitely generated \( k \)-algebra, and let \( \left\lbrace x_1, \cdots, x_d \right\rbrace \) be maximal algebraically independent subset of \( \left\lbrace x_1, \cdots, x_n \right\rbrace \).
+    If \( n > d \), then there exists an \( m \in \mathbb{N} \) such that \( A \) is finite over its subalgebra \( k[x_1 - x_n^m, \cdots, x_d - x^{m^d}_n, x_{d + 1}, \cdots, x_{n - 1}] \).
+  \end{lemma}
+  \begin{lemma}
+    Let \( f \in k[X_1, \cdots, X_d, T] \).
+    For a suitble \( m \in \mathbb{N} \),
+    \[
+      f(X_1 + T^m, X_2 + T^{m^2}, \cdots, X_d + T^{m^d}, T)
+    \]
+    takes the form \( c_0 T^r + c_1 T^{r - 1} + \cdots + c_r \) with \( c_0 \in K^\times \).
+  \end{lemma}
+\end{quote}
+
+\section{Chain condition}

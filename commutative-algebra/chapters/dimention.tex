@@ -1,0 +1,45 @@
+\documentclass[../main.tex]{subfiles}
+\begin{document}
+
+\subsection{Numerical Polynomial}
+
+By definition(\cite{Hartshorne1997-sl} chapter 1 \textsection 7), a \emph{numerical polynomial} is \( P(z) \in \mathbb{Q}[z] \) with \( P(n) \in \mathbb{Z} \) for \( n \) large enough.
+We have the following(ibid.)
+\begin{proposition}
+  \begin{enumerate}
+    \item There exist \( c_0, c_1, \cdots, c_r \in \mathbb{Z} \) such that \( P(z) = c_0 \binom{z}{r} + c_1 \binom{z}{r - 1} + \cdots + c_r \).
+    \item If \( f: \mathbb{Z} \to \mathbb{Z} \) such that \( \Delta f \coloneq f(n + 1) - f(n) = Q(n) \) for \( n \) large enough for some numerical polynomial \( Q \), then \( f(n) = P(n) \) for \( n \) large enough for some numerical polynomial.
+  \end{enumerate}
+\end{proposition}
+\begin{sketchproof}
+  In the fashion of induction(consider \( \Delta P \)), one may need the famous formula \( \Delta \binom{z}{r} = \binom{z + 1}{r} - \binom{z}{r} = \binom{z}{r - 1} \).
+\end{sketchproof}
+
+\paragraph{Hilbert Function}
+
+\( A = \oplus_{n = 0}^{\infty} A_n \) a graded ring, \( M \) finitely generated graded \( A \)-module, \( \lambda \) an additive function on the class of all finitely generated \( A_0 \)-module.
+
+As \cite{Atiyah1969-ud} \textsection 11 says, the \emph{Poincare series} of \( M \) w.r.t. \( \lambda \) is the following
+\[
+  P(M, t) = \sum_{n = 0}^{\infty}\lambda(M_n)t^n \in \mathbb{Z}[[t]].
+\]
+We have the followings(ibid.)
+
+\begin{theorem}[Hilbert, Serre]
+  \( P(M, t) \) is a rational function of the form \( f(x) / \prod_{i = 1}^s(1 - t^{k_i}) \), where \( f(t) \in \mathbb{Z}[t] \).
+\end{theorem}
+\begin{sketchproof}
+  By induction on generators of \( A \) over \( A_0 \), and consider the exact sequence \( 0 \to K_n \to M_n \xrightarrow{x_s} M_{n + k_s} \to L_{n + k_s} \to 0 \), noting that \( K = \oplus K_n \) and \( L = \oplus L_n \) are acturally modules over a finitely generated algebra over \( A_0 \) with less a generator than \( A \).
+\end{sketchproof}
+
+As a priori, if we view such polynomials as meromorphic functions, then the poles of them are fundamental.
+We denote the order of pole of \( P(M, t) \) at \( t = 1 \) by \( d(M) \), which is the key to study the dimension of Noetherian local rings(c.f. \cite{Atiyah1969-ud} 11.14.).
+
+\begin{corollary}
+  If each \( k_i = 1 \), then for all sufficiently large \( n \), \( \lambda(M_n) \) is a polynomial in \( n \) of degree \( d - 1 \).
+\end{corollary}
+\begin{sketchproof}
+  Just require an observation \( (1 - t)^{-d} = \sum_{k = 0}^{\infty} \binom{d + k - 1}{d - 1}t^k \).
+\end{sketchproof}
+
+\end{document}

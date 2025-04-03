@@ -174,7 +174,7 @@
   从 \( \mathcal{C}' \) 到 \( \mathcal{C} \) 和从 \(
   (\mathcal{C}')^{\operatorname{op}} \) 到 \( \mathcal{C}^{\operatorname{op}} \)
   的函子是一回事. 为了区别, 对于函子 \( F: \mathcal{C}' \to \mathcal{C} \)
-  反范畴间的函子记作 \( F^{\operatorname{op}}:
+  \emph{反范畴间的函子} 记作 \( F^{\operatorname{op}}:
   (\mathcal{C}')^{\operatorname{op}} \to \mathcal{C}^{\operatorname{op}} \).
 \end{remark}
 
@@ -204,6 +204,21 @@
       准此要领可对其他结构定义忘却函子, 例如 \( \operatorname{Top} \to
       \operatorname{Set}, \operatorname{Vect(\Bbbk)} \to \operatorname{Ab}
       \)(忘记纯量乘法)等等. 这类函子显然忠实而非全.
+    \item 考虑域 \( \Bbbk \) 上的线性空间范畴 \( \operatorname{Vect}(\Bbbk) \).
+      对于任意 \( \Bbbk \)-线性空间 \( V \), 定义其对偶空间
+      \[
+        V^{\vee} := \operatorname{Hom}_{\Bbbk}(V, \Bbbk) = \left\lbrace \Bbbk
+        \text{-线性映射} V \to \Bbbk \right\rbrace.
+      \]
+      任一线性映射 \( f: V_1 \to V_2 \) 诱导对偶空间的反向映射
+      \begin{align*}
+        f^{\vee}: V_2^{\vee} &\to V_1^{\vee},\\
+        (\lambda: V_2 \to \Bbbk) &\mapsto \lambda \circ f.
+      \end{align*}
+      容易知道 \( D: V \mapsto V^{\vee}, f \mapsto f^{\vee} \) 定义了函子 \( D:
+      \operatorname{Vect}(\Bbbk)^{\operatorname{op}} \to
+      \operatorname{Vect}(\Bbbk) \), 我们称其为 \emph{对偶函子}. 可以验证 \( D
+      \) 是忠实的.
   \end{enumerate}
 \end{example}
 
@@ -842,16 +857,17 @@ F^{\operatorname{op}}, G^{\operatorname{op}}: \mathcal{C}_1^{\operatorname{op}}
 \mathcal{B} \).
 
 \begin{example}
+  \label{example-comma-category}
   设 \( \mathbf{1} \) 为先前定义的预序集范畴. 指定 \( \mathcal{C}
   \) 中的一个对象 \( X \) 相当于指定了一个函子 \( j_X: \mathbf{1} \to \mathcal{C}
   \).
   \begin{itemize}
-    \item 考虑函子 \( T: \mathcal{C}' \to \mathcal{C} \) 以及 \( X \in
-      \operatorname{Ob}(\mathcal{C}) \). 对应于 \( \mathbf{1} \xrightarrow{j_X}
-      \mathcal{C} \xleftarrow{T} \mathcal{C}' \) 的逗号范畴 \( (X / T) := (j_X /
-      T) \) 的对象形如 \( (W, X \xrightarrow{i} TW)_{W \in
-      \operatorname{Ob}(\mathcal{C}')} \), 而 \( (W_1, i_1), (W_2, i_2) \)
-      间的态射是使得下图交换的 \( h: W_1 \to W_2 \)
+    \item  考虑函子 \( T: \mathcal{C}'
+      \to \mathcal{C} \) 以及 \( X \in \operatorname{Ob}(\mathcal{C}) \). 对应于
+      \( \mathbf{1} \xrightarrow{j_X} \mathcal{C} \xleftarrow{T} \mathcal{C}' \)
+      的逗号范畴 \( (X / T) := (j_X / T) \) 的对象形如 \( (W, X \xrightarrow{i}
+      TW)_{W \in \operatorname{Ob}(\mathcal{C}')} \), 而 \( (W_1, i_1), (W_2,
+      i_2) \) 间的态射是使得下图交换的 \( h: W_1 \to W_2 \)
       % https://q.uiver.app/#q=WzAsMyxbMSwwLCJYIl0sWzAsMSwiVFdfMSJdLFsyLDEsIlRXXzIiXSxbMCwxLCJpXzEiLDJdLFswLDIsImlfMiJdLFsxLDIsIlRoIiwyXV0=
       \[\begin{tikzcd}
         & X \\
@@ -861,10 +877,11 @@ F^{\operatorname{op}}, G^{\operatorname{op}}: \mathcal{C}_1^{\operatorname{op}}
         \arrow["Th"', from=2-1, to=2-3]
       \end{tikzcd}\]
       这正是 \cref{example-free-vector-space} 中使用的范畴.
-    \item 考虑 \( \mathcal{C}' \xrightarrow{T} \mathcal{C} \xleftarrow{j_X}
-      \mathbf{1} \). 逗号范畴 \( (T / X) \) 的对象形如 \( (W, TW \xrightarrow{p}
-      X)_{W \in \operatorname{Ob}(\mathcal{C}')} \), 从 \( (W_1, p_1) \) 到 \(
-      (W_2, p_2) \) 的态射是使得下图交换的 \( f: W_1 \to W_2 \)
+    \item  考虑 \( \mathcal{C}'
+      \xrightarrow{T} \mathcal{C} \xleftarrow{j_X} \mathbf{1} \). 逗号范畴 \( (T
+      / X) \) 的对象形如 \( (W, TW \xrightarrow{p} X)_{W \in
+      \operatorname{Ob}(\mathcal{C}')} \), 从 \( (W_1, p_1) \) 到 \( (W_2, p_2)
+      \) 的态射是使得下图交换的 \( f: W_1 \to W_2 \)
       % https://q.uiver.app/#q=WzAsMyxbMCwwLCJUIFdfMSJdLFsyLDAsIlQgV18yIl0sWzEsMSwiWCJdLFswLDIsInBfMSIsMl0sWzEsMiwicF8yIl0sWzAsMSwiVGYiXV0=
       \[\begin{tikzcd}
         {T W_1} && {T W_2} \\
@@ -992,6 +1009,7 @@ g'p \), 其中 \( g': D \to D' \) 唯一.
 我们称 \( h_{\mathcal{C}}, k_{\mathcal{C}} \) 为 \emph{Yoneda 嵌入}.
 
 \begin{theorem}[Yoneda引理]
+  \label{theorem-Yoneda-lemma}
   对于 \( S \in \operatorname{Ob}(\mathcal{C}) \) 和 \( A \in
   \operatorname{Ob}(\mathcal{C}^{\wedge}) \), 映射
   \begin{align*}
@@ -1070,6 +1088,10 @@ g'p \), 其中 \( g': D \to D' \) 唯一.
 \end{tikzcd}\]
 \end{proof}
 
+我们将经常忽略符号 \( h_{\mathcal{C}} \) 或 \( k_{\mathcal{C}} \), 将 \(
+\mathcal{C} \) 看作 \( \mathcal{C}^{\wedge} \) 或 \( \mathcal{C}^{\vee} \)
+的全子范畴. %TODO: 为什么能看成全子范畴
+
 \begin{definition}
   \begin{enumerate}
     \item 称函子 \( A: \mathcal{C}^{\operatorname{op}} \to \operatorname{Set} \)
@@ -1085,15 +1107,209 @@ g'p \), 其中 \( g': D \to D' \) 唯一.
 
 \begin{lemma}
   如果函子 \( A: \mathcal{C}^{\operatorname{op}} \to \operatorname{Set} \) 可表,
-  则其代表元 \( (X, \phi: h_{\mathcal{C}}(S) \xrightarrow{\sim} A) \)
+  则其代表元 \( (X, \phi: h_{\mathcal{C}}(X) \xrightarrow{\sim} A) \)
   在至多差一个唯一同构的意义下是唯一的. 对函子 \( B: \mathcal{C} \to
   \operatorname{Set} \) 也有类似的性质.
 \end{lemma}
+\begin{proof}
+  由 \cref{theorem-Yoneda-lemma}, 对于任意 \( Y \in
+  \operatorname{Ob}(\mathcal{C}) \) 与 \( \psi: h_{\mathcal{C}}(Y) \to A \),
+  存在唯一的 \( f \in \operatorname{Hom}_{\mathcal{C}}(Y, X) \) 使得下图交换
+% https://q.uiver.app/#q=WzAsMyxbMCwwLCJoX3tcXG1hdGhjYWx7Q319KFkpIl0sWzIsMCwiaF97XFxtYXRoY2Fse0N9fShYKSJdLFsxLDEsIkEiXSxbMCwyLCJcXHBzaSIsMl0sWzEsMiwiXFxwaGksIFxcc2ltZXEiXSxbMCwxLCJoX3tcXG1hdGhjYWx7Q319KGYpIl1d
+\[\begin{tikzcd}
+	{h_{\mathcal{C}}(Y)} && {h_{\mathcal{C}}(X)} \\
+	& A
+	\arrow["{h_{\mathcal{C}}(f)}", from=1-1, to=1-3]
+	\arrow["\psi"', from=1-1, to=2-2]
+	\arrow["{\phi, \simeq}", from=1-3, to=2-2]
+\end{tikzcd}\]
+(见 \cref{example-comma-category})考察 \( \mathcal{C}
+\xrightarrow{h_{\mathcal{C}}} \mathcal{C}^{\wedge} \xleftarrow{j_A} \mathbf{1}
+\) 对应的逗号范畴 \( (h_{\mathcal{C}} / A) \). \( (X, \phi) \) 是其终对象,
+故唯一.
+\end{proof}
 
+\section{伴随函子}
 
-我们将经常忽略符号 \( h_{\mathcal{C}} \) 或 \( k_{\mathcal{C}} \), 将 \(
-\mathcal{C} \) 看作 \( \mathcal{C}^{\wedge} \) 或 \( \mathcal{C}^{\vee} \)
-的全子范畴.
+\subsection{伴随对}
+
+\begin{definition}
+  \emph{伴随对} 意指下面资料 \( (F, G, \varphi) \), 其中 \( % https://q.uiver.app/#q=WzAsMixbMCwwLCJcXG1hdGhjYWx7Q31fMSJdLFsxLDAsIlxcbWF0aGNhbHtDfV8yIl0sWzEsMCwiRyIsMCx7ImN1cnZlIjotMn1dLFswLDEsIkYiLDAseyJjdXJ2ZSI6LTJ9XV0=
+\begin{tikzcd}
+	{\mathcal{C}_1} & {\mathcal{C}_2}
+	\arrow["F", curve={height=-12pt}, from=1-1, to=1-2]
+	\arrow["G", curve={height=-12pt}, from=1-2, to=1-1]
+\end{tikzcd} \) 是一对函子, 而 \( \varphi \) 是函子的同构
+\[
+  \varphi: \operatorname{Hom}_{\mathcal{C}_2}(F(\cdot), \cdot)
+  \xrightarrow{\sim} \operatorname{Hom}_{\mathcal{C}_1}(\cdot, G(\cdot)).
+\]
+一般称 \( G \) 是 \( F \) 的右伴随, \( F \) 是左伴随.
+\end{definition}
+
+\begin{example}
+  考察对偶函子 \( D: \operatorname{Vect}(\Bbbk)^{\operatorname{op}} \to
+  \operatorname{Vect}(\Bbbk), DV := V^{\vee} \), 存在自然的同构
+  \begin{align*}
+    \varphi_{V, W}: \operatorname{Hom}_{\Bbbk}(V, W^{\vee}) &\to
+    \operatorname{Hom}_{\Bbbk}(W, V^{\vee})\\ f &\mapsto (w \mapsto (v \mapsto
+    f(v)(w))
+  \end{align*}
+  其中 \( V, W \) 是 \( \Bbbk \)-向量空间. 这是因为, 两边都自然地同构于双线性型 \(
+  B: V \times W \to \Bbbk \) 构成的空间. 我们可以将其重写为
+  \[
+    \varphi_{VW}: \operatorname{Hom}_{\operatorname{Vect}(\Bbbk)}(V, DW)
+    \xrightarrow{\sim}
+    \operatorname{Hom}_{\operatorname{Vect}(\Bbbk)^{\operatorname{op}}}
+    (D^{\operatorname{op}}V, W)
+  \]
+  并且对变元 \( V, W \) 满足函子性, 因此得到了伴随对 \( (D^{\operatorname{op}},
+  D, \varphi^{-1}) \).
+\end{example}
+
+\subsection{单位与余单位}
+
+设 \( (F, G, \varphi) \) 为伴随对, 定义态射
+\[
+  \eta = (\eta_X)_{X \in \operatorname{Ob}(\mathcal{C}_1)}:
+  \operatorname{id}_{\mathcal{C}_1} \to GF
+\]
+如
+\begin{align*}
+  \varphi: \operatorname{Hom}_{\mathcal{C}_2}(FX, FX) &\to
+  \operatorname{Hom}_{\mathcal{C}_1}(X, GFX)\\
+  \operatorname{id}_{FX} &\mapsto \eta_X.
+\end{align*}
+同理, 定义态射 \( \varepsilon: (\varepsilon_X)_X: FG \to
+\operatorname{id}_{\mathcal{C}_2} \) 如
+\begin{align*}
+  \varphi^{-1}: \operatorname{Hom}_{\mathcal{C}_1}(GX, GX) &\to
+  \operatorname{Hom}_{\mathcal{C}_2}(FGX, X) \\ \operatorname{id}_{GX}
+  &\mapsto \varepsilon_X
+\end{align*}
+我们下面说明 \( \eta \) 确实构成了自然变换. 首先, 给定 \( \mathcal{C}_1 \)
+中的态射 \( h: X; \to X \), 由 \( \varphi \) 的自然性, 我们有下面交换图表
+% https://q.uiver.app/#q=WzAsMTQsWzAsMCwiXFxvcGVyYXRvcm5hbWV7SG9tfShGWCwgRlgpIl0sWzAsMywiXFxvcGVyYXRvcm5hbWV7SG9tfShGWCcsIEZYKSJdLFswLDYsIlxcb3BlcmF0b3JuYW1le0hvbX0oRlgnLCBGWCcpIl0sWzMsNiwiXFxvcGVyYXRvcm5hbWV7SG9tfShYJywgR0ZYJykiXSxbMywzLCJcXG9wZXJhdG9ybmFtZXtIb219KFgnLCBHRlgpIl0sWzMsMCwiXFxvcGVyYXRvcm5hbWV7SG9tfShYLCBHRlgpIl0sWzEsMSwiXFxvcGVyYXRvcm5hbWV7aWR9X3tGWH0iXSxbMiwxLCJcXGV0YV9YIl0sWzIsMiwiXFx2YXJwaGkoRmgpIl0sWzEsMiwiRmgiXSxbMiw0LCJcXHZhcnBoaShGaCkiXSxbMSw0LCJGaCJdLFsxLDUsIlxcb3BlcmF0b3JuYW1le2lkfV97RlgnfSJdLFsyLDUsIlxcZXRhX3tYJ30iXSxbMCwxLCIoRmgpXioiLDJdLFsyLDEsIihGaClfKiJdLFsyLDMsIlxcdmFycGhpIiwyXSxbMSw0LCJcXHZhcnBoaSIsMV0sWzAsNSwiXFx2YXJwaGkiXSxbNSw0LCJoXioiXSxbMyw0LCIoR0ZoKV8qIiwyXSxbNiw3LCIiLDIseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJtYXBzIHRvIn19fV0sWzYsOSwiIiwwLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoibWFwcyB0byJ9fX1dLFs5LDgsIiIsMCx7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Im1hcHMgdG8ifX19XSxbNyw4LCIiLDIseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJtYXBzIHRvIn19fV0sWzExLDEwLCIiLDIseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJtYXBzIHRvIn19fV0sWzEyLDExLCIiLDIseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJtYXBzIHRvIn19fV0sWzEzLDEwLCIiLDAseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJtYXBzIHRvIn19fV0sWzEyLDEzLCIiLDAseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJtYXBzIHRvIn19fV1d
+\[\begin{tikzcd}
+	{\operatorname{Hom}(FX, FX)} &&& {\operatorname{Hom}(X, GFX)} \\
+	& {\operatorname{id}_{FX}} & {\eta_X} \\
+	& Fh & {\varphi(Fh)} \\
+	{\operatorname{Hom}(FX', FX)} &&& {\operatorname{Hom}(X', GFX)} \\
+	& Fh & {\varphi(Fh)} \\
+	& {\operatorname{id}_{FX'}} & {\eta_{X'}} \\
+	{\operatorname{Hom}(FX', FX')} &&& {\operatorname{Hom}(X', GFX')}
+	\arrow["\varphi", from=1-1, to=1-4]
+	\arrow["{(Fh)^*}"', from=1-1, to=4-1]
+	\arrow["{h^*}", from=1-4, to=4-4]
+	\arrow[maps to, from=2-2, to=2-3]
+	\arrow[maps to, from=2-2, to=3-2]
+	\arrow[maps to, from=2-3, to=3-3]
+	\arrow[maps to, from=3-2, to=3-3]
+	\arrow["\varphi"{description}, from=4-1, to=4-4]
+	\arrow[maps to, from=5-2, to=5-3]
+	\arrow[maps to, from=6-2, to=5-2]
+	\arrow[maps to, from=6-2, to=6-3]
+	\arrow[maps to, from=6-3, to=5-3]
+	\arrow["{(Fh)_*}", from=7-1, to=4-1]
+	\arrow["\varphi"', from=7-1, to=7-4]
+	\arrow["{(GFh)_*}"', from=7-4, to=4-4]
+\end{tikzcd}\]
+因此, \( \varphi(Fh) = (GFh)_*(\eta_{X'}) = h_*(\eta_X) \), 换句话说, 下面图交换
+% https://q.uiver.app/#q=WzAsNCxbMCwwLCJYJyJdLFswLDEsIlgiXSxbMSwwLCJHRlgnIl0sWzEsMSwiR0ZYIl0sWzAsMSwiaCIsMl0sWzIsMywiR0ZoIl0sWzAsMiwiXFxldGFfe1gnfSJdLFsxLDMsIlxcZXRhX1giLDJdXQ==
+\[\begin{tikzcd}
+	{X'} & {GFX'} \\
+	X & GFX
+	\arrow["{\eta_{X'}}", from=1-1, to=1-2]
+	\arrow["h"', from=1-1, to=2-1]
+	\arrow["GFh", from=1-2, to=2-2]
+	\arrow["{\eta_X}"', from=2-1, to=2-2]
+\end{tikzcd}\]
+因此 \( \eta \) 是一个自然变换; 同理可以知道 \( \varepsilon \) 亦是自然变换.
+我们称 \( \eta \) 是伴随对 \( (F, G, \varphi) \) 的 \emph{单位}, 而 \(
+\varepsilon \) 是其 \emph{余单位}.
+
+此外, 单位和余单位由下式确定了 \( \varphi \)
+\begin{equation}
+\begin{aligned}
+  \varphi(f) &= Gf \circ \eta_X: X \to GY,\quad \forall f: FX \to Y,\\
+  \varphi^{-1}(g) &= \varepsilon_Y \circ Fg: FX \to Y,\quad \forall g: X \to GY.
+\end{aligned}
+\label{equation-determine-adjoint-pair-isomorphism}
+\end{equation}
+% https://q.uiver.app/#q=WzAsOCxbMCwwLCJcXG9wZXJhdG9ybmFtZXtIb219KEZYLCBGWCkiXSxbMywwLCJcXG9wZXJhdG9ybmFtZXtIb219KFgsIEdGWCkiXSxbMCwzLCJcXG9wZXJhdG9ybmFtZXtIb219KEZYLCBZKSJdLFszLDMsIlxcb3BlcmF0b3JuYW1le0hvbX0oWCwgR1kpIl0sWzEsMSwiXFxvcGVyYXRvcm5hbWV7aWR9X3tGWH0iXSxbMSwyLCJmIl0sWzIsMiwiXFx2YXJwaGkoZikgPSBHZiBcXGNpcmMgXFxldGFfWCJdLFsyLDEsIlxcZXRhX1giXSxbMCwyLCJmXyoiLDJdLFswLDEsIlxcdmFycGhpIl0sWzEsMywiKEdmKV8qIl0sWzIsMywiXFx2YXJwaGkiLDJdLFs0LDUsIiIsMCx7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Im1hcHMgdG8ifX19XSxbNCw3LCIiLDIseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJtYXBzIHRvIn19fV0sWzcsNiwiIiwyLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoibWFwcyB0byJ9fX1dLFs1LDYsIiIsMCx7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Im1hcHMgdG8ifX19XV0=
+\[\begin{tikzcd}
+	{\operatorname{Hom}(FX, FX)} &&& {\operatorname{Hom}(X, GFX)} \\
+	& {\operatorname{id}_{FX}} & {\eta_X} \\
+	& f & {\varphi(f) = Gf \circ \eta_X} \\
+	{\operatorname{Hom}(FX, Y)} &&& {\operatorname{Hom}(X, GY)}
+	\arrow["\varphi", from=1-1, to=1-4]
+	\arrow["{f_*}"', from=1-1, to=4-1]
+	\arrow["{(Gf)_*}", from=1-4, to=4-4]
+	\arrow[maps to, from=2-2, to=2-3]
+	\arrow[maps to, from=2-2, to=3-2]
+	\arrow[maps to, from=2-3, to=3-3]
+	\arrow[maps to, from=3-2, to=3-3]
+	\arrow["\varphi"', from=4-1, to=4-4]
+\end{tikzcd}\]
+反转箭头就得到了 \( \varphi^{-1}(g) \) 的情形.
+
+\begin{lemma}
+  对于伴随对 \( (F, G, \varphi) \) ,相应的单位 \( \eta:
+  \operatorname{id} \to GF \) 和余单位 \( \varepsilon: FG \to \operatorname{id}
+  \), 我们有自然变换间的等式.
+  \begin{equation}
+    \begin{aligned}
+      \left( G \xrightarrow{\eta G} (GF)G = G(FG) \xrightarrow{G \varepsilon} G
+      \right) = \operatorname{id}_{G},\\
+      \left( F \xrightarrow{F\eta} F(GF) = (FG)F \xrightarrow{\varepsilon F} G
+      \right) = \operatorname{id}_{F}.
+    \end{aligned}
+    \label{equation-identity-and-coidentity}
+  \end{equation}
+\end{lemma}
+\begin{proof}
+  如图, 这些都是自然变换的纵合成
+% https://q.uiver.app/#q=WzAsNCxbMCwwLCJcXG1hdGhjYWx7Q31fMiJdLFszLDAsIlxcbWF0aGNhbHtDfV8xIl0sWzQsMCwiXFxtYXRoY2Fse0N9XzEiXSxbNywwLCJcXG1hdGhjYWx7Q31fMiJdLFswLDEsIkciLDAseyJjdXJ2ZSI6LTR9XSxbMCwxLCJHIiwyLHsiY3VydmUiOjR9XSxbMCwxLCIoR0YpRyA9IEcoRkcpIiwxXSxbMiwzLCJGIiwwLHsiY3VydmUiOi00fV0sWzIsMywiRiIsMix7ImN1cnZlIjo0fV0sWzIsMywiRihHRik9KEZHKUYiLDFdLFs0LDYsIlxcZXRhIEciLDAseyJzaG9ydGVuIjp7InNvdXJjZSI6MjAsInRhcmdldCI6MjB9fV0sWzYsNSwiRyBcXHZhcmVwc2lsb24iLDAseyJzaG9ydGVuIjp7InNvdXJjZSI6MjAsInRhcmdldCI6MjB9fV0sWzcsOSwiRiBcXGV0YSIsMCx7InNob3J0ZW4iOnsic291cmNlIjoyMCwidGFyZ2V0IjoyMH19XSxbOSw4LCJcXHZhcmVwc2lsb24gRiIsMCx7InNob3J0ZW4iOnsic291cmNlIjoyMCwidGFyZ2V0IjoyMH19XV0=
+\[\begin{tikzcd}
+	{\mathcal{C}_2} &&& {\mathcal{C}_1} & {\mathcal{C}_1} &&& {\mathcal{C}_2}
+	\arrow[""{name=0, anchor=center, inner sep=0}, "G", curve={height=-24pt}, from=1-1, to=1-4]
+	\arrow[""{name=1, anchor=center, inner sep=0}, "G"', curve={height=24pt}, from=1-1, to=1-4]
+	\arrow[""{name=2, anchor=center, inner sep=0}, "{(GF)G = G(FG)}"{description}, from=1-1, to=1-4]
+	\arrow[""{name=3, anchor=center, inner sep=0}, "F", curve={height=-24pt}, from=1-5, to=1-8]
+	\arrow[""{name=4, anchor=center, inner sep=0}, "F"', curve={height=24pt}, from=1-5, to=1-8]
+	\arrow[""{name=5, anchor=center, inner sep=0}, "{F(GF)=(FG)F}"{description}, from=1-5, to=1-8]
+	\arrow["{\eta G}", shorten <=3pt, shorten >=3pt, Rightarrow, from=0, to=2]
+	\arrow["{G \varepsilon}", shorten <=3pt, shorten >=3pt, Rightarrow, from=2, to=1]
+	\arrow["{F \eta}", shorten <=3pt, shorten >=3pt, Rightarrow, from=3, to=5]
+	\arrow["{\varepsilon F}", shorten <=3pt, shorten >=3pt, Rightarrow, from=5, to=4]
+\end{tikzcd}\]
+对任意 \( Y \in \operatorname{Ob}(\mathcal{C}_2) \), 由
+\eqref{equation-determine-adjoint-pair-isomorphism} 有
+\[
+  \operatorname{id}_{GY} = \varphi(\varphi^{-1}(\operatorname{id}_{GY})) =
+  \varphi(\varepsilon_Y) = G(\varepsilon_Y) \circ \eta_{GY}: GY \to GY.
+\]
+\end{proof}
+
+\begin{proposition}
+  对于给定的函子 \( % https://q.uiver.app/#q=WzAsMixbMCwwLCJcXG1hdGhjYWx7Q31fMSJdLFsxLDAsIlxcbWF0aGNhbHtDfV8yIl0sWzAsMSwiRiIsMCx7ImN1cnZlIjotMn1dLFsxLDAsIkciLDAseyJjdXJ2ZSI6LTJ9XV0=
+\begin{tikzcd}
+	{\mathcal{C}_1} & {\mathcal{C}_2}
+	\arrow["F", curve={height=-12pt}, from=1-1, to=1-2]
+	\arrow["G", curve={height=-12pt}, from=1-2, to=1-1]
+\end{tikzcd} \), 以下的映射互为逆
+\begin{align*}
+  \left\lbrace \varphi: (F, G, \varphi) \text{是伴随对} \right\rbrace
+  &\leftrightarrow \left\lbrace (\eta, \varepsilon): \text{满足
+  \eqref{equation-identity-and-coidentity}} \right\rbrace\\
+  \varphi &\mapsto \left(\eta_X := \varphi(\operatorname{id}_{FX}), \varepsilon_Y :=
+  \varphi^{-1}(\operatorname{id}_{GY})\right),\\ \varphi(f) := Gf \circ \eta_X
+  &\mapsfrom (\eta, \varepsilon).
+\end{align*}
+因此伴随对亦可用资料 \( (F, G, \eta, \varepsilon) \) 描述, 这样不必涉及 \(
+\operatorname{Hom} \) 集.
+\end{proposition}
+
 
 \section{Ab-范畴}
 给定一个范畴 \( \mathcal{A} \).

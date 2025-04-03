@@ -1,0 +1,42 @@
+\chapter{Homological Algebra}
+
+\section{Homology}
+
+\subsection{Double Complex}
+
+A \emph{double complex} of \( A \)-modules is a doubly indexed family \( K_{\cdot \cdot} = \left\lbrace K_{p, q} \right\rbrace_{p, q \in \mathbb{Z}} \) of \( A \)-module with two sets of \( A \)-linear maps \( d'_{p, q}:K_{p, q} \to K_{p - 1, q} \) and \( d''_{p, q}: K_{p, q} \to K_{p, q - 1} \) for which \( d' d' = 0, d' d'' = d'' d' \) and \( d'' d'' = 0 \).
+
+Given a double complex \( K_{\cdot \cdot} \), if we set \( K_n = \bigoplus_{p + q = n} K_{p, q} \) and define \( d_n: K_n \to K_{n - 1},\quad d x = d' x + (-1)^p d'' x \) if \( x \in K_{p, q} \), then \( ddx = 0 \), i.e. \( (K_{\cdot}, d) \) is an ordinary complex.
+Fix the first index \( p \) in \( K_{\cdot \cdot} \), we also get an ordinary complex \( K_{p, \cdot} \),
+\[
+  \cdots \to K_{p, q + 1} \xrightarrow{d''} K_{p, q} \xrightarrow{d''} K_{p, q - 1} \to \cdots.
+\]
+Similarly, for fixed \( q \), \( d' \) defines a complex \( K_{\cdot, q} \).
+
+Now suppose that \( K_{\cdot \cdot} \) with \( K_{pq} = 0 \) if \( p \) or \( q < 0 \).
+We set \( H_0(K_{p \cdot}) = \frac{K_{p, 0}}{d''(K_{p, 1})} =: X_p \), then \( d' \) induces a map \( X_p \to X_{p - 1} \) making the \( X_p \) into a complex \( X_{\cdot} \).
+Similarly, \( d'' \) makes the \( H_0(K_{\cdot q}) = Y_p \) into a complex \( Y_\cdot \).
+Generally, we use the notation \( H_n(K_{p\cdot}) = \frac{K_{p, n}}{d''(K_{p, n + 1})} \) and \( H_n(K_{\cdot q}) = \frac{K_{n, q}}{d'(K_{n + 1, q})} \).
+
+\begin{theorem}
+  Let \( K_{pq} = 0 \) for \( p \) or \( q < 0 \) and \( H_q(K_{p \cdot}) = 0 \) for \( q > 0 \) and all \( p \), then we have
+  \[
+    H_n(K) \simeq H_n(X_\cdot) \text{ for all }n.
+  \]
+  If in addition we have \( H_p(K_{\cdot q}) = 0 \) for \( p > 0 \) and all \( q \), then
+  \[
+    H_n(X_{\cdot}) \simeq H_n(K) \simeq H_n(Y_{\cdot}).
+  \]
+\end{theorem}
+\begin{proof}
+  \( \Phi:K_n \to X_n,\quad \sum_{i = 0}^n a_{n - i, i} \mapsto \varphi(a_n, 0) \).
+\end{proof}
+
+\subsection{\texorpdfstring{\( \operatorname{Tor} \)}{Tor} and \texorpdfstring{\( \operatorname{Ext} \)}{Ext}}
+
+\( M, N \): \( A \)-modules and \( P_{\cdot}, Q_{\cdot} \): projective resolutions of \( M \) and \( N \), respectively.
+We write \( P_{\cdot} \otimes N \) for the complex obtained by tensoring \( P_{\cdot} \) through with \( N \)
+\[
+  P_{\cdot} \otimes N: \cdots \to P_n \otimes N \to P_{n - 1} \otimes N \to \cdots \to P_0 \otimes N \to 0.
+\]
+
