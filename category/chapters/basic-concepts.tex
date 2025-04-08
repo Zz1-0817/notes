@@ -1470,6 +1470,184 @@ g'p \), 其中 \( g': D \to D' \) 唯一.
   \]
 \end{proof}
 
+\section{极限}
+
+\begin{definition}
+  令 \( \mathcal{I}, \mathcal{C} \) 为范畴, 定义\emph{对角函子} \( \Delta:
+  \mathcal{C} \to \mathcal{C}^{\mathcal{I}} := \operatorname{Fct}(\mathcal{I},
+  \mathcal{C}) \) 如下: 它将任一 \( X \in \operatorname{Ob}(\mathcal{C}) \)
+  映至常值函子 \( \Delta(X): \mathcal{I} \to \mathcal{C} \)
+  \begin{itemize}
+    \item 对 \( I \in \operatorname{Ob}(\mathcal{I}) \), \( I \mapsto X \).
+    \item 对 \( (I \to J) \in \operatorname{Mor}(\mathcal{I}) \), \( (I \to J)
+      \mapsto (\operatorname{id}_X: X \to X) \).
+  \end{itemize}
+  给定 \( \mathcal{C} \) 中的态射 \( f: X \to Y \), \( \Delta(f): \Delta(X) \to
+  \Delta(Y) \) 对每个 \( I \in \operatorname{Ob}(I) \) 指定 \( f: X \to Y \).
+% https://q.uiver.app/#q=WzAsNCxbMCwwLCJYIl0sWzAsMSwiWCJdLFsxLDAsIlkiXSxbMSwxLCJZIl0sWzAsMiwiXFxEZWx0YShmKV9YID0gZiJdLFswLDEsIlxcb3BlcmF0b3JuYW1le2lkfV9YIiwyXSxbMSwzLCJmIiwyXSxbMiwzLCJcXG9wZXJhdG9ybmFtZXtpZH1fWSJdXQ==
+\[\begin{tikzcd}
+	X & Y \\
+	X & Y
+	\arrow["{\Delta(f)_X = f}", from=1-1, to=1-2]
+	\arrow["{\operatorname{id}_X}"', from=1-1, to=2-1]
+	\arrow["{\operatorname{id}_Y}", from=1-2, to=2-2]
+	\arrow["f"', from=2-1, to=2-2]
+\end{tikzcd}\]
+以 \( I^{\operatorname{op}} \) 代 \( I \), 同样可以定义对角函子 \( \Delta:
+\mathcal{C} \to \mathcal{C}^{\mathcal{I}^{\operatorname{op}}} :=
+\operatorname{Fct}(\mathcal{I}^{\operatorname{op}}, \mathcal{C}) \). 对函子 \(
+\mathcal{I} \xrightarrow{\alpha} \mathcal{C} \xleftarrow{\beta}
+\mathcal{I}^{\operatorname{op}} \), 可以构造两种逗号范畴
+\begin{align*}
+  \left( \mathbf{1} \xrightarrow{j_\alpha} \mathcal{C}^{\mathcal{I}}
+  \xleftarrow{\Delta} \mathcal{C} \right) \leadsto (j_\alpha / \Delta) =:
+  (\alpha/ \Delta)\\ \left( \mathcal{C} \xrightarrow{\Delta}
+  \mathcal{C}^{\mathcal{I}^{\operatorname{op}}} \xleftarrow{j_\beta} \mathbf{1}
+\right) \leadsto (\Delta / j_\beta) =: (\Delta / \beta).
+\end{align*}
+\end{definition}
+
+\begin{definition}
+  令 \( \mathcal{I}, \mathcal{C} \) 为范畴. 考虑函子 \( \alpha: \mathcal{I} \to
+  \mathcal{C}\) 和 \( \beta: \mathcal{I}^{\operatorname{op}} \to \mathcal{C} \).
+  \begin{enumerate}
+    \item 逗号范畴 \( (\alpha / \Delta) \) 中如果存在始对象, 则将其记作 \(
+      \varinjlim \alpha \), 称为 \( \alpha \) 的 \emph{归纳极限}.
+    \item 逗号范畴 \( (\Delta / \beta) \) 中如果存在终对象, 则将其记作 \(
+      \varprojlim \beta \), 称为 \( \alpha \) 的 \emph{投射极限}.
+  \end{enumerate}
+  我们也说它们是以 \( \mathcal{I} \) 为指标的极限.
+\end{definition}
+更具体地,
+\begin{itemize}
+  \item \( (\alpha / \Delta) \)
+    \begin{itemize}
+      \item 对象 \( \left(X, f: \alpha \to \Delta(X)\right) \), 其中 \( f \)
+        是自然变换
+        % https://q.uiver.app/#q=WzAsNyxbMCwwLCJcXGFscGhhKEkpIl0sWzAsMSwiXFxhbHBoYShKKSJdLFsxLDAsIlgiXSxbMSwxLCJYIl0sWzMsMCwiXFxhbHBoYShJKSJdLFszLDEsIlxcYWxwaGEoSikiXSxbNCwxLCJYIl0sWzAsMSwiXFxhbHBoYShcXHBoaSkiLDJdLFsyLDNdLFsxLDMsImZfSiIsMl0sWzAsMiwiZl9JIl0sWzQsNSwiXFxhbHBoYShcXHBoaSkiLDJdLFs0LDYsImZfSSJdLFs1LDYsImZfSiIsMl0sWzgsMTEsIlxcbGVhZHN0byIsMSx7InNob3J0ZW4iOnsic291cmNlIjoyMCwidGFyZ2V0IjoyMH0sInN0eWxlIjp7ImJvZHkiOnsibmFtZSI6Im5vbmUifSwiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dXQ==
+        \[\begin{tikzcd}
+          {\alpha(I)} & X && {\alpha(I)} \\
+          {\alpha(J)} & X && {\alpha(J)} & X
+          \arrow["{f_I}", from=1-1, to=1-2]
+          \arrow["{\alpha(\phi)}"', from=1-1, to=2-1]
+          \arrow[""{name=0, anchor=center, inner sep=0}, from=1-2, to=2-2]
+          \arrow[""{name=1, anchor=center, inner sep=0}, "{\alpha(\phi)}"', from=1-4, to=2-4]
+          \arrow["{f_I}", from=1-4, to=2-5]
+          \arrow["{f_J}"', from=2-1, to=2-2]
+          \arrow["{f_J}"', from=2-4, to=2-5]
+          \arrow["\leadsto"{description}, draw=none, from=0, to=1]
+        \end{tikzcd}\]
+      \item 态射 \( \varphi: (X, f) \to (Y, g) \)
+        % https://q.uiver.app/#q=WzAsMyxbMCwwLCJcXGFscGhhIl0sWzEsMCwiXFxEZWx0YShYKSJdLFsxLDEsIlxcRGVsdGEoWSkiXSxbMSwyLCJcXERlbHRhKFxcdmFycGhpKSJdLFswLDEsImYiXSxbMCwyLCJnIiwyXV0=
+        \[\begin{tikzcd}
+          \alpha & {\Delta(X)} \\
+          & {\Delta(Y)}
+          \arrow["f", from=1-1, to=1-2]
+          \arrow["g"', from=1-1, to=2-2]
+          \arrow["{\Delta(\varphi)}", from=1-2, to=2-2]
+        \end{tikzcd}\]
+        详细地, 利用前面所说 \( \Delta(\varphi)_X = \varphi \)
+        以及自然变换的纵合成有
+        % https://q.uiver.app/#q=WzAsMyxbMCwwLCJcXGFscGhhKEkpIl0sWzEsMCwiWCJdLFsxLDEsIlkiXSxbMSwyLCJcXHZhcnBoaSJdLFswLDIsImdfSSIsMl0sWzAsMSwiZl9JIl1d
+        \[\begin{tikzcd}
+          {\alpha(I)} & X \\
+          & Y
+          \arrow["{f_I}", from=1-1, to=1-2]
+          \arrow["{g_I}"', from=1-1, to=2-2]
+          \arrow["\varphi", from=1-2, to=2-2]
+        \end{tikzcd}\]
+    \end{itemize}
+  \item \( (\Delta / \beta) \)
+    \begin{itemize}
+      \item 对象 \( (X, f: \Delta(X) \to \beta) \)
+        % https://q.uiver.app/#q=WzAsMyxbMSwxLCJcXERlbHRhKFgpKEkpID0gXFxEZWx0YShYKShKKSA9IFgiXSxbMCwwLCJcXGJldGEoSSkiXSxbMiwwLCJcXGJldGEoSikiXSxbMCwxLCJmX0kiXSxbMCwyLCJmX0oiLDJdLFsyLDEsIlxcYmV0YShcXHBoaSkiLDJdXQ==
+        \[\begin{tikzcd}
+          {\beta(I)} && {\beta(J)} \\
+          & {\Delta(X)(I) = \Delta(X)(J) = X}
+          \arrow["{\beta(\phi)}"', from=1-3, to=1-1]
+          \arrow["{f_I}", from=2-2, to=1-1]
+          \arrow["{f_J}"', from=2-2, to=1-3]
+        \end{tikzcd}\]
+      \item 态射 \( \varphi: (X, f) \to (Y, g) \)
+        % https://q.uiver.app/#q=WzAsMyxbMCwwLCJcXGJldGEoSSkiXSxbMSwxLCJZIl0sWzEsMCwiWCJdLFsxLDAsImdfSSJdLFsyLDAsImZfSSIsMl0sWzIsMSwiXFx2YXJwaGkiXV0=
+        \[\begin{tikzcd}
+          {\beta(I)} & X \\
+          & Y
+          \arrow["{f_I}"', from=1-2, to=1-1]
+          \arrow["\varphi", from=1-2, to=2-2]
+          \arrow["{g_I}", from=2-2, to=1-1]
+        \end{tikzcd}\]
+    \end{itemize}
+\end{itemize}
+因此 \( \alpha \) 的归纳极限可以理解为资料 \( (\varinjlim \alpha, \iota: \alpha
+\to \varinjlim \alpha)  \), \( \beta \) 的投射极限 \( (\varprojlim \beta, p:
+\varprojlim \beta \to \beta) \)
+% https://q.uiver.app/#q=WzAsOCxbMCwwLCJcXGFscGhhKEkpIl0sWzEsMSwiXFx2YXJpbmpsaW0gXFxhbHBoYSJdLFsyLDAsIlxcYWxwaGEoSikiXSxbMSwyLCJYIl0sWzQsMSwiXFx2YXJwcm9qbGltIFxcYmV0YSJdLFs0LDIsIlgiXSxbMywwLCJcXGJldGEoSSkiXSxbNSwwLCJcXGJldGEoSikiXSxbMCwxLCJcXGlvdGFfSSIsMV0sWzIsMSwiXFxpb3RhX0oiLDFdLFswLDIsIlxcYWxwaGEoXFxwaGkpIl0sWzAsM10sWzIsM10sWzUsNCwiXFxleGlzdHMgISIsMSx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dLFs0LDYsInBfSSIsMV0sWzQsNywicF9KIiwxXSxbNSw2XSxbMSwzLCJcXGV4aXN0cyAhIiwxLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV0sWzUsN10sWzcsNiwiXFxiZXRhKFxccGhpKSIsMV1d
+\[\begin{tikzcd}
+	{\alpha(I)} && {\alpha(J)} & {\beta(I)} && {\beta(J)} \\
+	& {\varinjlim \alpha} &&& {\varprojlim \beta} \\
+	& X &&& X
+	\arrow["{\alpha(\phi)}", from=1-1, to=1-3]
+	\arrow["{\iota_I}"{description}, from=1-1, to=2-2]
+	\arrow[from=1-1, to=3-2]
+	\arrow["{\iota_J}"{description}, from=1-3, to=2-2]
+	\arrow[from=1-3, to=3-2]
+	\arrow["{\beta(\phi)}"{description}, from=1-6, to=1-4]
+	\arrow["{\exists !}"{description}, dashed, from=2-2, to=3-2]
+	\arrow["{p_I}"{description}, from=2-5, to=1-4]
+	\arrow["{p_J}"{description}, from=2-5, to=1-6]
+	\arrow[from=3-5, to=1-4]
+	\arrow[from=3-5, to=1-6]
+	\arrow["{\exists !}"{description}, dashed, from=3-5, to=2-5]
+\end{tikzcd}\]
+
+\begin{lemma}
+  假设 \( \psi: \alpha \to \alpha' \) 是函子范畴 \( \mathcal{C}^{\mathcal{I}}
+  \)中的态射, 相应的 \( \varinjlim \) 都存在, 那么存在唯一的态射 \( \varinjlim
+  \psi \) 使得
+  % https://q.uiver.app/#q=WzAsNCxbMCwwLCJcXGFscGhhKEkpIl0sWzAsMSwiXFxhbHBoYScoSSkiXSxbMSwwLCJcXHZhcmluamxpbSBcXGFscGhhIl0sWzEsMSwiXFx2YXJpbmpsaW0gXFxhbHBoYSciXSxbMCwxLCJcXHBzaShJKSIsMl0sWzIsMywiXFx2YXJpbmpsaW0gXFxwc2kiXSxbMCwyXSxbMSwzXV0=
+  \[\begin{tikzcd}
+    {\alpha(I)} & {\varinjlim \alpha} \\
+    {\alpha'(I)} & {\varinjlim \alpha'}
+    \arrow[from=1-1, to=1-2]
+    \arrow["{\psi(I)}"', from=1-1, to=2-1]
+    \arrow["{\varinjlim \psi}", from=1-2, to=2-2]
+    \arrow[from=2-1, to=2-2]
+  \end{tikzcd}\]
+  对任意 \( I \) 皆交换. 如果 \( \alpha \xrightarrow{\psi_1} \alpha'
+  \xrightarrow{\psi_2} \alpha'' \), 那么 \( \varinjlim (\psi_2 \psi_1) =
+  \varinjlim \psi_2 \varinjlim \psi_1 \). 对 \( \varprojlim \) 也有类似的结果.
+\end{lemma}
+\begin{proof}
+  对于交换图, 考虑合成映射 \( \varinjlim \alpha' \leftarrow \alpha'(I)
+  \xleftarrow{\psi(I)} \alpha(I) \) 并应用泛性质即可. 性质 \( \varinjlim (\psi_2
+  \psi_1) = \varinjlim \psi_2 \varinjlim \psi_1 \) 源自下图的交换性.
+  % https://q.uiver.app/#q=WzAsNixbMCwwLCJcXGFscGhhKGkpIl0sWzEsMCwiXFxhbHBoYScoaSkiXSxbMiwwLCJcXGFscGhhJycoaSkiXSxbMCwxLCJcXHZhcmluamxpbSBcXGFscGhhIl0sWzEsMSwiXFx2YXJpbmpsaW0gXFxhbHBoYSciXSxbMiwxLCJcXHZhcmluamxpbSBcXGFscGhhJyciXSxbMCwzXSxbMCwxXSxbMyw0XSxbMSw0XSxbMSwyXSxbNCw1XSxbMiw1XV0=
+  \[\begin{tikzcd}
+    {\alpha(i)} & {\alpha'(i)} & {\alpha''(i)} \\
+    {\varinjlim \alpha} & {\varinjlim \alpha'} & {\varinjlim \alpha''}
+    \arrow[from=1-1, to=1-2]
+    \arrow[from=1-1, to=2-1]
+    \arrow[from=1-2, to=1-3]
+    \arrow[from=1-2, to=2-2]
+    \arrow[from=1-3, to=2-3]
+    \arrow[from=2-1, to=2-2]
+    \arrow[from=2-2, to=2-3]
+  \end{tikzcd}\]
+\end{proof}
+
+\section{滤过范畴}
+
+\begin{definition}
+  非空范畴 \( \mathcal{I} \) 称为是 \emph{滤过} 的, 如果
+  \begin{enumerate}
+    \item 对任意 \( I, J \in \operatorname{Ob}(\mathcal{I}) \) 存在 \( K \in
+      \operatorname{Ob(\mathcal{I} )} \) 以及态射 \( I \to K, J \to K \)
+    \item 对任意箭头 \( f, g: I \to J \), 存在 \( K \in
+      \operatorname{Ob}(\mathcal{I}) \) 和 \( h: J \to K \) 使得 \( hf = hg \).
+  \end{enumerate}
+\end{definition}
+
 \section{Ab-范畴}
 给定一个范畴 \( \mathcal{A} \).
 \begin{itemize}
@@ -1500,3 +1678,5 @@ g'p \), 其中 \( g': D \to D' \) 唯一.
 给设给定了 abelian 范畴中的一个态射序列 \( A \xrightarrow{f} B \xrightarrow{g} C
 \). 如果 \( \operatorname{ker} g = \operatorname{im} f \), 那么该序列称为是
 \emph{正合} 的.
+
+

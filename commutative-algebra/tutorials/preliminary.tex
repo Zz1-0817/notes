@@ -19,15 +19,14 @@
   那么每个这样的极大元都是素的.
 \end{proposition}
 \begin{proof}
-  每个上升链 \( \mathfrak{a}_1 \subseteq \mathfrak{a}_2 \subseteq \cdots \)
-  都有上界 \( \sum \mathfrak{a}_i \), 因此 极大元的存在性可以由
+  \( \Sigma \) 的每个上升链 \( \mathfrak{a}_1 \subseteq \mathfrak{a}_2 \subseteq
+  \cdots \) 都有上界 \( \sum \mathfrak{a}_i \), 因此 极大元的存在性可以由
   \href{https://en.wikipedia.org/wiki/Zorn%27s_lemma}{Zorn 引理} 得到. 现假设 \(
-    S \) 是 \( A \) 的乘性子集, \( \mathfrak{c} \) 为 \(
-  \Sigma \) 中的极大元. 如果 \( b b' \in \mathfrak{c} \), 且 \( b, b' \notin
-  \mathfrak{c} \), 那么 \( \mathfrak{c} + (b) \) 和 \( \mathfrak{c} + (b') \)
-  真包含 \( \mathfrak{c} \), 因此它们不落于 \( \Sigma \) 中. 因此 \( \mathfrak{c}
-  + (b) \) 和 \( \mathfrak{c} + (b') \) 各包含 \( S \)
-  中的一个元素, 我们分别记其为
+    S \) 是 \( A \) 的乘性子集, \( \mathfrak{c} \) 为 \( \Sigma \) 中的极大元.
+    如果 \( b b' \in \mathfrak{c} \), 且 \( b, b' \notin \mathfrak{c} \), 那么
+    \( \mathfrak{c} + (b) \) 和 \( \mathfrak{c} + (b') \) 真包含 \( \mathfrak{c}
+    \), 因此它们不落于 \( \Sigma \) 中. 因此 \( \mathfrak{c} + (b) \) 和 \(
+    \mathfrak{c} + (b') \) 各包含 \( S \) 中的一个元素, 我们分别记其为
   \[
     f = c + ab,\quad c \in \mathfrak{c},\quad a' \in A \text{ 以及 } f' = c' +
     a'b,\quad c' \in \mathfrak{c},\quad a' \in A
@@ -463,6 +462,7 @@
 \end{proof}
 
 \begin{theorem}[Krull 交定理]
+  \label{theorem-Krull-intersection}
   假设 \( \mathfrak{a} \) 是 noetherian 环 \( A \) 的一个理想. 如果 \(
   \mathfrak{a} \) 包含于所有 \( A \) 的极大理想, 那么
   \[
@@ -616,7 +616,9 @@
   不可约.
 \end{corollary}
 
-\section{分式环}
+\section{局部化}
+
+\subsection{分式环}
 
 假设 \( S \) 是环 \( A \) 的一个乘性子集. 定义 \( A \times S \) 的一个等价关系
 \[
@@ -635,6 +637,7 @@
 \), 那么 \( S^{-1} A = 0 \).
 
 \begin{proposition}
+  \label{proposition-universal-property-localization}
   局部化 \( (S^{-1}A, i_S) \) 具有下述泛性质: 每个 \( S \) 中的元素映到 \(
   S^{-1} A \) 中的单位, 并且每个将 \( S \) 映到单位的环同态 \( \alpha: A \to B
   \) 能通过 \( i_S \) 唯一分解.
@@ -648,3 +651,836 @@
 \end{tikzcd}\]
 特别地, 局部化是同构意义下唯一的.
 \end{proposition}
+
+设 \( h \in A \), 那么 \( S_h = \left\lbrace 1, h, h^2, \ldots \right\rbrace \)
+是 \( A \) 的一个乘性子集. 我们简记 \( S_h^{-1}A \) 为 \( A_h \).
+
+\begin{proposition}
+  给定一个环 \( A \) 和 \( h \in A \), 映射
+  \[
+    \sum a_i X^i \mapsto \sum \frac{a_i}{h^i}
+  \]
+  给出了同构
+  \[
+    A[X] / (1 - hX) \to A_h.
+  \]
+\end{proposition}
+\begin{proof}
+  如果 \( h \) 是幂零元, 那么因为 \( hX \) 亦幂零落于\( A[X] \)
+  的 Jacobson 根中, 所以两边都是零. 我们设 \( h \) 不幂零. 我们记 \( A[x] = A[X]
+  / (1 - hX)\), 那么 \( 1 = hx \), 换句话说 \( h \) 在 \( A[x] \) 中可逆. 由
+  \cref{proposition-universal-property-localization}, 自然态射 \( A \to A[x] \)
+  可以分解为 \( A \xrightarrow{i} A_h \xrightarrow{\alpha} A[x]  \), 验证 \(
+  \alpha \) 和命题中映射互逆即可.
+\end{proof}
+
+假设 \( S \) 是一个 \( A \) 的乘性子集, \( S^{-1} A \) 为对应局部化. \( A \)
+的理想 \( \mathfrak{a} \) 在 \( S^{-1}A \) 中生成的理想为
+\[
+  S^{-1} \mathfrak{a} = \left\lbrace \frac{a}{s}: a \in \mathfrak{a}, s \in S
+  \right\rbrace.
+\]
+\begin{proposition}
+  假设 \( S \) 是 \( A \) 的乘性子集, 考察自然态射 \( i_S: A \to S^{-1}A \)
+  的扩张 \( \mathfrak{a} \mapsto \mathfrak{a}^e = S^{-1} \mathfrak{a} \) 和收缩
+  \( \mathfrak{b} \mapsto \mathfrak{b}^{c} = \left\lbrace a \in A: \frac{a}{1}
+  \in \mathfrak{b} \right\rbrace \). 那么
+  \begin{itemize}
+    \item 对所有 \( S^{-1} A \) 的理想 \( \mathfrak{b} \), 有 \(
+      \mathfrak{b}^{ce} = \mathfrak{b} \).
+    \item 如果 \( \mathfrak{a} \) 是 \( A \) 的一个交于 \( S \) 的素理想, 那么
+      \( \mathfrak{a}^{ec} = \mathfrak{a} \).
+  \end{itemize}
+  此外, 映射 \( \mathfrak{p}  \mapsto \mathfrak{p}^e \) 是 \( A \)
+  的不交于 \( S \) 的素理想集合到 \( S^{-1} A \) 的素理想集合的双射, 其逆为 \(
+  \mathfrak{p} \mapsto \mathfrak{p}^c \).
+\end{proposition}
+\begin{proof}
+  对任意 \( \frac{a}{s} \in \mathfrak{b} \), 有 \( \frac{a}{1} = s \frac{a}{s}
+  \in A \) 从而 \( a \in \mathfrak{b}^c \). 而 \( \frac{a}{s} = a \frac{1}{s}
+  \in \mathfrak{b}^{ce} \).
+
+  取 \( a \in \mathfrak{p}^{ec} \) 使得 \( \frac{a}{1} = \frac{a'}{s} \) 对某些
+  \( a' \in \mathfrak{p}, s \in S \) 成立. 那么存在 \( t \in S \) 使得 \( t(as -
+  a') = 0 \), 从而 \( ast \in \mathfrak{p} \). 因为 \( st \notin \mathfrak{p}
+  \), 只能 \( a \in \mathfrak{p} \).
+
+  假设 \( \mathfrak{p} \) 是一个不交于 \( S \) 的 \( A \) 的素理想, 令 \(
+  \overline{S} \) 为 \( S \) 在 \( A / \mathfrak{p} \) 中的像.
+  那么 \( (S^{-1} A) / \mathfrak{p}^e \simeq \overline{S}^{-1} (A /
+  \mathfrak{p}) \), 这是因为:
+  \begin{itemize}
+    \item \( S \) 不交于 \( \mathfrak{p} \), \( \mathfrak{p} \) 是素理想, 所以
+      \( A \to \overline{S}^{-1}(A / \mathfrak{p}) \) 将 \( S \)
+      中元素映到可逆元, 从而诱导了 \( S^{-1} A \to \overline{S}^{-1}(A /
+      \mathfrak{p}) \), 而 \( \mathfrak{p}^e \) 在此态射中像为零, 故诱导了 \(
+      (S^{-1} A) /\mathfrak{p}^e \to \overline{S}^{-1} (A/ \mathfrak{p})\).
+    \item 合成态射 \( A \to S^{-1} A \to S^{-1} A / \mathfrak{p}^e \) 将 \(
+      \mathfrak{p} \) 映到零, 从而诱导了 \( A / \mathfrak{p} \to S^{-1} A /
+      \mathfrak{p}^e \), \( \overline{S} \) 中元素均被此映射映到可逆元,
+      因此诱导了 \( \overline{S}^{-1}(A / \mathfrak{p}) \to S^{-1} A /
+      \mathfrak{p}^e  \).
+  \end{itemize}
+  验证上面两个映射互逆即可, 并且 \( \mathfrak{p}^{e} \) 是素的, 因为 \(
+  \overline{S}^{-1}(A / \mathfrak{p}) \) 整.
+\end{proof}
+从上面证明中, 我们知道了局部化和商是可交换的; 如果 \( S \cap \mathfrak{p} \neq
+\varnothing \), 那么上面证明的构造中 \( \overline{S}^{-1}(A / \mathfrak{p}) \)
+变成了零. 此外, 令 \( \operatorname{Spec}(A) \) 为 \( A \) 的素理想集, 那么
+\[
+  \operatorname{Spec}(S^{-1}A) \simeq \left\lbrace \mathfrak{p} \in
+  \operatorname{Spec}(A) : \mathfrak{p} \cap S = \varnothing \right\rbrace
+\]
+\begin{corollary}
+  如果 \( A \) 是 noetherian 的, \( S \) 为 \( A \) 的一个乘性子集, 那么 \(
+  S^{-1} A \) 亦是 noetherian 的.
+\end{corollary}
+\begin{proof}
+  \( \mathfrak{b}^c \) 有限生成, \( \mathfrak{b} = \mathfrak{b}^{ce} \)
+  有限生成.
+\end{proof}
+
+\begin{proposition}
+  \label{proposition-prime-iff-homomorphism-condition}
+  假设 \( \varphi: A \to B \) 是一个环同态. \( A \) 的素理想 \( \mathfrak{p} \)
+  是 \( B \) 某个素理想的收缩当且仅当 \( \mathfrak{p} = \mathfrak{p}^{ec} \).
+\end{proposition}
+\begin{proof}
+  \( \implies \) 是我们已经知道的. \( \impliedby \) 假设 \( s \in S = A
+  \setminus \mathfrak{p} \), 如果 \( \varphi(s) \in \mathfrak{p}^e \), 那么 \( s
+  \in \mathfrak{p}^{ec} = \mathfrak{p} \), 与 \( S \) 定义矛盾, 因此 \(
+  \varphi(S) \cap \mathfrak{p}^e = \varnothing \). 因此 \( \varphi(S) \) 是一个
+  \( B \) 的不交于 \( \mathfrak{p}^e \) 的乘性子集. 于是存在 \( B \)
+  的一个素理想 \( \mathfrak{q} \) 包含 \( \mathfrak{p}^e \) 且不交于 \(
+  \varphi(S) \), 由 \( S \) 的构造 \( \mathfrak{q} \cap A = \mathfrak{p} \).
+\end{proof}
+
+令 \( \mathfrak{p} \) 为 \( A \) 的素理想, 那么 \( S_{\mathfrak{p}} := A
+\setminus \mathfrak{p} \) 为 \( A \) 的乘性子集, 那么每个 \( A_{\mathfrak{p}} \)
+中的元素都能写成 \( \frac{a}{c}, c \notin \mathfrak{p} \), 且
+\[
+  \frac{a}{c} = \frac{b}{d} \iff \text{存在} s \notin \mathfrak{p} \text{使得}
+  s(ad - bc) = 0.
+\]
+一个不交于 \( S_{\mathfrak{p}} \) 的素理想当且仅当其包含 \( \mathfrak{p} \),
+换句话说,
+\[
+  \operatorname{Spec}(A_\mathfrak{p}) \simeq \left\lbrace \mathfrak{q} \in
+  \operatorname{Spec} A: \mathfrak{q} \subseteq \mathfrak{p} \right\rbrace.
+\]
+因此 \( A_{\mathfrak{p}} \) 是一个极大理想为 \( \mathfrak{p}^{e} \) 的局部环.
+
+\begin{proposition}
+  假设 \( \mathfrak{m} \) 是环 \( A \) 的极大理想, 即 \( \mathfrak{n} =
+  \mathfrak{m} A_{\mathfrak{m}} \) 为 \( A_{\mathfrak{m}} \) 的极大理想.
+  那么对所有自然数 \( n \), 映射
+  \[
+    a + \mathfrak{m}^n \mapsto a + \mathfrak{n}^n: A / \mathfrak{m}^n \to
+    A_{\mathfrak{m}} / \mathfrak{n}^n
+  \]
+  是一个同构. 此外, 对所有 \( r \leq n \), 其诱导了同构
+  \[
+    \mathfrak{m}^r / \mathfrak{m}^n \to \mathfrak{n}^r / \mathfrak{n}^n.
+  \]
+\end{proposition}
+\begin{proof}
+  由下面交换图, 第二个是第一个论断的直接推论
+% https://q.uiver.app/#q=WzAsMTAsWzAsMCwiMCJdLFswLDEsIjAiXSxbNCwwLCIwIl0sWzQsMSwiMCJdLFsxLDAsIlxcbWF0aGZyYWt7bX1eciAvIFxcbWF0aGZyYWt7bX1ebiJdLFsxLDEsIlxcbWF0aGZyYWt7bn1eciAvIFxcbWF0aGZyYWt7bn1ebiJdLFsyLDAsIkEgLyBcXG1hdGhmcmFre219Xm4iXSxbMywwLCJBIC8gXFxtYXRoZnJha3ttfV5yIl0sWzIsMSwiQV97XFxtYXRoZnJha3ttfX0gLyBcXG1hdGhmcmFre259Xm4iXSxbMywxLCJBX3tcXG1hdGhmcmFre219fSAvIFxcbWF0aGZyYWt7bn1eciJdLFsxLDVdLFswLDRdLFs0LDVdLFs0LDZdLFs1LDhdLFs2LDgsIlxcc2ltZXEiLDFdLFs2LDddLFs4LDldLFs3LDJdLFs5LDNdLFs3LDksIlxcc2ltZXEiLDFdXQ==
+\[\begin{tikzcd}
+	0 & {\mathfrak{m}^r / \mathfrak{m}^n} & {A / \mathfrak{m}^n} & {A / \mathfrak{m}^r} & 0 \\
+	0 & {\mathfrak{n}^r / \mathfrak{n}^n} & {A_{\mathfrak{m}} / \mathfrak{n}^n} & {A_{\mathfrak{m}} / \mathfrak{n}^r} & 0
+	\arrow[from=1-1, to=1-2]
+	\arrow[from=1-2, to=1-3]
+	\arrow[from=1-2, to=2-2]
+	\arrow[from=1-3, to=1-4]
+	\arrow["\simeq"{description}, from=1-3, to=2-3]
+	\arrow[from=1-4, to=1-5]
+	\arrow["\simeq"{description}, from=1-4, to=2-4]
+	\arrow[from=2-1, to=2-2]
+	\arrow[from=2-2, to=2-3]
+	\arrow[from=2-3, to=2-4]
+	\arrow[from=2-4, to=2-5]
+\end{tikzcd}\]
+
+映射是单射: 考虑自然映射 \( a \mapsto \frac{a}{1} \) 的扩张与收缩. 因为 \(
+\mathfrak{n}^n = (\mathfrak{m}^n)^e \), 所以 \( A / \mathfrak{m}^n \to
+A_{\mathfrak{m}} / \mathfrak{n}^n \) 的核为 \( (\mathfrak{m}^n)^{ec} /
+\mathfrak{m}^n \). 如果 \( a \in (\mathfrak{m}^n)^{ec} \), 那么对某些 \( b \in
+\mathfrak{m}^n \) 以及 \( s \in S\), 有 \( \frac{a}{1} = \frac{b}{s} \),
+因此存在 \( t \in S_{\mathfrak{m}} \), 使得 \( tsa \in \mathfrak{m}^n \). 每个
+\( A \) 中包含 \( \mathfrak{m}^n \) 的极大理想 包含 \(
+\operatorname{rad}(\mathfrak{m}^n) = \mathfrak{m} \), 只能是 \( \mathfrak{m} \).
+因此 \( A/ \mathfrak{m}^n \) 的极大理想为唯一且为 \( \mathfrak{m} \). \( ts
+\notin \mathfrak{m} \), 它们是 \( A / \mathfrak{m}^n \) 中的单位, 只能 \( a \in
+\mathfrak{m}^n \).
+
+映射是满射: 假设 \( \frac{a}{s} \in A_{\mathfrak{m}}, a \in A, s \in S_{\mathfrak{m}}
+\mathfrak{m}\). 由上段, \( \mathfrak{m} \) 是 \( A / \mathfrak{m}^n \)
+唯一的极大理想, 从而没有极大理想同时包含 \( s \) 和 \( \mathfrak{m}^n \),
+换句话说 \( (s) + \mathfrak{m}^n = A \). 因此存在 \( b \in A \) 和 \( q \in
+\mathfrak{m}^n \) 使得 \( sb + q = 1 \). 因此
+\[
+  s(ba) = a(1 - q).
+\]
+因此在 \( A_{\mathfrak{m}} \) 上
+\[
+  \frac{ba}{1} = \frac{a}{s} - \frac{aq}{s}.
+\]
+\end{proof}
+
+\begin{proposition}
+  假设 \( A \) 是一个 noetherian 环, 那么
+  \[
+    \bigcap \left\lbrace \mathfrak{m}^n: \mathfrak{m} \text{极大}, n \in
+    \mathbb{N} \right\rbrace = \left\lbrace 0 \right\rbrace.
+  \]
+\end{proposition}
+\begin{proof}
+  如果 \( 0 \neq  a \in A \) , 那么 \( \operatorname{ann}(a) \) 是 \( A \)
+  的一个真理想, 其包含在某个极大理想 \( \mathfrak{m} \) 中. 因此在 \(
+  A_{\mathfrak{m}} \) 中, \( \frac{a}{1} \neq 0 \).
+  \cref{theorem-Krull-intersection} 告诉我们, 存在 \( n \) 使得 \( \frac{a}{1}
+  \notin (\mathfrak{m} A_{\mathfrak{m}})^n \), 换句话说 \( a \notin
+  \mathfrak{m}^n \).
+\end{proof}
+
+\subsection{分式模}
+
+\begin{proposition}
+  函子 \( M \to S^{-1} M \) 是正合函子.
+\end{proposition}
+\begin{proof}
+  假设给定了正合列
+  \[
+    M' \xrightarrow{\alpha} M \xrightarrow{\beta} M''
+  \]
+  如果 \( \beta \circ \alpha = 0 \), 那么 \( 0 = S^{-1}(\beta \circ \alpha) =
+  S^{-1} \beta \circ S^{-1} \alpha \), 因此 \( \operatorname{Im} (S^{-1} \alpha)
+  \subseteq \operatorname{Ker} (S^{-1}\beta) \). 反过来, 如果给定了 \(
+  \frac{m}{s} \in \operatorname{Ker}(S^{-1}\beta) \), 其中 \( m \in M, s \in S
+  \). 那么存在 \( t \in S \) 使得 \( t(\beta(m)) = \beta(tm) = 0 \).
+  因此由原列的正合性, 存在 \( m' \in M' \) 使得 \( tm = \alpha(m') \). 现在
+  \[
+    \frac{m}{s} = \frac{tm}{ts} = \frac{\alpha(m')}{ts} \in
+    \operatorname{Im}(S^{-1}\alpha).
+  \]
+\end{proof}
+
+\begin{proposition}
+  假设 \( M \) 是一个有限生成 \( A \)-模. 如果 \( S^{-1} M = 0 \), 那么存在 \( h
+  \in S \) 使得 \( M_h = 0 \).
+\end{proposition}
+
+\begin{proposition}
+  假设 \( M \) 是一个有限生成 \( A \)-模. 那么典范映射
+  \[
+    M \to \prod \left\lbrace M_{\mathfrak{m}}: \mathfrak{m} \text{是} A
+    \text{的一个极大理想} \right\rbrace
+  \]
+  是一个单射.
+\end{proposition}
+\begin{proof}
+  如果 \( 0 \neq  x \) 在此映射下像为零, 那么存在极大理想 \( \mathfrak{m} \)
+  包含 \( \operatorname{ann}(x) \). \( x \) 在 \( M \to M_{\mathfrak{m}} \)
+  下像非零, 与假设矛盾, 从而 \( x = 0 \).
+\end{proof}
+
+\begin{corollary}
+  \label{corollary-module-zero-iff-condition}
+  假设 \( M \) 是一个 \( A \)-模. 如果 \( M_{\mathfrak{m}} = 0 \) 对所有 \( A \)
+  的极大理想 \( \mathfrak{m} \) 成立, 那么 \( M = 0 \).
+\end{corollary}
+
+\begin{proposition}
+  列
+  \[
+    M' \xrightarrow{\alpha} M \xrightarrow{\beta} M''
+  \]
+  正合当且仅当对 \( A \) 的所有极大理想, 列
+  \[
+    M'_{\mathfrak{m}} \xrightarrow{\alpha_{\mathfrak{m}}} M_{\mathfrak{m}}
+    \xrightarrow{\beta_{\mathfrak{m}}} M''_{\mathfrak{m}}
+  \]
+  正合.
+\end{proposition}
+\begin{proof}
+  \( \implies \) 是我们已经证明的. 反过来, 首先注意到 \(
+  (\operatorname{ker}\beta)_{\mathfrak{m}} \subseteq
+  \operatorname{ker}\beta_{\mathfrak{m}} \), 从而由交换图
+% https://q.uiver.app/#q=WzAsMTAsWzAsMCwiMCJdLFswLDEsIjAiXSxbMSwwLCIoXFxvcGVyYXRvcm5hbWV7a2VyfSBcXGJldGEpX3tcXG1hdGhmcmFre219fSJdLFsxLDEsIihcXG9wZXJhdG9ybmFtZXtrZXJ9IFxcYmV0YV97XFxtYXRoZnJha3ttfX0pIl0sWzIsMCwiTV97XFxtYXRoZnJha3ttfX0iXSxbMiwxLCJNX3tcXG1hdGhmcmFre219fSJdLFszLDAsIk0nJ197XFxtYXRoZnJha3ttfX0iXSxbMywxLCJNJydfe1xcbWF0aGZyYWt7bX19Il0sWzQsMCwiMCJdLFs0LDEsIjAiXSxbMCwyXSxbMSwzXSxbMiwzXSxbMiw0XSxbMyw1XSxbNCw2XSxbNSw3XSxbNCw1LCJcXHNpbWVxIiwxXSxbNiw3LCJcXHNpbWVxIiwxXSxbNiw4XSxbNyw5XV0=
+\[\begin{tikzcd}
+	0 & {(\operatorname{ker} \beta)_{\mathfrak{m}}} & {M_{\mathfrak{m}}} & {M''_{\mathfrak{m}}} & 0 \\
+	0 & {(\operatorname{ker} \beta_{\mathfrak{m}})} & {M_{\mathfrak{m}}} & {M''_{\mathfrak{m}}} & 0
+	\arrow[from=1-1, to=1-2]
+	\arrow[from=1-2, to=1-3]
+	\arrow[from=1-2, to=2-2]
+	\arrow[from=1-3, to=1-4]
+	\arrow["\simeq"{description}, from=1-3, to=2-3]
+	\arrow[from=1-4, to=1-5]
+	\arrow["\simeq"{description}, from=1-4, to=2-4]
+	\arrow[from=2-1, to=2-2]
+	\arrow[from=2-2, to=2-3]
+	\arrow[from=2-3, to=2-4]
+	\arrow[from=2-4, to=2-5]
+\end{tikzcd}\]
+  知道 \( (\operatorname{ker}\beta)_{\mathfrak{m}} =
+  \operatorname{ker}\beta_{\mathfrak{m}} \). 同理 \(
+  (\operatorname{im}\alpha)_{\mathfrak{m}} = \operatorname{im}
+  \alpha_{\mathfrak{m}} \), 因此 \( \left(\frac{\operatorname{ker} \beta +
+    \operatorname{im}\alpha}{\operatorname{im} \alpha}\right)_{\mathfrak{m}} =
+    \frac{\operatorname{ker}\beta_{\mathfrak{m}} +
+      \operatorname{im}\alpha_{\mathfrak{m}}}{\operatorname{im}
+    \alpha_{\mathfrak{m}}}  = 0 \) 对任意 \( \mathfrak{m} \) 成立. \cref{corollary-module-zero-iff-condition}
+    告诉我们, \( \frac{\operatorname{ker}\beta +
+    \operatorname{im}\alpha}{\operatorname{im}\alpha} = 0 \) 成立, 换句话说 \(
+    \operatorname{ker} \beta \subseteq \operatorname{im} \alpha \). 类似地, 考虑
+    \( \frac{\operatorname{ker} \beta + \operatorname{im}
+    \alpha}{\operatorname{ker}\beta} \) 就能得到 \( \operatorname{im} \alpha
+    \subseteq \operatorname{ker} \beta \).
+\end{proof}
+
+\begin{corollary}
+  一个 \( A \)-模态射 \( M \to N \) 单(resp. 满, 零) 当且仅当 \(
+  M_{\mathfrak{m}} \to N_{\mathfrak{m}} \) 单(resp. 满, 零).
+\end{corollary}
+\begin{proof}
+  考虑 \( 0 \to M \to N \)(resp. \( M \to N \to 0, M
+  \xrightarrow{\operatorname{id}} M \to N \)).
+\end{proof}
+
+\begin{proposition}
+  假设 \( \mathfrak{N} \) 是 \( A \) 的幂零根, \( S \) 为 \( A \)
+  的一个乘性子集, 那么 \( S^{-1}\mathfrak{N} \) 是 \( S^{-1}A \) 的幂零根.
+\end{proposition}
+\begin{proof}
+  如果 \( (\frac{a}{s})^n = 0 \) 对某个 \( n \) 成立, 其中 \( a \in A, s \in S \).
+  那么存在 \( t \in S \) 使得 \( ta^n = 0 \), 因此 \( \frac{a}{s} =
+  \frac{ta}{ts} \in S^{-1} \mathfrak{N} \).
+\end{proof}
+
+\begin{corollary}
+  环 \( A \) 约化当且仅当 \( A_{\mathfrak{m}} \) 均约化.
+\end{corollary}
+
+\section{整性}
+
+\subsection{基本性质}
+
+假设 \( A \) 是环 \( B \) 的子环. 一个 \( B \) 的元素 \( \alpha \) 称为在 \( A
+\) 上 \emph{整}, 如果他是 \( A \) 的一个首一系数多项式的根,
+也就是它满足某个形如下面的方程
+\[
+  x^n + a_1 x^{n - 1} + \cdots + a_n = 0,\quad a_i \in A.
+\]
+更一般地, 一个 \( A \)-代数 \( B \) 的元素称为在 \( A \) 上\emph{整}, 如果它在
+\( A \) 在 \( B \) 的像中整. 如果 \( B \) 的每个元素都在 \( A \) 中整, 那么称 \( B
+\) 在 \( A \) 中\emph{整}.
+
+\begin{lemma}[Cramer]
+  \label{lemma-Cramer-varient}
+  假设 \( x_j \) 是 \( A \)-系数线性方程
+  \[
+    \sum_{j = 1}^m c_{ij} x_j = 0,\quad i = 1, \ldots, m,
+  \]
+  的解, 那么
+  \[
+    \det(C) \cdot x_j = 0,\quad j = 1,\ldots, m.
+  \]
+\end{lemma}
+\begin{proof}
+  考察
+  \[
+    \det \begin{pmatrix}
+      c_{11} &\cdots &c_{1, j - 1} &\sum_{i} &c_{1i} x_{i} &c_{1, j + 1} &\cdots
+      &c_{1m}\\ \vdots &&\vdots &\vdots &\vdots &&\vdots\\ c_{m1} &\cdots
+      &c_{m, j - 1} &\sum_{i} &c_{mi} x_{i} &c_{m, j + 1} &\cdots &c_{mm}
+    \end{pmatrix} = 0
+  \]
+\end{proof}
+
+\begin{proposition}
+  \label{proposition-integral-iff-condition}
+  假设环 \( B \) 是 \( A \) 的扩张. \( B \) 的一个元素 \( \alpha \) 在 \( A \)
+  上整当且仅当存在 \( B \) 的忠实 \( A[\alpha] \)-子模作为 \( A \)-模有限生成.
+\end{proposition}
+\begin{proof}
+  \( \implies \) 考虑 \( A[\alpha] \) 即可. \( \impliedby \) 假设 \( C \) 作为
+  \( A[\alpha] \) 由一族极小生成元 \( c_1,\ldots, c_n \) 生成, 那么
+  \[
+    \alpha c_i = a_{i1}c_1 + a_{i2}c_2 + \cdots + a_{in}c_n
+  \]
+  记
+  \[
+    C = \begin{pmatrix}
+      \alpha - a_{11} &-a_{12} &\cdots &-a_{1n}\\
+      -a_{21} &\alpha - a_{12} &\cdots &-a_{2n}\\
+      \vdots &\vdots &\ddots &\vdots\\
+      -a_{n1} &-a_{n2} &\cdots &\alpha-a_{nn}\\
+    \end{pmatrix}
+  \]
+  由 \cref{lemma-Cramer-varient}, \( \det(C) e_i = 0 \). 由忠实性, \( \det(C) = 0 \), 展开 \(
+  \det(C) \), 可以找到 \( b \) 满足一个首一 \( A \)-系数多项式.
+\end{proof}
+
+
+\begin{proposition}
+  如果 \( A \)-代数 \( B \) 有限生成且每个元素都在 \( A \) 上整, 那么 \( B \)
+  作为 \( A \)-模有限.
+\end{proposition}
+\begin{proof}
+  假设 \( B \) 由 \( \alpha_1, \ldots, \alpha_m \) 生成, 并且
+  \[
+    \alpha_i^{n_i} + a_{i1}\alpha_{i}^{n_i - 1} + \cdots + a_{in_i} =
+    0,\quad a_{ij} \in A,\quad i = 1,\ldots, m.
+  \]
+  考察 \( \alpha_1^{r_i}\cdots \alpha_m^{r_m}, 1 \leq r_i < n_i \).
+\end{proof}
+
+\begin{corollary}
+  考虑环 \( A \subseteq B \subseteq C \).  \( B \) 在 \( A \) 上整并且 \( C \)
+  在 \( B \) 上整当且仅当 \( C \) 在 \( A \) 上整.
+\end{corollary}
+\begin{proof}
+  \( \implies \) 假设 \( c \in C \) 满足
+  \[
+    c^{n} + b_{1}c_{i}^{n - 1} + \cdots + b_{n} =
+    0,\quad b_{i} \in B,\quad i = 1,\ldots, n.
+  \]
+  考察 \( A[b_1, b_2, \ldots, b_n, c] = A[b_1, b_2, \ldots, b_n][c] \).
+\end{proof}
+
+\begin{theorem}
+  假设 \( A \) 为 \( B \) 的子环, 那么 \( B \) 在 \( A \) 上的整的元素构成一个
+  \( B \) 的 \( A \)-子代数.
+  我们称 \( A \) 在 \( B \) 的 \emph{整闭包} 为 \( B \) 在 \( A \)
+  中的所有整元素. 特别地, 在没有歧义的情况下, 如果 \( A \) 是一个整环, \( A \)
+  在其分式域的整闭包称为 \( A \) 的 \emph{整闭包}.
+\end{theorem}
+\begin{proof}
+  假设 \( B \) 的两个元素 \( \alpha, \beta \) 在 \( A \) 上整, 考察 \( A[\alpha,
+  \beta] = A[\alpha][\beta] \).
+\end{proof}
+
+\subsection{整闭包}
+
+\begin{proposition}
+  假设 \( A \) 是一个整环, 其分式域为 \( F \), \( E \) 是一个包含 \( F \) 的域.
+  如果 \( \alpha \in E \) 在 \( F \) 上代数, 那么存在\( d \in A \) 使得 \( d
+  \alpha \) 在 \( A \) 上整.
+\end{proposition}
+
+\begin{corollary}
+  如果 \( A \) 是一个整环, \( E \) 是 \( A \) 的分式域的整扩张, 那么 \( E \)
+  是 \( A \) 在 \( E \) 中整闭包的分式域.
+\end{corollary}
+
+一个整环 \( A \) 称为是 \emph{整闭的} 或者 \emph{正规的},
+如果它等于它在自身分式域上的整闭包, 换句话说
+\[
+  \alpha \in F,\quad \alpha \text{在} A \text{中整} \implies \alpha \in A.
+\]
+
+\begin{proposition}
+  每个唯一因子分解整环都是整闭的.
+\end{proposition}
+\begin{proof}
+  假设 \( A \) 是一个唯一因子分解整环, \( a/b \in \operatorname{Frac} A \) 整,
+  其中 \( a \) 和 \( b \) 互素, 那么其满足形如下面的方程
+  \[
+    \left(\frac{a}{b}\right)^n + a_1 \left(\frac{a}{b}\right)^{n - 1} + \cdots + a_n = 0,\quad a_i \in
+    A.
+  \]
+  两边同乘 \( b^n \), 得到
+  \[
+    a^n + (a_1b) a^{n - 1} + \cdots + a_nb^n = 0,\quad a_i \in
+    A.
+  \]
+  因此 \( b \mid a \), 只能 \( b \) 为 \( A \) 的单位.
+\end{proof}
+
+假设 \( F \subseteq E \) 均为域, \( \alpha \in E \) 在 \( F \) 上代数. \( \alpha
+\) 在 \( F \) 上的 \emph{极小多项式} 是首一的 \( \alpha \) 的最小多项式.
+
+\begin{proposition}
+  假设 \( A \) 是一个正规整环, \( E \) 是 \( A \) 的分式域 \( F \)
+  的一个有限扩张. \( E \) 的一个元素在 \( A \) 上整当且仅当其在 \( F \)
+  上的极小多项式系数均在 \( A \) 上.
+\end{proposition}
+\begin{proof}
+  %TODO: 域论
+  % 假设 \( \alpha \in E \) 在 \( A \) 上整且对首一 \( A \) 系数多项式 \( g(x) \),
+  % 有 \( g(\alpha) = 0 \). 令 \( f \) 为 \( \alpha \) 在 \( F \) 上的极小多项式,
+  % 那么 \( \alpha \) 的共轭根 \( \alpha' \) 亦满足 \( g(\alpha') = 0 \), 由 Vieta
+  % 定理, \( f \) 的系数
+\end{proof}
+
+\begin{corollary}
+  假设 \( A \) 是一个分式域为 \( F \) 的整闭整环, \( f \) 是 \( A[X] \)
+  的一个首一系数多项式. 那么 \( f \) 在 \( F[X] \) 中的每个首一系数因子系数都在
+  \( A \) 中.
+\end{corollary}
+
+\begin{proposition}
+  假设 \( A \subseteq B \) 为环, \( A' \) 为 \( A \) 在 \( B \) 的整闭包.
+  对每个 \( A \) 的乘性子集 \( S \), \( S^{-1}A' \) 为 \( S^{-1} A \) 在 \(
+  S^{-1} B \) 的整闭包.
+\end{proposition}
+\begin{proof}
+  假设 \( b/s \in S^{-1}A' \) 其中 \( b \in A' \) 和 \( s \in S \), 那么有
+  \[
+    b^n + a_1 b^{n - 1} + \cdots + a_n = 0,\quad a_i \in A,
+  \]
+  因此
+  \[
+    \left(\frac{b}{s}\right)^n + \frac{a_1}{s} \left( \frac{b}{s} \right)^{n -
+    1} + \cdots + \frac{a_n}{s^n} = 0
+  \]
+  \( b/s \) 在 \( S^{-1}A \) 上整.
+
+  反过来, 假设 \( b / s(b \in B, s \in S) \) 在 \( S^{-1}A \) 上整, 那么有
+  \[
+    \left( \frac{b}{s} \right)^n + \frac{a_1}{s_1} \left( \frac{b}{s} \right)^{n
+    - 1} + \cdots + \frac{a_n}{s_n} = 0,\quad a_i \in A,\quad s_i S.
+  \]
+  同乘 \( s^n s_1^n \cdots s_n^n \), 知道 \( s_1 \cdots s_n b \in A' \).
+\end{proof}
+
+\begin{corollary}
+  假设 \( A \subseteq B \) 是环, \( S \) 是 \( A \) 的一个乘性子集. 如果 \( A \)
+  在 \( B \) 中正闭, 那么 \( S^{-1} A \) 在 \( S^{-1} B \) 中正闭.
+\end{corollary}
+
+\begin{proposition}
+  假设 \( A \) 是一个整环, 那么下面条件等价
+  \begin{enumerate}
+    \item \( A \) 整闭.
+    \item 对所有素理想 \( \mathfrak{p} \), \( A_{\mathfrak{p}} \) 整闭.
+    \item 对所有极大理想 \( \mathfrak{m} \), \( A_{\mathfrak{m}} \) 整闭.
+  \end{enumerate}
+\end{proposition}
+\begin{proof}
+  (iii) \( \implies \) (i), 假设 \( A' \) 为 \( A \) 的整闭包. \(
+  A_{\mathfrak{m}} \to (A')_{\mathfrak{m}} \) 满, 进而 \( A \to A' \) 满.
+\end{proof}
+
+\begin{lemma}
+  如果 \( A \) 是一个环, \( B \) 是一个 \( A \)-代数且 \( f, g \in B[T] \)
+  为首一系数多项式使得 \( g \mid f \). 如果 \( f \) 的系数在 \( A \) 上整, 那么
+  \( g \) 的系数也在 \( A \) 上整.
+\end{lemma}
+\begin{proof}
+  %TODO: 域论
+\end{proof}
+
+\begin{proposition}
+  假设 \( B \) 是一个 \( A \)-代数. 如果 \( B[T] \) 的一个多项式 \( f \) 在 \(
+  A[T] \) 中整, 那么 \( f \) 的系数都在 \( A \) 中整.
+\end{proposition}
+\begin{proof}
+  假设 \( P \in B[T] \) 为多项式
+  \[
+    q(X) = X^n + f_1 X^{n - 1} + \cdots + f_n,\quad f_i \in A[T]
+  \]
+  的根. 令 \( r \) 为一个大于 \( \deg f_1,\ldots, \deg f_n \) 的整数, \( P_1
+  = P - T^r \), 以及
+  \[
+    q_1(X) = q(X + T^r) = X^n + g_1 X^{n - 1} + \cdots + g_n,\quad g_i \in A[T].
+  \]
+  那么 \( P_1 \) 为 \( q_1(X) \) 的一个根, 因此
+  \[
+    g_n = -P_1 \cdot (P^{n - 1}_1 + g_1 P^{n - 2}_1 + \cdots + g_{n - 1}).
+  \]
+  由 \( r \) 的选择知道, \( g_n \) 都是首一的. 由 \( g_n \) 系数在 \( A \)
+  中知道 \( P_1 \) 系数在 \( A \) 中整, 因此 \( P \) 系数在 \( A \) 中整.
+\end{proof}
+
+\begin{proposition}
+  整闭整环的多项式环都是整闭整环.
+\end{proposition}
+\begin{proof}
+  只需证明, 如果 \( A \) 是一个整闭整环, 那么 \( A[T] \) 亦是一个整闭整环. 假设
+  \( F \) 是 \( A \) 的分式域. 如果 \( A[T] \) 的分式域 \( F(T) \) 的一个元素 \(
+  f \) 在 \( A[T] \) 中整, 那么它在 \( F[T] \) 中整. 而 \( F[T] \)
+  是一个唯一因子分解整环, 其分式域亦为 \( F(T) \), 因此 \( f \in F[T] \). 因此,
+  \( f \) 系数在 \( A \) 中整, 换句话说, \( f \in A[T] \).
+\end{proof}
+
+\subsection{上升下降定理}
+
+\begin{proposition}
+  如果 \( A \subseteq B \) 为整环, \( B \) 在 \( A \) 上整, 那么 \( B \)
+  是一个域当且仅当 \( A \) 是一个域.
+\end{proposition}
+\begin{proof}
+  \( \implies \). 假设 \( 0 \neq \alpha \in A \), 那么 \( \alpha^{-1} \in B \)
+  在 \( A \) 上整. 因此存在 \( \alpha_i \in A \) 使得
+  \[
+    (\alpha^{-1})^n + a_1(\alpha^{-1})^{n - 1} + \cdots + a_n = 0.
+  \]
+  两边同乘 \( a^{n - 1} \) 立刻知道 \( \alpha^{-1} \in A \).
+
+  \( \impliedby \). 假设 \( 0 \neq \alpha \in B \) 在 \( A \) 上整,
+  那么能找到一个 \( \alpha \) 次数最低的方程
+  \[
+    \alpha^n + a_1\alpha^{n - 1} + \cdots + a_n = 0,\quad a_i \in A.
+  \]
+  显然 \( a_n \neq 0 \), 因此
+  \[
+    (-a_n)^{-1}(\alpha^{n - 1} + a_1\alpha^{n - 2} + \cdots + a_{n - 1})\alpha =
+    1,
+  \]
+  也就是 \( \alpha \) 在 \( B \) 中有逆.
+\end{proof}
+
+\begin{corollary}
+  假设 \( A \subseteq B \) 且 \( B \) 在 \( A \) 上整, \( \mathfrak{q} \) 为\( B
+  \) 的一个素理想, \( \mathfrak{p} = \mathfrak{q} \cap A \). 那么 \(
+  \mathfrak{q} \) 极大当且仅当 \( \mathfrak{p} \) 极大.
+\end{corollary}
+\begin{proof}
+  考虑 \(  A / \mathfrak{p} \hookrightarrow B / \mathfrak{q} \).
+\end{proof}
+
+\begin{corollary}[不相容性]
+  假设 \( A \subseteq B \) 为环, \( B \) 在 \( A \) 上整, 并且 \( \mathfrak{q}
+  \subseteq \mathfrak{q}' \) 为 \( B \) 的素理想. 如果 \( \mathfrak{q} \cap A =
+  \mathfrak{q}' \cap A \), 那么 \( \mathfrak{q} = \mathfrak{q}' \).
+\end{corollary}
+\begin{proof}
+  设 \( \mathfrak{p} = \mathfrak{q} \cap A = \mathfrak{q}' \cap A \). 那么 \(
+  A_{\mathfrak{p}} \subseteq B_{\mathfrak{p}} \) 且 \( B_{\mathfrak{p}} \) 在 \(
+  A_{\mathfrak{p}} \) 上整. 理想 \( \mathfrak{q} B_{\mathfrak{p}}   \subseteq
+  \mathfrak{q}' B_{\mathfrak{p}} \) 均为 \( B_{\mathfrak{p}} \) 的素理想且交 \(
+  A_{\mathfrak{p}}\) 于 \( \mathfrak{p}A_{\mathfrak{p}} \), 后者为 \(
+  \mathfrak{p}A_{\mathfrak{p}} \) 的极大理想. 因此 \( \mathfrak{q}
+  B_{\mathfrak{p}} = \mathfrak{q}' B_{\mathfrak{p}} \) 均为极大理想.
+  因此有收缩的等式
+  \[
+    \mathfrak{q} = (\mathfrak{q}B_{\mathfrak{p}})^c =
+    (\mathfrak{q}'B_{\mathfrak{p}})^c = \mathfrak{q}'.
+  \]
+\end{proof}
+
+\begin{proposition}
+  假设 \( A \subseteq B \) 为环且 \( B \) 在 \( A \) 上整且 \( \mathfrak{p} \)
+  为 \( A \) 的素理想. 那么存在 \( B \) 的素理想 \( \mathfrak{q} \) 使得 \(
+  \mathfrak{p} = \mathfrak{q} \cap A \).
+\end{proposition}
+\begin{proof}
+  由假设我们有 \( A_{\mathfrak{p}} \subseteq B_{\mathfrak{p}} \), 且 \(
+  B_{\mathfrak{p}} \) 在 \( A_{\mathfrak{p}} \) 上整. 假设 \( \mathfrak{n} \) 为
+  \( B_{\mathfrak{p}} \) 的一个极大理想, \( \mathfrak{q} = \mathfrak{n} \cap B
+  \). 由下图可以知道 \( \mathfrak{q} \cap A = \mathfrak{p} \).
+  % https://q.uiver.app/#q=WzAsNCxbMCwxLCJBIl0sWzEsMSwiQV97XFxtYXRoZnJha3twfX0iXSxbMSwwLCJCX3tcXG1hdGhmcmFre3B9fSJdLFswLDAsIkIiXSxbMCwzXSxbMCwxXSxbMSwyXSxbMywyXV0=
+  \[\begin{tikzcd}
+    B & {B_{\mathfrak{p}}} \\
+    A & {A_{\mathfrak{p}}}
+    \arrow[from=1-1, to=1-2]
+    \arrow[from=2-1, to=1-1]
+    \arrow[from=2-1, to=2-2]
+    \arrow[from=2-2, to=1-2]
+  \end{tikzcd}\]
+\end{proof}
+
+\begin{theorem}
+  假设 \( A \subseteq B \) 为环并且 \( B \) 在 \( A \) 上整. 如果 \(
+  \mathfrak{p} \subseteq \mathfrak{p}' \) 为 \( A \) 的素理想且 \( \mathfrak{q}
+  \) 为 \( B \) 的素理想使得 \( \mathfrak{q} \cap A = \mathfrak{p} \), 那么存在
+  \( B \) 的素理想 \( \mathfrak{q}' \) 使得 \( \mathfrak{q}' \cap A =
+  \mathfrak{p}' \).
+  % https://q.uiver.app/#q=WzAsNixbMCwwLCJCIl0sWzAsMSwiQSJdLFsxLDAsIlxcbWF0aGZyYWt7cX0iXSxbMSwxLCJcXG1hdGhmcmFre3B9Il0sWzIsMCwiXFxtYXRoZnJha3txfSciXSxbMiwxLCJcXG1hdGhmcmFre3B9JyJdLFszLDUsIlxcc3Vic2V0IiwxLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoibm9uZSJ9LCJoZWFkIjp7Im5hbWUiOiJub25lIn19fV0sWzIsNCwiXFxzdWJzZXQiLDEseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJub25lIn0sImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbMywyLCIiLDEseyJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJub25lIn19fV0sWzUsNCwiIiwxLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn0sImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbMSwwLCIiLDEseyJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJub25lIn19fV1d
+  \[\begin{tikzcd}
+    B & {\mathfrak{q}} & {\mathfrak{q}'} \\
+    A & {\mathfrak{p}} & {\mathfrak{p}'}
+    \arrow["\subset"{description}, draw=none, from=1-2, to=1-3]
+    \arrow[no head, from=2-1, to=1-1]
+    \arrow[no head, from=2-2, to=1-2]
+    \arrow["\subset"{description}, draw=none, from=2-2, to=2-3]
+    \arrow[dashed, no head, from=2-3, to=1-3]
+  \end{tikzcd}\]
+\end{theorem}
+\begin{proof}
+  考察 \( A / \mathfrak{p} \hookrightarrow B / \mathfrak{q} \), 存在素理想 \(
+  \mathfrak{q}'' \in B / \mathfrak{q} \) 使得 \( \mathfrak{q}'' \cap (A /
+  \mathfrak{p}) = \mathfrak{p}' / \mathfrak{p} \), 考虑下面的交换图即可.
+  % https://q.uiver.app/#q=WzAsNCxbMCwxLCJBIl0sWzEsMSwiQS9cXG1hdGhmcmFre3B9Il0sWzEsMCwiQi9cXG1hdGhmcmFre3F9Il0sWzAsMCwiQiJdLFswLDNdLFswLDFdLFsxLDJdLFszLDJdXQ==
+  \[\begin{tikzcd}
+    B & {B/\mathfrak{q}} \\
+    A & {A/\mathfrak{p}}
+    \arrow[from=1-1, to=1-2]
+    \arrow[from=2-1, to=1-1]
+    \arrow[from=2-1, to=2-2]
+    \arrow[from=2-2, to=1-2]
+  \end{tikzcd}\]
+\end{proof}
+
+\begin{corollary}
+  假设 \( A \subseteq B \) 为环且 \( B \) 在 \( A \) 上整, 且 \( \mathfrak{p}_1
+  \subseteq \cdots \subseteq \mathfrak{p}_n \) 为 \( A \) 的素理想.
+  令素理想包含链
+  \[
+    \mathfrak{q}_1 \subseteq \cdots \subseteq \mathfrak{q}_m \quad (m < n)
+  \]
+  为 \( B \) 的素理想使得 \( \mathfrak{q}_i \cap A = \mathfrak{p} \) 对所有 \( i
+  \leq m \) 成立, 那么此素理想包含链可以扩张为
+  \[
+    \mathfrak{q}_1 \subseteq \cdots \subseteq \mathfrak{q}_n
+  \]
+  使得 \( \mathfrak{q}_i \cap A = \mathfrak{p} \), 其中 \( i \leq n \).
+\end{corollary}
+
+假设 \( A \subseteq B \) 为环, \( \mathfrak{a} \) 为 \( A \) 的一个理想. \( B \)
+的一个元素 \( b \) 称为在 \( \mathfrak{a} \) 上 \emph{整}, 如果其满足方程
+\[
+  b^n + a_1 b^{n - 1} + \cdots + a_n = 0,
+\]
+其中 \( a_i \in \mathfrak{a} \). \( B \) 在 \( \mathfrak{a} \) 上的
+\emph{整闭包} 为 \( B \) 在 \( \mathfrak{a} \) 上整的元素.
+
+类似于 \cref{proposition-integral-iff-condition}, 我们可以知道
+\begin{proposition}
+  如果一个 \( B \) 的忠实 \( A[b] \)-子模 \( M \), 其作为 \( A \)-模有限生成,
+  使得 \( b M \subseteq \mathfrak{a} M \), 那么 \( b \in B \) 在 \( \mathfrak{a}
+  \) 上整.
+\end{proposition}
+
+\begin{lemma}
+  如果 \( A \) 在 \( B \) 的整闭包为 \( A' \), 那么 \( \mathfrak{a} \) 在 \( B
+  \) 中的整闭包是 \( \operatorname{rad}(\mathfrak{a}A') \).
+\end{lemma}
+\begin{proof}
+  如果 \( b \in B \) 在 \( \mathfrak{a} \) 上整. 我们知道 \( b \in A' \) 且 \(
+  b^n \in \mathfrak{a} A' \), 因此 \( b \in \operatorname{rad}(\mathfrak{a}A')
+  \).
+
+  反过来, 如果 \( b \in \operatorname{rad}(\mathfrak{a} A') \), 使得
+  \[
+    b^m = \sum_i a_i x_i,\quad \text{其中} m > 0,\quad a_i \in
+    \mathfrak{a},\quad x_i \in A'.
+  \]
+  因为 \( x_i \) 在 \( A \) 整, 考虑 \( M = A[x_1, \ldots, x_n] \)
+  是一个有限生成代数. 因为 \( b^m M \subseteq \mathfrak{a} M \), 我们知道 \( b^m
+  \) 在 \( \mathfrak{a} \) 上整, 因此 \( b \) 在 \( \mathfrak{a} \) 上整.
+\end{proof}
+
+\begin{proposition}
+  假设 \( A \) 是一个整闭整环, \( E \) 是 \( A \) 的分式域的扩张. 一个 \( E \)
+  的元素 \( \alpha \) 在 \( A \) 的理想 \( \mathfrak{a} \) 上整, 如果 \( \alpha
+  \) 在 \( F \) 的极小多项式系数都在 \( \operatorname{rad}(\mathfrak{a}) \) 上.
+\end{proposition}
+\begin{proof}
+  %TODO: 域论
+  % 假设 \( \alpha \) 在 \( \mathfrak{a} \) 上整, 使得
+  % \[
+  %   \alpha^n + a_1 \alpha^{n - 1} + \cdots + a_n = 0,\quad n > 0,\quad a_i \in
+  %   \mathfrak{a}.
+  % \]
+\end{proof}
+
+\begin{theorem}
+  假设 \( A \subseteq B \) 为整环, 且 \( A \) 整闭, \( B \) 在 \( A \) 上整.
+  如果 \( \mathfrak{p} \supseteq \mathfrak{p}' \) 为 \( A \) 的素理想, \(
+  \mathfrak{q} \) 为 \( B \) 的素理想使得 \( \mathfrak{q} \cap A = \mathfrak{p}
+  \). 那么 \( \mathfrak{q} \) 包含一个 \( B \) 的素理想 \( \mathfrak{q}' \) 使得
+  \( \mathfrak{q}' \cap A = \mathfrak{p}' \).
+  % https://q.uiver.app/#q=WzAsNixbMCwwLCJCIl0sWzAsMSwiQSJdLFsxLDAsIlxcbWF0aGZyYWt7cX0iXSxbMSwxLCJcXG1hdGhmcmFre3B9Il0sWzIsMCwiXFxtYXRoZnJha3txfSciXSxbMiwxLCJcXG1hdGhmcmFre3B9JyJdLFszLDUsIlxcc3Vwc2V0IiwxLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoibm9uZSJ9LCJoZWFkIjp7Im5hbWUiOiJub25lIn19fV0sWzIsNCwiXFxzdXBzZXQiLDEseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJub25lIn0sImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbMywyLCIiLDEseyJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJub25lIn19fV0sWzUsNCwiIiwxLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn0sImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbMSwwLCIiLDEseyJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJub25lIn19fV1d
+  \[\begin{tikzcd}
+    B & {\mathfrak{q}} & {\mathfrak{q}'} \\
+    A & {\mathfrak{p}} & {\mathfrak{p}'}
+    \arrow["\supset"{description}, draw=none, from=1-2, to=1-3]
+    \arrow[no head, from=2-1, to=1-1]
+    \arrow[no head, from=2-2, to=1-2]
+    \arrow["\supset"{description}, draw=none, from=2-2, to=2-3]
+    \arrow[dashed, no head, from=2-3, to=1-3]
+  \end{tikzcd}\]
+\end{theorem}
+\begin{proof}
+  \( B \) 的包含在 \( \mathfrak{q} \) 的素理想与 \( B_{\mathfrak{q}} \)
+  的素理想一一对应, 因此我们只需要证明 \( \mathfrak{p}' \) 为 \(
+  B_{\mathfrak{q}} \) 的一个素理想的收缩, 或者由
+  \cref{proposition-integral-iff-condition} 等价地,
+  \[
+    A \cap \mathfrak{p}' B_{\mathfrak{q}} = \mathfrak{p}'
+  \]
+  如果 \( b \in \mathfrak{p}' B_{\mathfrak{q}} \), 那么 \( b = y/s \), 其中 \( y
+  \in \mathfrak{p}'B, s \in B \setminus \mathfrak{q} \). \( y \) 在 \(
+  \mathfrak{p}' \) 整, 满足
+  \[
+    y^m + a_1 y^{m - 1} + \cdots + a_m = 0,
+  \]
+  其中 \( a_i \in \operatorname{rad}(\mathfrak{p}') = \mathfrak{p}' \).
+
+  假设 \( b \in A \cap \mathfrak{p}' B_{\mathfrak{q}} \), 那么 \( b^{-1} \in F =
+  \operatorname{Frac} A \), 将上式的 \( y \) 替换为 \( bs \) 在除去 \( b^m \)
+  得到
+  \[
+    s^m + (a_1 / b) s^{m - 1} + \cdots + (a_m / b^m) = 0.
+  \]
+  可以知道这对应 \( s \) 在 \( F \) 的极小多项式, 结合 \( s \) 在 \( A \) 中整,
+  知道 \( a_i / b^i \in A \). 假设 \( b \notin \mathfrak{p}' \), 系数 \( a_i /
+  b^i \in \mathfrak{p}' \)(否则 \( a_i \notin \mathfrak{p}' \)), 因而 \( s^m \in
+  \mathfrak{p}' B \subseteq \mathfrak{p} B \subseteq \mathfrak{q} \), 因此 \( s
+  \in \mathfrak{q} \), 矛盾. 因此 \( b \in \mathfrak{p}' \), 换句话说 \( A \cap
+  \mathfrak{p}' B_{\mathfrak{q}}= \mathfrak{p}' \).
+\end{proof}
+
+\begin{corollary}
+  假设 \( A \subseteq B \) 为整环, \( A \) 整闭且 \( B \) 在 \( A \) 上整. 如果
+  \( \mathfrak{p}_1 \supseteq \cdots \supseteq \mathfrak{p}_n \) 为 \( A \)
+  的素理想, 且令
+  \[
+    \mathfrak{q}_1 \supseteq \cdots \supseteq \mathfrak{q}_m \quad (m < n)
+  \]
+  为 \( B \) 的素理想使得对所有 \( i \) 都有 \( \mathfrak{q}_i \cap A =
+  \mathfrak{p}_i \), 那么存在素理想链扩张
+  \[
+    \mathfrak{q}_1 \supseteq \cdots \supseteq \mathfrak{q}_n
+  \]
+  使得 \( \mathfrak{q}_i \cap A = \mathfrak{p} \) 对所有 \( i \) 成立.
+\end{corollary}
+
+\section{Noether 正规定理}
+
+\begin{lemma}
+  假设 \( f \in k[X_1, \ldots, X_d, T] \). 对恰当的 \( m \in \mathbb{N} \),
+  \[
+    f\left(X_1 + T^m, X_2 + T^{m^2}, \ldots, X_d + T^{m^d}, T\right)
+  \]
+  形如 \( c_0 T^r + c_1 T^{r - 1} + \cdots + c_r \) 其中 \( c_0 \in k^{\times}
+  \).
+\end{lemma}
+
+\begin{lemma}
+  假设 \( A = k[x_1, \ldots, x_n] \) 是一个有限生成 \( k \)-代数, 令 \(
+  \left\lbrace x_1, \ldots, x_d \right\rbrace \) 为 \( \left\lbrace x_1, \ldots,
+  x_n \right\rbrace \) 的极大代数独立子集. 如果 \( n > d \), 那么存在一个 \( m
+  \in \mathbb{N} \) 使得 \( A \) 在子代数 \( k\left[x_1 - x_n^m,\ldots, x_d -
+  x_n^{m^d}, x_{d + 1}, \ldots, x_{n - 1}\right] \).
+\end{lemma}
+
+\begin{theorem}[Noether正规定理]
+  每个域 \( k \) 上的有限生成代数包含一个多项式代数 \( R \), 使得 \( A \) 是一个
+  \( R \)-代数. 换句话说, 存在 \( A \) 的元素 \( y_1, \ldots, y_r \) 在 \( k \)
+  中代数独立, 使得 \( A \) 在 \( k[y_1, \ldots, y_r] \) 上有限.
+\end{theorem}
+
+\section{有向极限与逆极限}
+给定一个预序集范畴 \( (I, \leq) \), 给定范畴 \( \mathcal{M} \) 其对象集是模 \(
+(M_i)_{i \in I} \), 态射集为 \( \left\lbrace M_i \to M_j: i \leq j \right\rbrace
+\), 我们称模 \( \varinjlim M_k \) 为逗号范畴 \( \mathbf{1} \xrightarrow{\alpha}
+\mathcal{M}^I = \operatorname{Fct}(I, \mathcal{M}) \xleftarrow{\Delta}
+\mathcal{M} \) 的始对象为 \emph{有向极限}, 其中 \( \alpha \) 为函子 \(
+\operatorname{pt} \mapsto \left( (i \mapsto j) \mapsto (M_i \to M_j) \right) \)
+, \( \Delta \) 为对角函子. 换句话说, \( \varinjlim M_k \) 满足下面的交换图.
+% https://q.uiver.app/#q=WzAsNCxbMCwwLCJNX2kiXSxbMiwwLCJNX2oiXSxbMSwxLCJcXHZhcmluamxpbSBNX2siXSxbMSwyLCJOIl0sWzAsMywiXFxiZXRhX2kiLDJdLFswLDEsIlxcYWxwaGFeaV9qIl0sWzAsMiwiXFxhbHBoYV9pIl0sWzEsMiwiXFxhbHBoYV9qIiwyXSxbMSwzLCJcXGJldGFfaiJdLFsyLDMsIiIsMSx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dXQ==
+\[\begin{tikzcd}
+	{M_i} && {M_j} \\
+	& {\varinjlim M_k} \\
+	& N
+	\arrow["{\alpha^i_j}", from=1-1, to=1-3]
+	\arrow["{\alpha_i}", from=1-1, to=2-2]
+	\arrow["{\beta_i}"', from=1-1, to=3-2]
+	\arrow["{\alpha_j}"', from=1-3, to=2-2]
+	\arrow["{\beta_j}", from=1-3, to=3-2]
+	\arrow[dashed, from=2-2, to=3-2]
+\end{tikzcd}\]
