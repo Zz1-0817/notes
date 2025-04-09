@@ -892,7 +892,7 @@ A_{\mathfrak{m}} / \mathfrak{n}^n \) 的核为 \( (\mathfrak{m}^n)^{ec} /
 \end{corollary}
 
 \begin{proposition}
-  列
+  列(或复形链)
   \[
     M' \xrightarrow{\alpha} M \xrightarrow{\beta} M''
   \]
@@ -904,29 +904,19 @@ A_{\mathfrak{m}} / \mathfrak{n}^n \) 的核为 \( (\mathfrak{m}^n)^{ec} /
   正合.
 \end{proposition}
 \begin{proof}
+%TODO: 修正此证明
   \( \implies \) 是我们已经证明的. 反过来, 首先注意到 \(
   (\operatorname{ker}\beta)_{\mathfrak{m}} \subseteq
-  \operatorname{ker}\beta_{\mathfrak{m}} \), 从而由交换图
-% https://q.uiver.app/#q=WzAsMTAsWzAsMCwiMCJdLFswLDEsIjAiXSxbMSwwLCIoXFxvcGVyYXRvcm5hbWV7a2VyfSBcXGJldGEpX3tcXG1hdGhmcmFre219fSJdLFsxLDEsIihcXG9wZXJhdG9ybmFtZXtrZXJ9IFxcYmV0YV97XFxtYXRoZnJha3ttfX0pIl0sWzIsMCwiTV97XFxtYXRoZnJha3ttfX0iXSxbMiwxLCJNX3tcXG1hdGhmcmFre219fSJdLFszLDAsIk0nJ197XFxtYXRoZnJha3ttfX0iXSxbMywxLCJNJydfe1xcbWF0aGZyYWt7bX19Il0sWzQsMCwiMCJdLFs0LDEsIjAiXSxbMCwyXSxbMSwzXSxbMiwzXSxbMiw0XSxbMyw1XSxbNCw2XSxbNSw3XSxbNCw1LCJcXHNpbWVxIiwxXSxbNiw3LCJcXHNpbWVxIiwxXSxbNiw4XSxbNyw5XV0=
-\[\begin{tikzcd}
-	0 & {(\operatorname{ker} \beta)_{\mathfrak{m}}} & {M_{\mathfrak{m}}} & {M''_{\mathfrak{m}}} & 0 \\
-	0 & {(\operatorname{ker} \beta_{\mathfrak{m}})} & {M_{\mathfrak{m}}} & {M''_{\mathfrak{m}}} & 0
-	\arrow[from=1-1, to=1-2]
-	\arrow[from=1-2, to=1-3]
-	\arrow[from=1-2, to=2-2]
-	\arrow[from=1-3, to=1-4]
-	\arrow["\simeq"{description}, from=1-3, to=2-3]
-	\arrow[from=1-4, to=1-5]
-	\arrow["\simeq"{description}, from=1-4, to=2-4]
-	\arrow[from=2-1, to=2-2]
-	\arrow[from=2-2, to=2-3]
-	\arrow[from=2-3, to=2-4]
-	\arrow[from=2-4, to=2-5]
-\end{tikzcd}\]
-  知道 \( (\operatorname{ker}\beta)_{\mathfrak{m}} =
+  \operatorname{ker}\beta_{\mathfrak{m}} \), 反过来, 如果 \( \frac{m}{s} \in
+  \operatorname{ker} \beta_{\mathfrak{m}} \), 那么存在 \( s' \notin \mathfrak{m}
+  \) 使得 \( s'\beta(m) = 0 \) 也就是 \( s'm \in \operatorname{ker}\beta \).
+  因此 \( \frac{m}{s} = \frac{s'm}{s's} \in M_{\mathfrak{m}} \), 换句话说 \(
+  (\operatorname{ker}\beta)_{\mathfrak{m}} =
   \operatorname{ker}\beta_{\mathfrak{m}} \). 同理 \(
   (\operatorname{im}\alpha)_{\mathfrak{m}} = \operatorname{im}
-  \alpha_{\mathfrak{m}} \), 因此 \( \left(\frac{\operatorname{ker} \beta +
+  \alpha_{\mathfrak{m}} \).
+
+  于是 \( \left(\frac{\operatorname{ker} \beta +
     \operatorname{im}\alpha}{\operatorname{im} \alpha}\right)_{\mathfrak{m}} =
     \frac{\operatorname{ker}\beta_{\mathfrak{m}} +
       \operatorname{im}\alpha_{\mathfrak{m}}}{\operatorname{im}
@@ -1465,14 +1455,23 @@ A_{\mathfrak{m}} / \mathfrak{n}^n \) 的核为 \( (\mathfrak{m}^n)^{ec} /
 \end{theorem}
 
 \section{有向极限与逆极限}
-给定一个预序集范畴 \( (I, \leq) \), 给定范畴 \( \mathcal{M} \) 其对象集是模 \(
-(M_i)_{i \in I} \), 态射集为 \( \left\lbrace M_i \to M_j: i \leq j \right\rbrace
-\), 我们称模 \( \varinjlim M_k \) 为逗号范畴 \( \mathbf{1} \xrightarrow{\alpha}
-\mathcal{M}^I = \operatorname{Fct}(I, \mathcal{M}) \xleftarrow{\Delta}
-\mathcal{M} \) 的始对象为 \emph{有向极限}, 其中 \( \alpha \) 为函子 \(
-\operatorname{pt} \mapsto \left( (i \mapsto j) \mapsto (M_i \to M_j) \right) \)
-, \( \Delta \) 为对角函子. 换句话说, \( \varinjlim M_k \) 满足下面的交换图.
-% https://q.uiver.app/#q=WzAsNCxbMCwwLCJNX2kiXSxbMiwwLCJNX2oiXSxbMSwxLCJcXHZhcmluamxpbSBNX2siXSxbMSwyLCJOIl0sWzAsMywiXFxiZXRhX2kiLDJdLFswLDEsIlxcYWxwaGFeaV9qIl0sWzAsMiwiXFxhbHBoYV9pIl0sWzEsMiwiXFxhbHBoYV9qIiwyXSxbMSwzLCJcXGJldGFfaiJdLFsyLDMsIiIsMSx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dXQ==
+
+\subsection{基本定义以及构造}
+
+\paragraph{有向极限} 给定一个预序集范畴 \( (I, \leq) \), 给定范畴 \( \mathcal{M}
+\) 其对象集是模 \( (M_i)_{i \in I} \), 态射集为 \( \left\lbrace \alpha^i_j: M_i
+\to M_j: i \leq j \right\rbrace \), 我们称模 \( \varinjlim M_k \) 为逗号范畴 \(
+(\alpha / \Delta) := (j_\alpha / \Delta) \)
+\[
+  \mathbf{1} \xrightarrow{\alpha} \mathcal{M}^I = \operatorname{Fct}(I,
+  \mathcal{M}) \xleftarrow{\Delta} \mathcal{M}
+\]
+的始对象为 \emph{有向极限}, 其中 \( \mathbf{1} \)
+为恰有一个对象和一个态射的范畴, \( \alpha \) 为函子 \( 1 \mapsto \left( (i
+\mapsto j) \mapsto (M_i \to M_j) \right) \) , \( \Delta \)
+为\href{https://en.wikipedia.org/wiki/Diagonal_functor}{对角函子}. 换句话说, \(
+\varinjlim M_k \) 满足下面的交换图.
+% https://q.uiver.app/#q=WzAsNCxbMCwwLCJNX2kiXSxbMiwwLCJNX2oiXSxbMSwxLCJcXHZhcmluamxpbSBNX2siXSxbMSwyLCJOIl0sWzAsMywiXFxiZXRhX2kiLDJdLFswLDEsIlxcYWxwaGFeaV9qIl0sWzAsMiwiXFxhbHBoYV9pIl0sWzEsMiwiXFxhbHBoYV9qIiwyXSxbMSwzLCJcXGJldGFfaiJdLFsyLDMsIlxcZXhpc3RzISIsMSx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dXQ==
 \[\begin{tikzcd}
 	{M_i} && {M_j} \\
 	& {\varinjlim M_k} \\
@@ -1482,5 +1481,602 @@ A_{\mathfrak{m}} / \mathfrak{n}^n \) 的核为 \( (\mathfrak{m}^n)^{ec} /
 	\arrow["{\beta_i}"', from=1-1, to=3-2]
 	\arrow["{\alpha_j}"', from=1-3, to=2-2]
 	\arrow["{\beta_j}", from=1-3, to=3-2]
-	\arrow[dashed, from=2-2, to=3-2]
+	\arrow["{\exists!}"{description}, dashed, from=2-2, to=3-2]
 \end{tikzcd}\]
+
+\paragraph{有向极限的构造} 考察 \( M_i \) 的直积 \( \bigoplus_{i \in I} M_i \),
+那么可以将 \( M_{i_0} \) 视为 \( \bigoplus_{i \in I} M_i \) 的子模, 后者对所有
+\( i \neq i_0 \) 都满足 \( m_i = 0 \). 取 \( M \) 为 \( \bigoplus_{i \in I}
+M_i \) 商去元素
+\[
+  m_i - \alpha^i_j(m_i),\quad m_i \in M_i,\quad i < j
+\]
+生成的子模即为所求.
+
+\paragraph{逆极限}
+类似地, 沿用上面的 \( I \), \( \mathcal{M} \) 对象集为 \( (M_i)_{i \in I} \),
+态射集 \( \left\lbrace p^i_j: M_j \to M_i: i \leq j \right\rbrace \), 我们称模
+\( \varprojlim M_k \) 为逗号范畴 \( (\Delta / \beta) := (\Delta / j_\beta) \)
+\[
+  \mathcal{M} \xrightarrow{\Delta} \mathcal{M}^{I^{\operatorname{op}}}
+  \xleftarrow{j_\beta} \mathbf{1}
+\]
+的终对象为 \emph{逆极限}. 换句话说, \( \varprojlim M_k \) 满足下面交换图.
+% https://q.uiver.app/#q=WzAsNCxbMCwwLCJNX2kiXSxbMiwwLCJNX2oiXSxbMSwxLCJcXHZhcnByb2psaW0gTV9rIl0sWzEsMiwiTiJdLFszLDIsIlxcZXhpc3RzISIsMSx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dLFszLDFdLFszLDBdLFsxLDAsInBeaV9qIiwyXSxbMiwwLCJwX2kiLDJdLFsyLDEsInBfaiJdXQ==
+\[\begin{tikzcd}
+	{M_i} && {M_j} \\
+	& {\varprojlim M_k} \\
+	& N
+	\arrow["{p^i_j}"', from=1-3, to=1-1]
+	\arrow["{p_i}"', from=2-2, to=1-1]
+	\arrow["{p_j}", from=2-2, to=1-3]
+	\arrow[from=3-2, to=1-1]
+	\arrow[from=3-2, to=1-3]
+	\arrow["{\exists!}"{description}, dashed, from=3-2, to=2-2]
+\end{tikzcd}\]
+特别地, 我们常取 \( I = \mathbb{N} \).
+
+\paragraph{逆极限的构造} 给定义 \( A \)-模逆向系统 \( (M_n, \alpha_n) \),
+我们定义 \( \varprojlim M_n \) 和 \( \varprojlim^1 M_n \) 为 \( A
+\)-模同态的核与余核
+\[
+  \prod M_n \to \prod M_n,\quad (\ldots, m_n, \ldots) \mapsto (\ldots, m_n -
+  \alpha_n(m_{n + 1}), \ldots)
+\]
+
+\subsection{基本性质}
+
+\begin{proposition}
+  对环 \( A \) 的每个乘性子集 \( S \), 有 \( S^{-1} A \simeq \varinjlim A_h \),
+  其中 \( h \) 跑遍 \( S \), 偏序关系为整除关系.
+\end{proposition}
+\begin{proof}
+  如果在 \( A \) 中有 \( h' = hq \), 那么 \( h \) 在 \( A_{h'} \) 中为单位,
+  由局部化的泛性质存在唯一的同态 \( A_h \to A_{h'},\quad \frac{a}{h} \mapsto
+  \frac{aq}{h'} \), 由此可以构造 \( \varinjlim A_h \). 又由有自然的 \( A_h \to
+  S^{-1} A \) 以及有向极限的泛性质知道存在 \( \varinjlim A_h \to S^{-1}A \).
+  又由有向极限的构造知道存在 \( S^{-1} A \to \varinjlim A_h \).
+  对比这两个箭头知道, 它们互逆.
+\end{proof}
+
+\begin{proposition}
+  假设 \( \left(M_i, \alpha^i_j\right), \left(N_i, \beta^i_j\right) \) 和 \(
+  \left(P_i, \gamma^i_j\right) \) 为相对于有序集 \( I \) 的有向系统, 令
+  \[
+    \left(M_i, \alpha^i_j\right) \xrightarrow{(a_i)} \left(N_i, \beta^i_j\right)
+    \xrightarrow{(b_i)} \left(P_i, \gamma^i_j\right)
+  \]
+  为有向系统列. 如果列
+  \[
+    M_i \xrightarrow{a_i} N_i \xrightarrow{b_i} P_i
+  \]
+  对所有 \( i \) 均正合, 那么
+  \[
+    \varinjlim M_i \xrightarrow{\varinjlim a_i} \varinjlim N_i
+    \xrightarrow{\varinjlim b_i} \varinjlim P_i
+  \]
+  正合.
+\end{proposition}
+\begin{proof}
+  %TODO: 完成此证明.
+\end{proof}
+
+\begin{proposition}
+  假设对每个逆向系统 \( (M_n, \alpha_n) \) 和 \( A \)-模 \( N \)
+  \[
+    \operatorname{Hom}(\varprojlim M_n, N) \simeq \varprojlim
+    \operatorname{Hom}(M_n, N)
+  \]
+\end{proposition}
+\begin{proof}
+  函子 \( \operatorname{Hom}(\bullet, N) \) 将逆向系统 \( (M_n, \alpha_n) \)
+  映到逆向系统 \( \left(\operatorname{Hom}(M_n, N), (\alpha_n)_*\right) \). 映射
+  \( \varprojlim M_n \to M_i \) 诱导了 \( \operatorname{Hom}(\varprojlim M_n, N)
+  \to \operatorname{Hom}(M_i, N) \), 进而由逆极限的泛性质, 有态射
+  \[
+    \operatorname{Hom}(\varprojlim M_n, N) \to \varprojlim
+    \operatorname{Hom}(M_n, N)
+  \]
+  反过来, 取 \( (f_i) \in \varprojlim \operatorname{Hom}(M_n, N) \), 取 \(
+  (m_i) \in \varprojlim M_n \), \( (f_i) \) 诱导了 \( (m_i) \mapsto f_1(m_1) \).
+  验证两者互逆即可.
+\end{proof}
+
+\begin{proposition}
+  逆向系统列
+  \[
+    0 \to (M_n, \alpha_n) \to (N_n, \beta_n) \to (P_n, \gamma_n) \to 0
+  \]
+  诱导了正合列
+  \[
+    0 \to \varprojlim M_n \to \varprojlim N_n \to \varprojlim P_n \to
+    \varprojlim\nolimits^1 M_n \to \varprojlim\nolimits^1 N_n \to
+    \varprojlim\nolimits^1 P_n \to 0
+  \]
+\end{proposition}
+\begin{proof}
+  考察
+  % https://q.uiver.app/#q=WzAsMTQsWzAsMiwiMCJdLFsxLDIsIlxccHJvZCBNX24iXSxbMSwxLCJcXHByb2QgTV9uIl0sWzIsMSwiXFxwcm9kIE5fbiJdLFsyLDIsIlxccHJvZCBOX24iXSxbMywxLCJcXHByb2QgUF9uIl0sWzMsMiwiXFxwcm9kIFBfbiJdLFs0LDEsIjAiXSxbMSwwLCJcXHZhcnByb2psaW0gTV9uIl0sWzEsMywiXFx2YXJwcm9qbGltXjEgTV9uIl0sWzIsMywiXFx2YXJwcm9qbGltXjEgTl9uIl0sWzMsMywiXFx2YXJwcm9qbGltXjEgTl9uIl0sWzIsMCwiXFx2YXJwcm9qbGltIE5fbiJdLFszLDAsIlxcdmFycHJvamxpbSBQX24iXSxbMCwxXSxbMiwxXSxbMiwzXSxbMSw0XSxbMyw0XSxbMyw1XSxbNCw2XSxbNSw2XSxbNSw3XSxbOCwyXSxbMTIsM10sWzEzLDVdLFs4LDEyLCIiLDEseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XSxbMTIsMTMsIiIsMSx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dLFs5LDEwLCIiLDEseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XSxbMTAsMTEsIiIsMSx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dLFsxMyw5LCIiLDEseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XSxbMSw5XSxbNCwxMF0sWzYsMTFdXQ==
+  \[\begin{tikzcd}
+    & {\varprojlim M_n} & {\varprojlim N_n} & {\varprojlim P_n} \\
+    & {\prod M_n} & {\prod N_n} & {\prod P_n} & 0 \\
+    0 & {\prod M_n} & {\prod N_n} & {\prod P_n} \\
+    & {\varprojlim^1 M_n} & {\varprojlim^1 N_n} & {\varprojlim^1 N_n}
+    \arrow[dashed, from=1-2, to=1-3]
+    \arrow[from=1-2, to=2-2]
+    \arrow[dashed, from=1-3, to=1-4]
+    \arrow[from=1-3, to=2-3]
+    \arrow[from=1-4, to=2-4]
+    \arrow[dashed, from=1-4, to=4-2]
+    \arrow[from=2-2, to=2-3]
+    \arrow[from=2-2, to=3-2]
+    \arrow[from=2-3, to=2-4]
+    \arrow[from=2-3, to=3-3]
+    \arrow[from=2-4, to=2-5]
+    \arrow[from=2-4, to=3-4]
+    \arrow[from=3-1, to=3-2]
+    \arrow[from=3-2, to=3-3]
+    \arrow[from=3-2, to=4-2]
+    \arrow[from=3-3, to=3-4]
+    \arrow[from=3-3, to=4-3]
+    \arrow[from=3-4, to=4-4]
+    \arrow[dashed, from=4-2, to=4-3]
+    \arrow[dashed, from=4-3, to=4-4]
+  \end{tikzcd}\]
+  利用 \href{https://en.wikipedia.org/wiki/Snake_lemma}{蛇形引理} 即可.
+\end{proof}
+
+\begin{corollary}
+  如果映射 \( \alpha_n: M_{n + 1} \to M_n \) 都是满射的, 那么 \( \varprojlim^1
+  M_n = 0 \).
+\end{corollary}
+\begin{proof}
+  %TODO: 证明.
+\end{proof}
+
+\section{张量积}
+
+\paragraph{张量积} 假设 \( A \) 是一个环, \( M, N \) 和 \( P \) 都是 \( A \)-模.
+态射 \( \phi: M \times N \to P \) 称为 \emph{\( A \)-模双线性}, 如果
+\[
+  \begin{aligned}
+    &\phi(x + x', y) = \phi(x, y) + \phi(x', y),     &x, x' \in M,& y \in N\\
+    &\phi(x, y + y') = \phi(x, y) + \phi(x, y + y'), &x \in M,& y, y' \in N\\
+    &\phi(ax, y) = a \phi(x, y), &a \in A, &x \in M, &y \in N\\
+    &\phi(x, ay) = a \phi(x, y), &a \in A, &x \in M, &y \in N.
+  \end{aligned}
+\]
+一个 \( A \)-模 \( T \) 带 \( A \)-模双线性映射
+\[
+  \phi: M \times N \to T
+\]
+称为 \emph{\( M \) 和 \( N \) 的张量积}, 如果它由下述泛性质: 对每个 \( A
+\)-双线性映射
+\[
+  \phi': M \times N \to T'
+\]
+能被 \( \phi \) 唯一分解.
+% https://q.uiver.app/#q=WzAsMyxbMCwwLCJNIFxcdGltZXMgTiJdLFsxLDAsIlQiXSxbMSwxLCJUJyJdLFswLDIsIlxccGhpJyIsMl0sWzAsMSwiXFxwaGkiXSxbMSwyLCJcXGV4aXN0cyAhIFxcdGV4dHvnur/mgKd9IiwwLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV1d
+\[\begin{tikzcd}
+	{M \times N} & T \\
+	& {T'}
+	\arrow["\phi", from=1-1, to=1-2]
+	\arrow["{\phi'}"', from=1-1, to=2-2]
+	\arrow["{\exists ! \text{线性}}", dashed, from=1-2, to=2-2]
+\end{tikzcd}\]
+我们将其记作 \( M \otimes_A N \), 注意到
+\[
+  \operatorname{Hom}_{A \text{线性}} (M \times N, T) \simeq
+  \operatorname{Hom}_{A \text{线性}} (M \otimes_A N, T).
+\]
+
+\paragraph{张量积的构造} 假设 \( M \) 和 \( N \) 为 \( A \)-模, 令 \( A^{(M
+\times N)} \) 为自由 \( A \)-模, 其基为 \( M \times N \), 因此每个 \( A^{(M
+\times N)} \) 可以唯一表示为有限和
+\[
+  \sum a_i (x_i, y_i),\quad a_i \in A,\quad x_i \in M,\quad y_i \in N.
+\]
+假设 \( A^{(M \times N)} \) 的子模 \( P \) 由
+\[
+  \begin{aligned}
+    &(x + x', y) - (x, y) - (x', y), &x, x' \in M, &y \in N\\
+    &(x, y + y') - (x, y) - (x, y'), &x \in M, &y, y' \in N\\
+    &(ax, y) - a(x, y), &a \in A, &x \in M, &y \in N\\
+    &(x, ay) - a(x, y), &a \in A, &x \in M, &y \in N.
+  \end{aligned}
+\]
+\( A^{(M \times N)} / P \) 即为 \( M \otimes_A N \).
+
+\subsection{基本性质}
+
+\begin{proposition}
+  假设 \( M, N, P \) 为 \( A \)-模.
+  \begin{enumerate}
+    \item 存在唯一的同构
+      \[
+        \lambda: A \otimes M \to M
+      \]
+      对所有 \( a \in A, m \in M \) 有 \( \lambda(a \otimes m) = am  \).
+    \item 存在唯一的同构
+      \[
+        \alpha: M \otimes (N \otimes P) \to (M \otimes N) \otimes P
+      \]
+      对所有 \( m \in M, n \in N, p \in P \) 有 \( \alpha(m \otimes (n \otimes
+      p)) = (m \otimes n) \otimes p \).
+    \item 存在唯一的同构
+      \[
+        \gamma: M \otimes N \to N \otimes M
+      \]
+      对所有 \( m \in M, n \in N \) 有 \( \gamma(m \otimes N) = n \otimes m \).
+  \end{enumerate}
+\end{proposition}
+
+\paragraph{标量扩张} 假设 \( A \) 为交换环, \( B \) 为一个(未必交换的) \( A
+\)-代数, 使得 \( A \to B \) 结构同态的像落于 \( B \) 的中心里. 因此
+\[
+  M \leadsto B \otimes_A M
+\]
+是一个左 \( A \)-模到左 \( B \)-模的函子. 假设 \( M \) 为 \( A \)-模, \( N \) 为
+\( B \)-模, 那么
+\[
+  \begin{aligned}
+    \operatorname{Hom}_{A-\text{线性}} (M, N) &\simeq
+    \operatorname{Hom}_{B-\text{线性}} (B \otimes_A M, N)\\ \alpha &\mapsto
+    \left(b \otimes m \mapsto b \cdot \alpha(m)\right)\\ \beta \circ \iota
+    &\mapsfrom \beta.
+  \end{aligned}
+\]
+如果 \( (e_{\alpha})_{\alpha \in I} \) 是 \( A \)-模 \( M \) 的一族生成元, 那么
+\( (1 \otimes e_{\alpha})_{\alpha \in I} \) 为 \( B \)-模 \( B \otimes_A M \)
+的一组生成元.
+
+函子 \( M \leadsto M_B := B \otimes_A M \) 与张量积交换
+\[
+  (M \otimes_A N)_B \simeq M_B \otimes_B N_B.
+\]
+这是因为 %TODO: 证明结合律
+\begin{align*}
+  M_B &= (B \otimes_A M) \otimes_B (B \otimes_A N)\\ &\simeq((B \otimes_A M)
+  \otimes_B B) \otimes_A N\\ &\simeq(B \otimes_A M) \otimes_A N\\ &\simeq B
+  \otimes_A (M \otimes_A N) \\ &\simeq (M \otimes_A N)_B.
+\end{align*}
+
+\paragraph{有向极限}
+\begin{proposition}
+  有向极限和张量积是交换的
+  \[
+    \varinjlim_{i \in I} M_i \otimes_A \varinjlim_{j \in J} N_j \simeq
+    \varinjlim_{(i, j) \in I \times J} M_i \otimes_A N_j.
+  \]
+\end{proposition}
+\begin{proof}
+  %TODO: 完成此证明
+  % 由张量积的泛性质, \( \left((m_i), (n_j)\right) \mapsto \left(m_i \otimes_A
+  % n_j \right) \) 诱导了 \( (m_i) \otimes_A (n_j) \mapsto \left(m_i \otimes_A
+  % n_j \right) \). 反过来, 在由张量积的泛性质 \( (m_i, n_j) \mapsto m_i
+  % \otimes_A n_j \), 其中
+\end{proof}
+
+\subsection{代数张量积, 张量代数以及对称代数}
+\paragraph{代数张量积} 假设 \( k \) 是一个环, \( A \) 和 \( B \) 为 \( k
+\)-代数. 我们称 \( k \) 代数 \( C \) 和同态 \( i: A \to C \) 和 \( j: B \to C \)
+称为 \emph{\( A \) 和 \( B \) 的张量积}, 如果其满足下述泛性质: 对每一对 \( k
+\)-代数同态 \( f: A \to R \) 和 \( g: B \to R \), 存在唯一的同态 \( (f, g): C
+\to R \) 使得 \( (f, g) \circ i = \alpha \) 和 \( (f, g) \circ j = \beta \).
+% https://q.uiver.app/#q=WzAsNCxbMCwwLCJBIl0sWzEsMCwiQyJdLFsxLDEsIlIiXSxbMiwwLCJCIl0sWzMsMiwiZyJdLFswLDIsImYiLDJdLFswLDEsImkiXSxbMywxLCJqIiwyXSxbMSwyLCJcXGV4aXN0cyAhIChmLCBnKSIsMSx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dXQ==
+\[\begin{tikzcd}
+	A & C & B \\
+	& R
+	\arrow["i", from=1-1, to=1-2]
+	\arrow["f"', from=1-1, to=2-2]
+	\arrow["{\exists ! (f, g)}"{description}, dashed, from=1-2, to=2-2]
+	\arrow["j"', from=1-3, to=1-2]
+	\arrow["g", from=1-3, to=2-2]
+\end{tikzcd}\]
+其同构意义上是唯一的, 记作 \( A \otimes_k B \). 这个泛性质告诉我们
+\[
+  \operatorname{Hom}(A \otimes_k B, R) \simeq \operatorname{Hom}(A, R) \times
+  \operatorname{Hom}(B, R).
+\]
+
+\paragraph{张量积的构造} 首先将 \( A \) 和 \( B \) 视为 \( k \)-模,
+形成了模张量积 \( A \otimes_k B \), 那么存在乘法 \( A \otimes_k B \times A
+\otimes_k B \to A \otimes_k B \) 使得
+\[
+  (a \otimes b)(a' \otimes b') = a a' \otimes aa' \otimes aa',\quad a, a \in
+  A,\quad b, b' \in B.
+\]
+这使得 \( A \otimes_k B \) 成为一个环, 态射
+\[
+  c \mapsto c (1 \otimes 1) = c \otimes 1 = 1 \otimes c
+\]
+使得其变为一个 \( k \)-代数. 映射 \( i, j \) 构造如下.
+\[
+  i: A \to A \otimes_k B, a \mapsto a \otimes 1 \text{ 和 } j: B \to A \otimes_k
+  B \to B, b \mapsto 1 \otimes b
+\]
+
+\paragraph{张量代数} 假设 \( M \) 是 \( A \)-模. 对每一个 \( A \neq 0 \), 置
+\[
+  T^r M = \underbrace{M \otimes_A \cdots \otimes_A M}_{r \text{个}}
+\]
+特别地, \( T^0 M = A \) 以及 \( T^1 M = M \). 定义
+\[
+  TM = \bigoplus_{r \geq 0} T^r M.
+\]
+这个模可以赋予一个非交换 \( A \)-代数, 称为 \emph{\( M \) 的张量代数},
+其乘法如:
+\begin{align*}
+  T^r M \times T^s M &\to T^{r + s}M\\ (m_1 \otimes \cdots \otimes m_r, m_{r +
+  1} \otimes \cdots \otimes m_{r + s}) &\mapsto m_1 \otimes \cdots \otimes m_{r
+  + s}.
+\end{align*}
+对 \( (TM, M \to TM) \) 由下述泛性质: 由 \( M \) 到(未必交换的) \( A \)-代数 \(
+R \) 的 \( A \)-线性映射能唯一分解为 \( A \)-代数同态 \( TM \to R \).
+% https://q.uiver.app/#q=WzAsMyxbMCwwLCJNIl0sWzEsMCwiVE0iXSxbMSwxLCJSIl0sWzAsMiwiQVxcdGV4dHst57q/5oCnfSIsMl0sWzAsMV0sWzEsMiwiXFxleGlzdHMhQVxcdGV4dHst5Luj5pWwfSIsMCx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dXQ==
+\[\begin{tikzcd}
+	M & TM \\
+	& R
+	\arrow[from=1-1, to=1-2]
+	\arrow["{A\text{-线性}}"', from=1-1, to=2-2]
+	\arrow["{\exists!A\text{-代数}}", dashed, from=1-2, to=2-2]
+\end{tikzcd}\]
+如果 \( M \) 是一个基为 \( x_1, \ldots, x_n \) 自由 \( A \)-模, 那么 \( TM \)
+是一个 \( A \) 的非交换记号 \( x_i \) 上的非交换多项式环.
+
+\paragraph{对称代数} 一个 \( A \)-模 \( M \) 称为 \emph{对称代数 \(
+\operatorname{Sym}(M) \)} 为 \( TM \) 商去由下面 \( T^2 M \) 元素生成的理想
+\[
+  m \otimes n - n \otimes m, \quad m, n \in M.
+\]
+这是分次代数 \( \operatorname{Sym}(M) = \bigoplus_{r \geq 0}
+\operatorname{Sym}^r (M) \), 其中 \( \operatorname{Sym}^{r}(M) \) 为 \(
+M^{\otimes r} \) 商去下面元素生成的理想
+\[
+  m_1 \otimes \cdots \otimes m_r - m_{\sigma(1)} \otimes \cdots \otimes
+  m_{\sigma(r)},\quad m_i \in M,\quad \sigma \in \operatorname{Sym}(r)
+\]
+对 \( (\operatorname{Sym}(M), M \to \operatorname{Sym}(M)) \) 有下述泛性质:
+对每个由 \( M \) 到一个交换的 \( A \)-代数 \( M \) 的 \( A \)-线性映射 \( M \to
+R \) 能唯一分解为 \( A \)-代数同态 \( \operatorname{Sym}(M) \to R \).
+% https://q.uiver.app/#q=WzAsMyxbMCwwLCJNIl0sWzEsMCwiXFxvcGVyYXRvcm5hbWV7U3ltfShNKSJdLFsxLDEsIlIiXSxbMCwyLCJBXFx0ZXh0ey3nur/mgKd9IiwyXSxbMCwxXSxbMSwyLCJcXGV4aXN0cyFBXFx0ZXh0ey3ku6PmlbB9IiwwLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV1d
+\[\begin{tikzcd}
+	M & {\operatorname{Sym}(M)} \\
+	& R
+	\arrow[from=1-1, to=1-2]
+	\arrow["{A\text{-线性}}"', from=1-1, to=2-2]
+	\arrow["{\exists!A\text{-代数}}", dashed, from=1-2, to=2-2]
+\end{tikzcd}\]
+如果 \( M \) 是一个基为 \( x_1, \ldots, x_n \) 自由 \( A \)-模, 那么 \(
+\operatorname{Sym}M \) 是一个 \( A \) 的交换记号 \( x_i \) 上的交换多项式环.
+
+\section{平坦性}
+\begin{proposition}
+  如果 \( M \) 是一个 \( A \)-模, \( 0 \to N' \xrightarrow{\alpha} N
+  \xrightarrow{\beta} N'' \to 0 \) 是一个正合的 \( A \)-模列, 那么列
+  \[
+    M \otimes_A N' \xrightarrow{1 \otimes \alpha} M \otimes_A N \xrightarrow{1
+    \otimes \beta} M \otimes_A N'' \to 0
+  \]
+  正合.
+\end{proposition}
+\begin{proof}
+  %TODO: 证明
+\end{proof}
+
+\subsection{平坦与忠实平坦}
+
+\begin{example}
+  单射 \( N \to N' \) 诱导的映射 \( M \otimes_A N' \to M \otimes_A N \)
+  \textbf{未必}是单射. 考虑正合列
+  \[
+    0 \to \mathbb{Z} \xrightarrow{\times m} \mathbb{Z} \to \mathbb{Z} / m
+    \mathbb{Z} \to 0.
+  \]
+  函子 \( \bullet \otimes_{\mathbb{Z}} \mathbb{Z} / m \mathbb{Z} \) 下
+  \( \mathbb{Z} / m \mathbb{Z} \xrightarrow{x \mapsto mx = 0} \mathbb{Z} / m
+  \mathbb{Z} \) 为零态射, 并非单射.
+\end{example}
+
+\begin{example}
+  \( M \) 和 \( N \) 均非零时, \( M \otimes_A N \) \textbf{未必} 非零. 例如
+  \[
+    \mathbb{Z} / 2 \mathbb{Z} \otimes_{\mathbb{Z}} \mathbb{Z} / 3 \mathbb{Z} =
+    0,
+  \]
+  因此 \( a \otimes b = (3 - 2) a \otimes b = -2a \otimes b + a \otimes 3b = 0
+  \). 实际上, 更特别地, \( M = N \neq 0 \) 时 \( M \otimes_A N \) 亦有可能为零,
+  例如
+  \[
+    \mathbb{Q} / \mathbb{Z} \otimes_{\mathbb{Z}} \mathbb{Q} / \mathbb{Z} = 0.
+  \]
+\end{example}
+
+一个 \( A \)-模 \( M \) 称为
+\begin{enumerate}
+  \item \emph{平坦}, 如果对任意 \( A \)-模 \( N, N' \)
+    \[
+      N' \to N \text{单} \implies M \otimes_A N' \to M \otimes_A N \text{单}.
+    \]
+  \item \emph{忠实平坦}, 如果对任意 \( A \)-模 \( N \)
+    \[
+      M \otimes_A N = 0 \implies N = 0.
+    \]
+\end{enumerate}
+一个环同态 \( A \to B \) 称为\emph{平坦}(resp. \emph{忠实平坦}), 如果 \( B \)
+作为 \( A \)-模平坦(resp. 忠实平坦).
+\begin{remark}
+  正合函子保长正合性, 这是因为正合列
+% https://q.uiver.app/#q=WzAsMTMsWzIsMiwiQSciXSxbMywzLCJcXG9wZXJhdG9ybmFtZXtJbX1mIl0sWzEsMSwiXFxvcGVyYXRvcm5hbWV7S2VyfWYiXSxbMCwwLCIwIl0sWzQsNCwiMCJdLFsyLDQsIjAiXSxbNCwyLCJBIl0sWzYsMiwiQScnIl0sWzUsMSwiXFxvcGVyYXRvcm5hbWV7SW19IGciXSxbNiwwLCIwIl0sWzcsMywiXFxvcGVyYXRvcm5hbWV7Q29rZXJ9ZyJdLFs4LDQsIjAiXSxbNCwwLCIwIl0sWzMsMl0sWzIsMF0sWzAsMV0sWzUsMV0sWzEsNF0sWzEsNl0sWzAsNiwiZiJdLFs2LDcsImciXSxbNiw4XSxbOCw5XSxbOCw3XSxbNywxMF0sWzEwLDExXSxbMTIsOF1d
+\[\begin{tikzcd}[sep=tiny]
+	0 &&&& 0 && 0 \\
+	& {\operatorname{Ker}f} &&&& {\operatorname{Im} g} \\
+	&& {A'} && A && {A''} \\
+	&&& {\operatorname{Im}f} &&&& {\operatorname{Coker}g} \\
+	&& 0 && 0 &&&& 0
+	\arrow[from=1-1, to=2-2]
+	\arrow[from=1-5, to=2-6]
+	\arrow[from=2-2, to=3-3]
+	\arrow[from=2-6, to=1-7]
+	\arrow[from=2-6, to=3-7]
+	\arrow["f", from=3-3, to=3-5]
+	\arrow[from=3-3, to=4-4]
+	\arrow[from=3-5, to=2-6]
+	\arrow["g", from=3-5, to=3-7]
+	\arrow[from=3-7, to=4-8]
+	\arrow[from=4-4, to=3-5]
+	\arrow[from=4-4, to=5-5]
+	\arrow[from=4-8, to=5-9]
+	\arrow[from=5-3, to=4-4]
+\end{tikzcd}\]
+正合函子 \( F \) 诱导了交换图, % https://q.uiver.app/#q=WzAsMTMsWzIsMiwiRihBJykiXSxbMywzLCJGKFxcb3BlcmF0b3JuYW1le0ltfWYpIl0sWzEsMSwiRihcXG9wZXJhdG9ybmFtZXtLZXJ9ZikiXSxbMCwwLCIwIl0sWzQsNCwiMCJdLFsyLDQsIjAiXSxbNCwyLCJGKEEpIl0sWzYsMiwiRihBJycpIl0sWzUsMSwiRihcXG9wZXJhdG9ybmFtZXtJbX0gZykiXSxbNiwwLCIwIl0sWzcsMywiRihcXG9wZXJhdG9ybmFtZXtDb2tlcn1nKSJdLFs4LDQsIjAiXSxbNCwwLCIwIl0sWzMsMl0sWzIsMF0sWzAsMV0sWzUsMV0sWzEsNF0sWzEsNl0sWzAsNiwiRihmKSJdLFs2LDcsIkYoZykiXSxbNiw4XSxbOCw5XSxbOCw3XSxbNywxMF0sWzEwLDExXSxbMTIsOF1d
+\[\begin{tikzcd}[sep=tiny]
+	0 &&&& 0 && 0 \\
+	& {F(\operatorname{Ker}f)} &&&& {F(\operatorname{Im} g)} \\
+	&& {F(A')} && {F(A)} && {F(A'')} \\
+	&&& {F(\operatorname{Im}f)} &&&& {F(\operatorname{Coker}g)} \\
+	&& 0 && 0 &&&& 0
+	\arrow[from=1-1, to=2-2]
+	\arrow[from=1-5, to=2-6]
+	\arrow[from=2-2, to=3-3]
+	\arrow[from=2-6, to=1-7]
+	\arrow[from=2-6, to=3-7]
+	\arrow["{F(f)}", from=3-3, to=3-5]
+	\arrow[from=3-3, to=4-4]
+	\arrow[from=3-5, to=2-6]
+	\arrow["{F(g)}", from=3-5, to=3-7]
+	\arrow[from=3-7, to=4-8]
+	\arrow[from=4-4, to=3-5]
+	\arrow[from=4-4, to=5-5]
+	\arrow[from=4-8, to=5-9]
+	\arrow[from=5-3, to=4-4]
+\end{tikzcd}\]
+其中斜对角链都是正合的, 由交换性
+\begin{align*}
+  \operatorname{Im}F(f) &= \operatorname{Im} (F(A') \to F(\operatorname{Im}f) \to
+  F(A))\\ &= \operatorname{Im} (F(\operatorname{Im}f) \to F(A)) \\ &=
+  \operatorname{Ker} (F(A) \to F(\operatorname{Im}g)) \\ &=
+  \operatorname{Ker}(F(A) \to F(\operatorname{Im}g) \to F(A'')) \\ &=
+  \operatorname{Ker}F(g)
+\end{align*}
+第二个等号是因为 \( F(A') \to F(\operatorname{Im}f) \) 是满射, 第四个等号是因为
+\( F(\operatorname{Im}g) \to F(A'') \) 是单射.
+\end{remark}
+
+\begin{proposition}
+  假设 \( P \) 为忠实平坦 \( A \)-模. 那么 \( A \)-模链复形
+  \[
+    (N): \quad N' \xrightarrow{\alpha} N \xrightarrow{\beta} N''
+  \]
+  正合当且仅当
+  \[
+    P \otimes_A (N): \quad P \otimes_A N' \xrightarrow{1 \otimes \alpha} P
+    \otimes_A N \xrightarrow{1 \otimes \beta} P \otimes_A N''
+  \]
+  正合.
+
+  反过来, 如果
+  \[
+    (N) \text{正合} \iff P \otimes_A (N) \text{正合}
+  \]
+  那么 \( P \) 是一个忠实平坦 \( A \)-模.
+\end{proposition}
+\begin{proof}
+  记 \( C = \operatorname{Ker} \beta / \operatorname{Im} \alpha \), 考虑正合列
+  \[
+    N' \xrightarrow{\alpha} \operatorname{Ker} (\beta) \to C \to 0
+  \]
+  如果 \( P \) 平坦, 可以验证 \( P \otimes_A \operatorname{Ker}\beta \simeq
+  \operatorname{Ker}(1 \otimes \beta) \), 那么复形链
+  \[
+    P \otimes_A N' \xrightarrow{1 \otimes \alpha} \operatorname{Ker} (1 \otimes
+    \beta) \to P \otimes_A C \to 0
+  \]
+  正合. 那么
+  \[
+    (N) \text{正合} \iff C = 0 \iff P \otimes_A C = 0 \iff P \otimes_A (N)
+    \text{正合}.
+  \]
+\end{proof}
+
+\begin{corollary}
+  假设 \( A \to B \) 忠实平坦. 如果 \( M \otimes_A B \) 作为 \( B \)-模平坦
+  (resp. 忠实平坦), 那么 \( A \)-模 \( M \) 平坦 (resp. 忠实平坦).
+\end{corollary}
+\begin{proof}
+  考虑复形链 \( (N): N' \to N \to N'' \). 如果 \( M \otimes_A B \) 平坦, 那么
+  \[
+    (N) \text{正合} \iff B \otimes_A (N) \text{正合} \implies ((N) \otimes_A B)
+    \otimes_B (M \otimes_A B) \text{正合},
+  \]
+  其中 \( ((N) \otimes_A B) \otimes_{B} (M \otimes_A B) \simeq ((N) \otimes_A
+  M)\otimes_A B  \), 其正合当且仅当 \( (N) \otimes_A M \) 正合. 因此 \( M \)
+  平坦. 如果 \( B \otimes_A M \) 忠实平坦, 那么 \( (N) \) 正合当且仅当 \( B
+  \otimes_A M \) 正合, 从而 \( M \) 忠实平坦.
+\end{proof}
+
+\begin{corollary}
+  假设 \( A \to B \) 忠实平坦, \( M \) 为 \( A \)-模. 如果 \( B \)-模 \( B
+  \otimes_A M \) 有限生成, 那么 \( M \) 有限生成.
+\end{corollary}
+\begin{proof}
+  假设 \( 1 \otimes m_1, \ldots, 1 \otimes m_r \) 生成 \( B \otimes_A M \), 记
+  \( N \) 为由 \( m_i \) 生成的 \( M \)-子模. 那么正合列 \( N \to M \to M / N
+  \to 0 \) 在张量 \( B \) 后保持正合. 而 \( B \otimes M / N = 0 \), 结合 \( B \)
+  忠实平坦, 得到 \( M / N = 0 \).
+\end{proof}
+
+\begin{proposition}
+  假设 \( i: A \to B \) 为忠实平坦同态. 对每个 \( A \)-模 \( M \), 列
+  \[
+    0 \to M \xrightarrow{d_0} B \otimes_A M \xrightarrow{d_1} B \otimes_A B
+    \otimes_A M
+  \]
+  其中
+  \[
+    \begin{cases}
+    d_0(m) = 1 \otimes m\\
+    d_1(b \otimes m) = 1 \otimes b \otimes m - b \otimes 1 \otimes m
+    \end{cases}
+  \]
+  正合.
+\end{proposition}
+\begin{proof}
+  假设存在 \( i \) 的截面 \( f: B \to A \) 使得 \( f \circ i =
+  \operatorname{id}_{A} \), 定义
+  \begin{align*}
+    &k_0: B \otimes_A M \to M,\quad k_0(b \otimes m) = f(b) m\\ &k_1: B
+    \otimes_A B \otimes_A M \to B \otimes_A M,\quad k_1(b \otimes b' \otimes m)
+    = f(b)b' \otimes m.
+  \end{align*}
+  那么 \( k_0 d_0 = \operatorname{id}_M \), 因此 \( d_0 \) 单. 此外,
+  \[
+    k_1 \circ d_1 + d_0 \circ k_0 = \operatorname{id}_{B \otimes_A M}
+  \]
+  这说明, 如果 \( d_1(x) = 0 \), 那么 \( x = d_0(k_0 (x)) \).
+
+  一般地, 因为 \( A \to B \) 忠实平坦, 只需要证明欲证列张量 \( B \) 后是正合的,
+  也就是
+  \[
+    0 \to B \otimes_A M \xrightarrow{1 \otimes d_0} B \otimes_A B \otimes_A M
+    \xrightarrow{1 \otimes d_1} B \otimes_A B \otimes_A B \otimes_A M
+  \]
+  但 \( 1 \otimes d_0 \) 截面是容易构造的:
+  \[
+    f: B \otimes_A B \otimes_A M \to B \otimes_A M, b \otimes_A b' \otimes_A m
+    \mapsto (bb') \otimes_A m.
+  \]
+\end{proof}
+
+\begin{corollary}
+  如果 \( A \to B \) 忠实平坦, 那么这个态射是单射, 且其像集为下面映射一致的元素.
+  \[
+    \begin{cases}
+    b \mapsto 1 \otimes b\\
+    b \mapsto b \otimes 1
+    \end{cases}:\quad B \to B \otimes_A B.
+  \]
+\end{corollary}
+\begin{proof}
+  取 \( M = A \).
+\end{proof}
