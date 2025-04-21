@@ -42,6 +42,8 @@
   asymmetric
 }{\relax}
 
+\usepackage[style=alphabetic]{biblatex}
+
 \usepackage{fancyhdr}
 \pagestyle{fancy}
 \renewcommand{\sectionmark}[1]{\markright{#1}}
@@ -58,11 +60,14 @@
 \numberwithin{equation}{section}
 
 \usepackage{enumitem}
-\setlist[enumerate]{
-  label={\normalfont(\roman*)},
-  leftmargin=*,
-  itemsep=0pt,
-  parsep=0pt
+\setlist[enumerate,1]{
+    label=(\textup{\arabic*}),
+    itemsep=0.2ex plus 0.1ex,
+    parsep=0.1ex,
+    leftmargin=1.5em,
+    topsep=0.5em,
+    align=left,
+    font=\normalfont
 }
 
 \theoremstyle{plain}
@@ -84,6 +89,7 @@
 \crefname{corollary}{推论}{推论}
 \crefname{definition}{定义}{定义}
 \crefname{remark}{注}{注}
+\crefname{example}{例}{例}
 
 \newcommand{\dif}{\mathop{}\!\mathrm{d}}
 

@@ -1,0 +1,352 @@
+\chapter{域扩张性质}
+
+\section{可分性}
+
+\subsection{纯不可分扩张}
+
+假设 \( F/K \) 是一个域扩张.
+一个元素 \( u \in F \) 称为在 \( K \) 上\emph{纯不可分}, 如果 \( u \) 在 \( K[X]
+\) 上的极小多项式具有形式 \( f = (X - u)^m \).
+\( F \) 称为 \( K \) 的\emph{纯不可分扩张}, 如果\( F \) 的每个元素都在 \( K \)
+上纯不可分.
+
+\begin{proposition}
+  \label{proposition-both-separable-purely-inseparable}
+  假设 \( F/K \) 是一个域扩张.
+  那么 \( u \in F \) 在 \( K \) 上同时可分及纯不可分当且仅当 \( u \in K \).
+\end{proposition}
+
+\paragraph{纯不可分扩张的等价条件}
+
+\begin{lemma}
+  \label{lemma-power-of-element-separable}
+  假设 \( F/K \) 是一个域扩张, 其中 \( \operatorname{char} K = p \neq 0 \).
+  如果 \( u \in F \) 在 \( K \) 上代数, 那么存在某个 \( n \in \mathbb{N} \) 使得
+  \( u^{p^n} \) 在 \( K \) 上可分.
+\end{lemma}
+\begin{proof}
+  假设 \( u \) 的极小多项式为 \( (X - u)^m \), 对 \( m \) 进行归纳.
+  \( m = 1 \) 时结果显然.
+  设 \( m > 1 \),
+  由\cref{proposition-irreducible-polynomial-with-multiple-roots-TFAE-condition},
+  \( (X - u)^m \) 可以视为 \( X^p \) 的多项式.
+  于是可以设 \( m = p^r n \) 其中 \( \gcd(p, n) = 1, r > 1 \).
+  因此 \( (X - u)^m = (X^{p^r} - u^{p^r})^n \), 换句话说 \( u^{p^r} \) 纯不可分,
+  由归纳假设知道存在 \( n \in \mathbb{N} \) 使得 \( (u^{p^r})^{p^n} = u^{p^{r +
+  n}} \) 在 \( K \) 上可分.
+\end{proof}
+
+\begin{theorem}
+  \label{theorem-purely-inseparable-extension-TFAE-conditions}
+  假设 \( F/K \) 为代数扩张, \( \operatorname{char} K \neq 0 \),
+  那么以下条件等价:
+  \begin{enumerate}
+    \item \( F \) 在 \( K \) 上纯不可分.
+    \item \( F \) 的任意元素 \( u \) 在 \( K \) 上极小多项式具有形式 \( x^{p^n}
+      - a \in K[X] \).
+    \item 如果 \( u \in F \), 那么存在 \( n \in \mathbb{N} \) 使得 \( u^{p^n}
+      \in K \).
+    \item \( F \) 在 \( K \) 上的所有可分元由 \( K \) 本身组成.
+    \item \( F \) 由 \( K \) 上一个纯不可分元集合生成.
+  \end{enumerate}
+\end{theorem}
+\begin{proof}
+  \( (1) \implies (2) \)
+  如果 \( u \in F \) 纯不可分,
+  由\cref{proposition-irreducible-polynomial-with-multiple-roots-TFAE-condition},
+  \( u \in F \) 在 \( K \) 上的极小多项式 \( (X - u)^m \) 可视为 \( X^p \)
+  的多项式.
+  于是可设 \( m = p^rn \) 其中 \( \gcd(p, n) = 1, r > 1 \).
+  考察 \( (X - u)^{m} = (X^{p^r} - u^{p^r})^n \) 的 \( X^{p^r(n - 1)} \)
+  项系数知道 \( u^{p^r} \in K \), 只能 \( n = 1 \).
+
+  \( (2) \implies (3) \implies (1), (2) \implies (5), (3) \implies (4) \)
+  是直接的.
+  \( (4) \implies (3) \) 由\cref{lemma-power-of-element-separable}得到.
+
+  \( (5) \implies (3) \)
+  显然对任意非零 \( k \in K \), \( ku \) 的亦纯不可分.
+  假设 \( u_1, u_2 \in F \) 在 \( K \) 上纯不可分, 那么由 \( (1) \implies (2) \)
+  \( u_i \) 的极小多项式形如 \( x^{p^{n_i}} - a_i \in K[X] \).
+  于是 \( (u_1 + u_2)^{p^{n_1 + n_2}} \in K \).
+\end{proof}
+
+\begin{corollary}
+  假设 \( F \) 是 \( E \) 的纯可分扩张, \( E \) 是 \( K \) 的纯可分扩张, 那么 \(
+  F \) 是 \( K \) 的纯可分扩张.
+\end{corollary}
+
+\begin{corollary}
+  \label{corollary-purely-inseparable-over-middle-extension}
+  假设 \( F/K \) 为一个域扩张.
+  如果 \( u \in F \) 在 \( K \) 上纯不可分, 那么 \( u \) 在 \( F/K \)
+  的任意中间域 \( M \) 上纯不可分.
+  因此, 如果 \( F \) 在 \( K \) 上纯不可分, 那么 \( F \) 在 \( F/K \) 任意中间域
+  \( M \) 上纯不可分.
+\end{corollary}
+\begin{proof}
+  由\cref{theorem-purely-inseparable-extension-TFAE-conditions},
+  如果 \( u \in F \) 那么存在 \( n \in \mathbb{N} \) 使得 \( u^{p^n} \in K
+  \subseteq M \).
+  再由\cref{theorem-purely-inseparable-extension-TFAE-conditions}, \( M[u] \) 是
+  \( M \) 的纯不可分扩张, 于是 \( u \) 在 \( M \) 上纯不可分.
+\end{proof}
+
+\begin{corollary}
+  \label{corollary-finite-purely-inseparable-degree}
+  假设 \( F/K \) 为有限纯不可分扩张, 其中 \( \operatorname{char} K = p \neq 0
+  \), 那么存在 \( n \geq 0 \) 使得 \( [F:K] = p^n \).
+\end{corollary}
+\begin{proof}
+  假设 \( F = K[\alpha_1, \ldots, \alpha_r] \),
+  那么由\cref{corollary-purely-inseparable-over-middle-extension}, \(
+  F[\alpha_1,\ldots,\alpha_{i + 1}]/F[\alpha_1,\ldots,\alpha_i] \) 纯不可分.
+  再由\cref{theorem-purely-inseparable-extension-TFAE-conditions}, \(
+  F[\alpha_1,\ldots,\alpha_{i + 1}]/F[\alpha_1,\ldots,\alpha_i] \)
+  的次数具有形式 \( p^{n_i} \).
+  注意到 \( F \) 是 \( K \) 的逐步扩张即可.
+\end{proof}
+
+\paragraph{可分扩张}
+
+\begin{proposition}
+  \label{proposition-separate-elements-generate-separable-extension}
+  假设 \( F/K \) 是一个域扩张, \( F \) 由 \( K \) 上一个可分元素集 \( S \) 生成,
+  那么 \( F \) 在 \( K \) 上可分.
+\end{proposition}
+\begin{proof}
+  对任意 \( u \in F \), 那么存在 \( v_1,\ldots,v_n \in S \) 使得 \( u \in
+  K(v_1,\ldots,v_n) \).
+  假设 \( v_i \) 在 \( F \) 上的极小多项式为 \( f_i \), 考虑不同 \( f_i \)
+  的乘积 \( f \).
+  由\cref{theorem-finite-Galois-TFAE-conditions}, \( f \) 在 \( K \) 的分裂域是
+  \( K \) 的 Galois 扩张且包含 \( K(v_1, \ldots, v_n) \).
+  于是 \( v \) 在 \( K \) 上可分.
+\end{proof}
+
+\subsection{可分子扩张与纯不可分子扩张}
+
+\begin{theorem}
+  \label{theorem-separable-and-purely-inseparable-subextension}
+  假设 \( F/K \) 是一个代数扩张, \( S \) 是 \( F \) 中所有在 \( K \)
+  可分元素构成的集合, \( P \) 是 \( F \) 中所有在 \( K \)
+  纯不可分元素构成的集合.
+  那么
+  \begin{enumerate}
+    \item \( S \) 是 \( K \) 的可分扩张域.
+    \item \( F \) 在 \( S \) 上纯不可分.
+    \item \( P \) 是 \( K \) 的纯不可分扩张域.
+    \item \( P \cap S = K \).
+    \item \( F \) 在 \( P \) 上可分 \( \iff F = SP \).
+  \end{enumerate}
+\end{theorem}
+\begin{proof}
+  \( (1) \)
+  由\cref{proposition-separate-elements-generate-separable-extension}得到.
+  \( (2) \)
+  由\cref{lemma-power-of-element-separable}和\cref{theorem-purely-inseparable-extension-TFAE-conditions}得到.
+  \( (3) \) 由\cref{theorem-purely-inseparable-extension-TFAE-conditions}得到.
+  \( (4) \) 由\cref{proposition-both-separable-purely-inseparable}得到.
+
+  \( (5) \) \( \implies \) \( F \) 在 \( P \) 上可分, 从而在中间域 \( SP \)
+  上可分.
+  而由 \( (2) \), \( F \) 在 \( S \) 上纯不可分, 所以在 \( SP \) 上纯不可分.
+  因此由\cref{proposition-both-separable-purely-inseparable}知道 \( F = SP \).
+  \( \impliedby \)
+  由\cref{proposition-separate-elements-generate-separable-extension}直接得到.
+\end{proof}
+
+\begin{corollary}
+  假设 \( F \) 是 \( E \) 的可分扩张, \( E \) 是 \( K \) 的可分扩张, 那么 \( F
+  \) 是 \( K \) 的可分扩张.
+\end{corollary}
+\begin{proof}
+  假设 \( S \) 为 \( F \) 为 \( K \) 中所有可分元构成的子域.
+  显然 \( S \supseteq E \), 故 \( F \) 在 \( S \) 上可分.
+  由\cref{theorem-separable-and-purely-inseparable-subextension}, \( F \) 在 \(
+  S \) 上纯不可分.
+  由\cref{proposition-both-separable-purely-inseparable}, \( F = S \).
+\end{proof}
+
+\begin{corollary}
+  假设 \( F/K \) 是一个代数扩张, 且 \( \operatorname{char} K = p \neq 0 \). 如果
+  \( F \) 在 \( K \) 上可分, 那么对每个 \( n \geq 1 \), \( F = KF^{p^n} \).
+  反过来, 如果 \( [F: K] \) 有限且 \( F = KF^p \), 那么 \( F \) 在 \( K \)
+  上可分.
+  特别地, \( u \in F \) 在 \( K \) 上可分当且仅当 \( K(u^p) = K(u) \).
+\end{corollary}
+\begin{proof}
+  如果 \( F \) 在 \( K \) 上可分, 那么 \( F \) 在 \( KF^{p^n} \)
+  中可分且由\cref{theorem-purely-inseparable-extension-TFAE-conditions}在 \(
+  KF^{p^n} \) 中纯不可分.
+  于是由\cref{proposition-both-separable-purely-inseparable}, \( F = KF^{p^n} \)
+
+  下面假设 \( F/K \) 有限, \( S \) 为 \( F \) 在 \( K \) 中可分元构成的域且 \(
+  KF^p \), \( F = K(u_1, \ldots, u_m) \) 那么 \( F = S(u_1, \ldots, u_m) \).
+  由\cref{theorem-separable-and-purely-inseparable-subextension} 每个 \( u_i \)
+  都在 \( S \) 上纯不可分,
+  于是由\cref{theorem-purely-inseparable-extension-TFAE-conditions}, 对所有 \( i
+  \) 存在 \( n \in \mathbb{N} \) 使得 \( u_i^{p^n} \in S \), 故 \( F^{p^n}
+  \subseteq S \).
+  由 \cref{theorem-purely-inseparable-extension-TFAE-conditions}, \( S \) 在 \(
+  F^{p^n} \) 上纯不可分, 故在 \( KF^{p^n} \) 上纯不可分.
+  \( S \) 当然在 \( KF^{p^n} \) 上可分,
+  因此由\cref{proposition-both-separable-purely-inseparable}, \( S = KF^{p^n} \).
+  注意到 \( F^{p^t} = (K(u_1, \ldots, u_m))^{p^t} = K^{p^t}(u_1^{p^t}, \ldots,
+  u_m^{p^t}) \), 因此
+  \[
+    KF^{p^t} = K(K^{p^t}(u_1^{p^t}, \ldots, u_m^{p^t})) = K(u_1^{p^t}, \ldots,
+    u^{p^t}_m).
+  \]
+  假设 \( F = KF^p \) 即 \( K(u_1, \ldots, u_m) = K(u_1^p, \ldots, u_m^p) \),
+  由此可以得到 \( K(u_1, \ldots, u_m) = K(u_1^{p^n}, \ldots, u^{p^n}_m) \),
+  换句话说 \( F = S \).
+\end{proof}
+
+\subsection{可分次数}
+
+假设 \( F/K \) 是一个代数扩张, \( S \) 由 \( F \) 中所有在 \( K \)
+可分的元素组成.
+维数 \( [S:K] \) 称为 \( F \) 在 \( K \) 上的\emph{可分次数}, 记作 \( [F:K]_s
+\).
+维数 \( [F:S] \) 称为 \( F \) 在 \( K \) 上的\emph{不可分次数}, 记作 \( [F:S]_i
+\).
+
+\begin{lemma}
+  \label{lemma-composite-monomoprhism-to-normal-extension}
+  假设 \( F/E, E/K \) 为域扩张, \( N \) 为 \( K \) 的一个包含 \( F \)
+  的正规扩张.
+  记 \( r \) 是不同 \( E \)-单同态 \( F \to N \) 的基数, \( t \) 是不同 \( K
+  \)-单同态 \( E \to N \) 的基数, 那么 \( rt \) 是不同 \( K \)-单同态 \( F \to N
+  \) 的基数.
+\end{lemma}
+\begin{proof}
+  假设 \( r, t < \infty \), \( \tau_1, \ldots, \tau_r \) 为不同的 \( E \)-单同态
+  \( F \to N \), \( \sigma_1, \ldots, \sigma_t \) 为不同 \( E \)-单同态 \( E \to
+  N\).
+  由\cref{proposition-isomorphism-extend-to-splitting-fields}以及\cref{theorem-normal-extension-TFAE-conditions},
+  \( \sigma_i \) 能扩张为 \( N \) 的 \( K \)-自同构, 记其一个这样的扩张为 \(
+  \widetilde{\sigma_i} \).
+  于是复合 \( \widetilde{\sigma_i}\tau_j \) 是一个 \( K \)-单同态 \( F \to N \).
+  如果 \( \widetilde{\sigma_i} \tau_j = \widetilde{\sigma_a} \tau_b \) 那么 \(
+  \widetilde{\sigma_a}^{-1} \widetilde{\sigma_i} \tau_j = \tau_b \), 也就是 \(
+  \left. \widetilde{\sigma_a}^{-1} \widetilde{\sigma_i} \right\vert_{E} =
+    \operatorname{id}_E \), 因此 \( \sigma_i = \sigma_a \).
+  从而 \( \tau_j = \tau_b \). 所以 \( \widetilde{\sigma_i}\tau_j \) 两两不同.
+
+  假设 \( \sigma: F \to N \) 是某个 \( K \)-单同态, 存在某个 \( \sigma_i \) 使得
+  \( \sigma_i = \left. \sigma \right\vert_{E} \).
+  于是 \( \left. \widetilde{\sigma_i}^{-1} \sigma \right\vert_E =
+    \operatorname{id}_E \) 存在 \( \tau_j = \sigma_i^{-1} \sigma \).
+\end{proof}
+
+\begin{proposition}
+  \label{proposition-separable-degree}
+  假设 \( F/K \) 是有限域扩张, \( N \) 是域 \( K \) 包含 \( F \) 的正规扩张.
+  那么不同的 \( K \)-单同态 \( F \to N \) 个数恰为 \( [F:K]_s \).
+\end{proposition}
+\begin{proof}
+  假设 \( S \) 为 \( F \) 在 \( K \) 上所有可分元组成的域.
+  % 由\cref{proposition-isomorphism-extend-to-splitting-fields}以及\cref{theorem-normal-extension-TFAE-conditions},
+  % 每个 \( K \)-单同态能扩张为 \( N \) 的 \( K \)-自同构, 从而能限制为 \( K
+  % \)-单同态 \( F \to N \).
+  % 由有限性及\cref{proposition-single-polynomial-extension-number}知道扩张的自同构个数即
+  % \( [S:K] = [F:K]_s \).
+  假设 \( \sigma, \tau \) 是两个 \( S \)-单同态 \( F \to N \), 那么对任意 \( u
+  \in F \), 由\cref{lemma-power-of-element-separable} 存在 \( n \in \mathbb{N}
+  \) 使得 \( u^{p^n} \in S \), 于是
+  \[
+    \sigma(u)^{p^n} = \sigma(u^{p^n}) = \tau(u^{p^n}) = \tau(u)^{p^n}.
+  \]
+  所以 \( \sigma(u) = \tau(u) \), 换句话说 \( \sigma = \tau \).
+
+  由\cref{lemma-composite-monomoprhism-to-normal-extension}, 只需要考虑 \( F \)
+  可分的情况.
+  对 \( n = [F:K] \) 进行归纳, 取 \( u \in F \setminus K \), 设 \( [K(u):K] = r
+  > 1 \).
+  如果 \( r < n \),
+  那么对\( F/K(u) \) 和 \( K(u)/K \)
+  应用归纳假设及应用\cref{lemma-composite-monomoprhism-to-normal-extension}完成归纳.
+  如果 \( r = n \),
+  那么\cref{proposition-simple-extension-and-field-homomorphism}完成证明.
+\end{proof}
+
+\begin{corollary}
+  如果 \( F/E, E/K \) 是域扩张, 那么
+  \[
+    [F:E]_s[E:K]_s = [F:K]_s \text{ 且 } [F:E]_i [E:K]_i = [F:K]_i.
+  \]
+\end{corollary}
+
+\begin{corollary}
+  \label{corollary-minimal-polynomial-of-algebraic-element}
+  假设 \( f \in K[X] \) 不可约多项式, \( F \) 为 \( f \) 在 \( K \)
+  上的分裂域, \( u_1 \) 为 \( f \) 在 \( F \) 的一个根, 那么
+  \begin{enumerate}
+    \item 每个 \( f \) 的根都有重数 \( [K(u_1): K]_i \), 因此在 \( F[X] \) 中
+      \[
+        f = ((X - u_1)\cdots (X - u_n))^{[K(u_1):K]_i},
+      \]
+      其中 \( u_1, \ldots, u_n \) 为 \( f \) 的不同根且 \( n \in [K(u_1):K]_s
+      \).
+    \item \( u_i^{[K(u_1):K]_i} \) 在 \( K \) 上可分.
+  \end{enumerate}
+\end{corollary}
+\begin{proof}
+  \( (1) \)
+  存在 \( K \)-同构 \( \sigma: K[u_1] \simeq K[u_i],\quad u_1 \mapsto u_i \).
+  由\cref{proposition-isomorphism-extend-to-splitting-fields}, \( \sigma \)
+  可以扩张为同构 \( \widetilde{\sigma}: F \simeq F \).
+  \( F[X] \) 是一个唯一因子分解整环, 而 \( \widetilde{\sigma}f = f \), 因此 \(
+  u_i \) 的重数相等.
+  由\cref{proposition-single-polynomial-extension-number}, 这样的扩张个数为 \(
+  n \), 而由\cref{proposition-separable-degree} \( n = [F:K]_s \).
+\end{proof}
+
+\begin{corollary}
+  假设 \( F/K \) 是一个代数扩张, \( S \) 为 \( F \) 在 \( K \)
+  中所有可分元构成的子域, \( P \) 为 \( F \) 在 \( K \)
+  中所有纯不可分元构成的子域.
+  如果 \( F \) 在 \( K \) 上正规, 那么 \( S \) 在 \( K \) 上 Galois, \( F \) 在
+  \( P \) 上 Galois, 且
+  \[
+    \operatorname{Gal}(S/K) \simeq \operatorname{Gal}(F/P) =
+    \operatorname{Aut}(F/K).
+  \]
+\end{corollary}
+\begin{proof}
+  \( S \) 在 \( K \) 上 Galois.
+  \( u \in S \) 在\( K[X] \) 上极小多项式 \( f \) 可分, 故 \( f \)
+  的所有根可分且都落在 \( F \) 中, 自然落在 \( S \) 中. 因此 \( S \) 在 \( K \)
+  上正规.
+  而可分性由\cref{theorem-separable-and-purely-inseparable-subextension}保证
+
+  \( F \) 在 \( P \) 上 Galois.
+  假设 \( u \in F \) 在 \( K \) 的极小多项式为 \( f \),
+  那么由\cref{corollary-minimal-polynomial-of-algebraic-element}知道 \( f \)
+  在 \( F[X] \) 中形如
+  \[
+    f = ((X - u_1)\cdots (X - u_n))^{[K(u_1):K]_i},
+  \]
+  其中 \( u_i \) 两两不同.
+  于是 \( (X - u_1) \cdots (X - u_n) \) 的系数的 \( [K(u_1): K]_i \) 次幂落于 \(
+  K \) 中,
+  结合\cref{theorem-purely-inseparable-extension-TFAE-conditions}以及\cref{corollary-finite-purely-inseparable-degree}知道这些系数落在
+  \( P \) 中, 也就是说 \( u \) 在 \( P \) 的不可约多项式可分.
+  而正规性是已知的.
+
+  \( \operatorname{Gal}(F/P) \subseteq \operatorname{Aut}(F/K) \) 是明显的,
+  反过来, 假设 \( \sigma \in \operatorname{Aut}(F/K), u \in P \)
+  那么又由\cref{theorem-purely-inseparable-extension-TFAE-conditions}, 存在 \( n
+  \in \mathbb{N} \) 使得 \( u^{p^n} \in K \) 于是
+  \[
+    \sigma(u)^{p^n} = \sigma(u^{p^n}) = u^{p^n},
+  \]
+  故 \( \sigma(u) = u \).
+  同构由限制
+  \[
+    \operatorname{Gal}(F/P) \to \operatorname{Gal}(S/P \cap S),\quad \sigma
+    \mapsto \left. \sigma \right\vert_{S}
+  \]
+  给出.
+\end{proof}

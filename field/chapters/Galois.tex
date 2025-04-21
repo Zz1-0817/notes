@@ -1,0 +1,614 @@
+\chapter{Galois扩张}
+
+\section{有限 Galois 扩张}
+
+\subsection{Artin引理}
+
+假设子群 \( G \subseteq \operatorname{Aut} E \), 那么
+\[
+  E^G := \operatorname{Inv}(G) = \left\lbrace \alpha \in E: \sigma \alpha =
+  \alpha, \forall \sigma \in G \right\rbrace
+\]
+是 \( E \) 的一个子域, 称为 \( G \) 的\emph{固定子域}.
+
+\begin{lemma}[Artin]
+  \label{lemma-Artin}
+  假设 \( G \subseteq \operatorname{Aut} E \) 为一个有限子群, 那么
+  \[
+    [E: E^G] \leq (G: 1).
+  \]
+\end{lemma}
+\begin{proof}
+  假设 \( G = \left\lbrace \sigma_1, \ldots, \sigma_n \right\rbrace \), 其中 \(
+  \sigma_1 = \operatorname{id}_E \), 记 \( F = E^G \).
+  假设 \( \alpha_1, \ldots, \alpha_m \) 为 \( E \) 的任意一组 \( F
+  \)-线性无关元, 下面证明 \( m \leq n \).
+  假设不然, 存在 \( \alpha_1, \ldots, \alpha_m \) 使得 \( m > n \),
+  那么下面线性方程组有非零解
+  \begin{equation}
+    \begin{gathered}
+      \sigma_1(\alpha_1)X_1 + \sigma_1(\alpha_2) X_2 + \cdots + \alpha_1
+      (\alpha_m) X_m = 0\\
+      \sigma_2(\alpha_1)X_1 + \sigma_2(\alpha_2) X_2 + \cdots + \alpha_2
+      (\alpha_m) X_m = 0\\
+      \vdots\\
+      \sigma_1(\alpha_1)X_1 + \sigma_n(\alpha_2) X_2 + \cdots + \alpha_n
+      (\alpha_m) X_m = 0
+    \end{gathered}
+    \label{equation-Artin-lemma}
+  \end{equation}
+  假设 \( \mathbf{c} = (c_1, \ldots, c_m) \) 为 \eqref{equation-Artin-lemma}
+  非零分量最少的非零解.
+  通过对 \( \alpha_1, \ldots, \alpha_m \) 做一个置换, 并对 \( \mathbf{c}
+  \)乘上一个 \( E \) 中系数, 不妨设 \( c_1 \in F \setminus 0\).
+
+  由于 \( \alpha_1, \ldots, \alpha_m \) \( F \)-线性无关, 考察
+  \eqref{equation-Artin-lemma} 第一个方程知道必有某个 \( c_i \in E \setminus F
+  \), 于是存在某个 \( \sigma_j \) 使得 \( \sigma_j(c_i) \neq c_i \).
+  观察到 \( \mathbf{c}' =  (\sigma_j(c_1),\ldots, \sigma_j(c_m)) \) 为
+  \eqref{equation-Artin-lemma} 非零解, 从而 \( \mathbf{c} - \mathbf{c}' \)
+  是非零分量小于 \( \mathbf{c} \) 的 \eqref{equation-Artin-lemma} 非零解, 与 \(
+  \mathbf{c} \) 构造矛盾.
+\end{proof}
+
+\begin{theorem}
+  \label{theorem-automorphism-finite-subgroup}
+  假设 \( G \subseteq \operatorname{Aut} E \) 是一个有限子群, 那么
+  \[
+    G = \operatorname{Aut} (E / E^G).
+  \]
+\end{theorem}
+\begin{proof}
+  结论由下面不等式立刻得到
+  \[
+    \operatorname{Aut}(E/E^G) \leq [E : E^G] \leq (G: 1) \leq \operatorname{Aut}(E/E^G)
+  \]
+  其中第一个\( \leq
+  \)由\cref{corollary-finite-extension-homomorphisms-numbers}得到,
+  第二个由\cref{lemma-Artin}得到.
+\end{proof}
+
+\subsection{有限Galois扩张的等价定义}
+
+如果域扩张 \( E / F \) 有限, 正规并且可分, 那么称其是\emph{有限Galois}的.
+如果域扩张 \( E / F \) 是有限 Galois 的, 那么 \( \operatorname{Aut}(E/F) \) 称为
+\( E \) 在 \( F \) 上的\emph{Galois群}, 并且记作 \( \operatorname{Gal}(E/F) \).
+
+\begin{theorem}
+  \label{theorem-finite-Galois-TFAE-conditions}
+  下面论断对于域扩张 \( E / F \) 来说是等价的.
+  \begin{enumerate}
+    \item \( E \) 是某个可分多项式 \( f \in F[X] \) 的分裂域.
+    \item \( E \) 在 \( F \) 上有限并且 \( F = E^{\operatorname{Aut}(E/F)} \).
+    \item 存在有限子群 \( G \subseteq \operatorname{Aut}E \) 使得 \( F = E^G \).
+    \item \( E \) 在 \( F \) 上有限 Galois.
+  \end{enumerate}
+\end{theorem}
+\begin{proof}
+  \( (1) \implies (2) \)
+  由\cref{proposition-polynomial-splitting-field-degree} \( E \) 在 \( F \)
+  上有限.
+  \( F = E^{\operatorname{Aut}(E/F)} \) 是因为下面等式
+  \[
+    [E:E^{\operatorname{Aut}(E/F)}] =
+    (\operatorname{Aut}(E/E^{\operatorname{Aut}(E/F)}):1) =
+    (\operatorname{Aut}(E/F):1) = [E:F],
+  \]
+  其中, 第一(\( E \)可视为 \( f \in E^{\operatorname{Aut}(E/F)}[X] \)的分裂域),
+  三个等号由\cref{proposition-single-polynomial-extension-number}得到,
+  第二个等号由\cref{theorem-automorphism-finite-subgroup}得到.
+
+  \( (2) \implies (3) \) 显然.
+
+  \( (3) \implies (4) \)
+  有限性由\cref{lemma-Artin}保证.
+  对任意 \( \alpha \in E \), 假设 \( f \in F[X] \) 为 \( \alpha \) 极小多项式,
+  \( G.\alpha = \left\lbrace \alpha_1, \ldots, \alpha_n \right\rbrace \) 为 \( G
+  \)-轨道.
+  考虑 \( g(X) = (X - \alpha_1)\cdots(X - \alpha_n) \).
+
+  由于 \( \sigma g = g, \forall \sigma \in G \), \( g \in F[X] \).
+  又 \( g(\alpha) = 0 \), 所以 \( f \mid g \).
+  但对每个 \( i \), 存在 \( \sigma_i \in G \) 使得 \( \sigma_i(\alpha) =
+  \alpha_i \) 因此 \( f(\alpha_i) = \sigma_i f(\alpha) = 0 \), 换句话说 \( (X -
+  \alpha_i) \mid f \).
+  \( (X - \alpha_i) \) 两两不同, 故 \( g \mid f \).
+  因此 \( f = g \), 遂 \( f \) 可分且在 \( E \) 上分裂.
+
+  \( (4) \implies (1) \)
+  假设 \( E = F[\alpha_1, \ldots, \alpha_n] \), 记 \( \alpha_i \) 在 \( F[X] \)
+  的极小多项式为 \( f_i \), 不同 \( f_i \) 的乘积为 \( f \).
+  于是 \( E \) 是 \( f \) 的分裂域.
+\end{proof}
+
+\begin{corollary}[Artin定理]
+  \label{corollary-Artin-theorem}
+  假设 \( G \subseteq \operatorname{Aut} E \) 为一个有限子群, \( F = E^G \).
+  那么 \( E \) 是 \( F \) 的 Galois 群为 \( G \) 的 Galois 扩张, 并且
+  \[
+    [E:F] = (G : 1).
+  \]
+\end{corollary}
+\begin{proof}
+  由\cref{theorem-finite-Galois-TFAE-conditions} \( E \) 是 \( F \) 的 Galois
+  扩张且是某个可分多项式 \( f \in F[X] \) 的分裂域.
+  由\cref{proposition-single-polynomial-extension-number} \(
+  (\operatorname{Aut}(E/F):1) = [E:F] \).
+  由\cref{theorem-automorphism-finite-subgroup} \( G = \operatorname{Aut}(E/F)
+  \).
+  因此 \( [E:F] = (G:1) \).
+\end{proof}
+
+\begin{corollary}
+  \label{corollary-finite-separable-extension-contained-in-a-Galois-extension}
+  每个 \( F \) 的有限可分扩张 \( E \) 都包含在 \( F \) 的一个 Galois 扩张中.
+\end{corollary}
+
+\begin{corollary}
+  假设 \( E \supseteq M \supseteq F \) 为域扩张.
+  如果 \( E \) 在 \( F \) 上 Galois, 那么 \( E \) 在 \( M \) 上 Galois.
+\end{corollary}
+
+\subsection{有限Galois基本定理}
+
+\begin{theorem}[有限Galois基本定理]
+  \label{theorem-finite-Galois-fundamental-theorem}
+  假设 \( E/F \) 是一个 Galois 群为 \( G \) 的有限 Galois 扩张.
+  那么存在下面双射
+  \[
+    \begin{split}
+      \left\lbrace G \text{的子群} H \right\rbrace &\leftrightarrow \left\lbrace
+      E/F \text{间的子扩张} M \right\rbrace\\
+        H &\mapsto E^H\\
+        \operatorname{Gal}(E/M) &\mapsfrom M
+    \end{split}
+  \]
+  此外,
+  \begin{enumerate}
+    \item \( H_1 \subseteq H_2 \iff E^{H_1} \supseteq E^{H_2} \).
+    \item \( (H_2: H_1) = [E^{H_1} : E^{H_2}] \).
+    \item \( \sigma(E^H) = E^{\sigma H \sigma^{-1}},
+      \operatorname{Gal}(E/\sigma M) = \sigma \operatorname{Gal}(E/M)\sigma^{-1}
+      \).
+    \item \( H \) 是 \( G \) 的正规子群 \( \iff  E^H / F \) 是 Galois 扩张.
+      满足此等价条件时,
+      \[
+        \operatorname{Gal}(E^H/F) \simeq G / H.
+      \]
+  \end{enumerate}
+\end{theorem}
+\begin{proof}
+  双射:
+  由\cref{theorem-automorphism-finite-subgroup} \( \operatorname{Gal}(E/E^H) = H
+  \);
+  由\cref{theorem-finite-Galois-TFAE-conditions} \( E^{\operatorname{Gal}(E/M)}
+  = M \).
+
+  \( (1) \) 是按定义的.
+  \( (2) \)
+  由\cref{corollary-Artin-theorem}, \( (H_i:1) = [E:E^{H_i}] \), 于是
+  \[
+    (H_2:H_1) = \frac{(H_2:1)}{(H_1:1)} = \frac{[E:E^{H_2}]}{[E:E^{H_1}]} =
+    [E^{H_1}:E^{H_2}].
+  \]
+
+  \( (3) \) 直接验证.
+  \( (4) \)
+  \( \implies \) 由 \( (3) \) \( \sigma(E^H) = E^H \), 于是
+  \[
+    \widetilde{G} = \left\lbrace \left.\sigma\right\vert_{E^H}: \sigma \in G
+      \right\rbrace \subseteq \operatorname{Aut}(E^H)
+  \]
+  为一个子群且 \( (E^{H})^{\widetilde{G}} = F \).
+  因此, 由\cref{theorem-finite-Galois-TFAE-conditions} \( E^H/F \) 是一个 Galois
+  扩张.
+  又由\cref{corollary-Artin-theorem} \( \widetilde{G} = \operatorname{Gal}(E^H /
+  F) \), 所以
+  \[
+    G \to \widetilde{G} = \operatorname{Gal}(E^H/F),\quad \sigma \mapsto
+    \left. \sigma \right\vert_{E^H}
+  \]
+  核为 \( H \).
+
+  \( \impliedby \) 由\cref{theorem-finite-Galois-TFAE-conditions}, 可以假设 \(
+  E^H \) 为某个可分多项式 \( f \in F[X] \) 的分裂域.
+  \( G \) 中元素将 \( f \) 根映到 \( f \) 根, 而 \( E^H \) 由 \( f \) 根生成,
+  因此对任意 \( \sigma \in G \) 有, \( \sigma(E^H) = E^H \).
+  由 \( (3) \) \( E^{\sigma H \sigma^{-1}} = E^{H} \), 结合 \( E/F \) 子扩张与
+  \( G \) 子群的双射知道 \( H = \sigma H \sigma^{-1} \).
+\end{proof}
+
+\begin{proposition}
+  \label{proposition-composite-field-Galois-over-middle-field}
+  假设 \( E \) 和 \( L \) 为 \( F \) 包含某个公共域的扩张.
+  如果 \( E / F \) 有限 Galois, 那么 \( EL / L \) 和 \( E / E \cap L \)
+  都是有限 Galois 的, 且映射
+  \[
+    \operatorname{Gal}(EL / L) \to \operatorname{Gal}(E / E \cap L),\quad \sigma
+    \mapsto \left. \sigma \right\vert_E
+  \]
+  是同构.
+\end{proposition}
+\begin{proof}
+  由\cref{theorem-finite-Galois-TFAE-conditions}, \( E \) 是某个可分多项式 \( f
+  \in F[X] \) 的分裂域, 于是 \( EL \) 和 \( E \) 都是 \( f \) 的分裂域(分别看成
+  \( L[X] \) 和 \( E \cap L[X] \) 上的多项式).
+  进而再由\cref{theorem-finite-Galois-TFAE-conditions}, \( EL/L \) 和 \( E/E
+  \cap L \) 都是有限 Galois 扩张.
+
+  设 \( \alpha_1, \ldots, \alpha_n \) 为 \( f \) 的根, 那么 \( E = F[\alpha_1,
+  \ldots, \alpha_n] \).
+  如果 \( \sigma \in \operatorname{Gal}(EL/L) \), 那么 \( \sigma(\alpha_i) \)
+  仍是 \( f \) 的根, 因此对任意 \( x \in E \), \( \sigma(x) \in E \).
+  换句话说, 映射定义是良好的.
+
+  单射.
+  假设  \( \sigma, \sigma' \in \operatorname{Gal}(EL/L) \) 对所有 \( e \in E \)
+  都有 \( \sigma(e) = \sigma'(e) \).
+  因为 \( EL \) 中的任意元素 \( x \) 均具有形式 \( \sum_i e_i l_i \), 其中 \(
+  e_i \in E, l_i \in L \), 所以 \( \sigma(x) = \sigma'(x) \).
+
+  满射.
+  由\cref{corollary-Artin-theorem} 及 \( E^{\operatorname{Im}
+  \operatorname{Gal}(EL/L)} = E \cap L \) 得到
+  \[
+    \operatorname{Im} \operatorname{Gal}(EL/L) = \operatorname{Gal}(E/E \cap L)
+  \]
+\end{proof}
+
+\begin{corollary}
+  \label{corollary-composite-field-Galois-over-middle-field}
+  假设 \( E \) 和 \( L \) 为 \( F \) 包含某个公共域的扩张.
+  如果 \( E / F \) 有限 Galois, \( L / F \) 有限, 那么
+  \[
+    [EL : F] = \frac{[E:F][L:F]}{[E \cap L : F]}.
+  \]
+\end{corollary}
+\begin{proof}
+  \[
+    [EL : F] = [EL:L][L:F] = [E:L \cap F][L:F] = \frac{[E:F][L:F]}{[E \cap L :
+    F]}.
+  \]
+\end{proof}
+
+\begin{proposition}
+  假设 \( E_1, E_2 \) 都是 \( F \) 的包含某个公共域的扩张.
+  如果 \( E_1 \) 和 \( E_2 \) 都是 \( F \) 的 Galois 扩张, 那么 \( E_1 E_2 \) 和
+  \( E_1 \cap E_2 \) 都在 \( F \) 上 Galois, 且映射
+  \[
+    \operatorname{Gal}(E_1E_2/F) \to \operatorname{Gal}(E_1/F) \times
+    \operatorname{Gal}(E_2/F),\quad \sigma \mapsto
+    (\left.\sigma\right\vert_{E_1}, \left.\sigma\right\vert_{E_2})
+  \]
+  是一个到 \( \operatorname{Gal}(E_1/F) \times \operatorname{Gal}(E_2/F) \)
+  子群
+  \[
+    \operatorname{Gal}(E_1/F) \mathop{\times}\limits_{\operatorname{Gal}(E_1
+      \cap E_2) / F} \operatorname{Gal}(E_2/F) = \left\lbrace (\sigma_1,
+        \sigma_2): \left.\sigma_1\right\vert_{E_1 \cap E_2} =
+          \left.\sigma_2\right\vert_{E_1 \cap E_2} \right\rbrace
+  \]
+  的同构.
+\end{proposition}
+\begin{proof}
+  \( E_1E_2/F \) 和 \( E_1 \cap E_2/F \) 的 Galois
+  性证明类似于\cref{proposition-composite-field-Galois-over-middle-field}.
+
+  映射的良定性和单性是显然的.
+  通过计数的方式得到欲证结论.
+
+  设 \( \sigma_1 \in \operatorname{Gal}(E_1/F) \), 结合 \( E_1 \cap E_2 / F \)
+  及\cref{theorem-finite-Galois-fundamental-theorem} 知道 \( \left. \sigma_1
+    \right\vert_{E_1 \cap E_2} \in \operatorname{Gal}(E_1 \cap E_2/ F) \).
+  结合\cref{theorem-finite-Galois-TFAE-conditions}及\cref{proposition-single-polynomial-extension-number},
+  \( \left. \sigma_1 \right\vert_{E_1 \cap E_2} \) 能扩张为 \( [E_2: E_1 \cap
+    E_2] \) 个 \( \operatorname{Gal}(E_2/F) \) 中的元素.
+  因此
+  \[
+    (\operatorname{Gal}(E_1/F) \mathop{\times}\limits_{\operatorname{Gal}(E_1
+    \cap E_2) / F} \operatorname{Gal}(E_2/F):1) = [E_2: E_1 \cap E_2] [E_1:F]
+  \]
+  由\cref{theorem-finite-Galois-fundamental-theorem}有
+  \[
+    \operatorname{Gal}(E_1 \cap E_2 / F) \simeq
+    \operatorname{Gal}(E_1E_2/F)/\operatorname{Gal}(E_1E_2/E_1 \cap E_2).
+  \]
+  结合\cref{corollary-composite-field-Galois-over-middle-field}得到
+  \[
+    \begin{split}
+      [E_1E_2: F] &= [E_1 \cap E_2: F][E_1E_2/E_1 \cap E_2]\\
+                  &=\frac{[E_1:F][E_2:F]}{[E_1E_2:F]}[E_1E_2:E_2][E_2:E_1
+                  \cap E_2]\\
+                  &= [E_1:F][E_2: E_1 \cap E_2].
+    \end{split}
+  \]
+\end{proof}
+
+\section{一般 Galois 扩张}
+
+\subsection{Galois 扩张的一般定义}
+
+称域扩张 \( \Omega/F \) 是一个\emph{ Galois 扩张}如果 \( \Omega \) 在 \( F \)
+上可分且正规.
+
+\begin{proposition}
+  如果 \( \Omega \) 在 \( F \) 上 Galois, 那么 \( \Omega \) 在每个 \( \Omega/F
+  \) 的中间域 \( M \) 上 Galois.
+\end{proposition}
+
+\begin{proposition}
+  \label{proposition-homomorphism-extend-to-Galois-isomorphism}
+  假设 \( \Omega \) 是 \( F \) 的一个 Galois 扩张, \( E \) 是 \( \Omega \) 包含
+  \( F \) 的子域.
+  那么每个 \( F \)-同态 \( \sigma: E \to \Omega \) 可以扩张为 \( F \)-同构 \(
+  \Omega \to \Omega \).
+\end{proposition}
+\begin{proof}
+  假设 \( \mathcal{S} \) 由所有形如 \( (N, \tau) \) 的二元组组成, 其中 \( N \)
+  是 \( \Omega \) 包含 \( E \) 的子域, \( \tau: N \to \Omega \) 为 \( \sigma: E
+  \to \Omega \) 的扩张.
+  赋予 \( \mathcal{S} \) 一个偏序关系, 记 \( (N_1, \tau_1) \leq (N_2, \tau_2) \)
+  当且仅当 \( N_1 \subseteq N_2 \) 且 \( \left. \tau_2 \right\vert_{N_1} =
+    \tau_1 \).
+  根据 \( \mathcal{S} \) 的构造, \( \mathcal{S} \) 的每个上升链都有上界, 因此由
+  Zorn 引理, \( \mathcal{S} \) 有极大元 \( (\Omega_0, \sigma_0) \).
+  下面我们证明 \( \Omega_0 = \Omega \), \( \sigma_0 \) 是同构.
+
+  如果 \( \Omega_0 \subsetneq \Omega \), 那么存在 \( \alpha \in \Omega \setminus
+  \Omega_0 \).
+  而由\cref{proposition-simple-extension-and-field-homomorphism}, \( \sigma_0 \)
+  有扩张 \( \Omega_0[\alpha] \to \Omega \), 这与极大性矛盾.
+  于是 \( \Omega_0 = \Omega \).
+  对任意 \( \alpha \in \Omega \), 设 \( \alpha \) 在 \( F[X] \) 的极小多项式为
+  \( f \).
+  结合 \( \sigma_0 \) 单性  \( f \) 所有根映到 \( f \) 所有根, 自然 \(
+  \alpha \in \operatorname{Im} \sigma_0 \).
+\end{proof}
+
+\begin{corollary}
+  \label{corollary-Galois-extension-stable-middle-field-Galois}
+  假设 \( E \) 是 Galois 扩张 \( \Omega / F \) 的中间域.
+  如果 \( E \) 在 \( \operatorname{Aut}(\Omega/F) \) 下稳定, 即对任意 \( \sigma
+  \in \operatorname{Aut}(\Omega/F), \sigma(E) = E \).
+  那么 \( E \) 在 \( F \) 上 Galois, 且其 Galois 群等于 \(
+  \operatorname{Aut}(\Omega/F) \) 在 \( E \) 的限制.
+\end{corollary}
+\begin{proof}
+  假设 \( \alpha \in E \) 在 \( F[X] \) 为极小多项式为 \( f \).
+  因为 \( \Omega \) 在 \( F \) 上 Galois, 可以设 \( f \) 在 \( \Omega \) 有 \(
+  \alpha_1, \ldots, \alpha_{\deg f} \) 个根.
+  于是存在 \( F \)-同构 \( \sigma: F[\alpha] \to F[\alpha_i] \) 将 \( \alpha \)
+  映到 \( \alpha_i \), 考虑复合 \( F[\alpha] \to F[\alpha_i] \hookrightarrow
+  \Omega \), 由\cref{proposition-homomorphism-extend-to-Galois-isomorphism} \(
+  \sigma \) 可以扩张为 \( F \)-同构 \( \Omega \to \Omega \). 因为 \( E \) 在 \(
+  \operatorname{Aut}(\Omega/F) \) 下稳定, \( \alpha_i \in E \).
+\end{proof}
+
+\subsection{Galois 群的 Krull 拓扑}
+
+下面命题证明可以参考\cite{milne_fields_2022} 命题 7.2 或\cite{2014-zv} 命题
+1.3.1和命题1.3.2.
+
+\begin{proposition}
+  \label{proposition-topological-group-iff-condition}
+  假设 \( G \) 是一个拓扑群, \( \mathcal{N} \) 为 \( G \) 单位元 \( e \)
+  的一个邻域基, 那么
+  \begin{enumerate}
+    \item 对任意 \( N_1, N_2 \in \mathcal{N} \), 存在 \( N' \in \mathcal{N} \)
+      使得 \( N' \subseteq N_1 \cap N_2 \).
+    \item 对任意 \( N \in \mathcal{N} \), 存在 \( N' \in \mathcal{N} \) 使得 \(
+      N' N' \subseteq N \).
+    \item 对任意 \( N \in \mathcal{N} \), 存在 \( N' \in \mathcal{N} \) 使得 \(
+      N' \subseteq N^{-1} \).
+    \item 对任意 \( N \in \mathcal{N} \) 以及 \( g \in G \), 存在 \( N' \in
+      \mathcal{N} \) 使得 \( N' \subseteq g N g^{-1} \).
+    \item 对任意 \( g \in G \), 存在 \( g \) 的一个邻域基 \( \left\lbrace g N :
+      N \in \mathcal{N} \right\rbrace \).
+  \end{enumerate}
+  反过来, 如果 \( G \) 是一个群, \( \mathcal{N} \) 是 \( G \) 的一个满足上面 \(
+  (1)\text{-}(4) \) 的非空子集族, 那么存在 \( G \) 的唯一拓扑使得上面 \( (5) \)
+  成立.
+\end{proposition}
+
+\begin{proposition}
+  \label{proposition-Galois-group-definition}
+  假设 \( \Omega/F \) 是一个 Galois 扩张, \( G = \operatorname{Aut}(\Omega/F)
+  \). 对 \( \Omega \) 的任意有限子集 \( S \), 记
+  \[
+    G(S) = \left\lbrace \sigma \in G: \sigma s = s, \forall s \in S
+    \right\rbrace.
+  \]
+  \( \mathcal{N} = \left\lbrace G(S): S \subseteq \Omega \text{有限}
+  \right\rbrace \) 是 \( G \) 的一个拓扑的 \( \operatorname{id} \) 附近的邻域基.
+  在这个拓扑中, 所有由 \( G \)-稳定的有限集 \( S \) 得到的 \( G(S) \) 构成了 \(
+  \operatorname{id} \) 附近的由所有开正规子群组成邻域基.
+
+  我们称这样定义的 \( \operatorname{Aut}(\Omega/F) \) 拓扑为\emph{Krull 拓扑}.
+  如果 \( \operatorname{Aut}(\Omega/F) \) 赋予了 Krull 拓扑, 那么称其为 \(
+  \Omega / F \) 的\emph{ Galois 群}, 并记作 \( \operatorname{Gal}(\Omega/F) \).
+\end{proposition}
+\begin{proof}
+  考虑证明 \( \mathcal{N} \) 满足
+  \cref{proposition-topological-group-iff-condition} 的 \( (1) \text{-} (4) \).
+
+  \( (1) \) 由观察 \( G(S_1) \cap G(S_2) = G(S_1 \cup S_2) \) 得到;
+
+  \( (2), (3) \) 成立是因为 \( G(S) \) 具有 \( \operatorname{Aut}(\Omega/F) \)
+  子群结构;
+
+  \( (4) \) 以及第二个断言.
+  假设 \( S \subseteq \Omega \) 有限, 那么域扩张 \( F(S) / F \) 有限.
+  由\cref{corollary-finite-extension-homomorphisms-numbers} \( F \)-同态 \(
+  F(S) \to \Omega \) 有限.
+  对 \( \sigma, \tau \in \operatorname{Aut}(\Omega/F) \), 如果 \( \left. \sigma
+    \right\vert_{F(S)} = \left. \tau \right\vert_{F(S)} \), 那么 \( \sigma S =
+  \tau S \), 因此 \( \bigcup_{\sigma \in G} \sigma S \) 有限.
+  而 \( \sigma \bigcup_{\sigma \in G} \sigma S = \bigcup_{\sigma \in G} \sigma S
+  \), 结合观察 \( G(\sigma S) = \sigma G(S)\sigma^{-1} \) 知道 \(
+  G(\bigcup_{\sigma\in G} \sigma S) \) 是 \( G \) 的正规子群.
+\end{proof}
+
+\begin{remark}
+  \label{remark-Galois-group-definition}
+  \begin{enumerate}
+    \item 如果 \( E/F \) 是有限 Galois 扩张, 那么 \( \operatorname{Gal}(E/F) \)
+      的 Krull 拓扑即离散拓扑: 因为如果设 \( E = F[S] \), 其中 \( S \)
+      是一个有限集, 那么 \( G(S) = \left\lbrace \operatorname{id} \right\rbrace
+      \).
+    \item 由\cref{corollary-Galois-extension-stable-middle-field-Galois},
+      \cref{proposition-Galois-group-definition} 中所说的 \( G \)-稳定有限集 \(
+      S \) 生成的扩张 \( F(S) \) 即 \( F \) 的有限 Galois 扩张, 且 \(
+      \operatorname{Gal}(\Omega/F) \) 有一个 \( \operatorname{id} \)
+      附近开正规子群邻域基
+      \[
+        \left\lbrace \operatorname{Gal}(\Omega/E) : E \text{在}F\text{上有限 Galois}
+        \right\rbrace.
+      \]
+    \item \cref{proposition-Galois-group-definition} 中还证明了, 有限子集
+      \( S \subseteq \Omega \) 包含在 \( G \)-稳定有限集 \( \bigcup_{\sigma \in
+      G} \sigma S \) 中.
+  \end{enumerate}
+\end{remark}
+
+\begin{proposition}
+  \label{proposition-Galois-epimorphism-to-finite-Galois}
+  假设 \( \Omega / F \) 是一个 Galois 扩张, 那么对 \( \Omega/F \) 任意有限 Galois
+  子扩张 \( E \), 映射
+  \[
+    \operatorname{Gal}(\Omega/F)\to\operatorname{Gal}(E/F),\quad\sigma \mapsto
+    \left. \sigma \right\vert_E
+  \]
+  是一个连续满射, 并且有
+  \[
+    \operatorname{Gal}(\Omega/F) / \operatorname{Gal}(\Omega/E) \to
+    \operatorname{Gal}(E/F).
+  \]
+\end{proposition}
+\begin{proof}
+  映射的满射和良定性由\cref{proposition-Galois-group-definition}保证.
+  而 \( 1_{\operatorname{Gal}(E/F)} \) 在 \(
+  \operatorname{Gal}(\Omega/F) \) 的逆像 \( \operatorname{Gal}(G/E) \) 开.
+  任意 \( \sigma \in \operatorname{Gal}(E/F) \) 的逆像是 \(
+  \operatorname{Gal}(G/E) \) 的陪集, 因此开.
+\end{proof}
+
+\begin{proposition}
+  Galois 扩张 \( \Omega/F \) 的 Galois 群 \( \operatorname{Gal}(\Omega/F) \)
+  Hausdorff, 紧且完全不连通.
+\end{proposition}
+\begin{proof}
+  (Hausdorff)
+  如果 \( \sigma, \tau \in \operatorname{Gal}(\Omega/F) \) 满足 \( \sigma \neq
+  \tau \), 那么 \( \sigma^{-1}\tau \neq 1_G \), 于是存在 \( \alpha \in \Omega
+  \) 使得 \( \sigma^{-1}\tau(\alpha) \neq \alpha \).
+  换句话说 \( \sigma(\alpha) \neq \tau(\alpha) \).
+  取 \( S \ni \alpha \) 有限, 那么 \( \sigma G(S) \) 和 \( \tau G(S) \) 不交,
+  且分别是 \( \sigma \) 和 \( \tau \) 的开邻域, 所以 \( G \) 是 Hausdorff 的.
+
+  (紧)特别地, 取 \( S \subseteq \Omega \) 为一个包含 \( \alpha \) 的 \( G
+  \)-有限稳定子集(存在性见\cref{remark-Galois-group-definition}),
+  由\cref{proposition-Galois-group-definition}, \( G(S) \) 是 \( G \)
+  的正规子群, 那么 \( \sigma \) 和 \( \tau \) 在 \( G / G(S) \) 中的像不等.
+  所以赋予 \( G/G(S) \) 商拓扑结构, 映射
+  \[
+    G \to \prod_{S \text{在} G \text{下有限稳定}} G/G(S),\quad \sigma \mapsto ([\sigma])
+  \]
+  连续单.
+  又因为 \( G(S) \) 是映射
+  \[
+    G \to \operatorname{Sym}(S),\quad \sigma \mapsto \left. \sigma
+      \right\vert_{S}
+  \]
+  的像, 指数 \( (G: G(S)) \) 有限, 因此 \( G/G(S) \) 紧.
+
+  由 Tychonoff 定理, \( \prod G/G(S) \) 紧, 只需知道 \( G \) 的像闭即可.
+  
+  首先 \( G/G(S) \) 拓扑实际上是离散拓扑, 这是因为 \( [\sigma] \) 在 \( G
+  \mapsto G/G(S) \) 的逆像为 \( \sigma G(S) \) 开.
+
+  对 \( S_1 \subseteq S_2 \), 投影映射 \( p_i: \prod G/G(S) \to G/G(S_i) \),
+  以及商映射 \( \pi: G/G(S_2) \to G/G(S_1) \) 都连续.
+  设\( E(S_1, S_2) \) 为 \( \prod G/G(S) \) 中 \( p_1 = \pi \circ p_2 \)
+  的点, 其作为闭集 \( p_1^{-1}(\sigma) \cap
+  (\pi \circ p_2)^{-1}(\sigma) \) 的有限并是闭的.
+  因此 \( G = \bigcap_{S_1 \subseteq S_2} E(S_1, S_2) \) 是闭的.
+
+  (完全不连通性) 对任意 \( G \)-稳定有限集 \( S \subseteq \Omega \), \( G(S) \)
+  既开又闭.
+  既开又闭集是连通分支的并\footnote{考虑拓扑空间的连通分支分解.
+  注意到包含既开又闭集的连通分支并与其补不交, 而其补也是既开又闭集.}, 而 \(
+  \bigcap G(S) = \left\lbrace 1_G \right\rbrace \), 这说明包含 \( 1_G \)
+  的连通分支只有 \( \left\lbrace 1_G \right\rbrace \).
+  其余元素的不连通性由拓扑群的其次性保证.
+\end{proof}
+
+\begin{proposition}
+  对任意 Galois 扩张 \( \Omega/F \), \( \Omega^{\operatorname{Gal}(\Omega/F)} =
+  F \).
+\end{proposition}
+\begin{proof}
+  每个 \( \Omega / F \) 中的元素都落在 \( F \) 的一个有限 Galois 扩张中,
+  结合\cref{proposition-Galois-epimorphism-to-finite-Galois}和\cref{theorem-finite-Galois-TFAE-conditions}即得.
+\end{proof}
+
+\paragraph{Artin 定理}
+
+\begin{proposition}[Artin]
+  假设 \( G \subseteq \operatorname{Aut} E \) 是一个拓扑群, \( F = E^G \).
+  如果 \( G \) 紧, 且 \( E \) 每个元素的稳定化子都在 \( G \) 中开, 那么 \( E \)
+  是 \( F \) 的 Galois 扩张且其 Galois 群为 \( G \).
+\end{proposition}
+\begin{proof}
+  假设 \( x_1, \ldots, x_n \) 为 \( E \setminus F \) 的有限个元素, 由条件可以设
+  \( H_i \) 为 \( G \) 的开子群固定 \( x_i \).
+  因为 \( G \) 紧 \( H_i \) 陪集构成 \( G \) 的一个开覆盖且陪集基数即轨道 \(
+  Gx_i \) 基数, 故 \( Gx_i \) 有限.
+  固定 \( Gx_i \) 某个元素的 \( G \) 子群是 \( H_i \) 的共轭, 并且所有 \( H_i \)
+  都是这样得到的, 于是由有限性 \( H_i \) 所有共轭交 \( N_i \) 是 \( G \)
+  的开正规子群.
+  同理 \( N = \bigcap N_i \) 也是 \( G \) 的开正规子群, 其固定 \( S = \bigcup
+  Gx_i \) 的所有元素.
+  考虑
+  \[
+    f_1: G \to \operatorname{Aut}(F[S]/F),\quad \sigma \mapsto
+    \left. \sigma \right\vert_{F[S]},
+  \]
+  前面讨论说明这个态射定义是良好的, 而且其核为 \( N \).
+  \( G/N \) 有限, 因为
+  \[
+    f_2: \operatorname{Aut}(F[S]/F) \to \operatorname{Sym}(Gx_i),\quad \tau
+    \mapsto \left. \tau \right\vert_{S}
+  \]
+  是一个单射, 复合 \( f_2 \circ f_1 \) 核也是 \( N \), 而 \(
+  \operatorname{Sym}(S) \) 是一个有限群.
+  于是 \( G / N \) 是 \( E/F \) 中间域 \( M = F[S] \) 的自同构群, 且由定义 \(
+  F[S]^{G/N} = F \), 由\cref{corollary-Artin-theorem}, \( F[S]/F \) 是有限
+  Galois 扩张, 且其 Galois 群为 \( G/N \).
+  因为 \( E \) 是所有形如这样的 \( M \) 的并, 因此 \( E \) 在 \( F \) 上 Galois.
+
+  稳定化子都是开的, 于是 \( G \hookrightarrow \operatorname{Gal}(E/F) \) 连续单.
+  又 \( G \) 紧且 \( \operatorname{Gal}(E/F) \) Hausdorff, 故 \( G
+  \hookrightarrow \operatorname{Gal}(E/F) \) 闭.
+  现在只剩证明 \( \operatorname{Im} G = \operatorname{Gal}(E/F) \) 而这只需证明
+  \( \operatorname{Im} G \) 是稠密的.
+  由前面所说, \( \operatorname{Im}G \) 到 \( \operatorname{Gal}(M/F) \)
+  的映射满, 其中 \( M \) 是 \( E/F \) 的有限 Galois 子扩张.
+  而 \( \sigma \in \operatorname{Gal}(E/F) \) 的任意开邻域总包含一个开邻域 \(
+  \sigma \operatorname{Gal}(E/M) \), 因此其等于某个 \( \sigma'
+  \operatorname{Gal}(E/M) \), 其中 \( \sigma' \in \operatorname{Im} G \).
+\end{proof}
+
+\subsection{Galois 基本定理}
+
+\begin{proposition}
+  假设 \( \Omega/F \) 是一个 Galois 扩张, 其 Galois 群为 \( G \).
+  \begin{enumerate}
+    \item 假设 \( M \) 为 \( \Omega / F \) 的子扩张, 那么 \( \Omega \) 在 \( M
+      \) 上 Galois, \( \operatorname{Gal}(\Omega/M) \) 在 \( G \) 中闭, 并且 \(
+      \Omega^{\operatorname{Gal}(\Omega/M)} = M \).
+    \item 假设 \( H \subseteq G \) 为任意子群, 那么 \(
+      \operatorname{Gal}(\Omega/\Omega^H) \) 为 \( H \) 的闭包.
+  \end{enumerate}
+\end{proposition}
+\begin{proof}
+\end{proof}

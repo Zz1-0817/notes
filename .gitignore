@@ -5,5 +5,9 @@
 *.out
 *.log
 *.pdf
+*.bbl
+*.bcf
+*.blg
+*.run.xml
 .venv
 upload.bash

@@ -1,0 +1,100 @@
+\chapter{范畴的基本构造}
+
+
+\section{范畴范畴}
+
+\section{图范畴与自由范畴}
+
+\subsection{图与有向图}
+
+\paragraph{图}
+
+\paragraph{有向图}
+称一个三元组 \( (O, A, A
+\mathop{\rightrightarrows}\limits_{\partial_1}^{\partial_0} O) \)
+为\emph{有向图}, 其中 \( O \) 为\emph{顶点集(对象集)}, \( A \)
+为\emph{边集(箭头集)}, \( A
+\mathop{\rightrightarrows}\limits_{\partial_1}^{\partial_0} O \) 为两个函数, \(
+\partial_0 \) 为\emph{定义域函数}, \( \partial_1 \)为\emph{值域函数}.
+有时, 我们将一个有向图简单记作 \( G = \left\lbrace A \rightrightarrows O
+\right\rbrace \).
+
+\emph{有向图范畴} \( \operatorname{Grph} \) 对象由所有小有向图组成, 也就是顶点集
+\( O \) 和边集 \( A \) 都是小集合的有向图.
+给定有向图 \( G = (O, A, A
+\mathop{\rightrightarrows}\limits_{\partial_1}^{\partial_0} O) \) 以及 \( G' =
+(O', A', A' \mathop{\rightrightarrows}\limits_{\partial'_1}^{\partial'_0} O') \)
+, 态射 \( D = (D_O, D_A): G \to
+G' \) 是一对函数 \( D_O: O \to O' \), 对所有 \( f \in A \) 满足
+\[
+  D_O \partial_0 f = \partial'_0 D_A f \text{ 以及 } D_O \partial_1 f =
+  \partial'_1 D_A f.
+\]
+
+\paragraph{由范畴范畴到有向图范畴的忘却函子} %TODO:
+
+\subsection{自由范畴}
+
+假设 \( O \) 为一个固定的集合, 记 \( O \)-有向图 \(
+O\operatorname{-Grph} \) 为 \( \operatorname{Grph} \) 的子范畴,
+其对象的顶点集均为 \( O \), 态射 \( D = (D_O, D_A) \) 中都有 \( D_O =
+\operatorname{id}_O \).
+
+最简单的 \( O \)-有向图是 \( (O, O, O \rightrightarrows O) \),
+其定义域函数和值域函数都是恒等映射, 在不混淆的情况下仍将其记作 \( O \).
+
+假设 \( A \) 和 \( B \) 为两个 \( O \)-有向图, 定义它们在 \( O \)
+上乘积为可复合对集合(下面的 \( g \in A \) 指 \( g \) 在 \( A \) 的边集中而 \( f
+\in B \) 类似)
+\[
+  A \times_O B = \left\lbrace (g, f): \partial_0 g = \partial_1 f, g \in A, f
+  \in B \right\rbrace,
+\]
+以及函数 \( \partial_0 (g, f) := \partial_0 f \) 以及 \( \partial_1 (g, f)
+=\partial_1 g \) 使得 \( (O, A \times_O B, A \times_O B
+\mathop{\rightrightarrows}\limits_{\partial_1}^{\partial_0} O) \) 成为 \( O
+\)-有向图.
+由同构 \( A \times_O (B \times_O C) \simeq (A \times_O B) \times_O C,\quad (h,
+(g, f)) \mapsto ((h, g), f) \) 知道 \( O \) 上乘积 \( \times_O \) 是结合的.
+此外, 对 \( O \)-有向图 \( O \) 有 \( A \simeq A \times_O O, f \mapsto (f,
+\partial_0f) \) 以及 \( A \simeq O \times_O A \).
+
+一个对象集为 \( O \) 的范畴可以描述为一个 \( O \)-有向图 \( A \) 带上两个态射(\(
+c \) 对应复合, \( i \) 对应单位元)
+\[
+  c: A \times_O A \to A,\quad i: O \to A
+\]
+使得下图交换
+% https://q.uiver.app/#q=WzAsMTAsWzAsMCwiKEEgXFx0aW1lc19PIEEpIFxcdGltZXNfTyBBIFxcc2ltZXEgQSBcXHRpbWVzX08gKEEgXFx0aW1lc19PIEEpICJdLFsxLDAsIkEgXFx0aW1lc19PIEEiXSxbMCwxLCJBIFxcdGltZXNfTyBBIl0sWzEsMSwiQSJdLFsyLDEsIkEiXSxbMywxLCJBIl0sWzQsMSwiQSJdLFsyLDAsIk8gXFx0aW1lc19PIFgiXSxbMywwLCJBIFxcdGltZXNfTyBBIl0sWzQsMCwiQSBcXHRpbWVzX08gTyJdLFsyLDMsImMiXSxbMCwyLCJjIFxcdGltZXMgMSIsMl0sWzEsMywiYyJdLFs4LDUsImMiXSxbNyw0LCJcXHNpbSIsMV0sWzksNiwiXFxzaW0iLDFdLFs3LDgsImkgXFx0aW1lcyAxIl0sWzksOCwiMSBcXHRpbWVzIGkiLDJdLFs0LDUsIiIsMSx7ImxldmVsIjoyLCJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJub25lIn19fV0sWzUsNiwiIiwxLHsibGV2ZWwiOjIsInN0eWxlIjp7ImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbMCwxLCIxIFxcdGltZXMgYyJdXQ==
+\[\begin{tikzcd}[sep=small]
+	{(A \times_O A) \times_O A \simeq A \times_O (A \times_O A) } & {A \times_O A} & {O \times_O X} & {A \times_O A} & {A \times_O O} \\
+	{A \times_O A} & A & A & A & A
+	\arrow["{1 \times c}", from=1-1, to=1-2]
+	\arrow["{c \times 1}"', from=1-1, to=2-1]
+	\arrow["c", from=1-2, to=2-2]
+	\arrow["{i \times 1}", from=1-3, to=1-4]
+	\arrow["\sim"{description}, from=1-3, to=2-3]
+	\arrow["c", from=1-4, to=2-4]
+	\arrow["{1 \times i}"', from=1-5, to=1-4]
+	\arrow["\sim"{description}, from=1-5, to=2-5]
+	\arrow["c", from=2-1, to=2-2]
+	\arrow[equals, from=2-3, to=2-4]
+	\arrow[equals, from=2-4, to=2-5]
+\end{tikzcd}\]
+
+\paragraph{自由范畴} \( O \)-有向图 \( G = (O, A, A
+\mathop{\rightrightarrows}\limits_{\partial_1}^{\partial_0} O) \)
+也可以生成一个范畴 \( \mathcal{C} \), 其中 \( \operatorname{Ob}(\mathcal{C}) = O
+\), \( \operatorname{Mor}(\mathcal{C}) \) 为
+\[
+  \left\lbrace (f_1, (f_2, (\cdots (f_{n - 1}, f_n)))): \partial_0 f_i =
+  \partial_1 f_{j + 1}, f_i \in A, n \in \mathbb{N}, 1 \leq j < n \right\rbrace
+  / \sim,
+\]
+其中商去的等价关系使其满足结合律并带单位元, 这样的范畴记作 \( C = C(G) \)
+并称为\emph{自由范畴}.
+
+\begin{theorem}
+  假设 \( G = \left\lbrace A \rightrightarrows O \right\rbrace \)
+  为一个小有向图. 那么存在小范畴 \( C = C_G \) 使得 \( \operatorname{Ob}(C) = O \)
+\end{theorem}
