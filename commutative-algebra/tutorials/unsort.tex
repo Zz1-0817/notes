@@ -1,0 +1,68 @@
+\section{Unsort}
+
+假设 \( A \) 是一个域 \( k \) 上的整环且其作为 \( k \)-代数有限生成.
+\( A \) 在 \( k \) 上的\emph{超越次数}为 \( \operatorname{trdeg}_k
+\operatorname{Frac} A\), 记作 \( \operatorname{trdeg}_kA \), 
+
+\begin{proposition}
+  假设 \( \ell_1, \ldots, \ell_m \) 为 \( X_1, \ldots, X_n \) 的 \( K
+  \)-线性形式,
+  商环
+  \[
+    k[X_1, \ldots, X_n]/(\ell_1, \ldots, \ell_m)
+  \]
+  是一个整环, 其超越次数为\( k \)-线性方程组的解空间维数
+  \[
+    \ell_i = 0,\quad i = 1, \ldots, m.
+  \]
+\end{proposition}
+\begin{proof}
+  只需注意到:
+  假设 \( \mathfrak{c} \) 为 \( k[X_1, \ldots, X_n] \) 由线性无关的 \( k
+  \)-线性形式 \( \ell_1, \ldots, \ell_r \) 生成, 可以找到 \( X_{i_1}, \ldots,
+  X_{i_{n - r}} \) 使得
+  \[
+    \left\lbrace \ell_1, \ldots, \ell_r, X_{i_1}, \ldots, X_{i_{n - r}} \right\rbrace
+  \]
+  为 \( X_1, \ldots, X_n \) 的 \( k \)-线性形式的一组基, 那么
+  \[
+    k[X_1, \ldots, X_n]/\mathfrak{c} \simeq k[X_{i_1}, \ldots, X_{i_{n - r}}].
+  \]
+\end{proof}
+
+\begin{proposition}
+  对任意 \( k[X_1, \ldots, X_n] \) 中的不可约多项式 \( f \), 商环 \( k[X_1,
+  \ldots, X_n]/(f) \) 的超越次数为 \( n - 1 \).
+\end{proposition}
+\begin{proof}
+  设 \( k[x_1, \ldots, x_n] = k[X_1, \ldots, X_n] / (f), x_i = X_i + (f) \).
+  不妨设 \( f \) 含 \( X_n \) 的项.
+  如果 \( x_1, \ldots, x_{n - 1} \) 在 \( k \) 中代数相关,
+  那么存在 \( g \in K[X_1, \ldots, X_{n - 1}] \) 使得 \( g \in (f) \),
+  这是不可能的, 于是 \( x_1, \ldots, x_{n - 1} \) 是 \( k \)-代数无关的.
+  而 \( x_n \) 在 \( k(x_1, \ldots, x_{n - 1}) \) 上代数.
+  所以超越次数为 \( n - 1 \).
+\end{proof}
+
+\begin{proposition}
+  假设有限生成 \( k \)-代数 \( A \) 是一个整环, 对其任意素理想 \( \mathfrak{p}
+  \), 有
+  \[
+    \operatorname{trdeg}_k(A/\mathfrak{p}) < \operatorname{trdeg}_k(A).
+  \]
+\end{proposition}
+\begin{proof}
+  假设
+  \[
+    A = k[X_1, \ldots, X_n] / \mathfrak{a} = k[x_1, \ldots, x_n]
+  \]
+  对 \( f \in A, \overline{f} \) 为 \( f \) 在 \( A / \mathfrak{p} \) 的像,
+
+
+  \( f \in \mathfrak{p} \)
+  否则, 有一个代数关系
+  \[
+    a_0(x_1, \ldots, x_d)f^m + a_1(x_1, \ldots, x_d) f^{m - 1} + \cdots +
+    a_m(x_1, \ldots, x_d) = 0.
+  \]
+\end{proof}

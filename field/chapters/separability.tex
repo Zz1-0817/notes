@@ -350,3 +350,395 @@
   \]
   给出.
 \end{proof}
+
+\section{不变量}
+
+\subsection{迹与行列式}
+
+回顾在线性代数中, 给定一个 \( n \) 维线性空间的线性变换 \( \alpha \),
+记其在一组基下的矩阵为 \( A = (a_{ij}) \),
+\[
+  \operatorname{Tr}(A) = \sum_i a_{ii},\quad
+  \det (A) = \sum_{\sigma \in S_n}\operatorname{sgn}(\sigma)a_{1\sigma(1)}\cdots
+  a_{n \sigma(n)},\quad
+  c_A(X) = \det(XI_n - A)
+\]
+分别为 \( A \) 的迹, 行列式, 特征多项式.
+它们与基选取无关, 即可以定义 \( \alpha \) 的迹, 行列式, 特征多项式
+\[
+  \operatorname{Tr}(\alpha) = \operatorname{Tr}(A),\quad
+  \det(\alpha) = A\det(A),\quad
+  c_{\alpha}(X) = C_A(X).
+\]
+
+假设 \( E/F \) 为 \( n \) 次域扩张, 那么 \( \alpha \in E \) 定义了 \( F
+\)-线性映射
+\[
+  \alpha_L: E \to E,\quad x \mapsto \alpha x.
+\]
+称 \( \operatorname{Tr}_{E/F}(\alpha) := \operatorname{Tr}(\alpha_L) \) 为 \(
+\alpha \) 的\emph{迹}, \( \operatorname{Norm}_{E/F}(\alpha) = \det (\alpha_L) \)
+为 \( \alpha \) 的\emph{范数}, \( c_{\alpha, E/F}(X) := c_{\alpha_L}(X) \) 为 \(
+\alpha \) 的\emph{特征多项式}.
+
+\begin{proposition}
+  假设 \( E/F \) 为有限域扩张, \( \alpha \in E \) , \( f \in F[X] \) 为 \(
+  \alpha \) 在 \( F \) 的极小多项式.
+  那么
+  \[
+    c_{\alpha, E/F}(X) = f^{[E:F[\alpha]]}.
+  \]
+\end{proposition}
+\begin{proof}
+  首先假设 \( E = F[\alpha] \), 这时由 Cayley-Hamilton 定理可以知道 \(
+  c_{\alpha_L}(\alpha_L) = 0 \) 结合 \( E \to \operatorname{Aut}(E), \alpha
+  \mapsto \alpha_L \) 是一个单态射知道 \( c_{\alpha_L}(\alpha) = 0 \).
+  而 \( c_{\alpha_L} \) 和 \( f \) 次数相等且都首一, 于是 \( c_{\alpha, E/F}(X)
+  = c_{\alpha_L}(X) = f(X) \).
+
+  一般地, 假设 \( \beta_1, \ldots, \beta_n \) 为 \( F[\alpha] \) 的一组 \( F
+  \)-基, \( \gamma_1, \ldots, \gamma_m \) 为一组 \( E \) 的 \( F[\alpha] \)-基.
+  那么 \( \beta_i \gamma_j \) 为一组 \( E \) 的 \( F \)-基.
+  于是 \( \alpha_L \) 在这组基下矩阵为主对角元全是 \( n \times n \)
+  块的准对角阵, 结合 \( E = F[\alpha] \) 的情况即可.
+\end{proof}
+
+\begin{corollary}
+  \label{corollary-trace-and-norm-and-roots}
+  假设 \( \alpha \) 极小多项式 \( f \) 的所有不同的根为 \( \alpha_1, \ldots,
+  \alpha_n \), 且 \( [E:F[\alpha]] = m \), 那么
+  \[
+    \operatorname{Tr}(\alpha) = m[F[\alpha]:F]_i \sum_{i=1}^n \alpha_i,\quad
+    \operatorname{Norm}_{E/F}(\alpha) = \left( \prod_{i = 1}^n \alpha_i
+    \right)^{m[F[\alpha]:F]_i}.
+  \]
+  特别地, 如果 \( \alpha \) 在 \( F \) 上不可分, 那么 \(
+  \operatorname{Tr}(\alpha) = 0 \).
+\end{corollary}
+
+\begin{corollary}
+  \label{corollary-generalized-trace-and-norm-and-roots}
+  假设 \( E \) 是 \( F \) 的有限扩张, \( \Omega \) 是 \( F \) 的包含 \( E \)
+  的代数闭包, 令 \( \Sigma \) 为所有 \( F \)-同态 \( E \to \Omega \), 那么对任意
+  \( \alpha \in E \), 有
+  \[
+    \operatorname{Tr}(\alpha) = [E:F[\alpha]] \sum_{\sigma \in \Sigma} \sigma
+    \alpha,\quad \operatorname{Norm}_{E/F}(\alpha) =  \prod_{\sigma \in \Sigma}
+    (\sigma\alpha)^{[E:F[\alpha]]}.
+  \]
+\end{corollary}
+
+\begin{proposition}
+  假设 \( E/M, M/F \) 为有限扩张, 那么
+  \[
+    \operatorname{Tr}_{M/F} \circ \operatorname{Tr}_{E/M} =
+    \operatorname{Tr}_{E/F},\quad \operatorname{Norm}_{M/F} \circ
+    \operatorname{Norm}_{E/M} = \operatorname{Norm}_{E/F}
+  \]
+\end{proposition}
+\begin{proof}
+  分别考虑极小多项式知道, 如果 \( \alpha \in E \) 在 \( M \) 上不可分, 那么 \(
+  \alpha \) 在 \( F \) 上不可分,
+  于是这时由\cref{corollary-trace-and-norm-and-roots} \( \operatorname{Tr}_{M/F}
+  \circ \operatorname{Tr}_{E/M}(\alpha) = \operatorname{Tr}_{E/F}(\alpha) = 0
+  \).
+  假设 \( \alpha \in E \) 在 \( M \) 上可分, \( \alpha_1, \ldots, \alpha_n \) 为
+  \( \alpha \) 在 \( M \) 上极小多项式的所有不同根,
+  那么再由\cref{corollary-trace-and-norm-and-roots}
+  \[
+    \begin{split}
+      \operatorname{Tr}_{M/F} \circ \operatorname{Tr}_{E/M}(\alpha) &=
+      [E:M[\alpha]] \operatorname{Tr}_{M/F}(\sum_i \alpha_i)\\ &= [E:M[\alpha]]
+      \frac{\operatorname{Tr}_{E/F}(\sum_i \alpha_i)}{[E:M]}\\ &= [E:M[\alpha]]
+      \frac{[M[\alpha]:M]\operatorname{Tr}_{E/F}(\alpha)}{[E:M]}\\ &=
+      \operatorname{Tr}_{E/F}(\alpha)
+    \end{split}.
+  \]
+  范数等式的证明是类似的.
+\end{proof}
+
+\subsection{判别式}
+
+考虑一个域上的首一多项式
+\[
+  f(X) = X^n + a_1 X^{n - 1} + \cdots + a_n,
+\]
+设在 \( f \) 的某个分裂域上 \( f(X) = \prod_{i = 1}^n (X - \alpha_i) \).
+置
+\[
+  \Delta (f) = \prod_{1 \leq i \leq j \leq n}(\alpha_i - \alpha_j),\quad
+  \operatorname{Disc}(f) = \Delta(f)^2 = \prod_{1 \leq i \leq j \leq n}(\alpha_i
+  - \alpha_j)^2.
+\]
+称 \( \operatorname{Disc}(f) \) 的判别式为 \( \operatorname{Disc}(f) \).
+
+\begin{proposition}
+  设 \( f \in F[X] \) 为首一不可约多项式, \( \alpha \) 为 \( f \)
+  的某个分裂域的一个根, 那么
+  \[
+    \operatorname{Disc}f = (-1)^{m(m - 1)/2}
+    \operatorname{Norm_{F[\alpha]/F}}f'(\alpha).
+  \]
+\end{proposition}
+\begin{proof}
+  \( f \) 不可分的情况是明显的, 下面考虑 \( f \) 可分的情况.
+  由\cref{corollary-generalized-trace-and-norm-and-roots}
+  \[
+    \begin{split}
+      \operatorname{Disc}f &= \prod_{i < j}(\alpha_i - \alpha_j)^2\\ &=
+      (-1)^{m(m - 1)/2} \cdot \prod_i (\prod_{j \neq i} (\alpha_i - \alpha_j))\\
+      &= (-1)^{m(m - 1)/2} \cdot \prod_{i}f'(\alpha_i)\\ &= (-1)^{m(m - 1)/2}
+      \operatorname{Norm}_{F[\alpha]/F}(f'(\alpha))
+    \end{split}
+  \]
+\end{proof}
+
+\section{超越扩张}
+
+\subsection{代数相关与代数无关}
+
+假设给定域 \( \Omega \supseteq F \), 称 \( \alpha_1, \cdots, \alpha_n \subseteq
+\Omega \) 是\emph{\( F \)-代数无关的}, 如果 \( F \)-态射
+\[
+  F[X_1, \cdots, X_n] \to \Omega,\quad f \mapsto f(\alpha_1, \cdots, \alpha_n)
+\]
+的核为 \( 0 \), 否则称 \( \alpha_1, \cdots, \alpha_n \) 是\emph{\( F
+\)-代数相关的}.
+一般地, 称任意集合 \( A \subseteq \Omega \) 是\emph{\( F \)-代数无关的}, 如果 \(
+A \) 的任意有限集是代数无关的; 否则, 称 \( A \) 是\emph{\( F \)-代数相关的}.
+
+如果 \( \alpha_1,\cdots, \alpha_n \) 为 \( F \) 上的代数无关元, 那么映射
+\[
+  F[X_1, \cdots, X_n] \to F[\alpha_1, \cdots, \alpha_n],\quad f(X_1, \cdots,
+  X_n) \mapsto f(\alpha_1, \cdots, \alpha_n)
+\]
+为同构, 从而诱导同构 \( F(X_1, \cdots, X_n) \simeq F(\alpha_1, \cdots, \alpha_n) \).
+\( F(\alpha_1,\cdots, \alpha_n) \) 称为 \emph{\( F \)的纯超越扩张}.
+
+\begin{example}
+  特别地, 一个元素 \( \alpha \in \Omega \) \( F \)-代数无关当且仅当 \( \alpha \) 在 \(
+  F \) 上超越.
+\end{example}
+
+\begin{lemma}
+  \label{lemma-algebraic-dependent-TFAE-conditions}
+  假设 \( \gamma \in \Omega, A \subseteq \Omega \), 那么下面条件等价:
+  \begin{enumerate}
+    \item \( \gamma \) 在 \( F(A) \) 上代数.
+    \item 存在 \( \beta_1, \ldots, \beta_n \in F(A) \) 使得 \( \gamma^n +
+      \beta_1 \gamma^{n - 1} + \cdots + \beta_n = 0 \).
+    \item 存在不全为零的 \( \beta_0, \beta_1, \ldots, \beta_n \in F(A) \) 使得
+      \( \beta_0\gamma^n + \beta_1 \gamma^{n - 1} + \cdots + \beta_n = 0 \).
+    \item 存在某个 \( f \in F[X_1, \ldots, X_m, Y] \) 和 \( \alpha_1, \ldots,
+      \alpha_m \in A \) 使得 \( f(\alpha_1, \ldots, \alpha_m, Y) \neq 0 \) 但 \(
+      f(\alpha_1, \ldots, \alpha_m, \gamma) = 0 \).
+  \end{enumerate}
+  称满足上面的等价条件的 \( \gamma \) 是\emph{\( A \)-代数相关的}.
+  如果集合 \( B \subseteq \Omega \) 中元素都是 \( A \)-代数相关的, 那么称 \( B
+  \) 是\emph{\( A \)-代数相关的}.
+\end{lemma}
+\begin{proof}
+  考虑 \( (1) \implies (2) \implies (3) \implies (1), (4) \iff (3) \) 即可.
+\end{proof}
+
+\subsection{超越基}
+
+\begin{lemma}[交换性质]
+  \label{lemma-exchange-algebraically-denpent}
+  假设 \( \left\lbrace \alpha_1, \cdots, \alpha_m \right\rbrace \subseteq \Omega
+  \).
+  如果 \( \beta \) 在 \( \left\lbrace \alpha_1, \ldots, \alpha_m
+  \right\rbrace \) 上代数相关, 但在 \( \left\lbrace \alpha_1, \ldots, \alpha_{m
+  - 1} \right\rbrace \) 上代数无关, 那么 \( \alpha_m \) 在 \( \left\lbrace
+  \alpha_1, \ldots, \alpha_{m - 1}, \beta \right\rbrace \) 上代数相关.
+\end{lemma}
+\begin{proof}
+  由\cref{lemma-algebraic-dependent-TFAE-conditions}, 存在 \( f \in F[X_1,
+  \ldots, X_m, Y] \) 使得
+  \[
+    f(\alpha_1, \ldots, \alpha_m, Y) \neq 0,\quad f(\alpha_1, \ldots, \alpha_m,
+    \beta)= 0.
+  \]
+  将 \( f \) 写作 \( X_m \) 的多项式
+  \[
+    f(X_1, \ldots, X_m, Y) = \sum_i a_i(X_1, \ldots, X_{m - 1}, Y) X^{n - i}_m,
+  \]
+  由于 \( f(\alpha_1, \ldots, \alpha_m, Y) \neq 0 \), 存在某个 \( a_i(\alpha_1,
+  \ldots, \alpha_{m - 1}, Y) \neq 0 \).
+  因为 \( \beta \) 不在 \( \left\lbrace \alpha_1, \ldots, \alpha_{m - 1}
+  \right\rbrace \) 上代数相关,
+  由\cref{lemma-algebraic-dependent-TFAE-conditions}, \( a_i(\alpha_1, \ldots,
+  \alpha_{m - 1}, \beta) \neq 0 \).
+  换句话说, \( f(\alpha_1, \ldots, \alpha_{m - 1}, X_m, \beta) \neq 0 \).
+  但 \( f(\alpha_1, \ldots, \alpha_{m}, \beta) = 0 \),
+  再由\cref{lemma-algebraic-dependent-TFAE-conditions}即得.
+\end{proof}
+\begin{lemma}[代数相关的传递性]
+  \label{lemma-transitivity-of-algebraic-dependence}
+  如果 \( C \) 是一个 \( B \) 上的代数相关集, \( B \) 为 \( A \) 上的代数相关集,
+  那么 \( C \) 在 \( A \) 为代数相关集.
+\end{lemma}
+
+\begin{theorem}[基本结果]
+  \label{theorem-algebraic-dependent-fundamental-result}
+  令 \( A = \left\lbrace \alpha_1, \cdots, \alpha_m \right\rbrace \) 和 \( B =
+  \left\lbrace \beta_1, \cdots, \beta_n \right\rbrace \) 为 \( \Omega \)
+  的两个子集.
+  假设
+  \begin{enumerate}
+    \item \( A \) 在 \( F \) 上代数无关,
+    \item \( A \) 在 \( B \) 上代数相关,
+  \end{enumerate}
+  那么, \( m \leq n \).
+\end{theorem}
+\begin{proof}
+  考虑 \( A \setminus (A \cap B) \) 的个数 \( k \).
+  如果 \( k = 0 \), 那么结论已经得到.
+
+  如果 \( k > 0 \), 记 \( B = \left\lbrace \alpha_1, \cdots, \alpha_{m - k},
+  \beta_{m - k + 1}, \cdots, \beta_n \right\rbrace \).
+  设 \( m - k + 1 \leq j \leq n \) 是满足 \( \alpha_{m - k + 1} \) 在 \( \left\lbrace
+  \alpha_1, \cdots, \alpha_{m - k}, \beta_{m - k + 1}, \cdots, \beta_j \right\rbrace \)
+  代数相关的最小元.
+  由\cref{lemma-exchange-algebraically-denpent}, \( \beta_j \) 在\( B_1 = B \cup
+  \left\lbrace \alpha_{m - k + 1} \right\rbrace \setminus \left\lbrace \beta_{j}
+  \right\rbrace \) 上代数相关.
+  由 \( B_1 \) 构造, \( B \) 在 \( B_1 \) 上代数相关,
+  又由\cref{lemma-transitivity-of-algebraic-dependence}, \( A \) 在 \( B_1 \)
+  上代数相关.
+  而 \( A \setminus (B_1 \cap A) = k - 1 \), 应用归纳假设即得.
+\end{proof}
+
+\paragraph{超越基}
+
+\( \Omega \) 在 \( F \) 上的\emph{超越基}为 \( F \) 上的代数无关集 \( A \)
+使得 \( \Omega \) 在 \( F(A) \) 上代数.
+% 由下面的定理,
+% 我们知道超越基有限时(实际上, 无穷亦如此)超越基的基数由 \( \Omega \) 和 \( F \)
+% 自身决定, 称其为 \emph{超越次数}.
+% 下面我们要证明利用前面所得到的工具证明超越基是存在, 且其基数可定义的(i.e.
+% 超越基的基数与超越基本身的选取无关).
+
+\begin{lemma}
+  \label{lemma-making-algebraic-minimal-set-as-transcendence-basis}
+  如果 \( A \) 为 \( \Omega \) 的满足 \( \Omega \) 在 \( F(A) \) 代数的最小子集,
+  那么 \( A \) 为 \( \Omega \) 在 \( F \) 上的超越基.
+\end{lemma}
+\begin{proof}
+  如果 \( A \) 代数相关, 那么可以找到 \( \beta \in A \) 使得 \( \beta \) 在 \( A
+  \setminus \left\lbrace  \beta \right\rbrace \) 中代数相关, 因此 \( A \) 在 \(
+  A \setminus \left\lbrace \beta \right\rbrace\) 中代数相关.
+  由\cref{lemma-transitivity-of-algebraic-dependence}, \( \Omega \) 在 \( F(A
+  \backslash \left\lbrace \beta \right\rbrace) \) 上代数, 这与 \( A \)
+  极小性矛盾.
+\end{proof}
+
+\begin{theorem}
+  \label{theorem-finite-transcendence-basis}
+  如果存在有限子集 \( A \subseteq \Omega \) 使得 \( \Omega \) 在 \( F(A) \)
+  上代数, 那么 \( \Omega \) 有一个\( F \)上的有限超越基.
+  另外, 每个超越基是有限的, 且它们有相同的元素个数.
+\end{theorem}
+\begin{proof}
+  有限超越基的存在性由\cref{lemma-making-algebraic-minimal-set-as-transcendence-basis}保证,
+  个数相等由\cref{theorem-algebraic-dependent-fundamental-result}保证.
+\end{proof}
+
+\begin{lemma}
+  \label{lemma-maximal-algebraic-independent-set-as-transcendence-basis}
+  设 \( A \) 是代数无关的, 但 \( A \cup \left\lbrace \beta \right\rbrace \)
+  是代数相关的. 那么 \( \beta \) 在 \( F(A) \) 上代数.
+\end{lemma}
+\begin{proof}
+  由假设存在\( \alpha_1, \ldots, \alpha_n \in A \) 和非零 \( f \in F[X_1,
+  \ldots, X_n, Y] \) 使得
+  \[
+    f(\alpha_1, \ldots, \alpha_n, \beta) = 0.
+  \]
+  将 \( f \) 写为 \( Y \) 的多项式
+  \[
+    f = g_0 Y^m + g_1 Y^{m - 1} + \cdots + g_m,\quad g_i \in F[X_1, \ldots,
+    X_n],\quad g_0 \neq 0,\quad m \geq 1.
+  \]
+  由于 \( g_0 \neq 0 \) 且 \( \alpha_i \) 代数独立, 所以 \( g_0(\alpha_1,
+  \ldots, \alpha_n) \neq 0 \).
+  于是 \( f(\alpha_1, \ldots, \alpha_n, Y) \neq 0 \),
+  由\cref{lemma-algebraic-dependent-TFAE-conditions}, \( \beta \) 在 \( A \)
+  上代数.
+\end{proof}
+
+\begin{proposition}
+  \label{proposition-maximal-algebraic-independent-set-as-transcendence-basis}
+  \( \Omega \) 的任意最大代数无关子集 \( A \) 都是 \( \Omega \) 在 \( F \)
+  上的超越基.
+\end{proposition}
+\begin{proof}
+  对每个 \( \beta \in \Omega \setminus A \), 由极大性 \( A \cup \left\lbrace
+  \beta \right\rbrace \) 代数独立,
+  因此由\cref{lemma-maximal-algebraic-independent-set-as-transcendence-basis} \(
+  \beta\) 在 \( A \) 上代数.
+\end{proof}
+
+\begin{theorem}
+  每个代数无关子集 \( S \subseteq \Omega \) 都包含于 \( \Omega \) 的一个超越基.
+  特别地, 超越基存在.
+\end{theorem}
+\begin{proof}
+  假设 \( \mathcal{S} \) 为包含 \( S \) 的代数无关集, 由包含赋予偏序关系.
+  设 \( S_1 \subseteq S_2 \subseteq \cdots \) 为 \( \mathcal{S} \) 的一个上链,
+  下面证明 \( \bigcup S_i \) 为此链在 \( \mathcal{S} \) 中的一个上界.
+  假设不然, 存在一个有限集 \( B' \subseteq \bigcup S_i \) 代数相关, 而 \( B' \)
+  包含于某个 \( S_i \) 这是不可能的.
+  于是由 Zorn 引理可以得到 \( \mathcal{S} \) 的一个极大元 \( S' \).
+  于是由\cref{proposition-maximal-algebraic-independent-set-as-transcendence-basis},
+  \( S' \) 是一个超越基.
+\end{proof}
+
+\paragraph{超越次数}
+
+
+\begin{proposition}
+  \( \Omega/F \) 的超越基基数相等, 称此基数为 \( \Omega/F \) 的\emph{超越次数},
+  记作 \( \operatorname{trdeg}_F(\Omega) \).
+\end{proposition}
+\begin{proof}
+  有限情况由\cref{theorem-finite-transcendence-basis}保证.
+  假设 \( B, B' \) 是两个基数都是无穷的超越基.
+  由选择公理, 可以假设 \( \left\lvert B' \right\rvert < \left\lvert B
+  \right\rvert \).
+  对任意 \( \alpha \in B' \), 存在有限集 \( B_{\alpha} \subseteq B \) 使得 \(
+  \alpha \) 在 \( B_{\alpha} \) 上代数.
+  设 \( B^* = \bigcup_{\alpha \in B'} B_{\alpha} \), 于是 \( B^* \subseteq B \).
+  下面证明 \( B^* = B \).
+  假设不然, 那么存在 \( \beta \in B \setminus B^* \).
+  \( \beta \) 在 \( B' \) 上代数, \( B' \) 在 \( B^* \) 上代数,
+  由\cref{lemma-transitivity-of-algebraic-dependence}, \( \beta \) 在 \( B^* \)
+  上代数.
+  也就是 \( \beta \) 在 \( B^* \) 上代数代数, 这与超越基定义矛盾.
+  于是 \( \left\lvert B \right\rvert = \left\lvert B^* \right\rvert \leq \aleph_0
+  \left\lvert B' \right\rvert = \left\lvert B' \right\rvert \).
+\end{proof}
+
+\begin{proposition}
+  假设 \( F/K, E/F \) 为域扩张, 那么
+  \[
+    \operatorname{trdeg}_K E = \operatorname{trdeg}_K F +
+    \operatorname{trdeg}_F E.
+  \]
+\end{proposition}
+\begin{proof}
+  取 \( B, C \) 分别为 \( F/K, E/F \) 的超越基, 可以知道 \( B \cup C \) 是 \(
+  E/K \) 的超越基.
+\end{proof}
+
+\begin{proposition}
+  任意两个有相同超越次数的 \( F \) 上的代数闭域是 \( F \)-同构的.
+\end{proposition}
+
+\paragraph{L\"{u}roth 定理}
+
+\begin{theorem}[L\"{u}roth]
+  令 \( L = F(x) \) 其中 \( x \) 在 \( F \) 上超越.
+  每个 \( L \) 的真包含 \( F \) 的子域 \( E \) 具有形式 \( E = F(u) \), 其中 \(
+  u \in L \) 在 \( F \) 上超越.
+\end{theorem}

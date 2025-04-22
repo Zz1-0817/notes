@@ -63,6 +63,7 @@
 \end{proposition}
 
 \begin{proposition}
+  \label{proposition-radical-as-prime-intersection}
   \( \mathfrak{a} \) 的根式理想等于所有包含 \( \mathfrak{a} \) 的素理想的交
   \[
     \operatorname{rad}(\mathfrak{a}) = \bigcap_{\mathfrak{p}\supseteq a}
@@ -378,6 +379,7 @@
 \subsection{Hilbert 基定理}
 
 \begin{theorem}[Hilbert基]
+  \label{theorem-Hilbert-basis}
   每个 noetherian 环上的有限生成代数 noetherian.
 \end{theorem}
 
@@ -1093,15 +1095,21 @@ A_{\mathfrak{m}} / \mathfrak{n}^n \) 的核为 \( (\mathfrak{m}^n)^{ec} /
 
 \begin{proposition}
   假设 \( A \) 是一个正规整环, \( E \) 是 \( A \) 的分式域 \( F \)
-  的一个有限扩张. \( E \) 的一个元素在 \( A \) 上整当且仅当其在 \( F \)
-  上的极小多项式系数均在 \( A \) 上.
+  的一个有限扩张. \( E \) 的一个元素 \( \alpha \) 在 \( A \) 上整当且仅当其在 \(
+  F \) 上的极小多项式系数均在 \( A \) 上.
 \end{proposition}
 \begin{proof}
-  %TODO: 域论
-  % 假设 \( \alpha \in E \) 在 \( A \) 上整且对首一 \( A \) 系数多项式 \( g(x) \),
-  % 有 \( g(\alpha) = 0 \). 令 \( f \) 为 \( \alpha \) 在 \( F \) 上的极小多项式,
-  % 那么 \( \alpha \) 的共轭根 \( \alpha' \) 亦满足 \( g(\alpha') = 0 \), 由 Vieta
-  % 定理, \( f \) 的系数
+  只需验证 \( \implies \).
+  假设 \( \alpha \) 在 \( A \) 上整, \( \alpha_1, \ldots, \alpha_n \) 为 \(
+  \alpha \) 在 \( \operatorname{Frac} A \) 上的共轭根, 它们在同一个首一 \( A
+  \)-系数多项式下为零, 故都是整的.
+  \( \alpha \) 的极小多项式在 \( F \) 关于 \( \alpha \)
+  的分裂域中具有形式(可以参考\cite{Hungerford2011-ze}推论6.14)
+  \[
+    ((X - \alpha_1)\cdots(X - \alpha_n))^{[K(\alpha_1):K]_i}
+  \]
+  其中 \( [K(u_1):K]_i \) 为 \( K(u_1)/K \) 的不可分次数, 于是其系数都在 \( A \)
+  中整, 而 \( A \) 整闭, 所以都落在 \( A \) 中.
 \end{proof}
 
 \begin{corollary}
@@ -1319,8 +1327,9 @@ A_{\mathfrak{m}} / \mathfrak{n}^n \) 的核为 \( (\mathfrak{m}^n)^{ec} /
   使得 \( \mathfrak{q}_i \cap A = \mathfrak{p} \), 其中 \( i \leq n \).
 \end{corollary}
 
-假设 \( A \subseteq B \) 为环, \( \mathfrak{a} \) 为 \( A \) 的一个理想. \( B \)
-的一个元素 \( b \) 称为在 \( \mathfrak{a} \) 上 \emph{整}, 如果其满足方程
+\paragraph{理想上整} 假设 \( A \subseteq B \) 为环, \( \mathfrak{a} \) 为
+\( A \) 的一个理想. \( B \) 的一个元素 \( b \) 称为在 \( \mathfrak{a} \)
+上\emph{整}, 如果其满足方程
 \[
   b^n + a_1 b^{n - 1} + \cdots + a_n = 0,
 \]
@@ -1354,9 +1363,11 @@ A_{\mathfrak{m}} / \mathfrak{n}^n \) 的核为 \( (\mathfrak{m}^n)^{ec} /
 \end{proof}
 
 \begin{proposition}
-  假设 \( A \) 是一个整闭整环, \( E \) 是 \( A \) 的分式域的扩张. 一个 \( E \)
-  的元素 \( \alpha \) 在 \( A \) 的理想 \( \mathfrak{a} \) 上整, 如果 \( \alpha
-  \) 在 \( F \) 的极小多项式系数都在 \( \operatorname{rad}(\mathfrak{a}) \) 上.
+  假设 \( A \) 是一个整闭整环, \( E \) 是 \( A \) 的分式域的扩张, \( \alpha \in
+  E \).
+  如果  \( \alpha \) 在 \( A \) 的理想 \( \mathfrak{a} \) 上整,
+  那么 \( \alpha \) 在 \( F \) 的极小多项式系数都在 \(
+  \operatorname{rad}(\mathfrak{a}) \) 上.
 \end{proposition}
 \begin{proof}
   %TODO: 域论
@@ -1429,7 +1440,9 @@ A_{\mathfrak{m}} / \mathfrak{n}^n \) 的核为 \( (\mathfrak{m}^n)^{ec} /
   使得 \( \mathfrak{q}_i \cap A = \mathfrak{p} \) 对所有 \( i \) 成立.
 \end{corollary}
 
-\section{Noether 正规定理}
+\section{域上有限生成代数定理若干}
+
+\subsection{Noether 正规定理}
 
 \begin{lemma}
   假设 \( f \in k[X_1, \ldots, X_d, T] \). 对恰当的 \( m \in \mathbb{N} \),
@@ -1453,6 +1466,177 @@ A_{\mathfrak{m}} / \mathfrak{n}^n \) 的核为 \( (\mathfrak{m}^n)^{ec} /
   \( R \)-代数. 换句话说, 存在 \( A \) 的元素 \( y_1, \ldots, y_r \) 在 \( k \)
   中代数独立, 使得 \( A \) 在 \( k[y_1, \ldots, y_r] \) 上有限.
 \end{theorem}
+
+\subsection{Nakayama 引理}
+
+\begin{theorem}[Zariski 引理]
+  \label{theorem-Zariski-lemma}
+  假设 \( K/k \) 为域扩张.
+  如果 \( K \) 是有限生成 \( k \)-代数, 那么 \( K \) 在 \( k \) 上代数.
+  特别地, \( K \) 在 \( k \) 上有限.
+\end{theorem}
+\begin{proof}
+  设 \( K = k[x_1, \ldots, x_r] \), 其中 \( x_1, \ldots, x_r \) 为 \( K \)
+  的一组 \( k \)-最小生成元, 下面对 \( r \) 作归纳.
+  \( r = 0 \) 的情况平凡.
+
+  考虑 \( r \geq 1 \).
+  如果 \( K \) 不在 \( k \) 上代数, 那么存在至少一个 \( x_i \) 不在 \( k \)
+  上代数, 通过一个置换不妨设其为 \( x_1 \).
+  于是 \( k[x_1] \) 是带一个未定元的 \( k \) 多项式环, 且 \( K \) 是一个有限生成
+  \( k(x_1) \)-代数, 其一组生成元为 \( x_2, \ldots, x_r \).
+  于是由归纳假设 \( x_2, \ldots, x_r \) 在 \( k(x_1) \) 上代数.
+  因此存在 \( c \in k[x_1] \) 使得 \( cx_2, \ldots, cx_r \) 在 \( k[x_1] \)
+  上整.
+
+  对任意 \( f \in k(x_1) \subseteq K = k[x_1, \ldots, x_r] \), 存在足够大的 \( N
+  \) 使得 \( c^N f \in k[x_1, cx_2, \ldots, cx_r] \).
+  于是 \( c^N f \) 在 \( k[x_1] \) 上整.
+  而 \( k[x_1] \) 作为域上多项式环是一个唯一因子分解整环, 是整闭的, 于是 \( c^N
+  f \in k[x_1] \) 这与 \( k[x_1] \) 有无穷多个不可约元矛盾.
+\end{proof}
+%TODO: 分别考虑是不是代数闭域
+
+\begin{corollary}
+  假设 \( A \) 是一个有限生成 \( k \)-代数.
+  \( A \) 的每个极大理想 \( \mathfrak{m} \) 都是 \( A \) 到某个 \( k
+  \)-有限生成扩域的同态核.
+\end{corollary}
+
+\begin{corollary}
+  假设 \( k \subseteq K \subseteq A \) 为 \( k \)-代数, \( K \) 是一个域, \( A
+  \) 为一个 \( k \)-上有限生成代数.
+  那么 \( K \) 在 \( k \) 上代数.
+\end{corollary}
+\begin{proof}
+  假设 \( \mathfrak{m} \) 为 \( A \) 的一个极大理想, 那么 \( K \cap \mathfrak{m}
+  = (0) \) 于是 \( k \subseteq K \subseteq A/\mathfrak{m} \).
+  由\cref{theorem-Zariski-lemma} \( A/\mathfrak{m} \) 在 \( k \) 上代数, 所以 \(
+  K \) 在 \( k \) 上代数.
+\end{proof}
+
+\subsection{零点定理}
+
+\begin{theorem}[Nullstellensatz]
+  \label{theorem-Nullstellensatz}
+  假设 \( k \) 为一个域, \( \overline{k} \) 为其代数闭包.
+  \( k[X_1, \ldots, X_n] \) 中的每个真理想都在 \( \overline{k}^n \)
+  中有公共零点.
+  换句话说, 存在 \( (a_1, \ldots, a_n) \in \overline{k}^n \) 使得 \( f(a_1,
+  \ldots, a_n) = 0 \) 对所有 \( f \in \mathfrak{a} \) 成立.
+\end{theorem}
+\begin{proof}
+  考虑找到一个 \( k \)-代数同态 \( \varphi: k[X_1, \ldots, X_n] \to \overline{k}
+  \), 其核包含 \( \mathfrak{a} \).
+  如果能找到这样的 \( \varphi \), 设 \( \alpha_i = \varphi(X_i) \).
+  那么对任意 \( f \in \mathfrak{a} \), 则 \( 0 = \varphi f(X_1, \ldots, X_n) =
+  f(\alpha_1, \ldots, \alpha_n) \).
+
+  假设 \( \mathfrak{m} \) 是 \( k[X_1, \ldots, X_n] \) 的一个极大理想, 那么域 \( K
+  = k[X_1, \ldots, X_n]/ \mathfrak{m} \) 是一个有限生成 \( k \)-代数.
+  由\cref{theorem-Zariski-lemma}, \( K \) 在 \( k \) 上代数, 于是有嵌入 \( K
+  \hookrightarrow \overline{k} \).
+  考虑复合 \( k \to K \hookrightarrow \overline{k} \) 即可.
+\end{proof}
+
+\begin{corollary}
+  如果 \( k \) 代数闭, 那么 \( k[X_1, \ldots, X_n] \) 的所有极大理想即
+  \[
+    \left\lbrace (X_1 - a_1,\ldots, X_n - a_n): (a_1, \ldots, a_n) \in k^n
+    \right\rbrace.
+  \]
+\end{corollary}
+\begin{proof}
+  \( (X_1 - a_1,\ldots, X_n - a_n) \) 为 \( k[X_1, \ldots, X_n] \)
+  极大理想是因为 \( k[X_1, \ldots, X_n]/(X_1 - a_1,\ldots, X_n - a_n) \simeq k
+  \).
+
+  假设 \( \mathfrak{m} \) 是 \( K[X_1, \ldots, X_n] \) 的一个极大理想.
+  由\cref{theorem-Nullstellensatz}, \( \mathfrak{m} \) 有公共零点 \( (a_1,
+  \ldots, a_n) \in k^n \).
+  将 \( f \in K[X_1, \ldots, X_n] \) 写成 \( X_i - a_i \) 的多项式, 其常数项即
+  \( f(a_1, \ldots, a_n) \).
+  于是对 \( f \in \mathfrak{m} \) 有 \( f(a_1, \ldots, a_n) = 0 \), 换句话说 \(
+  \mathfrak{m} \subseteq (X_1 - a_1, \ldots, X_n - a_n) \), 结合极大性,
+  只能相等.
+\end{proof}
+
+\begin{theorem}[强 Nullstellensatz]
+  \label{theorem-strong-Nullstellensatz}
+  假设 \( \mathfrak{a} \) 为 \( k[X_1, \ldots, X_n] \) 的任意理想.
+  假设 \( Z(\mathfrak{a}) \) 为 \( \mathfrak{a} \) 在 \( \overline{k}^n \)
+  的所有公共零点集.
+  如果一个多项式 \( h \in k[X_1, \ldots, X_n] \) 在 \( Z(\mathfrak{a}) \)
+  中取值均为零, 那么 \( h \in \operatorname{rad}(\mathfrak{a}) \).
+\end{theorem}
+\begin{proof}
+  只需证明 \( h \neq 0 \) 的情况.
+  由\cref{theorem-Hilbert-basis}, \( k[X_1, \ldots, X_n] \) noetherian, 于是 \(
+  \mathfrak{a} \) 有限生成, 设其由 \( g_1, \ldots, g_m \) 生成.
+  考虑下面关于变元 \( X_1, \ldots, X_n, Y \) 的方程组
+  \[
+    \begin{split}
+      g_i(X_1, \ldots, X_n) &= 0, i = 1, \ldots, m\\
+      1 - Yh(X_1, \ldots, X_n) &= 0.
+    \end{split}
+  \]
+  这样的方程组是没有解的: 如果 \( (a_1, \ldots, a_n, b) \) 满足前 \( m \) 个,
+  那么 \( (a_1, \ldots, a_n) \in \mathfrak{a} \), 于是 \( h(a_1, \ldots, a_n) =
+  0 \), 最后一个方程变成 \( 1 = 0 \), 这是不可能的.
+  因此, 由\cref{theorem-Nullstellensatz}, \( (g_1, \ldots, g_m, 1 - Yh) = k[X_1,
+  \ldots, X_n, Y] \).
+  换句话说, 存在 \( f_i \in k[X_1, \ldots, X_n, Y] \) 使得
+  \[
+    1 = \sum_{i = 1}^mf_i g_i + f_{m + 1}(1 - Yh).
+  \]
+  考虑态射
+  \[
+    k[X_1, \ldots, X_n, Y] \to k(X_1, \ldots, X_n),\quad X_i \mapsto X_i, Y
+    \mapsto h^{-1},
+  \]
+  其将 \( \sum_{i = 1}^mf_i g_i + f_{m + 1}(1 - Yh) \) 映到
+  \[
+    1 = \sum_i f_i(X_1, \ldots, X_n, h^{-1})g_i(X_1, \ldots, X_n).
+  \]
+  对足够大的 \( N \), 两边乘以 \( h^N \) 知道 \( h^N \in \mathfrak{a} \).
+\end{proof}
+
+\begin{proposition}
+  \label{proposition-radical-as-maximal-intersection-in-finite-generated-algebra-over-field}
+  假设 \( A \) 是一个有限生成 \( k \)-代数, \( \mathfrak{a} \) 为 \( A \)
+  的理想.
+  那么
+  \[
+    \operatorname{rad}(\mathfrak{a}) = \bigcap_{\mathfrak{m} \supseteq
+    \mathfrak{a} \text{极大}} \mathfrak{m}.
+  \]
+  特别地, 如果 \( A \) 约化, 那么 \( \bigcap_{\mathfrak{m} \text{极大}}
+  \mathfrak{m} = 0 \).
+\end{proposition}
+\begin{proof}
+  只需对 \( A = k[X_1, \ldots, X_n] \) 的情况证明.
+  由\cref{proposition-radical-as-prime-intersection}包含关系 \( \operatorname{rad}(\mathfrak{a}) \subseteq \bigcap_{\mathfrak{m}
+  \supseteq \mathfrak{a}} \mathfrak{m} \) 是已知的.
+  下面证明\( \operatorname{rad}(\mathfrak{a}) \subseteq \bigcap_{\mathfrak{m}
+  \supseteq \mathfrak{a}} \mathfrak{m} \).
+
+  \cref{theorem-Nullstellensatz} 保证了 \( Z(\mathfrak{a}) \neq \varnothing \),
+  取任意 \( (a_1, \ldots, a_n) \in Z(\mathfrak{a}) \).
+  假设 \( h \in \bigcap_{\mathfrak{m} \supseteq \mathfrak{a}} \mathfrak{m} \),
+  考虑赋值映射
+  \[
+    \operatorname{ev}: k[X_1, \ldots, X_n] \to \overline{k},\quad f \mapsto f(a_1, \ldots, a_n),
+  \]
+  其中 \( \overline{k} \) 为 \( k \) 的代数闭包.
+  \( \operatorname{Im} \operatorname{ev} \) 在 \( k \) 上代数, \(
+  \operatorname{Im} \operatorname{ev} \) 是一个域.
+  因此 \( \operatorname{ker} \operatorname{ev} \) 是一个包含 \( \mathfrak{a} \)
+  的极大理想.
+  由 \( h \) 定义, \( h \in \operatorname{ker} \operatorname{ev} \), 换句话说 \(
+  h(a_1, \ldots, a_n) = 0 \).
+  由\cref{theorem-strong-Nullstellensatz} \( h \in
+  \operatorname{rad}(\mathfrak{a}) \).
+\end{proof}
 
 \section{有向极限与逆极限}
 
