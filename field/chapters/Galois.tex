@@ -324,6 +324,13 @@
   \]
 \end{proof}
 
+\subsection{一个多项式的 Galois 群}
+
+如果 \( f \in F[X] \) 可分,
+那么由\cref{theorem-finite-Galois-TFAE-conditions}其分裂域 \( F_f \) 在 \( F \)
+上 Galois, 称 \( \operatorname{Gal}(F_f/F) \) 为 \( f \) 的\emph{Galois 群},
+记作 \( G_f. \)
+
 \section{一般 Galois 扩张}
 
 \subsection{Galois 扩张的一般定义}
@@ -332,6 +339,7 @@
 上可分且正规.
 
 \begin{proposition}
+  \label{proposition-Galois-over-middle-field}
   如果 \( \Omega \) 在 \( F \) 上 Galois, 那么 \( \Omega \) 在每个 \( \Omega/F
   \) 的中间域 \( M \) 上 Galois.
 \end{proposition}
@@ -485,7 +493,7 @@
   \]
 \end{proposition}
 \begin{proof}
-  映射的满射和良定性由\cref{proposition-Galois-group-definition}保证.
+  映射的满射和良定性由\cref{corollary-Galois-extension-stable-middle-field-Galois}保证.
   而 \( 1_{\operatorname{Gal}(E/F)} \) 在 \(
   \operatorname{Gal}(\Omega/F) \) 的逆像 \( \operatorname{Gal}(G/E) \) 开.
   任意 \( \sigma \in \operatorname{Gal}(E/F) \) 的逆像是 \(
@@ -543,6 +551,7 @@
 \end{proof}
 
 \begin{proposition}
+  \label{proposition-Galois-stable-field}
   对任意 Galois 扩张 \( \Omega/F \), \( \Omega^{\operatorname{Gal}(\Omega/F)} =
   F \).
 \end{proposition}
@@ -611,4 +620,54 @@
   \end{enumerate}
 \end{proposition}
 \begin{proof}
+  \( (1) \) \( \Omega \) 在 \( M \) 上 Galois
+  由\cref{proposition-Galois-over-middle-field}保证.
+  闭: 对任意有限 \( S \subseteq M \), \( G(S) \) 是 \( G \) 的开子群, 因此闭.
+  而 \( \operatorname{Gal}(\Omega/M) = \bigcap_{S \subseteq M} G(S) \).
+  \( \Omega^{\operatorname{Gal}(\Omega/M)} = M \)
+  由\cref{proposition-Galois-stable-field}得到.
+
+  \( (2) \) 由 \( (1) \) \( \Omega \) 在中间域 \( \Omega^H \) 上 Galois,
+  且闭子群 \( \operatorname{Gal}(\Omega/\Omega^H) \) 包含 \( H \).
+  另一方面, 如果 \( \sigma \in G \setminus \overline{H} \), 可以找到 \( F \)
+  上的有限 Galois 扩张 \( E \) 使得
+  \[
+    \sigma \operatorname{Gal}(\Omega/E) \cap \overline{H} = \varnothing.
+  \]
+  限制映射 \( \phi: \operatorname{Gal}(\Omega/F) \to \operatorname{Gal}(E/F)
+  \) 其核即 \( \operatorname{Gal}(\Omega/E) \).
+  于是 \( H \) 不交 \( \sigma \operatorname{Gal}(\Omega/E) \) 蕴含着 \( \sigma
+  \notin \overline{H} = \phi^{-1} \phi H \), \( \sigma \) 不固定 \( \Omega^H \)
+  的子域 \( E^{\phi H} \), 换句话说, \( \sigma \notin \operatorname{Gal}(\Omega/
+  \Omega^H) \).
+\end{proof}
+
+\begin{theorem}[Galois 基本定理]
+  假设 \( \Omega \) 是 \( F \) 的 Galois 扩张, 其 Galois 群为 \( G \).
+  那么下面给出了双射
+  \[
+    \begin{split}
+      \left\lbrace G \text{的闭子群} \right\rbrace &\leftrightarrow \left\lbrace
+      \Omega/F \text{的中间域} \right\rbrace\\ H & \mapsto \Omega^H\\
+      \operatorname{Gal}(G/M) &\mapsfrom M
+    \end{split}
+  \]
+  此外,
+  \begin{enumerate}
+    \item \( H_1 \supseteq H_2 \iff \Omega^{H_1} \subseteq \Omega^{H_2} \).
+    \item \( G \) 的闭子群 \( H \) 开当且仅当 \( [\Omega^H: F] < \infty \).
+      并且, 若此等价条件成立, 那么 \( (G: H) = [\Omega^H: F] \).
+    \item \( \Omega^{\sigma H \sigma^{-1}} = \sigma(\Omega^H),\quad
+      \operatorname{Gal}(\Omega/\sigma H) = \sigma
+      \operatorname{Gal}(\Omega/M)\sigma^{-1} \).
+    \item \( G \) 的闭子群 \( H \) 正规当且仅当 \( \Omega^H \) 在 \( F \)
+      上 Galois.
+      若此等价条件满足, 那么
+      \[
+        \operatorname{Gal}(\Omega^H / F) \simeq G / H.
+      \]
+  \end{enumerate}
+\end{theorem}
+\begin{proof}
+  \( (2) \)
 \end{proof}
