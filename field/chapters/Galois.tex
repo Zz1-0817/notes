@@ -1,4 +1,4 @@
-\chapter{Galois扩张}
+﻿\chapter{Galois扩张}
 
 \section{有限 Galois 扩张}
 
@@ -295,7 +295,7 @@
   性证明类似于\cref{proposition-composite-field-Galois-over-middle-field}.
 
   映射的良定性和单性是显然的.
-  通过计数的方式得到欲证结论.
+  下面通过计数的方式得到欲证结论.
 
   设 \( \sigma_1 \in \operatorname{Gal}(E_1/F) \), 结合 \( E_1 \cap E_2 / F \)
   及\cref{theorem-finite-Galois-fundamental-theorem} 知道 \( \left. \sigma_1
@@ -501,6 +501,7 @@
 \end{proof}
 
 \begin{proposition}
+  \label{proposition-Galois-group-topological-properties}
   Galois 扩张 \( \Omega/F \) 的 Galois 群 \( \operatorname{Gal}(\Omega/F) \)
   Hausdorff, 紧且完全不连通.
 \end{proposition}
@@ -669,5 +670,44 @@
   \end{enumerate}
 \end{theorem}
 \begin{proof}
-  \( (2) \)
+  \( (2) \) 注意到, 映射
+  \[
+    G / H \to \operatorname{Hom}_{F}(\Omega^H, \Omega),\quad \sigma \mapsto
+    \left. \sigma \right\vert_{\Omega^H}
+  \]
+  是一个双射.
+  结合\cref{proposition-Galois-group-topological-properties} \( G \) 紧, \(
+  \Omega^H/F \) 作为 \( \Omega/F \)
+  子扩张可分以及\cref{proposition-single-polynomial-extension-number}即可.
+\end{proof}
+
+\begin{proposition}
+  \label{propostion-Galois-group-of-field-composite-isomorphism}
+  假设 \( E, L \) 为 \( F \) 的域扩张.
+  如果 \( E/F \) Galois, 那么 \( EL/L \) 和 \( E/E \cap L \) Galois, 且映射
+  \[
+    \operatorname{Gal}(EL/L) \to \operatorname{Gal}(E/E \cap L),\quad \sigma
+    \mapsto \left. \sigma \right\vert_{E}
+  \]
+  是拓扑群同构.
+\end{proposition}
+
+\begin{corollary}
+  假设 \( E, L \) 为 \( F \) 的域扩张, \( E/F \) 是 Galois 扩张, \( \Omega \) 是
+  \( F \) 的代数闭包.
+  如果 \( \rho: E \to \Omega \) 和 \( \sigma: L \to \Omega \) 是 \( F
+  \)-同态使得 \( \left. \rho \right\vert_{E \cap L} = \left. \sigma
+  \right\vert_{E \cap L} \), 那么存在 \( F \)-同态 \( \tau: EL \to \Omega \)
+  使得 \( \left. \tau \right\vert_{E} =\rho \) 以及 \( \left. \tau
+  \right\vert_{L} = \sigma \).
+\end{corollary}
+\begin{proof}
+  由\cref{proposition-homomorphism-extend-to-Galois-isomorphism} \( \sigma \)
+  可以扩张为 \( F \)-同态 \( s: EL \to \Omega \).
+  因为 \( \left. \rho \right\vert_{E \cap L} = \left. \sigma \right\vert_{E \cap
+  L} \) 可以找到 \( \varepsilon \in \operatorname{Gal}(E/ E \cap L) \) 使得 \(
+  \left. s \right\vert_{E} = \rho \circ \varepsilon \).
+  由\cref{propostion-Galois-group-of-field-composite-isomorphism}, 存在 \( e \in
+  \operatorname{Gal}(EL/L) \) 使得 \( \left. e \right\vert_{E} = \varepsilon \).
+  取 \( \tau = s \circ e^{-1} \).
 \end{proof}
