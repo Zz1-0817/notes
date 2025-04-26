@@ -1,0 +1,47 @@
+\chapter{基础知识}
+
+\section{集合论公理}
+
+\subsection{Zermelo-Fraenkel 公理}
+
+\begin{enumerate}
+  \item 外延(Extensionality)公理.
+    假设 \( X, Y \) 为两个集合.
+    如果 \( X \) 和 \( Y \) 有相同的元素, 那么 \( X = Y \).
+  \item 配对(Pairing)公理.
+    对任意集合 \( a \) 和 \( b \), 存在一个集合 \( \left\lbrace a, b
+    \right\rbrace \) 包含且只包含 \( a \) 和 \( b \).
+  \item 分离公理模式(Schema of Separation).
+    假设 \( P \) 为关于集合 \( X \) 的一个性质, 并以 \( P(x) \) 表示集合 \( x
+    \in X \) 满足性质.
+    那么集合 \( \left\lbrace x \in X: P(x) \right\rbrace \) 存在.
+  \item 并集(Union)公理.
+    对任意集合 \( X \), 存在并集 \( \bigcup X := \left\lbrace x: x \in X \right\rbrace \)
+  \item 幂集(Power Set)公理.
+    对任意集合 \( X \), 其子集构成一个集合 \( P(X) := \left\lbrace u: u \subset
+    X\right\rbrace \).
+  \item 无穷(Infinity)公理.
+    存在无穷集.
+  \item 替换公理模式(Schema of Replacement).
+    设 \( F \) 为一个以集合 \( X \) 为定义域的函数, 那么存在集合 \( F(X) :=
+    \left\lbrace F(x) : x \in X \right\rbrace \).
+  \item 正则(Regularity)公理.
+    每个一个非空集合都有一个关于属于 \( \in \) 的极小元.
+  \item 选择(Choice)公理.
+    每一族非空集合都有一个选择函数.
+\end{enumerate}
+
+\subsection{序}
+
+\begin{theorem}[超限归纳法]
+  假设 \( B \) 是良序集 \( (A, \leq) \) 的一个子集, 如果条件: 每个 \( a \in A \),
+  \( A \) 的子集 \( \left\lbrace c \in A: c < a \right\rbrace \) 包含在 \(
+  B\) 中蕴含 \( a \in B \), 那么 \( B = A \).
+\end{theorem}
+\begin{proof}
+  下面证明 \( A \setminus B = \varnothing \).
+  如果 \( A \setminus B \neq \varnothing \), 那么由良序集定义, \( A \setminus B
+  \) 存在一个极小元 \( a \).
+  由极小性有 \( \left\lbrace c \in A: c < a \right\rbrace \subseteq B \), 结合
+  \( B \) 性质知道 \( a \in B \), 这与 \( a \) 的定义矛盾.
+\end{proof}
