@@ -1,0 +1,158 @@
+\chapter{整环}
+
+\section{唯一因子分解整环}
+
+假设 \( A \) 是一个整环.
+
+\begin{enumerate}
+  \item \( a \in A \) 称为是 \emph{不可约的},
+    如果它非零非单位且没有非平凡分解, 也就是
+    \[
+      a = bc \implies b \text{或} c \text{是单位}.
+    \]
+  \item \( a \in A \) 称为是素的, 如果其非零非单位, 且 \( (a) \) 是素理想,
+    也就是
+    \[
+      a \mid bc \implies a \mid b \text{ 或 } a \mid c.
+    \]
+\end{enumerate}
+一个整环 \( A \) 称为是\emph{唯一因子分解整环}, 如果每个 \( A \)
+的每个非零非单位元 \( a \) 都可以写成有限个不可约元素的乘积, 并且,
+这个乘积在差乘上一个单位的意义上唯一.
+
+\begin{proposition}
+  \label{proposition-prime-and-irreducible-element}
+  假设 \( A \) 是一个整环, \( a \) 是 \( A \) 的一个非零非单位元. 如果 \( a \)
+  素, 那么 \( a \) 不可约; 如果 \( A \) 是唯一因子分解整环, 那么反过来亦成立.
+\end{proposition}
+\begin{proof}
+  假设 \( a \) 素且 \( a = bc \). 如果有 \( q \) 使得 \( b = aq \), 那么 \( a =
+  aqc \), 从而 \( c \) 是单位.
+
+  如果 \( a \) 不可约, \( a | bc \), \( A \) 是唯一因子分解整环. 那么有 \( q \)
+  使得 \( bc = aq \), 两边都写成不可约元的乘积立刻得到结果.
+\end{proof}
+
+\begin{corollary}
+  假设 \( A \) 是一个整环. 如果 \( A \) 是一个唯一因子分解整环, 那么 \( A \)
+  的每个高度为 \( 1 \) 的素理想是主理想.
+  反过来对 noetherian 整环是正确的.
+\end{corollary}
+%TODO: noetherian
+\begin{remark}
+  \textbf{并非} 所有唯一因子分解整环都是 noetherian 的, 见
+  \href{https://math.stackexchange.com/questions/254226/does-ufd-imply-noetherian}{stackexchange}.
+\end{remark}
+
+\begin{proposition}
+  假设 \( A \) 是一个整环. 如果
+  \begin{enumerate}
+    \item \( A \) 的每个非零非单位元都是不可约元的有限乘积;
+    \item \( A \) 的每个每个不可约元都是素的;
+  \end{enumerate}
+  那么 \( A \) 是一个唯一因子分解整环.
+\end{proposition}
+\begin{proof}
+  由 (1) 可以假设 \( a \in A \) 有两个不可约分解 \( a_1 \cdots a_m = b_1 \cdots
+  b_n \).
+  由 (2), 某个 \( b_i \) 被 \( a_1 \) 整除, 不妨记为 \( b_1 \), 从而有
+  \( u \) 使得 \( b_1 = a_1 u \). 因此
+  \[
+    a_2 \cdots a_m = (ub_2)b_3 \cdots b_n.
+  \]
+  于是按归纳法即可得到结论.
+\end{proof}
+
+\begin{proposition}
+  如果整环 \( A \) 的每个主理想上升链都终止, 那么 \( A \)
+  的每个非零非单位元都有有限的不可约分解.
+\end{proposition}
+\begin{proof}
+  % 由假设 \( A \) 的非空主理想子集 \( \mathcal{S} \) 的上升链均由上界, 于是由
+  % Zorn 引理, \( \mathcal{S} \) 有极大元.
+  假设 \( \mathcal{S} \) 为 \( A \)
+  中没有不可约分解的元素生成的主理想构成的集合, 下面证明 \( \mathcal{S} =
+  \varnothing \).
+
+  如若不然, 假设 \( \mathcal{S} \neq \varnothing \).
+  由条件, \( \mathcal{S} \) 的上升链终止, 即有上界, 于是由 Zorn 引理, \(
+  \mathcal{S} \) 存在某个极大元 \( (a) \).
+  按假设 \( a \) 本身是可约的, 从而存在非零非单位元 \( b, c \in A \) 使得 \( a =
+  bc \).
+  如果 \( bc \) 都有有限不可约分解, 那么 \( a \) 也有有限不可约分解,
+  这与 \( a \) 的选取矛盾, 因此 \( b, c \) 均没有不可约分解.
+  但是 \( (a) \subsetneq(b) \) 且 \( (a) \subsetneq(c) \), 这与 \( (a) \)
+  的极大性矛盾.
+\end{proof}
+
+\subsection{Gauss 引理}
+
+\begin{proposition}
+  假设 \( A \) 是一个唯一因子分解整环, 其分式域为 \( F \). 如果 \( A[X] \)
+  的一个多项式 \( f \) 能在 \( F[X] \) 中分解为两个非常多项式的乘积,
+  那么它在 \( A[X] \) 中本身就能分解为两个非常多项式的乘积.
+\end{proposition}
+\begin{proof}
+  假设 \( f = gh \in F[X] \).
+  由 \( A \) 的唯一因子分解性, 可以找到 \( c, d \in A  \) 使得 \( g_1 = cg, h_1
+  = dh \in A[X] \), 因此
+  \[
+    cd f = g_1 h_1 \in A[X].
+  \]
+  如果 \( A \) 的不可约元 \( p \) 整除 \( cd \), 那么
+  \[
+    0 = \overline{g_1} \cdot \overline{h_1} \in (A / (p))[X].
+  \]
+  由\cref{proposition-prime-and-irreducible-element} \( p \) 素, 所以 \( (A /
+  (p))[X] \) 是一个整环. 因此 \( p \) 要么整除 \( g_1 \) 的所有系数, 要么整除 \(
+  g_2 \) 的所有系数, 不妨设前者. 于是我们能够找到 \( g_2 \in A[X] \) 使得 \( g_1
+  = pg_2 \). 又有分解
+  \[
+    (cd / p)f = g_2 h_1 \in A[X].
+  \]
+  通过归纳, 我们能把 \( cd \) 的所有不可约元除去.
+\end{proof}
+
+假设 \( A \) 是一个唯一因子分解整环. 一个非零多项式
+\[
+  f = a_0 + a_1 X + \cdots + a_m X^m \in A[X]
+\]
+称为是\emph{本原}的, 如果 \( a_i \) 没有非单位的公因子.
+\( f \) 系数的最大公因子称为 \( f \) 的\emph{容量}, 记作 \( c(f) \).
+
+\begin{proposition}
+  如果 \( A \) 是一个唯一因子分解整环, 那么 \( A[X] \)
+  中两个本原多项式的还是本原的.
+\end{proposition}
+
+\begin{proposition}
+  假设 \( A \) 是一个唯一因子分解整环, \( f, g \in F[X] \), 那么
+  \[
+    c(fg) = c(f) \cdot c(g).
+  \]
+\end{proposition}
+
+\begin{corollary}
+  \( A[X] \) 中的不可约元由  \( A \) 中的不可约元和 \( A[X] \)
+  的在 \( F[X] \) 不可约的非常本原多项式组成.
+\end{corollary}
+
+\begin{theorem}
+  如果 \( A \) 是一个唯一因子分解整环, 那么 \( A[X] \) 亦是.
+\end{theorem}
+
+假设 \( k \) 是一个域. \( X_1, \ldots, X_n \) 中的一个单项式是形如
+\[
+  X_1^{a_1} \cdots X_n^{a_n},\quad a_j \in \mathbb{N}
+\]
+的表达式. 上面这个单项式的 \emph{总次数} 是 \( \sum a_i \).
+
+\begin{theorem}
+  环 \( k[X_1, \ldots, X_n] \) 是唯一因子分解整环.
+\end{theorem}
+
+\begin{corollary}
+  一个 \( k[X_1, \ldots, X_n] \) 的非零真理想 \( (f) \) 是素理想当且仅当 \( f \)
+  不可约.
+\end{corollary}
+

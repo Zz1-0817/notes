@@ -2,41 +2,268 @@
 
 \section{集合论公理}
 
+\subsection{公式}
+
+集合论中的公式由原子公式
+\[
+  x \in y,\quad x = y
+\]
+组成.
+
+\subsection{Russell 悖论}
+
+\paragraph{概括公理模式(Axiom Schema of Comprehension)} 如果 \( P \) 是一个性质,
+那么存在一个集合 \( Y = \left\lbrace x: P(x) \right\rbrace \).
+
 \subsection{Zermelo-Fraenkel 公理}
 
+\paragraph{外延公理(Axiom of Extensionality)} 假设 \( X, Y \) 为两个集合.
+如果 \( X \) 和 \( Y \) 有相同的元素, 那么 \( X = Y \).
+\[
+  \forall u (u \in X \leftrightarrow u \in Y) \rightarrow X = Y.
+\]
+
+\paragraph{配对公理(Axiom of Pairing)} 对任意集合 \( a \) 和 \( b \),
+存在一个集合 \( \left\lbrace a, b \right\rbrace \) 包含且只包含 \( a \) 和 \( b
+\).
+\[
+  \forall a \forall b \exists c \forall x (x \in c \leftrightarrow x = a \vee
+  x = b)
+\]
+
+\paragraph{分离公理模式(Axiom Schema of Separation)} 假设 \( P \) 为关于集合 \(
+X \) 的一个性质, 并以 \( P(x) \) 表示集合 \( x \in X \) 满足性质.
+那么集合 \( \left\lbrace x \in X: P(x) \right\rbrace \) 存在.
+
+\paragraph{并集公理(Axiom of Union)} 对任意集合 \( X \), 存在并集 \( \bigcup X
+:= \left\lbrace x: x \in X \right\rbrace \).
+
+\paragraph{幂集公理(Axiom Power Set)} 对任意集合 \( X \), 其子集构成一个集合 \(
+P(X) := \left\lbrace u: u \subset X\right\rbrace \).
+
+\paragraph{无穷公理(Axiom of Infinity)} 存在无穷集.
+
+\paragraph{替换公理模式(Axiom Schema of Replacement)}. 设 \( F \) 为一个以集合
+\( X \) 为定义域的函数, 那么存在集合 \( F(X) := \left\lbrace F(x) : x \in X
+\right\rbrace \).
+
+\paragraph{正则公理(Axiom of Regularity)} 每个一个非空集合都有一个关于属于 \(
+\in \) 的极小元.
+
+\paragraph{选择公理(Axiom of Choice)} 每一族非空集合都有一个选择函数.
+
+\section{序}
+
+集合 \( P \) 上的一个二元关系 \( < \) 称为 \( P \) 上的\emph{偏序}, 如果
 \begin{enumerate}
-  \item 外延(Extensionality)公理.
-    假设 \( X, Y \) 为两个集合.
-    如果 \( X \) 和 \( Y \) 有相同的元素, 那么 \( X = Y \).
-  \item 配对(Pairing)公理.
-    对任意集合 \( a \) 和 \( b \), 存在一个集合 \( \left\lbrace a, b
-    \right\rbrace \) 包含且只包含 \( a \) 和 \( b \).
-  \item 分离公理模式(Schema of Separation).
-    假设 \( P \) 为关于集合 \( X \) 的一个性质, 并以 \( P(x) \) 表示集合 \( x
-    \in X \) 满足性质.
-    那么集合 \( \left\lbrace x \in X: P(x) \right\rbrace \) 存在.
-  \item 并集(Union)公理.
-    对任意集合 \( X \), 存在并集 \( \bigcup X := \left\lbrace x: x \in X \right\rbrace \)
-  \item 幂集(Power Set)公理.
-    对任意集合 \( X \), 其子集构成一个集合 \( P(X) := \left\lbrace u: u \subset
-    X\right\rbrace \).
-  \item 无穷(Infinity)公理.
-    存在无穷集.
-  \item 替换公理模式(Schema of Replacement).
-    设 \( F \) 为一个以集合 \( X \) 为定义域的函数, 那么存在集合 \( F(X) :=
-    \left\lbrace F(x) : x \in X \right\rbrace \).
-  \item 正则(Regularity)公理.
-    每个一个非空集合都有一个关于属于 \( \in \) 的极小元.
-  \item 选择(Choice)公理.
-    每一族非空集合都有一个选择函数.
+  \item 对任意 \( p \in P \), \( p \not< p \).
+  \item 如果 \( p < q, q < r \), 那么 \( p < r \).
+\end{enumerate}
+此时 \( (P, <) \) 称为一个\emph{偏序集}.
+\( P \) 上的偏序 \( < \) 称为\emph{线性序}, 如果对所有\( p, q \in P \),
+下面之一成立
+\[
+  p < q,\quad p = q,\quad q < p.
+\]
+如果 \( < \) 是一个偏序(线性序), 那么关系 \( \leq \)
+也被称为\emph{偏序}(\emph{线性序})(而 \( < \) 有时被称为\emph{严格}序), 其中符号
+\( \leq \) 意指 \( p \leq q \) 如果 \( p < q \) 或称 \( q = p \) 成立.
+
+假设 \( (P, <) \) 是一个偏序集, \( X \) 是 \( P \) 的一个非空子集, \( a \in P
+\), 那么
+\begin{enumerate}
+  \item \( a \) 称为 \( X \) 的一个\emph{极大元}, 如果 \( a \in X \) 且 
+    \( (\forall x \in X) a \not < x \).
+    \( a \) 称为 \( X \) 的一个\emph{极小元}, 如果 \( a \in X \) 且
+    \( (\forall x \in X) x \not < a \).
+  \item \( a \) 称为 \( X \) 的一个\emph{最大元}, 如果 \( a \in X \) 且
+    \( (\forall x \in X) x \leq a \).
+    \( a \) 称为 \( X \) 的一个\emph{最小元}, 如果 \( a \in X \) 且
+    \( (\forall x \in X) a \leq x \).
+  \item \( a \) 称为 \( X \) 的一个\emph{上界}, 如果
+    \( (\forall x \in X) x \leq a\).
+    \( a \) 称为 \( X \) 的一个\emph{下界}, 如果
+    \( (\forall x \in X) a \leq x\).
+  \item \( a \) 称为 \( X \) 的一个\emph{上确界}, 如果 \( a \) 是 \( X \)
+    的一个最小上界.
+    \( a \) 称为 \( X \) 的一个\emph{下确界}, 如果 \( a \) 是 \( X \)
+    的一个最大下界.
 \end{enumerate}
 
-\subsection{序}
+假设 \( (P, <), (Q, <) \) 是偏序集, \( f: P \to Q \) 是一个函数.
+称 \( f \) 是\emph{保序的}如果当 \( x < y \) 时有 \( f(x) < f(y) \).
+如果 \( (P, <), (Q, <) \) 都是线性序的, 那么包含函数也被称为\emph{上升}函数.
+
+一个 \( P \) 到 \( Q \) 的一一对应的满函数 \( f \) 称为是 \( P \) 和 \( Q \)的\emph{同构},
+如果 \( f \) 和 \( f^{-1} \) 都是保序映射, 并且, 此时称 \( (P, <) \) 同构于 \(
+(Q, <)\).
+\( (P, <) \) 到自身的同构称为 \( (P, <) \) 的\emph{自同构}.
+
+\subsection{良序}
+
+集合 \( P \) 上的线性序 \( < \) 称为是\emph{良序}, 如果 \( P \)
+的每个非空子集都有一个极小元.
+
+\begin{lemma}
+  \label{lemma-well-order-set-increasing-funcion-to-itself}
+  如果 \( (W, <) \) 是一个良序集, \( f: W \to W \) 是一个上升函数, 那么对每个
+  \( x \in W \) 有 \( f(x) \geq x \).
+\end{lemma}
+\begin{proof}
+  由分离公理模式, 可以考虑集合 \( X = \left\lbrace x \in W: f(x) < x
+  \right\rbrace \), 只需证明 \( X = \varnothing \) 即可.
+  如果 \( X \neq \varnothing \), 怎么由良序集定义 \( X \)
+  有一个极小元 \( z \).
+  那么由 \( f(x) < x \) 有 \( f(f(x)) < f(x) \), 这与 \( x \) 的极小性矛盾.
+\end{proof}
+
+\begin{corollary}
+  良序集的自同构只有恒等映射.
+\end{corollary}
+
+\begin{corollary}
+  如果两个良序集 \( W_1, W_2 \) 是同构的, 那么 \( W_1 \) 到 \( W_2 \)
+  的同构是唯一的.
+\end{corollary}
+
+\paragraph{前段} 如果 \( W \) 是一个良序集, \( u \in W \), 那么 \( \left\lbrace
+x \in W: x < u \right\rbrace \) 称为由 \( u \) 给出的 \( W \) 的\emph{前段}.
+
+\begin{lemma}
+  \label{lemma-well-order-set-not-isomorphic-to-its-initial-segment}
+  没有良序集同构于其自身的前段.
+\end{lemma}
+\begin{proof}
+  假设不然, 存在 \( (P, <) \) 是通过 \( f \) 同构于其前段 \( \left\lbrace x: x
+  \in u \right\rbrace \) 的良序集, 那么 \( f(u) < u \),
+  这与\cref{lemma-well-order-set-increasing-funcion-to-itself}矛盾.
+\end{proof}
+
+\begin{theorem}
+  假设 \( W_1 \) 和 \( W_2 \) 为两个良序集, 那么以下条件中有且只有满足
+  \begin{enumerate}
+    \item \( W_1 \) 同构于 \( W_2 \).
+    \item \( W_1 \) 同构于 \( W_2 \) 的一个前段.
+    \item \( W_2 \) 同构于 \( W_1 \) 的一个前段.
+  \end{enumerate}
+\end{theorem}
+\begin{proof}
+  如果 \( u \in W_i \), 以 \( W_i(u) \) 记 \( W_i \) 中 \( u \) 给出的前段.
+  令函数 \( f \) 为
+  \[
+    f = \left\lbrace (x, y) \in W_1 \times W_2: W_1(x) \text{同构于} W_2(y)
+    \right\rbrace.
+  \]
+
+  \( f \) 是一个一一对应, 即如果 \( W_1(x) \) 同构与 \( W_2(y_1), W_2(y_2) \),
+  那么 \( y_1 = y_2 \).
+  如果 \( y_1 < y_2 \), 不仿设 \( y_1 < y_2 \), 那么 \( W_2(y_1) \) 是 \( W_2(y_2)
+  \) 的一个前段, 而 \( W_2(y_2) \) 同构于 \( W_1(x) \), 因此同构于 \( W_1(y_1)
+  \), 这与\cref{lemma-well-order-set-not-isomorphic-to-its-initial-segment}矛盾.
+
+  \( f \) 是一个保序映射: 如果 \( h \) 是 \( W_1(x) \) 和 \( W_2(y) \)
+  间的同构, 且 \( x' < x \), 那么 \( W_1(x') \) 和 \( W_2(h(x
+  ')) \) 是同构的, 于是 \( f(x') = h(x') \).
+  换句话说, \( x' < x \implies f(x') = h(x') < y = f(x) \).
+
+  如果 \( \operatorname{dom} f = W_1 \) 且 \( \operatorname{ran} f = W_2 \),
+  那么 (1) 成立.
+
+  如果 \( \operatorname{ran} f \neq W_2 \), 由 \( W_2 \) 是良序集, 可以取 \(
+  W_2 \setminus \operatorname{ran} f \) 的极小元 \( y_0 \).
+  实际上, \( \operatorname{ran} f = W_2(y_0) \).
+  \( \operatorname{ran} f \supset W_2(y_0) \) 由极小性保证;
+  \( \operatorname{ran} f \subset W_2(y_0) \) 是因为, 对任意 \( y \in
+  \operatorname{ran} f \), 如果存在 \( y \in \operatorname{ran} f \) 使得 \( y
+  \notin W_2(y_0) \), 即 \( y \geq y_0 \), 那么总能得到 \( y_0 \in
+  \operatorname{ran} f \), 这与假设矛盾.
+  这时, 还有 \( \operatorname{dom}f = W_1 \).
+  否则, 再由 \( W_1 \) 良序, 取 \( W_1 \setminus \operatorname{dom} f \) 极小元
+  \( x_0 \).
+  类似地, 可以知道 \( \operatorname{dom} f = W_1(x_0) \).
+  于是 \( W_1(x_0) \) 同构于 \( W_2(y_0) \), 换句话说 \( (x_0, y_0) \in f \),
+  这与 \( x_0, y_0 \) 取法矛盾.
+  总结之, \( \operatorname{ran}f = W_2(y_0), \operatorname{dom} f = W_1 \),
+  这正是 (2).
+
+  类似于 (2), 如果 \( \operatorname{ran} f \neq W_1 \), 那么可以知道这时满足
+  (3).
+\end{proof}
+
+\subsection{序数}
+
+一个集合 \( T \) 称为是\emph{传递的}, 如果每个 \( T \) 的元素都是 \( T \)
+的子集.
+\begin{remark}
+  \( T \) 传递 \( \iff \bigcup T \subset T \iff T \subset \mathcal{P}(T) \).
+\end{remark}
+一个集合称为一个\emph{序数}, 如果其传递且关于 \( \in \) 良序.
+我们常用小写希腊字母 \( \alpha, \beta, \gamma, \ldots \) 来记序数,
+并将所有序数组成的类记作 \( \operatorname{Ord} \).
+
+\begin{lemma}
+  \label{lemma-ordinal-number}
+  \begin{enumerate}
+    \item \( 0 = \varnothing \) 是一个序数.
+    \item 如果 \( \alpha \) 是一个序数, \( \beta \in \alpha \), 那么 \( \beta \)
+      是一个序数.
+    \item 如果 \( \alpha \neq \beta \) 为序数, \( \alpha \subset \beta \), 那么
+      \( \alpha \in \beta \).
+    \item 如果 \( \alpha, \beta \) 为序数, 那么要么 \( \alpha \subset \beta \)
+      或 \( \beta \subset \alpha \).
+  \end{enumerate}
+\end{lemma}
+\begin{proof}
+  (1) 和 (2) 的证明是直接依定义的.
+
+  (3) 如果 \( \alpha \subsetneq \beta \), 由 \( \beta \) 良序, 可以取 \( \beta -
+  \alpha \) 中的一个极小元素 \( \gamma \).
+  于是 \( \alpha \) 即 \( \gamma \) 给出的前段, 而由传递性 \( \gamma \)
+  的前段就是 \( \gamma \), 于是 \( \alpha = \gamma \in \beta \).
+
+  (4) 可以知道 \( \gamma =  \alpha \cap \beta \) 也是一个序数, 只需证明 \( \gamma =
+  \alpha \) 或 \( \gamma = \beta \) 之一成立.
+  假设不然, \( \gamma \in \alpha \) 和 \( \gamma \in \beta \) 同时成立, 则 \(
+  \gamma \in \gamma \) 这与 \( \in \) 是严格序矛盾.
+\end{proof}
+
+\begin{proposition}
+  \begin{enumerate}
+    \item \( < \) 是 \( \operatorname{Ord} \) 中的线性序.
+    \item 对每个 \( \alpha \in \operatorname{Ord} \), \( \alpha = \left\lbrace
+      \beta: \beta < \alpha \right\rbrace \).
+    \item 如果 \( C \) 是一个序数的非空类, 那么 \( \bigcap C \) 也是一个序数,
+      且 \( \bigcap C \in C \), \( \bigcap C = \inf C \).
+    \item 如果 \( X \) 是序数组成的一个非空集合, 那么 \( \bigcup X \)
+      也是一个序数, 且 \( \bigcup = \sup X \).
+    \item 对每个 \( \alpha \in \operatorname{Ord} \), \( \alpha \cup
+      \left\lbrace \alpha \right\rbrace \) 是一个序数, 且 \( \alpha \cup
+      \left\lbrace \alpha \right\rbrace = \inf \left\lbrace \beta \in
+        \operatorname{Ord}: \beta >
+      \alpha \right\rbrace \)(一般来说, 这个不一定是个集合).
+      于是, 可以定义 \( \alpha \) 的\emph{后继} \( \alpha + 1 = \alpha \cup
+      \left\lbrace \alpha \right\rbrace \).
+  \end{enumerate}
+\end{proposition}
+
+\begin{theorem}
+  每一个良序集都同构于一个唯一的序数.
+\end{theorem}
+\begin{proof}
+  唯一性由\cref{lemma-ordinal-number}和\cref{lemma-well-order-set-not-isomorphic-to-its-initial-segment}保证.
+  给定一个良序集 \( W \) 定义 \( \Omega \) 上的函数 \( F(x) = \alpha_x \),
+  如果序数 \( \alpha_x \) 同构于 \( x \) 在 \( W \) 给出的前段.
+  对每个 \( x \) 这样的 \( \alpha_x \) 都是存在的, 否则考虑最小不存在这样 \(
+  \alpha_x \) 的 \( x \)
+
+  此时
+  由替换公理知道, \( F(W) \) 是一个集合.
+\end{proof}
 
 \begin{theorem}[超限归纳法]
   假设 \( B \) 是良序集 \( (A, \leq) \) 的一个子集, 如果条件: 每个 \( a \in A \),
-  \( A \) 的子集 \( \left\lbrace c \in A: c < a \right\rbrace \) 包含在 \(
-  B\) 中蕴含 \( a \in B \), 那么 \( B = A \).
+  \( A \) 的前段 \( \left\lbrace c \in A: c < a \right\rbrace \) 包含在 \(
+  B \) 中蕴含 \( a \in B \), 那么 \( B = A \).
 \end{theorem}
 \begin{proof}
   下面证明 \( A \setminus B = \varnothing \).
@@ -44,4 +271,34 @@
   \) 存在一个极小元 \( a \).
   由极小性有 \( \left\lbrace c \in A: c < a \right\rbrace \subseteq B \), 结合
   \( B \) 性质知道 \( a \in B \), 这与 \( a \) 的定义矛盾.
+\end{proof}
+
+\begin{theorem}[超限归纳法]
+  \label{theorem-transfinite-induction}
+  假设 \( C \) 是为一类序数, 且
+  \begin{enumerate}
+    \item \( 0 \in C \);
+    \item 如果 \( \alpha \in C \), 那么 \( \alpha + 1 \in C \);
+    \item 如果 \( \alpha \) 是非零极限序数, 对所有 \( \beta < \alpha \) 有 \(
+      \beta \in C  \), 那么 \( \alpha \in C \);
+  \end{enumerate}
+  那么 \( C = \operatorname{On} \).
+\end{theorem}
+
+\begin{theorem}[良序定理, Zermelo]
+  每一个集合都能被赋予一个良序结构.
+\end{theorem}
+\begin{proof}
+  假设 \( A \) 是一个集合, 由幂集公理 \( \mathcal{P}(A) \) 是一个集合.
+  由分离公理模式 \( \mathcal{A} = \left\lbrace x \in \mathcal{P}(A): x \notin
+  \varnothing \right\rbrace \) 是一个集合.
+  由选择公理, 存在 \( \mathcal{A} \) 的一个选择函数 \( f \).
+
+
+  % 下面将应用超限归纳法\eqref{theorem-transfinite-induction}构造一个 \( A \)
+  % 到某个基数的双射.
+  %
+  % 首先将 \( c(A) \mapsto 0 \), 并逐步扩张到双射 \( c(A \setminus X)  \),
+  % 其中 \( c(X) \mapsto \alpha \) 已经定义.
+  % 假设 \( s_{\beta} \) 对所有 \( \beta < \alpha \) 已定义
 \end{proof}
