@@ -1,0 +1,265 @@
+\chapter{生成代数}
+
+\section{生成模}
+
+\begin{proposition}
+  \label{proposition-exact-squence-middle-submodules-equality}
+  假设 \( A \) 是一个环且
+  \[
+    0 \to M' \xrightarrow{\alpha} M \xrightarrow{\beta} M'' \to 0
+  \]
+  是一个 \( A \)-模正合列, 那么
+  \begin{enumerate}
+    \item 如果 \( N, P \) 是 \( M \) 的子模, 使得
+      \[
+        N \subset P,\quad \alpha(M') \cap N = \alpha(M') \cap P,\quad \beta(N) =
+        \beta(P)
+      \]
+      那么 \( N = P \).
+    \item 如果 \( M' \) 和 \( M'' \) 都是有限生成的, 那么 \( M \)
+      亦是有限生成的.
+  \end{enumerate}
+\end{proposition}
+\begin{proof}
+  (1) \( P \subset N \)
+  设 \( p \in P \), 那么存在 \( n \in N \) 使得 \( \beta(n) = \beta(p) \), 所以
+  \( p - n = \operatorname{ker} p = \operatorname{im} \alpha \).
+  而 \( p - n \in P \), 又由条件 \( p - n \in N \). 因此 \( p = (p - n) + n
+  \in N \).
+
+  (2) 假设 \( S', S'' \) 分别为 \( M', M \) 的有限集, 使得 \( \left\langle {S'}
+  \right\rangle = M',\; \left\langle \beta (S'') \right\rangle = M'' \).
+  设 \( N = \alpha(S') \cup S'' \) 由 (1) 可以知道 \( N = M \).
+  而 \( \alpha(S') \cup S'' \) 是一个有限集, 于是 \( M \) 有限生成.
+\end{proof}
+
+\begin{lemma}
+  每个有限生成理想的生成元集包含一个有限的生成元集.
+\end{lemma}
+\begin{proof}
+  令 \( S \) 为理想 \( \mathfrak{a} \) 的一个生成元集, \( \mathfrak{a} \)
+  由有限集 \( \left\lbrace a_1, \ldots, a_n \right\rbrace \) 生成. 那么 \( a_i
+  \) 由 \( S \) 的有限子集 \( S_i \) 生成.
+  于是 \( \bigcup S_i \) 有限且生成 \( \mathfrak{a} \).
+\end{proof}
+
+\subsection{有限生成模与局部化}
+
+\begin{proposition}
+  假设 \( M \) 是一个有限生成 \( A \)-模.
+  如果 \( S^{-1} M = 0 \), 那么存在 \( h \in S \) 使得 \( M_h = 0 \).
+\end{proposition}
+
+\section{Noetherian 环}
+
+\begin{proposition}
+  \label{proposition-Noetherian-ring-iff-condition}
+  给定一个环 \( A \), 下面条件等价
+  \begin{enumerate}
+    \item \( A \) 的每个理想都是有限生成的.
+    \item \( A \) 的每个理想上升链 \( \mathfrak{a}_1 \subseteq \mathfrak{a}_2 \subseteq
+      \cdots \) 都将终止, 也就是存在 \( m \) 使得
+      \[
+        \mathfrak{a}_m = \mathfrak{a}_{m + 1} = \cdots.
+      \]
+    \item \( A \) 的任何非空的理想集都存在一个极大元.
+  \end{enumerate}
+  一个环 \( A \) 称为是\emph{noetherian的}, 如果 \( A \) 满足上面等价条件.
+\end{proposition}
+\begin{proof}
+  (1) \( \implies \) (2)
+  如果 \( \mathfrak{a}_1 \subseteq \mathfrak{a}_2 \subseteq \cdots \)
+  是一个上升链, 那么 \( \mathfrak{a} = \bigcup \mathfrak{a}_i \) 是一个理想.
+  由假设, \( \mathfrak{a} \) 有有限个生成元, 设其为 \( a_1, \ldots, a_n \).
+  因此, 能找到一个 \( m \in \mathbb{N} \) 使得所有 \( a_i \in \mathfrak{a}_m \)
+  成立, 因此
+  \[
+    \mathfrak{a}_m = \mathfrak{a}_{m + 1} = \cdots = \mathfrak{a}.
+  \]
+
+  (2) \( \implies \) (3) 如果 \( \Sigma \) 没有极大元,
+  那么能找到一个无穷的上升链, 与假设矛盾.
+
+  (3) \( \implies \) (1) 假设 \( \mathfrak{a} \) 是 \( A \) 的任意一个理想.
+  设 \( \Sigma \) 为所有包含于 \( \mathfrak{a} \) 的有限生成理想组成的集合.
+  由假设, \( \Sigma \) 有一个极大元 \( \mathfrak{m} \), 下面证明 \( \mathfrak{m}
+  = \mathfrak{a} \), 于是 \( \mathfrak{a} \) 有限生成.
+  反之不然, 假设 \( \mathfrak{a} \neq \mathfrak{m} \).
+  那么存在 \( x \in \mathfrak{a} \setminus \mathfrak{m} \), 但 \( \mathfrak{m}
+  \subsetneq \left( x, \mathfrak{m} \right) \) 与极大性矛盾.
+\end{proof}
+
+\begin{remark}
+  \label{remark-noetherian-ring}
+  \begin{enumerate}
+    \item 主理想整环和域是 noetherian 的.
+    \item noetherian 环的商自然是 noetherian 环.
+  \end{enumerate}
+\end{remark}
+
+\begin{proposition}
+  \label{proposition-Noetherian-module-iff-condition}
+  假设 \( A \) 是一个环. 那么下面条件对 \( A \)-模 \( M \) 是等价的
+  \begin{enumerate}
+    \item 每个 \( M \) 的子模是有限生成的.
+    \item 每个 \( M \) 的子模上升链是终止的.
+    \item 每个 \( M \) 的非空子模集族有极大元.
+  \end{enumerate}
+  一个 \( A \)-模 \( M \) 是\emph{noetherian}的, 如果其满足上面等价条件.
+\end{proposition}
+
+\subsection{Noetherian 环的基本性质}
+
+\begin{proposition}
+  \label{proposition-exact-sequence-noetherian-module}
+  假设 \( A \) 是一个环且
+  \[
+    0 \to M' \xrightarrow{\alpha} M \xrightarrow{\beta} M'' \to 0
+  \]
+  是一个 \( A \)-模正合列, 那么 \( M \) 是 noetherian 的当且仅当 \( M' \) 和 \(
+  M'' \) 都是 noetherian 的.
+  特别地, \( M_1 \oplus M_2 \) noetherian 当且仅当 \( M_1 \) 和 \( M_2 \) 都
+  noetherian.
+\end{proposition}
+\begin{proof}
+  只证明\( \impliedby \).
+  设 \( \mathfrak{a}_1 \subset \mathfrak{a}_2 \subset \cdots \) 为 \( M \)
+  的一个子模升链.
+  由假设 \( \alpha(M') \cap \mathfrak{a}_1 \subset \alpha(M') \cap
+  \mathfrak{a}_2 \subset \cdots , \beta(\mathfrak{a}_1) \subset
+  \beta(\mathfrak{a}_2) \subset \cdots \) 终止, 于是可以设 \( m, n \in
+  \mathbb{N} \) 使得 \( \alpha(M') \cap \mathfrak{a}_m = \alpha(M') \cap
+  \mathfrak{a}_{m + 1} = \cdots, \beta(\mathfrak{a}_n) = \beta(\mathfrak{a}_{n +
+  1}) = \cdots \).
+  取 \( k = \max(m, n) \),
+  那么由\cref{proposition-exact-squence-middle-submodules-equality} \(
+  \mathfrak{a}_{k} = \mathfrak{a}_{k + 1} = \cdots \).
+\end{proof}
+
+\begin{proposition}
+  \label{proposition-finite-generated-module-over-noetherian-ring}
+  每个 noetherian 环 \( A \) 上的有限生成模 \( M \) 是 noetherian 的.
+\end{proposition}
+\begin{proof}
+  对 \( M \) 的极小生成元个数 \( n \) 进行归纳.
+  如果 \( n = 1 \), 那么由\cref{remark-noetherian-ring} \( M \simeq
+  A/\mathfrak{a} \) noetherian 其中 \( \mathfrak{a} \) 为 \( A \) 的理想.
+  如果 \( n > 1 \), \( M = \left\langle a_1,
+  \ldots, a_n \right\rangle \) 有一个子模 \( N = \left\langle a_1, \ldots, a_{n
+  - 1} \right\rangle \).
+  由归纳假设正合列
+  \[
+    0 \to N \to M \to M / N \to 0
+  \]
+  中 \( N, M/N \) noetherian,
+  应用\cref{proposition-exact-sequence-noetherian-module} \( M \) noetherian.
+\end{proof}
+
+\paragraph{Hilbert 基定理}
+
+\begin{theorem}[Hilbert基]
+  \label{theorem-Hilbert-basis}
+  每个 noetherian 环上的有限生成代数 noetherian.
+\end{theorem}
+
+\subsection{Noetherian 模的伴随素理想}
+
+假设 \( M \) 是一个 noetherian 环 \( A \) 上的有限生成模. 给定 \( x \in M \),
+我们称 \( A \) 的理想
+\[
+  \operatorname{ann}(x) = \left\lbrace a \in A: ax = 0 \right\rbrace
+\]
+为 \( x \) 的\emph{零化子}.
+
+\begin{lemma}
+  假设 \( M \) 是一个 noetherian 环 \( A \) 上的有限生成模. \( \left\lbrace
+  \operatorname{ann}(x) : x \in M \right\rbrace \) 的极大元是素理想.
+\end{lemma}
+\begin{proof}
+  \( A \) noetherian, 故理想集族有极大元. 如果 \( ab \in
+  \mathfrak{a} \), 那么 \( abx = 0 \), 只能 \( ax = 0 \) 或 \( bx = 0 \), 否则
+  有 \( \operatorname{ann}(x) \subsetneq \operatorname{ann}(ax) \),
+  这与极大性矛盾.
+\end{proof}
+
+\begin{proposition}
+  Noetherian 环 \( A \) 上的有限生成模 \( M \) 有一个有限子模链
+  \[
+    M \supseteq M_r \supseteq \cdots \supseteq M_1 \supseteq 0
+  \]
+  使得每个商 \( M_i / M_{i - 1} \) 同构于 \( A / \mathfrak{p}_i \), 其中 \(
+  \mathfrak{p}_i \) 为一些素理想.
+\end{proposition}
+\begin{proof}
+  对每个 \( x \in M \), \( M \) 的子模 \( Ax \) 同构于 \( A /
+  \operatorname{ann}(x) \). 如果 \( M \) 非零, 那么存在 \( x_1 \) 使得 \(
+  \operatorname{ann}(x) \) 为素理想. 令 \( Ax = M_1 \), 这时 \( M_1 = A /
+  \operatorname{ann}(x_1) \).
+
+  如果 \( M \neq M_1 \), 我们可以对 \( M / M_1 \) 作相同的讨论, 知道存在 \( x_2
+  + M_1 \) 使得 \( \operatorname{ann}(x_2 + M_1) \) 是素的, 且有子模 \( M_2 \)
+  使得 \( M_2 / M_1 = A / \operatorname{ann}(x_2 + M_1) \). 如果 \( M_2 / M_1
+  \neq M / M_1 \), 那么考察 \( \frac{M / M_1}{M_2 / M_1} \simeq M / M_2, \ldots \)
+
+  我们能够得到一个上升子模链 \( 0 \subseteq M_1 \subseteq M_2 \subseteq \cdots
+  \), 使得 \( M_{i -  1} \subsetneq M_{i} \), 且 \( M_{i} / M_{i - 1} \simeq A /
+  \mathfrak{p}_{i} \), 其中 \( \mathfrak{p}_i \) 是一些素理想.
+  \cref{proposition-finite-generated-module-over-noetherian-ring} 告诉我们, \( M
+  \) 是 noetherian 的, 因此这个链有限. 上面的构造在 \( M_n \neq M \)
+  时总能继续进行, 因此此链只能终止在 \( M \).
+\end{proof}
+
+\begin{corollary}
+  如果环 \( A \) notherian, 每个有限生成 \( A \)-代数有限表现.
+\end{corollary}
+\begin{proof}
+  每个有限生成 \( A \)-代数 \( B \) 形如 \( A[X_1, \ldots, X_n] / \mathfrak{a}
+  \), \( \mathfrak{a} \) 作为 \( A[X_1, \ldots, X_n] \) 的理想有限生成.
+\end{proof}
+
+\subsection{Noetherian 环与根}
+
+\begin{proposition}
+  在 noetherian 环中, 每个理想都包含其根的一个幂; 特别地, 幂零根的某个幂就是零.
+\end{proposition}
+\begin{proof}
+  假设 \( a_1, \ldots, a_n \) 生成 \( \operatorname{rad}(\mathfrak{a}) \).
+  对每个 \( a_i \) 都存在 \( r_i \) 使得 \( a_i^{r_i} \in \mathfrak{a} \).
+  设 \( r = r_1 + r_2 + \cdots + r_n \), 那么对任意 \( a \in
+  \operatorname{rad}(\mathfrak{a}), a^r \in \mathfrak{a} \).
+\end{proof}
+
+\begin{proposition}
+  假设 \( (A, \mathfrak{m}) \) 是一个 noetherian 局部环.
+  \( \mathfrak{m} \) 由 \( a_1, \ldots, a_n \) 生成当且仅当
+  \( a_1 + \mathfrak{m}^2,\ldots, a_n + \mathfrak{m}^{2} \) 张成 \( A /
+  \mathfrak{m} \)-线性空间 \( \mathfrak{m} / \mathfrak{m}^2 \).
+  特别地, \( \mathfrak{m} \) 生成元集最小数等于 \( \mathfrak{m} / \mathfrak{m}^2
+  \) 维数.
+\end{proposition}
+\begin{proof}
+  将 \(  \mathfrak{m}, N = \left\langle a_1, \ldots, a_n \right\rangle \) 视为
+  \( A \)-模, 于是 \( \mathfrak{m} = N + \mathfrak{m}^2 \).
+  由\cref{theorem-Nakayama-lemma}, \( \mathfrak{m} = N \).
+\end{proof}
+
+\begin{theorem}[Krull 交定理]
+  \label{theorem-Krull-intersection}
+  假设 \( \mathfrak{a} \) 是 noetherian 环 \( A \) 的一个理想. 如果 \(
+  \mathfrak{a} \) 包含于所有 \( A \) 的极大理想, 那么
+  \[
+    \bigcap_{n \geq 1} \mathfrak{a}^n = 0.
+  \]
+\end{theorem}
+
+\section{noetherian 环与局部化}
+
+\begin{proposition}
+  如果 \( A \) 是 noetherian 的, \( S \) 为 \( A \) 的一个乘性子集, 那么 \(
+  S^{-1} A \) 亦是 noetherian 的.
+\end{proposition}
+\begin{proof}
+  \( \mathfrak{b}^c \) 有限生成, \( \mathfrak{b} = \mathfrak{b}^{ce} \)
+  有限生成.
+\end{proof}
+

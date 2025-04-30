@@ -156,3 +156,25 @@
   不可约.
 \end{corollary}
 
+\subsection{唯一因子分解环的性质}
+
+\paragraph{整闭性}
+
+\begin{proposition}
+  每个唯一因子分解整环都是整闭的.
+\end{proposition}
+\begin{proof}
+  假设 \( A \) 是一个唯一因子分解整环, \( a/b \in \operatorname{Frac} A \) 整,
+  其中 \( a \) 和 \( b \) 互素, 那么其满足形如下面的方程
+  \[
+    \left(\frac{a}{b}\right)^n + a_1 \left(\frac{a}{b}\right)^{n - 1} + \cdots + a_n = 0,\quad a_i \in
+    A.
+  \]
+  两边同乘 \( b^n \), 得到
+  \[
+    a^n + (a_1b) a^{n - 1} + \cdots + a_nb^n = 0,\quad a_i \in
+    A.
+  \]
+  因此 \( b \mid a \), 只能 \( b \) 为 \( A \) 的单位.
+\end{proof}
+
